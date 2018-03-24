@@ -10,7 +10,7 @@ import UIKit
 
 class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    var curPins: String = "0"
+    var curPin: String = "0"
     weak var delegate: UIViewController!
     var usersNames: [String] = []
     
@@ -21,8 +21,6 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "playercell")
         let notReadyImage : UIImage = UIImage(named: "notready.png")!
-        // let size = CGSize(width: 30, height: 30)
-        // let newNotReadyImage = notReadyImage.resizeImageWith(newSize: size)
         cell.imageView?.image = notReadyImage
         cell.textLabel?.text = usersNames[indexPath.row]
 
@@ -36,7 +34,7 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
         super.viewDidLoad()
         print("hellow from enter room controller")
 
-        roomPin.text = "Room Pin Number: \(curPins)"
+        roomPin.text = "Room Pin Number: \(curPin)"
         
 
         // Do any additional setup after loading the view.
@@ -55,6 +53,12 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     @IBAction func unwindSegueToRoomVC(_ sender:UIStoryboardSegue) { }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "addmeme" {
+            let controller = segue.destination as! RoomViewController
+            controller.curPin = curPin
+        }
+    }
     
     
     /*

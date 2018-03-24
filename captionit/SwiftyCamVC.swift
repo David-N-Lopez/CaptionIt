@@ -15,14 +15,15 @@
 
 
 import UIKit
+import FirebaseDatabase
 
 class camController: SwiftyCamViewController, SwiftyCamViewControllerDelegate {
     
     @IBOutlet weak var captureButton: SwiftyRecordButton!
     @IBOutlet weak var flipCameraButton: UIButton!
     @IBOutlet weak var flashButton: UIButton!
-    
-    
+    var curPin: String?
+    var ref:DatabaseReference! = Database.database().reference()
     override func viewDidLoad() {
         super.viewDidLoad()
         cameraDelegate = self
@@ -30,6 +31,23 @@ class camController: SwiftyCamViewController, SwiftyCamViewControllerDelegate {
         shouldUseDeviceOrientation = true
         allowAutoRotate = true
         audioEnabled = true
+        let currentPlayer  = getCurrentPlayer()
+        //NEX THING TO WORK ON OBSERVE THE VALUE OF Meme Video or meme Photo to call perform segue with identifier: unwindSegue
+        /**********************************TESTING DIFERENT WAYS OF DISMISSING VIEWS**********/
+        ref.child("rooms").child(curPin!).child((currentPlayer?.username)!).observeSingleEvent(of: .value, with: { snapshot in
+            // I got the expected number of items
+            let enumerator = snapshot.children
+            print(enumerator)
+//            let rest: Dictionary = enumerator.nextObject() as? DataSnapshot {
+//                let curRoom = rest?.childSnapshot(forPath: "meme Video").value as! Bool
+//
+//
+//
+//            }
+        })//Good
+
+    
+
     }
     
     override var prefersStatusBarHidden: Bool {
@@ -42,7 +60,7 @@ class camController: SwiftyCamViewController, SwiftyCamViewControllerDelegate {
     }
     
     func swiftyCam(_ swiftyCam: SwiftyCamViewController, didTake photo: UIImage) {
-        let newVC = PhotoViewController(image: photo)
+        let newVC = PhotoViewController(image: photo, pin: curPin)
         self.present(newVC, animated: true, completion: nil)
     }
     
@@ -65,7 +83,7 @@ class camController: SwiftyCamViewController, SwiftyCamViewControllerDelegate {
     }
     
     func swiftyCam(_ swiftyCam: SwiftyCamViewController, didFinishProcessVideoAt url: URL) {
-        let newVC = VideoViewController(videoURL: url)
+        let newVC = VideoViewController(videoURL: url, pin: curPin)
         self.present(newVC, animated: true, completion: nil)
     }
     
@@ -113,4 +131,6 @@ class camController: SwiftyCamViewController, SwiftyCamViewControllerDelegate {
             flashButton.setImage(#imageLiteral(resourceName: "flashOutline"), for: UIControlState())
         }
     }
+    
+
 }

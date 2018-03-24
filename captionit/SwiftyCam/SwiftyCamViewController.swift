@@ -95,11 +95,11 @@ open class SwiftyCamViewController: UIViewController {
 
 	/// Maxiumum video duration if SwiftyCamButton is used
 
-	public var maximumVideoDuration : Double     = 10.0
+	public var maximumVideoDuration : Double     = 0.0
 
 	/// Video capture quality
 
-	public var videoQuality : VideoQuality       = .high
+    public var videoQuality : VideoQuality       = .resolution1920x1080 //Nico: Changed default quality
 
 	/// Sets whether flash is enabled for photo and video capture
 
@@ -165,7 +165,7 @@ open class SwiftyCamViewController: UIViewController {
     fileprivate(set) public var panGesture    : UIPanGestureRecognizer!
 
 
-	// MARK: Public Get-only Variable Declarations
+	// MARK: Public Get-only s Declarations
 
 	/// Returns true if video is currently being recorded
 

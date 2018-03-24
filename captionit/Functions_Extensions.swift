@@ -62,5 +62,27 @@ func getCurrentPlayer () -> Player? {
     }
     return nil
     
+    
 }
-
+/*******White BG for the text ...Reposition it on top*******/
+func textToImage(drawText text: NSString, inImage image: UIImage, atPoint point: CGPoint) -> UIImage {
+    let textColor = UIColor.black
+    let textFont = UIFont(name: "Helvetica Neue", size: 30)!
+    
+    let scale = UIScreen.main.scale
+    UIGraphicsBeginImageContextWithOptions(image.size, false, scale)
+    
+    let textFontAttributes = [
+        NSFontAttributeName: textFont,
+        NSForegroundColorAttributeName: textColor,
+        ] as [String : Any]
+    image.draw(in: CGRect(origin: CGPoint.zero, size: image.size))
+    
+    let rect = CGRect(origin: point, size: image.size)
+    text.draw(in: rect, withAttributes: textFontAttributes)
+    
+    let newImage = UIGraphicsGetImageFromCurrentImageContext()
+    UIGraphicsEndImageContext()
+    
+    return newImage!
+}

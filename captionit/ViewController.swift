@@ -57,9 +57,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 performSegue(withIdentifier: "toroom1", sender: self)
                 
                 }
-    
-
-        
     }
     /*
      
@@ -123,7 +120,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toroom1" {
             let controller = segue.destination as! EnterRoomViewController
-            controller.curPins = curPin
+            controller.curPin = curPin
             let currentPlayer = getCurrentPlayer()
             controller.usersNames.append((currentPlayer?.username)!)
         }

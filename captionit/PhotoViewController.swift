@@ -14,18 +14,22 @@ GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWE
 LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
 
 import UIKit
+import FirebaseDatabase
 
 class PhotoViewController: UIViewController {
-
+    var ref:DatabaseReference! = Database.database().reference()
 	override var prefersStatusBarHidden: Bool {
 		return true
 	}
 
 	private var backgroundImage: UIImage
+    var curPin:String?
 
-	init(image: UIImage) {
+    init(image: UIImage, pin: String?) {
 		self.backgroundImage = image
 		super.init(nibName: nil, bundle: nil)
+        curPin = pin
+        
 	}
 
 	required init?(coder aDecoder: NSCoder) {
@@ -43,9 +47,24 @@ class PhotoViewController: UIViewController {
 		cancelButton.setImage(#imageLiteral(resourceName: "cancel"), for: UIControlState())
 		cancelButton.addTarget(self, action: #selector(cancel), for: .touchUpInside)
 		view.addSubview(cancelButton)
+        let useIcon = UIButton(frame: CGRect(x: 280.0, y: 550.0, width: 80.0, height: 80.0))
+        useIcon.setImage(#imageLiteral(resourceName: "sendIcon"), for: UIControlState())
+        useIcon.addTarget(self, action: #selector(useImage), for: .touchUpInside)
+        view.addSubview(useIcon)
+        
 	}
 
 	func cancel() {
 		dismiss(animated: true, completion: nil)
+        
 	}
+    func useImage(){
+        if let currentPlayer = getCurrentPlayer(){
+            currentPlayer.memePhoto = true //not sure what case does
+        self.ref.child("rooms").child(curPin!).child("players").child(currentPlayer.username).updateChildValues(["meme Photo":currentPlayer.memePhoto])
+            cancel()//go to upload meme
+                
+            
+        }
+    }
 }

@@ -20,8 +20,8 @@ class Player {
     var pinNumber: String?//is it necessary?-
     var judge = false
     var hasBeenJudge = false
-    var meme = false //stores image from firebase
-    
+    var memeVideo = false //stores video reference url in firebase Database
+    var memePhoto = false // stores image object in Fibrabase (might not work)
     init (_ username: String){
         self.username = username
     }
@@ -39,8 +39,10 @@ class Player {
         if let currentPlayer = getCurrentPlayer(){
             let playerInfo = ["Ready":self.ready,
                               "judge":self.judge,
-                              "meme":self.meme]
+                              "meme Video":self.memeVideo as Any,
+                              "meme Photo": self.memePhoto]//Maybe it is no saving the picture
             self.ref.child("rooms").child(curPin).child("players").child(currentPlayer.username).updateChildValues(playerInfo)
+            self.pinNumber = curPin
         }
     }
 }
