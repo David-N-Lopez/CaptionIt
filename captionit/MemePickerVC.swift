@@ -12,16 +12,21 @@ import AVKit
 class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var myImageView: UIImageView!
+    @IBOutlet weak var myTextView: UILabel!
     
     var curPin:String?
+    var previewImage: UIImage?
+    var previewVideo: URL?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         let picker = UIImagePickerController()
         picker.delegate = self // delegate added
-//        let newImage = textToImage(drawText: "This is a meme", inImage: #imageLiteral(resourceName: "meme"), atPoint: CGPoint(x: 20, y:20))
-//        myImageView.image = newImage
-        // Do any additional setup after loading the view.
+        myImageView.image = previewImage
+      //  myTextView.text = "This is a meme. \nNow let's make this absurdly large to fit roughly three wait no let's make it five lines worth of text to really test the limits of this label box. So yeah."
+        myTextView.backgroundColor = UIColor.white
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,15 +36,17 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     @IBAction func selectPhotoButtonTapped(_ sender: UIButton) {
         
-        let myPickerController = UIImagePickerController()
-        myPickerController.delegate = self;
-        myPickerController.sourceType = UIImagePickerControllerSourceType.photoLibrary
+//        let myPickerController = UIImagePickerController()
+//        myPickerController.delegate = self;
+//        myPickerController.sourceType = UIImagePickerControllerSourceType.photoLibrary
+        //new function need to be able to grab image from
+        
         let alert = UIAlertController(title: "Where do you want to get your meme from?", message: "You can take footage rn or grab some from your cameraroll, you decide.", preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: "CameraRoll", style: .default, handler: { action in
-            self.present(myPickerController, animated: true, completion: nil)
+            self.selectPicture()
         }))
-        alert.addAction(UIAlertAction(title: "Take Video or Pics RN", style: .default, handler: { action in
+        alert.addAction(UIAlertAction(title: "Make Your Meme", style: .default, handler: { action in
             self.performSegue(withIdentifier: "SwiftyCam", sender: Any?)
         }))
 
@@ -62,6 +69,32 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         exportSession.exportAsynchronously { () -> Void in
             handler(exportSession)
         }
+    }
+    func selectPicture() {
+        let picker = UIImagePickerController()
+        picker.allowsEditing = false
+        picker.delegate = self
+        present(picker, animated: true)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        var newImage: UIImage
+        
+        if let possibleImage = info["UIImagePickerControllerEditedImage"] as? UIImage {
+            newImage = possibleImage
+        } else if let possibleImage = info["UIImagePickerControllerOriginalImage"] as? UIImage {
+            newImage = possibleImage
+        } else {
+            return
+        }
+        
+        // do something interesting here!
+        myImageView.image = newImage
+        dismiss(animated: true)
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "SwiftyCam" {

@@ -23,6 +23,8 @@ class camController: SwiftyCamViewController, SwiftyCamViewControllerDelegate {
     @IBOutlet weak var flipCameraButton: UIButton!
     @IBOutlet weak var flashButton: UIButton!
     var curPin: String?
+    var ifHasPhoto: UIImage?
+    var ifHasvideo: URL?
     var ref:DatabaseReference! = Database.database().reference()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,20 +33,21 @@ class camController: SwiftyCamViewController, SwiftyCamViewControllerDelegate {
         shouldUseDeviceOrientation = true
         allowAutoRotate = true
         audioEnabled = true
-        let currentPlayer  = getCurrentPlayer()
+//        let currentPlayer  = getCurrentPlayer()
+
         //NEX THING TO WORK ON OBSERVE THE VALUE OF Meme Video or meme Photo to call perform segue with identifier: unwindSegue
         /**********************************TESTING DIFERENT WAYS OF DISMISSING VIEWS**********/
-        ref.child("rooms").child(curPin!).child((currentPlayer?.username)!).observeSingleEvent(of: .value, with: { snapshot in
-            // I got the expected number of items
-            let enumerator = snapshot.children
-            print(enumerator)
-//            let rest: Dictionary = enumerator.nextObject() as? DataSnapshot {
+//    ref.child("rooms").child(curPin!).child("players").(currentPlayer?.username).observeSingleEvent(of: .value, with: { snapshot in
+//            // I got the expected number of items
+//            let enumerator = snapshot.children
+//            print(enumerator)
+//
+//        while let rest = enumerator.nextObject() as? DataSnapshot {
+//            print(rest)
 //                let curRoom = rest?.childSnapshot(forPath: "meme Video").value as! Bool
+//    }
 //
-//
-//
-//            }
-        })//Good
+//        })//Good
 
     
 
@@ -60,8 +63,9 @@ class camController: SwiftyCamViewController, SwiftyCamViewControllerDelegate {
     }
     
     func swiftyCam(_ swiftyCam: SwiftyCamViewController, didTake photo: UIImage) {
-        let newVC = PhotoViewController(image: photo, pin: curPin)
-        self.present(newVC, animated: true, completion: nil)
+        ifHasPhoto = photo
+        self.performSegue(withIdentifier:"PhotoPreviewSegue", sender: self)
+
     }
     
     func swiftyCam(_ swiftyCam: SwiftyCamViewController, didBeginRecordingVideo camera: SwiftyCamViewController.CameraSelection) {
@@ -131,6 +135,12 @@ class camController: SwiftyCamViewController, SwiftyCamViewControllerDelegate {
             flashButton.setImage(#imageLiteral(resourceName: "flashOutline"), for: UIControlState())
         }
     }
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "PhotoPreviewSegue" {
+            let controller = segue.destination as! PhotoViewController
+            controller.curPin = curPin
+            controller.backgroundImage = ifHasPhoto
+        }
+    }
 
 }

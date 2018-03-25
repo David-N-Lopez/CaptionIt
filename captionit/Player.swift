@@ -21,7 +21,7 @@ class Player {
     var judge = false
     var hasBeenJudge = false
     var memeVideo = false //stores video reference url in firebase Database
-    var memePhoto = false // stores image object in Fibrabase (might not work)
+    var memePhoto = false// stores image object in Fibrabase (might not work)
     init (_ username: String){
         self.username = username
     }

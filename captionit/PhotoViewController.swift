@@ -17,24 +17,16 @@ import UIKit
 import FirebaseDatabase
 
 class PhotoViewController: UIViewController {
-    var ref:DatabaseReference! = Database.database().reference()
+     var ref:DatabaseReference! = Database.database().reference()
 	override var prefersStatusBarHidden: Bool {
 		return true
 	}
-
-	private var backgroundImage: UIImage
+    var backgroundImage: UIImage?
     var curPin:String?
+    @IBAction func unwindToSwifty(segue: UIStoryboardSegue){}
 
-    init(image: UIImage, pin: String?) {
-		self.backgroundImage = image
-		super.init(nibName: nil, bundle: nil)
-        curPin = pin
-        
-	}
 
-	required init?(coder aDecoder: NSCoder) {
-		fatalError("init(coder:) has not been implemented")
-	}
+
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -43,28 +35,36 @@ class PhotoViewController: UIViewController {
 		backgroundImageView.contentMode = UIViewContentMode.scaleAspectFit
 		backgroundImageView.image = backgroundImage
 		view.addSubview(backgroundImageView)
-		let cancelButton = UIButton(frame: CGRect(x: 10.0, y: 10.0, width: 30.0, height: 30.0))
-		cancelButton.setImage(#imageLiteral(resourceName: "cancel"), for: UIControlState())
-		cancelButton.addTarget(self, action: #selector(cancel), for: .touchUpInside)
-		view.addSubview(cancelButton)
+        let cancelButton = UIButton(frame: CGRect(x: 10.0, y: 10.0, width: 30.0, height: 30.0))
+        cancelButton.setImage(#imageLiteral(resourceName: "cancel"), for: UIControlState())
+        cancelButton.addTarget(self, action: #selector(cancel), for: .touchUpInside)
+        view.addSubview(cancelButton)
         let useIcon = UIButton(frame: CGRect(x: 280.0, y: 550.0, width: 80.0, height: 80.0))
         useIcon.setImage(#imageLiteral(resourceName: "sendIcon"), for: UIControlState())
-        useIcon.addTarget(self, action: #selector(useImage), for: .touchUpInside)
+        useIcon.addTarget(self, action: #selector(saveImage), for: .touchUpInside)
         view.addSubview(useIcon)
         
 	}
-
-	func cancel() {
-		dismiss(animated: true, completion: nil)
-        
+    func cancel() {        //need to segue now
+        performSegue(withIdentifier: "returnToSwifty ", sender: self)
+    }
+	func saveImage() {		//need to segue now
+        performSegue(withIdentifier: "SavedImageSegue", sender: self)
 	}
-    func useImage(){
-        if let currentPlayer = getCurrentPlayer(){
-            currentPlayer.memePhoto = true //not sure what case does
-        self.ref.child("rooms").child(curPin!).child("players").child(currentPlayer.username).updateChildValues(["meme Photo":currentPlayer.memePhoto])
-            cancel()//go to upload meme
-                
-            
+//    func useImage(){
+//        if let currentPlayer = getCurrentPlayer(){
+//            currentPlayer.memePhoto = true//not sure what case does
+//        self.ref.child("rooms").child(curPin!).child("players").child(currentPlayer.username).updateChildValues(["meme Photo":currentPlayer.memePhoto])
+//            saveImage()//go to upload meme
+//
+//
+//        }
+//    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "SavedImageSegue" {
+            let controller = segue.destination as! RoomViewController
+            controller.curPin = curPin //should I keep on passing the current pin
+            controller.previewImage = backgroundImage
         }
     }
 }

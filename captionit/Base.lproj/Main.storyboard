@@ -308,11 +308,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oWx-Yy-zZo">
-                                <rect key="frame" x="16" y="169" width="343" height="237"/>
+                                <rect key="frame" x="16" y="169" width="343" height="331"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="12K-le-OEU">
-                                <rect key="frame" x="157" y="533" width="50" height="30"/>
+                                <rect key="frame" x="162" y="572" width="50" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Upload"/>
                             </button>
@@ -324,8 +324,14 @@
                                     <segue destination="SU4-as-38q" kind="unwind" unwindAction="unwindSegueToRoomVC:" id="cmG-24-ha0"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="xfa-V0-e04">
+                                <rect key="frame" x="16" y="86" width="343" height="84"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <attributedString key="attributedText"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GZt-oQ-ZY6">
-                                <rect key="frame" x="137" y="452" width="89" height="30"/>
+                                <rect key="frame" x="143" y="515" width="89" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Select Media"/>
                                 <connections>
@@ -337,6 +343,7 @@
                     </view>
                     <connections>
                         <outlet property="myImageView" destination="oWx-Yy-zZo" id="T9W-lM-WrS"/>
+                        <outlet property="myTextView" destination="xfa-V0-e04" id="49Z-bR-nhd"/>
                         <segue destination="f7E-q0-SJQ" kind="show" identifier="SwiftyCam" id="hOq-fk-2b4"/>
                     </connections>
                 </viewController>
@@ -462,7 +469,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H3W-vL-fQE">
-                                <rect key="frame" x="72" y="595" width="28" height="28"/>
+                                <rect key="frame" x="72" y="595" width="28" height="72"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="28" id="ikp-fo-jnK"/>
                                 </constraints>
@@ -471,9 +478,6 @@
                                     <action selector="cameraSwitchTapped:" destination="f7E-q0-SJQ" eventType="touchUpInside" id="PRn-H7-NYJ"/>
                                     <action selector="cameraSwitchTapped:" destination="f7E-q0-SJQ" eventType="touchUpOutside" id="Zia-iS-jop"/>
                                 </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TXz-Kt-xnU" customClass="SwiftyRecordButton" customModule="CaptionIt" customModuleProvider="target">
-                                <rect key="frame" x="142" y="533" width="90" height="90"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kGH-b0-UiK">
                                 <rect key="frame" x="16" y="20" width="77" height="66"/>
@@ -484,7 +488,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="usR-ZG-I1A">
-                                <rect key="frame" x="280" y="595" width="28" height="28"/>
+                                <rect key="frame" x="280" y="595" width="28" height="72"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="28" id="Qfa-UB-8iH"/>
                                 </constraints>
@@ -494,27 +498,30 @@
                                     <action selector="toggleFlashTapped:" destination="f7E-q0-SJQ" eventType="touchUpOutside" id="c3f-NI-2vd"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TXz-Kt-xnU" customClass="SwiftyRecordButton" customModule="CaptionIt" customModuleProvider="target">
+                                <rect key="frame" x="142" y="556" width="90" height="91"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="usR-ZG-I1A" firstAttribute="leading" secondItem="TXz-Kt-xnU" secondAttribute="trailing" constant="48" id="3J3-sx-FEi"/>
-                            <constraint firstItem="H3W-vL-fQE" firstAttribute="firstBaseline" secondItem="TXz-Kt-xnU" secondAttribute="firstBaseline" constant="50" id="4Nc-lg-yL2"/>
+                            <constraint firstItem="H3W-vL-fQE" firstAttribute="firstBaseline" secondItem="TXz-Kt-xnU" secondAttribute="firstBaseline" constant="30" id="4Nc-lg-yL2"/>
                             <constraint firstItem="usR-ZG-I1A" firstAttribute="baseline" secondItem="H3W-vL-fQE" secondAttribute="baseline" constant="2.5" id="5mu-VX-oz2"/>
-                            <constraint firstItem="usR-ZG-I1A" firstAttribute="firstBaseline" secondItem="TXz-Kt-xnU" secondAttribute="firstBaseline" constant="47.5" id="9h3-sJ-tqe"/>
-                            <constraint firstItem="usR-ZG-I1A" firstAttribute="top" secondItem="TXz-Kt-xnU" secondAttribute="top" constant="62" id="GkO-tq-UY9"/>
+                            <constraint firstItem="usR-ZG-I1A" firstAttribute="firstBaseline" secondItem="TXz-Kt-xnU" secondAttribute="firstBaseline" constant="26.5" id="9h3-sJ-tqe"/>
+                            <constraint firstItem="usR-ZG-I1A" firstAttribute="top" secondItem="TXz-Kt-xnU" secondAttribute="top" constant="20" id="GkO-tq-UY9"/>
                             <constraint firstItem="usR-ZG-I1A" firstAttribute="centerY" secondItem="H3W-vL-fQE" secondAttribute="centerY" id="IeQ-5h-jrY"/>
                             <constraint firstItem="usR-ZG-I1A" firstAttribute="firstBaseline" secondItem="H3W-vL-fQE" secondAttribute="firstBaseline" constant="-2.5" id="K4i-Hy-3yw"/>
                             <constraint firstItem="TXz-Kt-xnU" firstAttribute="leading" secondItem="H3W-vL-fQE" secondAttribute="trailing" constant="42" id="Lod-lu-6hy"/>
                             <constraint firstItem="H3W-vL-fQE" firstAttribute="baseline" secondItem="usR-ZG-I1A" secondAttribute="baseline" constant="-2.5" id="Pz3-YG-17V"/>
                             <constraint firstAttribute="trailingMargin" secondItem="usR-ZG-I1A" secondAttribute="trailing" constant="51" id="a4E-Kg-NWM"/>
                             <constraint firstItem="usR-ZG-I1A" firstAttribute="top" secondItem="H3W-vL-fQE" secondAttribute="top" id="iWv-JA-ecT"/>
-                            <constraint firstItem="usR-ZG-I1A" firstAttribute="baseline" secondItem="TXz-Kt-xnU" secondAttribute="baseline" constant="93.5" id="jTl-F1-KSF"/>
+                            <constraint firstItem="usR-ZG-I1A" firstAttribute="baseline" secondItem="TXz-Kt-xnU" secondAttribute="baseline" constant="74.5" id="jTl-F1-KSF"/>
                             <constraint firstItem="usR-ZG-I1A" firstAttribute="top" secondItem="usx-Tn-fzW" secondAttribute="bottom" constant="575" id="lXb-Rj-b92"/>
                             <constraint firstItem="H3W-vL-fQE" firstAttribute="leading" secondItem="foQ-al-iVK" secondAttribute="leadingMargin" constant="56" id="ma7-C2-jXE"/>
-                            <constraint firstItem="H3W-vL-fQE" firstAttribute="baseline" secondItem="TXz-Kt-xnU" secondAttribute="baseline" constant="91" id="rWK-vY-rpt"/>
+                            <constraint firstItem="H3W-vL-fQE" firstAttribute="baseline" secondItem="TXz-Kt-xnU" secondAttribute="baseline" constant="71" id="rWK-vY-rpt"/>
                             <constraint firstItem="H3W-vL-fQE" firstAttribute="firstBaseline" secondItem="usR-ZG-I1A" secondAttribute="firstBaseline" constant="2.5" id="sS1-4V-DyL"/>
                             <constraint firstItem="HMh-Zo-A8N" firstAttribute="top" secondItem="usR-ZG-I1A" secondAttribute="bottom" id="yJz-xz-W2e"/>
-                            <constraint firstItem="usR-ZG-I1A" firstAttribute="centerY" secondItem="TXz-Kt-xnU" secondAttribute="centerY" constant="31" id="yrP-Td-H2Z"/>
+                            <constraint firstItem="usR-ZG-I1A" firstAttribute="centerY" secondItem="TXz-Kt-xnU" secondAttribute="centerY" constant="20" id="yrP-Td-H2Z"/>
                         </constraints>
                     </view>
                     <connections>
@@ -522,6 +529,8 @@
                         <outlet property="flashButton" destination="usR-ZG-I1A" id="bEu-Tm-7dF"/>
                         <outlet property="flipCameraButton" destination="H3W-vL-fQE" id="B89-k9-RMq"/>
                         <segue destination="stc-ZS-D8G" kind="unwind" unwindAction="unwindSegueToMemePicker:" id="Rg5-9c-4BI"/>
+                        <segue destination="c2b-My-6gj" kind="show" identifier="PhotoPreviewSegue" id="AVP-Cp-2U1"/>
+                        <segue destination="gSa-Mc-M0j" kind="show" identifier="VideoPreviewSegue" id="FhG-eZ-8Yx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X7E-us-1Rs" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -529,10 +538,54 @@
             </objects>
             <point key="canvasLocation" x="2445.5999999999999" y="36.431784107946029"/>
         </scene>
+        <!--Photo View Controller-->
+        <scene sceneID="RhS-d5-rGP">
+            <objects>
+                <viewController id="c2b-My-6gj" customClass="PhotoViewController" customModule="CaptionIt" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="YZ8-Ea-Uxr"/>
+                        <viewControllerLayoutGuide type="bottom" id="TyH-BG-238"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="nw1-XD-jao">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                    <connections>
+                        <segue destination="CWs-tZ-XH1" kind="show" identifier="SavedImageSegue" id="M6Q-mU-YQ2"/>
+                        <segue destination="f7E-q0-SJQ" kind="show" identifier="returnToSwifty" id="Gfv-Pb-sau"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3Rg-8L-AfT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2445.5999999999999" y="738.98050974512751"/>
+        </scene>
+        <!--Video View Controller-->
+        <scene sceneID="hW7-kl-JoI">
+            <objects>
+                <viewController id="gSa-Mc-M0j" customClass="VideoViewController" customModule="CaptionIt" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ZsC-8O-yhk"/>
+                        <viewControllerLayoutGuide type="bottom" id="0Xt-JH-Qsn"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Kbp-CM-8lU">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5nZ-Cl-ftq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2446" y="-711"/>
+        </scene>
     </scenes>
     <resources>
         <image name="cancel" width="30" height="30"/>
         <image name="flash" width="18" height="30"/>
         <image name="flipCamera" width="30" height="23"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Gfv-Pb-sau"/>
+        <segue reference="M6Q-mU-YQ2"/>
+    </inferredMetricsTieBreakers>
 </document>
