@@ -226,6 +226,7 @@
                                 <state key="normal" title="Start Game"/>
                                 <connections>
                                     <action selector="startGame" destination="19z-dd-pBM" eventType="touchUpInside" id="PcP-FC-2vO"/>
+                                    <segue destination="115-jp-Nof" kind="show" identifier="gameIsOn!" id="17W-7G-XRg"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Room Pin Number: 0000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wck-yV-0Kf">
@@ -288,6 +289,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="roomPin" destination="Wck-yV-0Kf" id="jYi-P1-x7e"/>
+                        <outlet property="tableView" destination="XvS-SJ-5DB" id="T2z-Lh-dQ3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CuZ-UZ-pYA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -311,11 +313,6 @@
                                 <rect key="frame" x="16" y="169" width="343" height="331"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="12K-le-OEU">
-                                <rect key="frame" x="162" y="572" width="50" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Upload"/>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IKg-85-0vH">
                                 <rect key="frame" x="16" y="20" width="48" height="43"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -324,18 +321,27 @@
                                     <segue destination="SU4-as-38q" kind="unwind" unwindAction="unwindSegueToRoomVC:" id="cmG-24-ha0"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GZt-oQ-ZY6">
+                                <rect key="frame" x="116" y="518" width="142" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Pick Meme"/>
+                                <connections>
+                                    <action selector="selectPhotoButtonTapped:" destination="CWs-tZ-XH1" eventType="touchUpInside" id="Rma-gb-V1g"/>
+                                </connections>
+                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="xfa-V0-e04">
                                 <rect key="frame" x="16" y="86" width="343" height="84"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <attributedString key="attributedText"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GZt-oQ-ZY6">
-                                <rect key="frame" x="143" y="515" width="89" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="12K-le-OEU">
+                                <rect key="frame" x="162" y="570" width="50" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Select Media"/>
+                                <state key="normal" title="Upload"/>
                                 <connections>
-                                    <action selector="selectPhotoButtonTapped:" destination="CWs-tZ-XH1" eventType="touchUpInside" id="Rma-gb-V1g"/>
+                                    <action selector="submit:" destination="CWs-tZ-XH1" eventType="touchUpInside" id="zLN-Kv-f1A"/>
+                                    <segue destination="19z-dd-pBM" kind="show" identifier="PlayerHasImageSegue" id="mfn-W5-BXi"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -344,6 +350,7 @@
                     <connections>
                         <outlet property="myImageView" destination="oWx-Yy-zZo" id="T9W-lM-WrS"/>
                         <outlet property="myTextView" destination="xfa-V0-e04" id="49Z-bR-nhd"/>
+                        <outlet property="pickMeme" destination="GZt-oQ-ZY6" id="Uhc-ZG-bPz"/>
                         <segue destination="f7E-q0-SJQ" kind="show" identifier="SwiftyCam" id="hOq-fk-2b4"/>
                     </connections>
                 </viewController>
@@ -469,7 +476,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H3W-vL-fQE">
-                                <rect key="frame" x="72" y="595" width="28" height="72"/>
+                                <rect key="frame" x="72" y="576" width="28" height="47"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="28" id="ikp-fo-jnK"/>
                                 </constraints>
@@ -488,7 +495,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="usR-ZG-I1A">
-                                <rect key="frame" x="280" y="595" width="28" height="72"/>
+                                <rect key="frame" x="280" y="576" width="28" height="47"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="28" id="Qfa-UB-8iH"/>
                                 </constraints>
@@ -560,6 +567,49 @@
             </objects>
             <point key="canvasLocation" x="2445.5999999999999" y="738.98050974512751"/>
         </scene>
+        <!--CaptioningVC-->
+        <scene sceneID="pAX-9F-QA8">
+            <objects>
+                <viewController id="115-jp-Nof" customClass="CaptioningVC" customModule="CaptionIt" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="90Q-zZ-XfT"/>
+                        <viewControllerLayoutGuide type="bottom" id="Xmh-xN-r9A"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="o5I-9B-fFf">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="39L-SY-lwF">
+                                <rect key="frame" x="38" y="143" width="312" height="278"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sX2-Vc-abm">
+                                <rect key="frame" x="38" y="68" width="312" height="67"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SlU-qV-j3F">
+                                <rect key="frame" x="65" y="527" width="245" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                    <connections>
+                        <outlet property="meme" destination="39L-SY-lwF" id="zNh-T7-Zca"/>
+                        <outlet property="myTextField" destination="SlU-qV-j3F" id="hDL-Ks-qYa"/>
+                        <outlet property="myTextView" destination="sX2-Vc-abm" id="Oze-4o-52R"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dX0-Oi-DsR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1000.8" y="-632.83358320839591"/>
+        </scene>
         <!--Video View Controller-->
         <scene sceneID="hW7-kl-JoI">
             <objects>
@@ -585,7 +635,8 @@
         <image name="flipCamera" width="30" height="23"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Gfv-Pb-sau"/>
-        <segue reference="M6Q-mU-YQ2"/>
+        <segue reference="hOq-fk-2b4"/>
+        <segue reference="6sd-Dy-jmG"/>
+        <segue reference="mfn-W5-BXi"/>
     </inferredMetricsTieBreakers>
 </document>

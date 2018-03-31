@@ -64,6 +64,7 @@ func getCurrentPlayer () -> Player? {
     
     
 }
+
 /*******White BG for the text ...Reposition it on top*******/
 //func textToImage(drawText text: NSString, inImage image: UIImage, atPoint point: CGPoint) -> UIImage {
 //    let textColor = UIColor.black

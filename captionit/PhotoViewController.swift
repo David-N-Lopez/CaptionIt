@@ -25,9 +25,6 @@ class PhotoViewController: UIViewController {
     var curPin:String?
     @IBAction func unwindToSwifty(segue: UIStoryboardSegue){}
 
-
-
-
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		self.view.backgroundColor = UIColor.gray
@@ -65,6 +62,7 @@ class PhotoViewController: UIViewController {
             let controller = segue.destination as! RoomViewController
             controller.curPin = curPin //should I keep on passing the current pin
             controller.previewImage = backgroundImage
+            controller.pickMeme.setTitle("Change Meme?", for: .normal)
         }
     }
 }

@@ -8,8 +8,11 @@
 
 import UIKit
 import AVKit
+import FirebaseStorage
+import FirebaseDatabase
 
 class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    var ref:DatabaseReference! = Database.database().reference()
     
     @IBOutlet weak var myImageView: UIImageView!
     @IBOutlet weak var myTextView: UILabel!
@@ -17,30 +20,50 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     var curPin:String?
     var previewImage: UIImage?
     var previewVideo: URL?
+  
     
-    
+    @IBOutlet weak var pickMeme: UIButton!
+
+    @IBAction func submit(_ sender: UIButton) {
+        print("start")
+        if (myImageView.image != nil){
+            let currentPlayer = getCurrentPlayer()
+            let image = myImageView.image
+            let data : Data = UIImageJPEGRepresentation(image!, 0.4)!
+            print(data)
+        let storageR = Storage.storage()
+        let storageRef = storageR.reference()
+            print("before")
+            let uploadTask = storageRef.child(curPin!).child((currentPlayer?.username)!).putData(data, metadata: nil) { metadata, error in
+                    if error != nil {
+                        print("error")
+                    } else {
+                        //try to make it private
+                        let outputURL = (metadata?.downloadURL()?.absoluteString)!
+                        self.ref.child("rooms").child(self.curPin!).child("players").child(currentPlayer!.username).updateChildValues(["meme Photo": outputURL, "Ready": true])
+                        self.performSegue(withIdentifier: "PlayerHasImageSegue", sender: Any?.self)
+                        
+                    }
+                    
+                }}
+    }
+     
     override func viewDidLoad() {
         super.viewDidLoad()
         let picker = UIImagePickerController()
         picker.delegate = self // delegate added
         myImageView.image = previewImage
-      //  myTextView.text = "This is a meme. \nNow let's make this absurdly large to fit roughly three wait no let's make it five lines worth of text to really test the limits of this label box. So yeah."
+        myTextView.text = "This is a meme. \nNow let's make this absurdly large to fit roughly three wait no let's make it five lines worth of text to really test the limits of this label box. So yeah."
         myTextView.backgroundColor = UIColor.white
-
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
     @IBAction func selectPhotoButtonTapped(_ sender: UIButton) {
-        
-//        let myPickerController = UIImagePickerController()
-//        myPickerController.delegate = self;
-//        myPickerController.sourceType = UIImagePickerControllerSourceType.photoLibrary
-        //new function need to be able to grab image from
-        
+
         let alert = UIAlertController(title: "Where do you want to get your meme from?", message: "You can take footage rn or grab some from your cameraroll, you decide.", preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: "CameraRoll", style: .default, handler: { action in
@@ -75,6 +98,7 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         picker.allowsEditing = false
         picker.delegate = self
         present(picker, animated: true)
+       
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
@@ -93,6 +117,7 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         }
         
         // do something interesting here!
+        pickMeme.setTitle("Change Meme?", for:.normal)
         myImageView.image = newImage
         dismiss(animated: true)
     }
@@ -101,9 +126,14 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             let controller = segue.destination as! camController
             controller.curPin = curPin
         }
+        if segue.identifier == "PlayerHasImageSegue"{
+            let controller = segue.destination as! EnterRoomViewController
+            controller.playerReady = true
+            controller.curPin = self.curPin!
+            controller.playersReady += 1
+        }
     }
-    @IBAction func unwindSegueToMemePicker(_ sender:UIStoryboardSegue) { }
-    
+
 
 
     /*

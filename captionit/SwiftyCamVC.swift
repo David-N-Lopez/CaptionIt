@@ -33,23 +33,6 @@ class camController: SwiftyCamViewController, SwiftyCamViewControllerDelegate {
         shouldUseDeviceOrientation = true
         allowAutoRotate = true
         audioEnabled = true
-//        let currentPlayer  = getCurrentPlayer()
-
-        //NEX THING TO WORK ON OBSERVE THE VALUE OF Meme Video or meme Photo to call perform segue with identifier: unwindSegue
-        /**********************************TESTING DIFERENT WAYS OF DISMISSING VIEWS**********/
-//    ref.child("rooms").child(curPin!).child("players").(currentPlayer?.username).observeSingleEvent(of: .value, with: { snapshot in
-//            // I got the expected number of items
-//            let enumerator = snapshot.children
-//            print(enumerator)
-//
-//        while let rest = enumerator.nextObject() as? DataSnapshot {
-//            print(rest)
-//                let curRoom = rest?.childSnapshot(forPath: "meme Video").value as! Bool
-//    }
-//
-//        })//Good
-
-    
 
     }
     

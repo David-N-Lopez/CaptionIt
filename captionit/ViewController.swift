@@ -121,15 +121,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
         if segue.identifier == "toroom1" {
             let controller = segue.destination as! EnterRoomViewController
             controller.curPin = curPin
-            let currentPlayer = getCurrentPlayer()
-            controller.usersNames.append((currentPlayer?.username)!)
         }
     }
-    
-    
   
-    
-    
     @IBAction func unwindSegueToMainVC(_ sender:UIStoryboardSegue) { }
 }
 
