@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import FirebaseDatabase
+import FirebaseAuth
 
 class Player {
     var ref:DatabaseReference! = Database.database().reference()
@@ -36,11 +37,13 @@ class Player {
     }
     
     func joinGame(curPin:String){
-        if let currentPlayer = getCurrentPlayer(){
+        let currentId = Auth.auth().currentUser?.uid
+        if let currentPlayer = getCurrentPlayer() {
             let playerInfo = ["Ready":self.ready,
                               "judge":self.judge,
                               "meme Video":self.memeVideo as Any,
-                              "meme Photo": self.memePhoto]//Maybe it is no saving the picture
+                              "meme Photo": self.memePhoto,
+                              "ID": currentId ?? ""]//Maybe it is no saving the picture
             self.ref.child("rooms").child(curPin).child("players").child(currentPlayer.username).updateChildValues(playerInfo)
             self.pinNumber = curPin
         }

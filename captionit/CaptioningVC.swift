@@ -10,7 +10,7 @@ import Foundation
 import FirebaseDatabase
 import UIKit
 
-class CaptioningVC: ViewController{
+class CaptioningVC: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var meme: UIImageView!
     @IBOutlet weak var myTextView: UILabel!
     @IBOutlet weak var myTextField: UITextField!

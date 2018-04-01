@@ -14,7 +14,7 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
     var ref:DatabaseReference! = Database.database().reference()
     var curPin: String = "0"
     var playerReady = false
-    var usersNames: [String] = []
+    var users = [Any]()
     var playersReady = 0
     
     @IBOutlet weak var tableView: UITableView!
@@ -23,60 +23,103 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
         super.viewDidLoad()
         print("hellow from enter room controller")
         roomPin.text = "Room Pin Number: \(curPin)"
-           fetchUsers()
+        fetchUsers()
         // Do any additional setup after loading the view
         //        weak var delegate: UIViewController!
     }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-   
-        return(usersNames.count)
-      
+        
+        return(users.count)
+        
     }
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "playercell")
         let notReadyImage : UIImage = UIImage(named: "notready.png")!
-        if playerReady == false {
-        cell.imageView?.image = notReadyImage
+        if let currentUser = users[indexPath.row] as? [String : Any] {
+            let isReady = currentUser["Ready"] as? Bool
+            if isReady == false {
+                cell.imageView?.image = notReadyImage
+            }
+            else{
+                cell.imageView?.image = #imageLiteral(resourceName: "pama") //this is applying for all
+            }
+            if let ID = currentUser["ID"] as? String {
+                self.getUserName(ID, "Default User", { (name) in
+                    cell.textLabel?.text = name
+                })
+            } else {
+                    cell.textLabel?.text = currentUser["userName"] as? String
+            }
+            
+//            cell.textLabel?.text = self.get
         }
-        else{
-            cell.imageView?.image = #imageLiteral(resourceName: "pama") //this is applying for all
-        }
-        cell.textLabel?.text = usersNames[indexPath.row]
+        
         return(cell)
-      
+        
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return UIView()
     }
     @IBOutlet weak var roomPin: UILabel!
     func fetchUsers(){
-       ref.child("rooms").child(curPin).child("players").observe(.value, with: { (snapshot) in
-                if let result = snapshot.children.allObjects as? [DataSnapshot] {
-                    for child in result {
-                        var orderID = child.key as! String
-                        self.usersNames.append(orderID)
-                        //
-                    }
+        ref.child("rooms").child(curPin).child("players").observe(.value, with: { (snapshot) in
+            if let result = snapshot.children.allObjects as? [DataSnapshot] {
+                self.users.removeAll()
+                for child in result {
+                    var orderID = child.key as! String
+                    var value = child.value as! [String : Any]
+                    value["userName"] = orderID
+                    self.users.append(value)
+                    //
                 }
-            })
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
-    }
-    func countPlayersReady()->Int{ //works maybe put this in functionss and extensions
-        var count = 0
-        ref.child("rooms").child(curPin).child("players").observeSingleEvent(of: .value, with: { snapshot in
-            // I got the expected number of items
-            let enumerator = snapshot.children
-            while let rest = enumerator.nextObject() as? DataSnapshot {
-                let curRoom = rest.childSnapshot(forPath: "Ready").value as! Bool
-                if curRoom == true {
-                    count+=1
-                    
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
                 }
             }
         })
+    }
+    func countPlayersReady() -> Int { //works maybe put this in functionss and extensions
+        var count = 0
+        for user in users {
+            if let currentUser = user as? [String : Any] {
+                let isReady = currentUser["Ready"] as? Bool
+                if isReady == true {
+                    count += 1
+                }
+            }
+            print("\(count) Active Users")
+        }
+        //        ref.child("rooms").child(curPin).child("players").observeSingleEvent(of: .value, with: { snapshot in
+        //            // I got the expected number of items
+        //            let enumerator = snapshot.children
+        //            while let rest = enumerator.nextObject() as? DataSnapshot {
+        //                let curRoom = rest.childSnapshot(forPath: "Ready").value as! Bool
+        //                if curRoom == true {
+        //                    count+=1
+        //
+        //                }
+        //            }
+        //        })
         return count
     }
+    
+    func getUserName(_ ID : String, _ defaultValue : String, _ response :@escaping (_ name : String) ->()) {
+        ref.child("Users").child(ID).observeSingleEvent(of: .value, with: { (snapshot) in
+            if let userResponse = snapshot.value as? [String: Any] {
+                if let name = userResponse["username"] as? String {
+                    response(name)
+                } else {
+                    response(defaultValue)
+                }
+            } else {
+                response(defaultValue)
+            }
+        })
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -87,9 +130,9 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     @IBAction func startGame() {
-//        if playersReady>2 {
-//        performSegue(withIdentifier: "gameIsOn!", sender: Any?)
-//        }
+        //        if playersReady>2 {
+        //        performSegue(withIdentifier: "gameIsOn!", sender: Any?)
+        //        }
     }
     @IBAction func unwindSegueToRoomVC(_ sender:UIStoryboardSegue) { }
     
@@ -101,16 +144,16 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     
- 
+    
     
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

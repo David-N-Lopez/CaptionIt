@@ -10,11 +10,11 @@
 		099711BD2F6CDE7E57070741 /* Pods_CaptionIt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCDA3BFD9F652BA4F962D1A8 /* Pods_CaptionIt.framework */; };
 		331418021FB16BF40059F494 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331418011FB16BF40059F494 /* AppDelegate.swift */; };
 		331418041FB16BF40059F494 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331418031FB16BF40059F494 /* ViewController.swift */; };
-		331418091FB16BF40059F494 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 331418081FB16BF40059F494 /* Assets.xcassets */; };
 		331418171FB16BF40059F494 /* CaptionItTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331418161FB16BF40059F494 /* CaptionItTests.swift */; };
 		331418221FB16BF40059F494 /* CaptionItUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 331418211FB16BF40059F494 /* CaptionItUITests.swift */; };
 		338756831FC3E7A800C78256 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338756821FC3E7A800C78256 /* Player.swift */; };
 		36FE7E2B3DC17071A4FE422F /* Pods_CaptionItTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5C0A6A1F8438B5A07393A3D /* Pods_CaptionItTests.framework */; };
+		37112042207177E300295A63 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37112041207177E300295A63 /* Assets.xcassets */; };
 		373A6B212038096000378AC1 /* SwiftyCamVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373A6B202038096000378AC1 /* SwiftyCamVC.swift */; };
 		3740D9AF206C176A000DFC1D /* CaptioningVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3740D9AE206C176A000DFC1D /* CaptioningVC.swift */; };
 		37707CA3203A069A00143D6E /* SwiftyCamViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37707C9F203A069800143D6E /* SwiftyCamViewControllerDelegate.swift */; };
@@ -66,7 +66,6 @@
 		331417FE1FB16BF30059F494 /* CaptionIt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CaptionIt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		331418011FB16BF40059F494 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		331418031FB16BF40059F494 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		331418081FB16BF40059F494 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3314180D1FB16BF40059F494 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		331418121FB16BF40059F494 /* CaptionItTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CaptionItTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		331418161FB16BF40059F494 /* CaptionItTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptionItTests.swift; sourceTree = "<group>"; };
@@ -75,6 +74,7 @@
 		331418211FB16BF40059F494 /* CaptionItUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptionItUITests.swift; sourceTree = "<group>"; };
 		331418231FB16BF40059F494 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		338756821FC3E7A800C78256 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		37112041207177E300295A63 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = captionit/Assets.xcassets; sourceTree = SOURCE_ROOT; };
 		373A6B202038096000378AC1 /* SwiftyCamVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyCamVC.swift; sourceTree = "<group>"; };
 		3740D9AE206C176A000DFC1D /* CaptioningVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptioningVC.swift; sourceTree = "<group>"; };
 		37707C9F203A069800143D6E /* SwiftyCamViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyCamViewControllerDelegate.swift; sourceTree = "<group>"; };
@@ -188,9 +188,9 @@
 				331418011FB16BF40059F494 /* AppDelegate.swift */,
 				331418031FB16BF40059F494 /* ViewController.swift */,
 				3740D9AE206C176A000DFC1D /* CaptioningVC.swift */,
+				37112041207177E300295A63 /* Assets.xcassets */,
 				C8825BC01FD4674F00089E7A /* EnterRoomViewController.swift */,
 				C8825BBC1FD26DC600089E7A /* MemePickerVC.swift */,
-				331418081FB16BF40059F494 /* Assets.xcassets */,
 				3314180D1FB16BF40059F494 /* Info.plist */,
 				338756821FC3E7A800C78256 /* Player.swift */,
 				C8825BB41FD10B9200089E7A /* Room.swift */,
@@ -397,8 +397,8 @@
 				48B062BB2026BAA90045400A /* LaunchScreen.storyboard in Resources */,
 				48B062BE2027844F0045400A /* GoogleService-Info.plist in Resources */,
 				48B062BC2026BAA90045400A /* Main.storyboard in Resources */,
-				331418091FB16BF40059F494 /* Assets.xcassets in Resources */,
 				37865F24200BC4E9006F26AC /* notready.png in Resources */,
+				37112042207177E300295A63 /* Assets.xcassets in Resources */,
 				37865F22200BC4D1006F26AC /* ready.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
