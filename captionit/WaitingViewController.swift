@@ -7,29 +7,43 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class WaitingViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-      print("Called");
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+  var groupId = String()
+  var judgeID = String()
+  var judgeName = String()
+  var memeURL = String()
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    
+    
+  }
+  
+  override func didReceiveMemoryWarning() {
+    super.didReceiveMemoryWarning()
+    // Dispose of any resources that can be recreated.
+  }
+  
+  func observeValue() {
+    let userId = Auth.auth().currentUser?.uid
+    
+    ref.child("rooms").child(groupId).child("comments").child(userId!).observe(.childAdded, with: { (snapshot) in
+      self.performSegue(withIdentifier: "judge_Review", sender: self)
+    })
+  }
+  
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if segue.identifier == "judge_Review" {
+      if let destinationVC = segue.destination as? JudgementVC {
+        destinationVC.groupId = groupId
+        destinationVC.judgeID = judgeID
+        destinationVC.memeURL = memeURL
+        destinationVC.judgeName = judgeName
+      }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+  }
 }
+
