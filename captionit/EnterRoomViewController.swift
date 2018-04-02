@@ -1,5 +1,6 @@
 import UIKit
 import FirebaseDatabase
+import FirebaseAuth
 //  TODO: CHANGE THE TABLE SO IT DISPLAYS THE PLAYERS BASED ON FIREBASE CHANGE MAKE SURE THAT "ISREADY" CHANGES INDIVIDUALLY THEN START GAME GO DIRECTLY TO CAPTIONING AND SHOW IMAGE BASED ON URL.ADD TEXT AND SAVE BOTH SEPARATELY
 
 class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -129,6 +130,7 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
     
      @IBAction func startGame() { //works now
         if  self.countPlayersReady() == users.count{
+          
            self.performSegue(withIdentifier: "gameIsOn!", sender: Any?.self)
         }
         //        if playersReady>2 {

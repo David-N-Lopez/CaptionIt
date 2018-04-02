@@ -21,7 +21,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     /***************************JOIN AND CREATE BUTTONS****************************/
    
     @IBAction func Join(_ sender: UIButton) {
-
+      
         ref.child("rooms").observeSingleEvent(of: .value, with: { snapshot in
              // I got the expected number of items
             let enumerator = snapshot.children
@@ -31,7 +31,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 
                 
                 if (self.pinText.text == curRoom) {
-                    print("Booyah")
+                  let userId = Auth.auth().currentUser?.uid
+                  ref.child("rooms").child(self.pinText.text!).child("comments").child(userId!).removeValue()
+                  
                     self.curPin = self.pinText.text!
                     
                     if let currentPlayer = getCurrentPlayer(){
