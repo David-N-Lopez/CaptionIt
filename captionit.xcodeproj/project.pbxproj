@@ -29,6 +29,8 @@
 		48B062BB2026BAA90045400A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48B062B72026BAA90045400A /* LaunchScreen.storyboard */; };
 		48B062BC2026BAA90045400A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48B062B92026BAA90045400A /* Main.storyboard */; };
 		48B062BE2027844F0045400A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 48B062BD2027844F0045400A /* GoogleService-Info.plist */; };
+		52B6CC1C2072C43700945942 /* CaptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B6CC1A2072C43600945942 /* CaptionCell.swift */; };
+		52B6CC1D2072C43700945942 /* JudgementVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B6CC1B2072C43700945942 /* JudgementVC.swift */; };
 		9F707DFC2072B68A00C2D9B5 /* WaitingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F707DFB2072B68900C2D9B5 /* WaitingViewController.swift */; };
 		B2B1B0CB2026CB3900FD2A51 /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B1B0CA2026CB3900FD2A51 /* Users.swift */; };
 		B2B1B0CE2026CE4D00FD2A51 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B1B0CD2026CE4D00FD2A51 /* LoginViewController.swift */; };
@@ -92,6 +94,8 @@
 		48B062B82026BAA90045400A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = CaptionIt/Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		48B062BA2026BAA90045400A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = CaptionIt/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		48B062BD2027844F0045400A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		52B6CC1A2072C43600945942 /* CaptionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptionCell.swift; sourceTree = "<group>"; };
+		52B6CC1B2072C43700945942 /* JudgementVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JudgementVC.swift; sourceTree = "<group>"; };
 		66477E30E7D502DFDCA04972 /* Pods-CaptionItTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaptionItTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CaptionItTests/Pods-CaptionItTests.debug.xcconfig"; sourceTree = "<group>"; };
 		7026546AF55B443CE276CE2B /* Pods-CaptionItTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaptionItTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CaptionItTests/Pods-CaptionItTests.release.xcconfig"; sourceTree = "<group>"; };
 		9F707DFB2072B68900C2D9B5 /* WaitingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WaitingViewController.swift; path = captionit/WaitingViewController.swift; sourceTree = SOURCE_ROOT; };
@@ -189,6 +193,8 @@
 				37865F21200BC4D1006F26AC /* ready.png */,
 				331418011FB16BF40059F494 /* AppDelegate.swift */,
 				331418031FB16BF40059F494 /* ViewController.swift */,
+				52B6CC1A2072C43600945942 /* CaptionCell.swift */,
+				52B6CC1B2072C43700945942 /* JudgementVC.swift */,
 				9F707DFB2072B68900C2D9B5 /* WaitingViewController.swift */,
 				3740D9AE206C176A000DFC1D /* CaptioningVC.swift */,
 				C8825BC01FD4674F00089E7A /* EnterRoomViewController.swift */,
@@ -372,7 +378,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 331417F91FB16BF30059F494 /* Build configuration list for PBXProject "captionit" */;
+			buildConfigurationList = 331417F91FB16BF30059F494 /* Build configuration list for PBXProject "CaptionIt" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -593,6 +599,7 @@
 				37707CA4203A069A00143D6E /* SwiftyCamViewController.swift in Sources */,
 				37707CA6203A069A00143D6E /* PreviewView.swift in Sources */,
 				C8825BB71FD10BBD00089E7A /* Game.swift in Sources */,
+				52B6CC1C2072C43700945942 /* CaptionCell.swift in Sources */,
 				37707CAC203A077900143D6E /* VideoViewController.swift in Sources */,
 				B2B1B0CB2026CB3900FD2A51 /* Users.swift in Sources */,
 				9F707DFC2072B68A00C2D9B5 /* WaitingViewController.swift in Sources */,
@@ -608,6 +615,7 @@
 				C8825BB51FD10B9200089E7A /* Room.swift in Sources */,
 				B2B1B0D32026CFC900FD2A51 /* UIViewController.swift in Sources */,
 				331418021FB16BF40059F494 /* AppDelegate.swift in Sources */,
+				52B6CC1D2072C43700945942 /* JudgementVC.swift in Sources */,
 				C8825BBD1FD26DC600089E7A /* MemePickerVC.swift in Sources */,
 				37707CA5203A069A00143D6E /* SwiftyCamButton.swift in Sources */,
 				B2B1B0CE2026CE4D00FD2A51 /* LoginViewController.swift in Sources */,
@@ -851,7 +859,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		331417F91FB16BF30059F494 /* Build configuration list for PBXProject "captionit" */ = {
+		331417F91FB16BF30059F494 /* Build configuration list for PBXProject "CaptionIt" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				331418241FB16BF40059F494 /* Debug */,

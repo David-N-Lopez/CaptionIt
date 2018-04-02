@@ -49,6 +49,38 @@
             endingLineNumber = "47"
             landmarkName = "joinGame(curPin:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CaptionIt.Player.joinGame(curPin: Swift.String) -&gt; ()"
+                  moduleName = "CaptionIt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/veerajain/Documents/Live%20Projects/CaptionIt/CaptionIt/Player.swift"
+                  timestampString = "544392168.422634"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "47"
+                  endingLineNumber = "47"
+                  offsetFromSymbolStart = "1088">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "implicit closure #1 : @autoclosure () throws -&gt; Swift.String in CaptionIt.Player.joinGame(curPin: Swift.String) -&gt; ()"
+                  moduleName = "CaptionIt"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/veerajain/Documents/Live%20Projects/CaptionIt/CaptionIt/Player.swift"
+                  timestampString = "544392168.426686"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "47"
+                  endingLineNumber = "47"
+                  offsetFromSymbolStart = "4">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
