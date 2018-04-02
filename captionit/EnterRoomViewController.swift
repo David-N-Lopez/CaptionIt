@@ -1,14 +1,6 @@
-//
-//  EnterRoomViewController.swift
-//  CaptionIt
-//
-//  Created by liuting chen on 12/3/17.
-//  Copyright © 2017 Tower Org. All rights reserved.
-//
-
 import UIKit
 import FirebaseDatabase
-//  TODO: CHANGE THE TABLE SO IT DISPLAYS THE PLAYERS BASED ON FIREBASE CHANGE MAKE SURE THAT "ISREADY" CHANGES INDIVIDUALLY THEN START GAME GO DIRECTLY TO CAPTIONING AND SHOW IMAGE BASED ON URL.ADD TEXT AND SAVE BOTH SEPARATELY 
+//  TODO: CHANGE THE TABLE SO IT DISPLAYS THE PLAYERS BASED ON FIREBASE CHANGE MAKE SURE THAT "ISREADY" CHANGES INDIVIDUALLY THEN START GAME GO DIRECTLY TO CAPTIONING AND SHOW IMAGE BASED ON URL.ADD TEXT AND SAVE BOTH SEPARATELY
 
 class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var ref:DatabaseReference! = Database.database().reference()
@@ -16,6 +8,7 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
     var playerReady = false
     var users = [Any]()
     var playersReady = 0
+   
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -24,10 +17,14 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
         print("hellow from enter room controller")
         roomPin.text = "Room Pin Number: \(curPin)"
         fetchUsers()
+        
         // Do any additional setup after loading the view
         //        weak var delegate: UIViewController!
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        
+    }
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return(users.count)
@@ -50,10 +47,10 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
                     cell.textLabel?.text = name
                 })
             } else {
-                    cell.textLabel?.text = currentUser["userName"] as? String
+                cell.textLabel?.text = currentUser["userName"] as? String
             }
             
-//            cell.textLabel?.text = self.get
+            //            cell.textLabel?.text = self.get
         }
         
         return(cell)
@@ -78,6 +75,7 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
+                
             }
         })
     }
@@ -92,17 +90,17 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
             }
             print("\(count) Active Users")
         }
-        //        ref.child("rooms").child(curPin).child("players").observeSingleEvent(of: .value, with: { snapshot in
-        //            // I got the expected number of items
-        //            let enumerator = snapshot.children
-        //            while let rest = enumerator.nextObject() as? DataSnapshot {
-        //                let curRoom = rest.childSnapshot(forPath: "Ready").value as! Bool
-        //                if curRoom == true {
-        //                    count+=1
-        //
-        //                }
-        //            }
-        //        })
+//                ref.child("rooms").child(curPin).child("players").observeSingleEvent(of: .value, with: { snapshot in
+//                    // I got the expected number of items
+//                    let enumerator = snapshot.children
+//                    while let rest = enumerator.nextObject() as? DataSnapshot {
+//                        let curRoom = rest.childSnapshot(forPath: "Ready").value as! Bool
+//                        if curRoom == true {
+//                            count+=1
+//        
+//                        }
+//                    }
+//                })
         return count
     }
     
@@ -129,7 +127,10 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
         performSegue(withIdentifier: "addmeme", sender: self)
     }
     
-    @IBAction func startGame() {
+     @IBAction func startGame() { //works now
+        if  self.countPlayersReady() == users.count{
+           self.performSegue(withIdentifier: "gameIsOn!", sender: Any?.self)
+        }
         //        if playersReady>2 {
         //        performSegue(withIdentifier: "gameIsOn!", sender: Any?)
         //        }
@@ -141,19 +142,12 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
             let controller = segue.destination as! RoomViewController
             controller.curPin = curPin
         }
-    }
+        if segue.identifier == "gameIsOn!" {
+            let controller = segue.destination as! CaptioningVC
+            controller.curPin = curPin
+            
+            
+        }
     
-    
-    
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
+}
 }

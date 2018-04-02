@@ -41,6 +41,7 @@ class Player {
         if let currentPlayer = getCurrentPlayer() {
             let playerInfo = ["Ready":self.ready,
                               "judge":self.judge,
+                              "hasBeenJudge": self.hasBeenJudge,
                               "meme Video":self.memeVideo as Any,
                               "meme Photo": self.memePhoto,
                               "ID": currentId ?? ""]//Maybe it is no saving the picture

@@ -245,8 +245,7 @@
                                 <rect key="frame" x="148" y="541" width="78" height="30"/>
                                 <state key="normal" title="Start Game"/>
                                 <connections>
-                                    <action selector="startGame" destination="19z-dd-pBM" eventType="touchUpInside" id="PcP-FC-2vO"/>
-                                    <segue destination="115-jp-Nof" kind="show" identifier="gameIsOn!" id="17W-7G-XRg"/>
+                                    <action selector="startGame" destination="19z-dd-pBM" eventType="touchUpInside" id="rgr-8Q-SWj"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Room Pin Number: 0000" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wck-yV-0Kf">
@@ -308,6 +307,7 @@
                     <connections>
                         <outlet property="roomPin" destination="Wck-yV-0Kf" id="jYi-P1-x7e"/>
                         <outlet property="tableView" destination="XvS-SJ-5DB" id="T2z-Lh-dQ3"/>
+                        <segue destination="115-jp-Nof" kind="show" identifier="gameIsOn!" id="zIz-6P-pNQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CuZ-UZ-pYA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -602,6 +602,37 @@
             </objects>
             <point key="canvasLocation" x="2445.5999999999999" y="738.98050974512751"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="WpR-Sy-DZy">
+            <objects>
+                <viewController id="75h-bJ-EFI" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dWa-Sb-18A"/>
+                        <viewControllerLayoutGuide type="bottom" id="Ug8-Lc-AIy"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Cih-PZ-53n">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="This is your waiting Room" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Ks-6F-6ed">
+                                <rect key="frame" x="36" y="279" width="279" height="68"/>
+                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="21"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="2Ks-6F-6ed" secondAttribute="trailing" constant="44" id="M9c-S7-dzy"/>
+                            <constraint firstItem="2Ks-6F-6ed" firstAttribute="leading" secondItem="Cih-PZ-53n" secondAttribute="leadingMargin" constant="72" id="Qa7-Ms-W6d"/>
+                            <constraint firstItem="2Ks-6F-6ed" firstAttribute="centerY" secondItem="Cih-PZ-53n" secondAttribute="centerY" id="zIr-i1-HUX"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Gbw-Pi-f7F" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="260" y="-667.01649175412297"/>
+        </scene>
         <!--CaptioningVC-->
         <scene sceneID="pAX-9F-QA8">
             <objects>
@@ -614,31 +645,52 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="39L-SY-lwF">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="39L-SY-lwF">
                                 <rect key="frame" x="38" y="143" width="312" height="278"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="278" id="aFb-E3-qLp"/>
+                                </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sX2-Vc-abm">
-                                <rect key="frame" x="38" y="68" width="312" height="67"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="sX2-Vc-abm">
+                                <rect key="frame" x="25" y="68" width="312" height="67"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="67" id="300-QZ-TgB"/>
+                                    <constraint firstAttribute="width" constant="312" id="MMN-Gg-AfC"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SlU-qV-j3F">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Caption It!" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SlU-qV-j3F">
                                 <rect key="frame" x="65" y="527" width="245" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fcf-BI-RIb">
+                                <rect key="frame" x="162" y="585" width="50" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Upload"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="39L-SY-lwF" firstAttribute="leading" secondItem="o5I-9B-fFf" secondAttribute="leadingMargin" constant="22" id="7Cw-Bc-Skc"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="39L-SY-lwF" secondAttribute="trailing" constant="9" id="7I7-ZE-Sjy"/>
+                            <constraint firstItem="sX2-Vc-abm" firstAttribute="top" secondItem="90Q-zZ-XfT" secondAttribute="bottom" constant="48" id="84y-N0-XvH"/>
+                            <constraint firstItem="SlU-qV-j3F" firstAttribute="centerX" secondItem="o5I-9B-fFf" secondAttribute="centerX" id="FZ5-wr-SRI"/>
+                            <constraint firstItem="Xmh-xN-r9A" firstAttribute="top" secondItem="SlU-qV-j3F" secondAttribute="bottom" constant="66" id="LqE-04-xWK"/>
+                            <constraint firstItem="SlU-qV-j3F" firstAttribute="leading" secondItem="o5I-9B-fFf" secondAttribute="leadingMargin" constant="49" id="PKi-kg-WA2"/>
+                            <constraint firstItem="39L-SY-lwF" firstAttribute="top" secondItem="sX2-Vc-abm" secondAttribute="bottom" constant="8" id="QkC-vk-R9k"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="sX2-Vc-abm" secondAttribute="trailing" constant="9" id="R7e-cS-7W0"/>
+                            <constraint firstItem="sX2-Vc-abm" firstAttribute="leading" secondItem="o5I-9B-fFf" secondAttribute="leadingMargin" constant="9" id="vEQ-Vo-dNx"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="meme" destination="39L-SY-lwF" id="zNh-T7-Zca"/>
                         <outlet property="myTextField" destination="SlU-qV-j3F" id="hDL-Ks-qYa"/>
                         <outlet property="myTextView" destination="sX2-Vc-abm" id="Oze-4o-52R"/>
+                        <segue destination="75h-bJ-EFI" kind="show" identifier="waitingRoomSegue" id="UL4-PF-jfS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dX0-Oi-DsR" userLabel="First Responder" sceneMemberID="firstResponder"/>
