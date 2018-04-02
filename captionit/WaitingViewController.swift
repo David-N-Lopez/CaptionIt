@@ -17,7 +17,7 @@ class WaitingViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+    observeUsersComments()
     
   }
   
@@ -26,7 +26,7 @@ class WaitingViewController: UIViewController {
     // Dispose of any resources that can be recreated.
   }
   
-  func observeValue() {
+  func observeUsersComments() {
     let userId = Auth.auth().currentUser?.uid
     
     ref.child("rooms").child(groupId).child("comments").child(userId!).observe(.childAdded, with: { (snapshot) in
