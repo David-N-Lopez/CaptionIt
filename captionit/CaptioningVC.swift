@@ -23,9 +23,9 @@ class CaptioningVC: UIViewController,UITextFieldDelegate {
         self.myTextField.delegate = self
         setJudge()
         /* SET JUDGE TAKES TO LONG TO UPDATE VALUES AND THAT WHY THE NEXT CONDITION DOESNT WORK*/
-        if currentJudge != nil{
+        if currentJudge != nil {
             print("abra cadabra")
-            ref.child("rooms").child(curPin!).child("players").child(currentJudge!).observeSingleEvent(of: .value, with: { snapshot in
+          ref.child("rooms").child(curPin!).child("players").child(currentJudge!).observeSingleEvent(of: .value, with: { snapshot in
             let currentPlayer = snapshot.children
             
             let isJudge = currentPlayer.value(forKeyPath: "judge") as? Bool
@@ -62,15 +62,17 @@ class CaptioningVC: UIViewController,UITextFieldDelegate {
             if let players  = allPlayers.allObjects as? [DataSnapshot]{
                 
                 for player in players{
-                    var username = player.key as? String
+                  let username = player.key
                     var value = player.value as! [String : Any]
-                    var hasBeenJudge = value["hasBeenJudge"] as? Bool
+                  let hasBeenJudge = value["hasBeenJudge"] as? Bool
                     if hasBeenJudge == false {
-                        ref.child("rooms").child(self.curPin!).child("players").child(username!).updateChildValues(["judge":  true])
+                      ref.child("rooms").child(self.curPin!).child("players").child(username).updateChildValues(["judge":  true])
                         let hasNewJudge = value["judge"] as? Bool
                         self.hasCurrentJudge = hasNewJudge
                         self.currentJudge = username
                         print("Holo")
+                      
+                      return
 //
 //                        var notjudge: Bool = false {
 //                            didSet {
@@ -89,7 +91,8 @@ class CaptioningVC: UIViewController,UITextFieldDelegate {
         })
 
     }
-    
+
+  
    
 }
 
