@@ -29,6 +29,7 @@
 		48B062BB2026BAA90045400A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48B062B72026BAA90045400A /* LaunchScreen.storyboard */; };
 		48B062BC2026BAA90045400A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48B062B92026BAA90045400A /* Main.storyboard */; };
 		48B062BE2027844F0045400A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 48B062BD2027844F0045400A /* GoogleService-Info.plist */; };
+		9F707DFC2072B68A00C2D9B5 /* WaitingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F707DFB2072B68900C2D9B5 /* WaitingViewController.swift */; };
 		B2B1B0CB2026CB3900FD2A51 /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B1B0CA2026CB3900FD2A51 /* Users.swift */; };
 		B2B1B0CE2026CE4D00FD2A51 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B1B0CD2026CE4D00FD2A51 /* LoginViewController.swift */; };
 		B2B1B0D02026CE5700FD2A51 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B1B0CF2026CE5700FD2A51 /* RegisterViewController.swift */; };
@@ -93,6 +94,7 @@
 		48B062BD2027844F0045400A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		66477E30E7D502DFDCA04972 /* Pods-CaptionItTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaptionItTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CaptionItTests/Pods-CaptionItTests.debug.xcconfig"; sourceTree = "<group>"; };
 		7026546AF55B443CE276CE2B /* Pods-CaptionItTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaptionItTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CaptionItTests/Pods-CaptionItTests.release.xcconfig"; sourceTree = "<group>"; };
+		9F707DFB2072B68900C2D9B5 /* WaitingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WaitingViewController.swift; path = captionit/WaitingViewController.swift; sourceTree = SOURCE_ROOT; };
 		B2B1B0CA2026CB3900FD2A51 /* Users.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
 		B2B1B0CD2026CE4D00FD2A51 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		B2B1B0CF2026CE5700FD2A51 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
@@ -187,6 +189,7 @@
 				37865F21200BC4D1006F26AC /* ready.png */,
 				331418011FB16BF40059F494 /* AppDelegate.swift */,
 				331418031FB16BF40059F494 /* ViewController.swift */,
+				9F707DFB2072B68900C2D9B5 /* WaitingViewController.swift */,
 				3740D9AE206C176A000DFC1D /* CaptioningVC.swift */,
 				C8825BC01FD4674F00089E7A /* EnterRoomViewController.swift */,
 				C8825BBC1FD26DC600089E7A /* MemePickerVC.swift */,
@@ -528,6 +531,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-CaptionIt/Pods-CaptionIt-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
@@ -536,6 +540,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
@@ -590,6 +595,7 @@
 				C8825BB71FD10BBD00089E7A /* Game.swift in Sources */,
 				37707CAC203A077900143D6E /* VideoViewController.swift in Sources */,
 				B2B1B0CB2026CB3900FD2A51 /* Users.swift in Sources */,
+				9F707DFC2072B68A00C2D9B5 /* WaitingViewController.swift in Sources */,
 				37707CA3203A069A00143D6E /* SwiftyCamViewControllerDelegate.swift in Sources */,
 				B2B1B0D02026CE5700FD2A51 /* RegisterViewController.swift in Sources */,
 				373A6B212038096000378AC1 /* SwiftyCamVC.swift in Sources */,

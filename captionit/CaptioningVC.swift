@@ -8,7 +8,9 @@
 
 import Foundation
 import FirebaseDatabase
+import FirebaseAuth
 import UIKit
+import SDWebImage
 
 class CaptioningVC: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var meme: UIImageView!
@@ -17,30 +19,26 @@ class CaptioningVC: UIViewController,UITextFieldDelegate {
     var curPin: String?
     var hasCurrentJudge:Bool?
     var currentJudge: String?
+  var judgeID : String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.myTextField.delegate = self
+      
         setJudge()
         /* SET JUDGE TAKES TO LONG TO UPDATE VALUES AND THAT WHY THE NEXT CONDITION DOESNT WORK*/
-        if currentJudge != nil {
-            print("abra cadabra")
-          ref.child("rooms").child(curPin!).child("players").child(currentJudge!).observeSingleEvent(of: .value, with: { snapshot in
-            let currentPlayer = snapshot.children
-            
-            let isJudge = currentPlayer.value(forKeyPath: "judge") as? Bool
-            if isJudge == true  {
-                self.performSegue(withIdentifier: "waitingRoomSegue", sender: Any?.self)
-            }
-        })
-        }
+//        if currentJudge != nil {
+//            print("abra cadabra")
+//          ref.child("rooms").child(curPin!).child("players").child(currentJudge!).observeSingleEvent(of: .value, with: { snapshot in
+//            let currentPlayer = snapshot.children
+//            
+//            let isJudge = currentPlayer.value(forKeyPath: "judge") as? Bool
+//            if isJudge == true  {
+//                self.performSegue(withIdentifier: "waitingRoomSegue", sender: Any?.self)
+//            }
+//        })
+//        }
 
-        
-        //        var inputText = myTextField.text
-        //        myTextView.text = inputText
-        
-    }
-    override func viewWillAppear(_ animated: Bool) {
         
     }
     
@@ -64,24 +62,23 @@ class CaptioningVC: UIViewController,UITextFieldDelegate {
                 for player in players{
                   let username = player.key
                     var value = player.value as! [String : Any]
+                  let udid = value["ID"] as! String
                   let hasBeenJudge = value["hasBeenJudge"] as? Bool
+                  let meme = value["meme Photo"] as! String
                     if hasBeenJudge == false {
                       ref.child("rooms").child(self.curPin!).child("players").child(username).updateChildValues(["judge":  true])
-                        let hasNewJudge = value["judge"] as? Bool
-                        self.hasCurrentJudge = hasNewJudge
-                        self.currentJudge = username
-                        print("Holo")
+                      self.hasCurrentJudge = hasBeenJudge
+                      self.currentJudge = username
+                      self.judgeID = udid
+                      if Auth.auth().currentUser?.uid == udid {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { // change 2 to desired number of seconds
+                          self.performSegue(withIdentifier: "waitingRoomSegue", sender: self)
+                        }
+                      } else {
+                        self.meme.sd_setImage(with: URL(string:meme), placeholderImage: nil, options: .scaleDownLargeImages, completed: nil)
+                      }
                       
                       return
-//
-//                        var notjudge: Bool = false {
-//                            didSet {
-//                                if notjudge != value["judge"] as? Bool {
-//                                    self.performSegue(withIdentifier: "gameIsOn!", sender: Any?.self)
-//                                    print("moreInside")
-//                                }
-//                            }
-//                        }
                     }
                 }
                 
@@ -92,7 +89,14 @@ class CaptioningVC: UIViewController,UITextFieldDelegate {
 
     }
 
-  
+   func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+  {
+    if (segue.identifier == "waitingRoomSegue") {
+      
+      _ = segue.destination
+      
+    }
+  }
    
 }
 

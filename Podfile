@@ -11,6 +11,7 @@ target 'CaptionIt' do
   pod 'Firebase/Database'
   pod 'Firebase/Storage'
   pod 'SVProgressHUD'
+  pod 'SDWebImage', '~> 4.0'
 
   target 'CaptionItTests' do
     inherit! :search_paths
