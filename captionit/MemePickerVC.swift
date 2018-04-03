@@ -40,7 +40,7 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
                     } else {
                         //try to make it private
                         let outputURL = (metadata?.downloadURL()?.absoluteString)!
-                        self.ref.child("rooms").child(self.curPin!).child("players").child(currentPlayer!.username).updateChildValues(["meme Photo": outputURL, "Ready": true])
+                        self.ref.child("rooms").child(self.curPin!).child("players").child(getUserId()!).updateChildValues(["meme Photo": outputURL, "Ready": true])
                         self.performSegue(withIdentifier: "PlayerHasImageSegue", sender: Any?.self)
                         
                     }

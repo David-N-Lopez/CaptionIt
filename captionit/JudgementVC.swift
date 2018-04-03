@@ -68,11 +68,11 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
   
     // perform further actions
     let userCommentDic = usersComments[sender.tag] as! [String: String]
-    ref.child("rooms").child(self.groupId).child("score").child(userCommentDic["id"]!).observeSingleEvent(of: .value, with: { (snapshot) in
+    ref.child("rooms").child(self.groupId).child("players").child(userCommentDic["id"]!).child("score").observeSingleEvent(of: .value, with: { (snapshot) in
       if let score = snapshot.value as? Int {
-        ref.child("rooms").child(self.groupId).child("score").child(userCommentDic["id"]!).setValue(score + 1)
+        ref.child("rooms").child(self.groupId).child("players").child(userCommentDic["id"]!).child("score").setValue(score + 1)
       } else {
-        ref.child("rooms").child(self.groupId).child("score").child(userCommentDic["id"]!).setValue(1)
+        ref.child("rooms").child(self.groupId).child("players").child(userCommentDic["id"]!).child("score").setValue(1)
       }
       self.hasBeenJudgeRef?.setValue(true)
     })

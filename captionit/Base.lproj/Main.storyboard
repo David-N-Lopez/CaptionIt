@@ -80,7 +80,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qee-xf-FyD">
-                                <rect key="frame" x="56" y="592" width="263" height="35"/>
+                                <rect key="frame" x="56" y="548" width="263" height="35"/>
                                 <color key="backgroundColor" red="0.85882352939999995" green="0.2470588235" blue="0.16078431369999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="K5P-hw-AK9"/>
@@ -686,7 +686,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Caption It!" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UuF-oI-PW8">
-                                <rect key="frame" x="65" y="571" width="245" height="30"/>
+                                <rect key="frame" x="65" y="527" width="245" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -723,7 +723,7 @@
                         <segue destination="RuM-35-ciu" kind="show" identifier="judgement_segue" id="1Kv-6F-L03">
                             <nil key="action"/>
                         </segue>
-                        <segue destination="mH5-4f-5TI" kind="show" identifier="Game_Over" id="SDt-z0-s8N"/>
+                        <segue destination="TWa-z8-Re4" kind="show" identifier="Game_Over" id="M1s-BG-5tk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iRj-kb-5vW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -743,12 +743,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qsh-Tm-y9l">
-                                <rect key="frame" x="157" y="609" width="61" height="38"/>
+                                <rect key="frame" x="157" y="565" width="61" height="38"/>
                                 <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                 <state key="normal" title="Finish"/>
+                                <connections>
+                                    <action selector="actionFinishGame:" destination="TWa-z8-Re4" eventType="touchUpInside" id="6cA-zy-QMq"/>
+                                </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Isx-t7-UXP">
-                                <rect key="frame" x="0.0" y="20" width="375" height="579"/>
+                                <rect key="frame" x="0.0" y="80" width="375" height="475"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ResultCell" rowHeight="76" id="XnN-eb-Ygx" customClass="ResultCell" customModule="CaptionIt" customModuleProvider="target">
@@ -758,13 +761,13 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="75.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zEe-ES-F0r">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zEe-ES-F0r">
                                                     <rect key="frame" x="15" y="5" width="42" height="39.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="O9t-XQ-ZpW">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="trophy" translatesAutoresizingMaskIntoConstraints="NO" id="O9t-XQ-ZpW">
                                                     <rect key="frame" x="77" y="5" width="65.5" height="65.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="O9t-XQ-ZpW" secondAttribute="height" id="kTs-MY-L6l"/>
@@ -791,7 +794,6 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="image" destination="O9t-XQ-ZpW" id="NlO-9S-fOZ"/>
                                             <outlet property="imageTrophy" destination="O9t-XQ-ZpW" id="2dV-eK-AFz"/>
                                             <outlet property="name" destination="zEe-ES-F0r" id="aKK-jm-O03"/>
                                             <outlet property="score" destination="OtW-RZ-J2g" id="ZfO-K2-3Su"/>
@@ -803,12 +805,20 @@
                                     <outlet property="delegate" destination="TWa-z8-Re4" id="2sg-ya-SQ8"/>
                                 </connections>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Result" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lm3-a4-JqF">
+                                <rect key="frame" x="156.5" y="30" width="62.5" height="27.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Isx-t7-UXP" firstAttribute="top" secondItem="AtO-CC-aAq" secondAttribute="bottom" id="4PP-SM-dAo"/>
+                            <constraint firstItem="Isx-t7-UXP" firstAttribute="top" secondItem="AtO-CC-aAq" secondAttribute="bottom" constant="60" id="4PP-SM-dAo"/>
                             <constraint firstItem="Qsh-Tm-y9l" firstAttribute="centerX" secondItem="lqh-dg-cNA" secondAttribute="centerX" id="B26-cR-TkU"/>
                             <constraint firstItem="Qsh-Tm-y9l" firstAttribute="top" secondItem="Isx-t7-UXP" secondAttribute="bottom" constant="10" id="HUo-Qz-O7I"/>
+                            <constraint firstItem="lm3-a4-JqF" firstAttribute="top" secondItem="AtO-CC-aAq" secondAttribute="bottom" constant="10" id="Hap-vU-6yc"/>
+                            <constraint firstItem="lm3-a4-JqF" firstAttribute="centerX" secondItem="lqh-dg-cNA" secondAttribute="centerX" id="ge8-7S-PVV"/>
                             <constraint firstAttribute="trailing" secondItem="Isx-t7-UXP" secondAttribute="trailing" id="gm1-pq-1st"/>
                             <constraint firstItem="Isx-t7-UXP" firstAttribute="leading" secondItem="lqh-dg-cNA" secondAttribute="leading" id="ipE-9G-U1X"/>
                             <constraint firstItem="DP9-an-X1c" firstAttribute="top" secondItem="Qsh-Tm-y9l" secondAttribute="bottom" constant="20" id="w62-Y7-36T"/>
@@ -816,6 +826,7 @@
                     </view>
                     <connections>
                         <outlet property="tblResult" destination="Isx-t7-UXP" id="cuY-GG-cK8"/>
+                        <segue destination="VgS-mf-yE5" kind="show" identifier="restart_Game" id="ct7-pp-q0u"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uT4-1w-6IK" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -835,7 +846,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gva-gx-rXG">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="captionCell" rowHeight="268" id="l5p-bY-TPO" customClass="CaptionCell" customModule="CaptionIt" customModuleProvider="target">
@@ -932,10 +943,11 @@
         <image name="flash" width="18" height="30"/>
         <image name="flipCamera" width="30" height="23"/>
         <image name="premium-badge" width="39" height="45"/>
+        <image name="trophy" width="64" height="64"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="012-IT-b9v"/>
-        <segue reference="MMy-4o-26m"/>
+        <segue reference="1Kv-6F-L03"/>
+        <segue reference="Jha-3s-L4O"/>
         <segue reference="fb7-aC-lzd"/>
         <segue reference="kOB-VI-MXU"/>
         <segue reference="Qah-F8-iFT"/>

@@ -58,7 +58,7 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
                 cell.imageView?.image = #imageLiteral(resourceName: "pama") //this is applying for all
             }
             if let ID = currentUser["ID"] as? String {
-                self.getUserName(ID, "Default User", { (name) in
+                self.getUserName(ID, "Undefined User", { (name) in
                     cell.textLabel?.text = name
                 })
             } else {
@@ -84,7 +84,7 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
                 for child in result {
                   let orderID = child.key
                     var value = child.value as! [String : Any]
-                    value["userName"] = orderID
+                    value["userName"] = "Undefined User"
                     self.users.append(value)
                     //
                 }

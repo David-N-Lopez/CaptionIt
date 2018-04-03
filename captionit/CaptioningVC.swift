@@ -68,7 +68,10 @@ class CaptioningVC: UIViewController,UITextFieldDelegate {
             return
           }
         }
-        self.performSegue(withIdentifier: "Game_Over", sender: self)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { // change 2 to desired number of seconds
+          self.performSegue(withIdentifier: "Game_Over", sender: self)
+        }
+        
         
       }
       
@@ -107,6 +110,10 @@ class CaptioningVC: UIViewController,UITextFieldDelegate {
         destinationVC.judgeID = self.judgeID!
         destinationVC.memeURL = memeImageUrl!
         destinationVC.judgeName = currentJudge!
+      }
+    } else if segue.identifier == "Game_Over" {
+      if let destinationVC = segue.destination as? ResultVC {
+        destinationVC.curPin = self.curPin!
       }
     }
     

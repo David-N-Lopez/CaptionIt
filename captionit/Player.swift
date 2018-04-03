@@ -45,7 +45,7 @@ class Player {
                               "meme Video":self.memeVideo as Any,
                               "meme Photo": self.memePhoto,
                               "ID": currentId ?? ""]//Maybe it is no saving the picture
-            self.ref.child("rooms").child(curPin).child("players").child(currentPlayer.username).updateChildValues(playerInfo)
+            self.ref.child("rooms").child(curPin).child("players").child(currentId!).updateChildValues(playerInfo)
             self.pinNumber = curPin
         }
     }
