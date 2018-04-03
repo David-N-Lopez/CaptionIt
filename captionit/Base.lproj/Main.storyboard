@@ -723,11 +723,11 @@
                         <segue destination="RuM-35-ciu" kind="show" identifier="judgement_segue" id="1Kv-6F-L03">
                             <nil key="action"/>
                         </segue>
-                        <segue destination="VgS-mf-yE5" kind="show" identifier="Game_Over" id="fnE-Tv-yG0"/>
+                        <segue destination="mH5-4f-5TI" kind="show" identifier="Game_Over" id="SDt-z0-s8N"/>
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="282" y="-688"/>
+            <point key="canvasLocation" x="958" y="-649"/>
         </scene>
         <!--JudgementVC-->
         <scene sceneID="HNn-G4-JRh">
@@ -845,6 +845,6 @@
         <segue reference="MMy-4o-26m"/>
         <segue reference="5sw-Qe-jf3"/>
         <segue reference="YLA-hq-5xq"/>
-        <segue reference="5tl-gC-1Xp"/>
+        <segue reference="SDt-z0-s8N"/>
     </inferredMetricsTieBreakers>
 </document>
