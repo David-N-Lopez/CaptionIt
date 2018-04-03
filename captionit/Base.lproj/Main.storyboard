@@ -723,6 +723,7 @@
                         <segue destination="RuM-35-ciu" kind="show" identifier="judgement_segue" id="1Kv-6F-L03">
                             <nil key="action"/>
                         </segue>
+                        <segue destination="VgS-mf-yE5" kind="show" identifier="Game_Over" id="fnE-Tv-yG0"/>
                     </connections>
                 </viewController>
             </objects>
@@ -840,7 +841,7 @@
         <image name="premium-badge" width="39" height="45"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="012-IT-b9v"/>
+        <segue reference="1Kv-6F-L03"/>
         <segue reference="MMy-4o-26m"/>
         <segue reference="5sw-Qe-jf3"/>
         <segue reference="YLA-hq-5xq"/>

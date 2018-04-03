@@ -82,7 +82,7 @@ class CaptioningVC: UIViewController,UITextFieldDelegate {
             return
           }
         }
-        self.navigationController?.popToRootViewController(animated: true)
+        self.performSegue(withIdentifier: "Game_Over", sender: self)
         
       }
       
