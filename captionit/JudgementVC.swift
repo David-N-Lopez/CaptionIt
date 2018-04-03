@@ -44,11 +44,16 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
   }
   
   func getAllComments()  {
-    ref.child("rooms").child(self.groupId).child("comments").child(self.judgeID).observeSingleEvent(of: .childAdded, with: { (snapshot) in
-      if let comment = snapshot.value as? String {
-        let user = ["id" : snapshot.key,
-                    "comment" : comment]
-        self.usersComments.append(user)
+    ref.child("rooms").child(self.groupId).child("comments").child(self.judgeID).observeSingleEvent(of: .value, with: { (snapshot) in
+      if let comment = snapshot.value as? [String: Any] {
+        let allKeys = (comment as NSDictionary).allKeys
+        self.usersComments.removeAll()
+        for key in allKeys {
+          let userId = key as! String
+          let user = ["id" : key,
+                      "comment" : comment[userId]]
+          self.usersComments.append(user)
+        }
         self.captionTableView.reloadData()
         
       }
@@ -60,14 +65,14 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
   
   @objc func rewardPlayerAction(_ sender:UIButton)  {
     sender.setImage(#imageLiteral(resourceName: "Yello"), for: .normal)
-    
+  
     // perform further actions
     let userCommentDic = usersComments[sender.tag] as! [String: String]
-    ref.child("Users").child(userCommentDic["id"]!).child("score").observeSingleEvent(of: .value, with: { (snapshot) in
+    ref.child("rooms").child(self.groupId).child("score").child(userCommentDic["id"]!).observeSingleEvent(of: .value, with: { (snapshot) in
       if let score = snapshot.value as? Int {
-        ref.child("Users").child(userCommentDic["id"]!).child("score").setValue(score + 1)
+        ref.child("rooms").child(self.groupId).child("score").child(userCommentDic["id"]!).setValue(score + 1)
       } else {
-        ref.child("Users").child(userCommentDic["id"]!).child("score").setValue(1)
+        ref.child("rooms").child(self.groupId).child("score").child(userCommentDic["id"]!).setValue(1)
       }
       self.hasBeenJudgeRef?.setValue(true)
     })

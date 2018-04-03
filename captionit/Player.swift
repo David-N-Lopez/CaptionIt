@@ -21,8 +21,8 @@ class Player {
     var pinNumber: String?//is it necessary?-
     var judge = false
     var hasBeenJudge = false
-    var memeVideo = false //stores video reference url in firebase Database
-    var memePhoto = false// stores image object in Fibrabase (might not work)
+    var memeVideo = "" //stores video reference url in firebase Database
+    var memePhoto = ""// stores image object in Fibrabase (might not work)
     init (_ username: String){
         self.username = username
     }

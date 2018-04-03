@@ -9,28 +9,42 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
     var playerReady = false
     var users = [Any]()
     var playersReady = 0
-   
+  var gameStartRef: DatabaseReference?
     
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+      gameStartRef = ref.child("rooms").child(curPin).child("isPlaying")
+      gameStartRef?.setValue(false)
         print("hellow from enter room controller")
         roomPin.text = "Room Pin Number: \(curPin)"
         fetchUsers()
+      observeStartGame()
+      
         
         // Do any additional setup after loading the view
         //        weak var delegate: UIViewController!
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        
-    }
+  override func viewWillDisappear(_ animated: Bool) {
+    gameStartRef?.removeAllObservers()
+  }
+  
+  func observeStartGame() {
+    gameStartRef?.observe(.value, with: { (snapshot) in
+      if let startGame = snapshot.value as? Bool {
+        if startGame == true {
+          self.performSegue(withIdentifier: "gameIsOn!", sender: Any?.self)
+        }
+      }
+    })
+  }
+  
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         return(users.count)
-        
     }
+  
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "playercell")
@@ -62,12 +76,13 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
         return UIView()
     }
     @IBOutlet weak var roomPin: UILabel!
-    func fetchUsers(){
+  
+    func fetchUsers() {
         ref.child("rooms").child(curPin).child("players").observe(.value, with: { (snapshot) in
             if let result = snapshot.children.allObjects as? [DataSnapshot] {
                 self.users.removeAll()
                 for child in result {
-                    var orderID = child.key as! String
+                  let orderID = child.key
                     var value = child.value as! [String : Any]
                     value["userName"] = orderID
                     self.users.append(value)
@@ -76,10 +91,10 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
-                
             }
         })
     }
+  
     func countPlayersReady() -> Int { //works maybe put this in functionss and extensions
         var count = 0
         for user in users {
@@ -130,7 +145,7 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
     
      @IBAction func startGame() { //works now
         if  self.countPlayersReady() == users.count{
-          
+          gameStartRef?.setValue(true)
            self.performSegue(withIdentifier: "gameIsOn!", sender: Any?.self)
         }
         //        if playersReady>2 {

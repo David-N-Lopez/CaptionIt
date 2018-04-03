@@ -85,7 +85,7 @@ class VideoViewController: UIViewController {
      There is a potential bug here: the pinNumber variable is saved when a player joins the game there is nothing that changes it in the case that the player leaves the game***********************/
     func useVideo(){
         if let currentPlayer = getCurrentPlayer(){
-            currentPlayer.memeVideo = true //not sure what case does
+            currentPlayer.memeVideo = "" //not sure what case does
                 self.ref.child("rooms").child(curPin!).child("players").child(currentPlayer.username).updateChildValues(["meme Video":currentPlayer.memeVideo])
                     cancel()//go to upload meme
                     //WHEN YOU COME BACK AN TEST, UPLOAD BUTTON IS THE NEXT THING TO WORK ON, IF THERE ARE ANY ERRORS IT MAY BE IN THE PLAYER CLASS WITH THE MEME VIDEO OR MEME PHOTO

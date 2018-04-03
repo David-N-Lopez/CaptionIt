@@ -24,21 +24,7 @@ class CaptioningVC: UIViewController,UITextFieldDelegate {
   override func viewDidLoad() {
     super.viewDidLoad()
     self.myTextField.delegate = self
-    
     setJudge()
-    /* SET JUDGE TAKES TO LONG TO UPDATE VALUES AND THAT WHY THE NEXT CONDITION DOESNT WORK*/
-    //        if currentJudge != nil {
-    //            print("abra cadabra")
-    //          ref.child("rooms").child(curPin!).child("players").child(currentJudge!).observeSingleEvent(of: .value, with: { snapshot in
-    //            let currentPlayer = snapshot.children
-    //
-    //            let isJudge = currentPlayer.value(forKeyPath: "judge") as? Bool
-    //            if isJudge == true  {
-    //                self.performSegue(withIdentifier: "waitingRoomSegue", sender: Any?.self)
-    //            }
-    //        })
-    //        }
-    
     
   }
   
