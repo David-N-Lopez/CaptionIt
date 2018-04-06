@@ -32,18 +32,19 @@ class PhotoViewController: UIViewController {
 		backgroundImageView.contentMode = UIViewContentMode.scaleAspectFit
 		backgroundImageView.image = backgroundImage
 		view.addSubview(backgroundImageView)
-        let cancelButton = UIButton(frame: CGRect(x: 10.0, y: 10.0, width: 30.0, height: 30.0))
+        let cancelButton = UIButton(frame: CGRect(x: 20.0, y: 20.0, width: 30.0, height: 30.0))
         cancelButton.setImage(#imageLiteral(resourceName: "cancel"), for: UIControlState())
         cancelButton.addTarget(self, action: #selector(cancel), for: .touchUpInside)
         view.addSubview(cancelButton)
-        let useIcon = UIButton(frame: CGRect(x: 280.0, y: 550.0, width: 80.0, height: 80.0))
+        
+        let useIcon = UIButton(frame: CGRect(x: view.frame.size.width - 90, y: view.frame.size.height - 90 , width: 80.0, height: 80.0))
         useIcon.setImage(#imageLiteral(resourceName: "sendIcon"), for: UIControlState())
         useIcon.addTarget(self, action: #selector(saveImage), for: .touchUpInside)
         view.addSubview(useIcon)
         
 	}
     func cancel() {        //need to segue now
-        performSegue(withIdentifier: "returnToSwifty ", sender: self)
+        performSegue(withIdentifier: "returnToSwifty", sender: self)
     }
 	func saveImage() {		//need to segue now
         performSegue(withIdentifier: "SavedImageSegue", sender: self)
@@ -62,7 +63,7 @@ class PhotoViewController: UIViewController {
             let controller = segue.destination as! RoomViewController
             controller.curPin = curPin //should I keep on passing the current pin
             controller.previewImage = backgroundImage
-            controller.pickMeme.setTitle("Change Meme?", for: .normal)
+          //  controller.pickMeme.setTitle("Change Meme?", for: .normal)
         }
     }
 }

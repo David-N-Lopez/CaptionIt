@@ -485,7 +485,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8eY-6t-7vU">
-                                <rect key="frame" x="16" y="473" width="160" height="59"/>
+                                <rect key="frame" x="16" y="517" width="160" height="59"/>
                                 <color key="backgroundColor" red="0.99607843139999996" green="0.86666666670000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="59" id="Wrc-ro-Si2"/>
@@ -514,7 +514,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cHh-17-iCS">
-                                <rect key="frame" x="200" y="473" width="160" height="59"/>
+                                <rect key="frame" x="200" y="517" width="160" height="59"/>
                                 <color key="backgroundColor" red="0.94509803920000002" green="0.35294117650000001" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="SourceCodePro-Bold" family="Source Code Pro" pointSize="17"/>
                                 <state key="normal" title="UPLOAD!">
@@ -539,7 +539,7 @@
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OpA-pa-QVa">
-                                <rect key="frame" x="16" y="174" width="343" height="278"/>
+                                <rect key="frame" x="16" y="174" width="343" height="322"/>
                                 <color key="backgroundColor" red="0.94509803920000002" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </imageView>
                         </subviews>
@@ -578,7 +578,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uTb-5a-aas" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Zmd-TN-KcL" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1124" y="60.719640179910051"/>
+            <point key="canvasLocation" x="1401" y="1256"/>
         </scene>
         <!--Register View Controller-->
         <scene sceneID="h5n-Ez-QTt">
@@ -744,66 +744,60 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yJG-NZ-qdE">
-                                <rect key="frame" x="72" y="576" width="28" height="47"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L1x-VW-RnQ">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nB9-LE-sFV" customClass="SwiftyRecordButton" customModule="CaptionIt" customModuleProvider="target">
+                                        <rect key="frame" x="150" y="572" width="75" height="75"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="75" id="UQZ-0F-BNZ"/>
+                                            <constraint firstAttribute="height" constant="75" id="pwr-Tk-Lsz"/>
+                                        </constraints>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fua-X4-em7">
+                                        <rect key="frame" x="70" y="598" width="30" height="23"/>
+                                        <state key="normal" image="flipCamera"/>
+                                        <connections>
+                                            <action selector="cameraSwitchTapped:" destination="w35-LS-Zg7" eventType="touchUpInside" id="ZPL-aZ-l3g"/>
+                                            <action selector="cameraSwitchTapped:" destination="550-1v-EdA" eventType="touchUpInside" id="m3E-zX-1rL"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gUa-pW-S5P">
+                                        <rect key="frame" x="275" y="594" width="18" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="18" id="0ct-J4-Oqi"/>
+                                            <constraint firstAttribute="height" constant="30" id="QPs-ab-6Ub"/>
+                                        </constraints>
+                                        <state key="normal" image="flashOutline"/>
+                                        <connections>
+                                            <action selector="toggleFlashTapped:" destination="550-1v-EdA" eventType="touchUpInside" id="O2l-3V-Z4b"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="28" id="6Yi-2q-u0s"/>
+                                    <constraint firstItem="nB9-LE-sFV" firstAttribute="centerX" secondItem="L1x-VW-RnQ" secondAttribute="centerX" id="0Mu-eS-D9W"/>
+                                    <constraint firstItem="Fua-X4-em7" firstAttribute="centerY" secondItem="nB9-LE-sFV" secondAttribute="centerY" id="4EJ-K0-bXo"/>
+                                    <constraint firstItem="gUa-pW-S5P" firstAttribute="centerY" secondItem="nB9-LE-sFV" secondAttribute="centerY" id="Qyz-dr-uLK"/>
+                                    <constraint firstItem="nB9-LE-sFV" firstAttribute="leading" secondItem="Fua-X4-em7" secondAttribute="trailing" constant="50" id="crh-QD-Vfm"/>
+                                    <constraint firstItem="gUa-pW-S5P" firstAttribute="leading" secondItem="nB9-LE-sFV" secondAttribute="trailing" constant="50" id="j0v-pa-rwb"/>
+                                    <constraint firstAttribute="bottom" secondItem="nB9-LE-sFV" secondAttribute="bottom" constant="20" symbolic="YES" id="w6L-ia-at0"/>
                                 </constraints>
-                                <state key="normal" image="flipCamera"/>
-                                <connections>
-                                    <action selector="cameraSwitchTapped:" destination="550-1v-EdA" eventType="touchUpOutside" id="HDm-ht-Vcx"/>
-                                    <action selector="cameraSwitchTapped:" destination="550-1v-EdA" eventType="touchUpInside" id="bwm-Tf-6gC"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tao-Hg-oRd">
-                                <rect key="frame" x="16" y="20" width="77" height="66"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="cancel"/>
-                                <connections>
-                                    <segue destination="tkP-Bk-Gem" kind="unwind" unwindAction="unwindSegueToMemePicker:" id="BcW-6Z-zH2"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qju-42-xcY">
-                                <rect key="frame" x="280" y="576" width="28" height="47"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="28" id="XfP-5V-DRj"/>
-                                </constraints>
-                                <state key="normal" image="flash"/>
-                                <connections>
-                                    <action selector="toggleFlashTapped:" destination="550-1v-EdA" eventType="touchUpOutside" id="gat-QP-Uoj"/>
-                                    <action selector="toggleFlashTapped:" destination="550-1v-EdA" eventType="touchUpInside" id="tUI-V1-zdC"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aGF-Ey-QKe" customClass="SwiftyRecordButton" customModule="CaptionIt" customModuleProvider="target">
-                                <rect key="frame" x="142" y="556" width="90" height="91"/>
-                            </button>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="yJG-NZ-qdE" firstAttribute="baseline" secondItem="aGF-Ey-QKe" secondAttribute="baseline" constant="71" id="3n6-Vm-dAC"/>
-                            <constraint firstItem="yJG-NZ-qdE" firstAttribute="leading" secondItem="kfp-MN-Ndb" secondAttribute="leadingMargin" constant="56" id="67U-Bg-hoT"/>
-                            <constraint firstItem="Qju-42-xcY" firstAttribute="centerY" secondItem="yJG-NZ-qdE" secondAttribute="centerY" id="8f3-sz-oZw"/>
-                            <constraint firstItem="yJG-NZ-qdE" firstAttribute="firstBaseline" secondItem="Qju-42-xcY" secondAttribute="firstBaseline" constant="2.5" id="GVd-eB-O5L"/>
-                            <constraint firstItem="Qju-42-xcY" firstAttribute="centerY" secondItem="aGF-Ey-QKe" secondAttribute="centerY" constant="20" id="IhX-r4-O14"/>
-                            <constraint firstItem="yJG-NZ-qdE" firstAttribute="baseline" secondItem="Qju-42-xcY" secondAttribute="baseline" constant="-2.5" id="LR2-ch-xZk"/>
-                            <constraint firstItem="aGF-Ey-QKe" firstAttribute="leading" secondItem="yJG-NZ-qdE" secondAttribute="trailing" constant="42" id="Mkp-aQ-5Yb"/>
-                            <constraint firstItem="Qju-42-xcY" firstAttribute="top" secondItem="aGF-Ey-QKe" secondAttribute="top" constant="20" id="RoS-JV-hMP"/>
-                            <constraint firstItem="Qju-42-xcY" firstAttribute="top" secondItem="aFO-jZ-32J" secondAttribute="bottom" constant="575" id="ToU-Vq-oeN"/>
-                            <constraint firstItem="Qju-42-xcY" firstAttribute="firstBaseline" secondItem="aGF-Ey-QKe" secondAttribute="firstBaseline" constant="26.5" id="YXi-nh-wU9"/>
-                            <constraint firstItem="Qju-42-xcY" firstAttribute="leading" secondItem="aGF-Ey-QKe" secondAttribute="trailing" constant="48" id="Yzl-Fr-iwH"/>
-                            <constraint firstItem="Qju-42-xcY" firstAttribute="baseline" secondItem="aGF-Ey-QKe" secondAttribute="baseline" constant="74.5" id="a1i-5M-PGS"/>
-                            <constraint firstItem="Qju-42-xcY" firstAttribute="firstBaseline" secondItem="yJG-NZ-qdE" secondAttribute="firstBaseline" constant="-2.5" id="izI-KZ-LKY"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Qju-42-xcY" secondAttribute="trailing" constant="51" id="mBW-Sz-bKD"/>
-                            <constraint firstItem="rtd-wo-J9G" firstAttribute="top" secondItem="Qju-42-xcY" secondAttribute="bottom" id="u1Z-mS-5XT"/>
-                            <constraint firstItem="Qju-42-xcY" firstAttribute="baseline" secondItem="yJG-NZ-qdE" secondAttribute="baseline" constant="2.5" id="xCa-pK-Qoe"/>
-                            <constraint firstItem="Qju-42-xcY" firstAttribute="top" secondItem="yJG-NZ-qdE" secondAttribute="top" id="xvN-cX-XJ4"/>
-                            <constraint firstItem="yJG-NZ-qdE" firstAttribute="firstBaseline" secondItem="aGF-Ey-QKe" secondAttribute="firstBaseline" constant="30" id="y0e-Mu-4yK"/>
+                            <constraint firstItem="L1x-VW-RnQ" firstAttribute="top" secondItem="kfp-MN-Ndb" secondAttribute="top" id="2OU-KX-zGO"/>
+                            <constraint firstItem="rtd-wo-J9G" firstAttribute="top" secondItem="L1x-VW-RnQ" secondAttribute="bottom" id="4MR-uC-fMV"/>
+                            <constraint firstAttribute="trailing" secondItem="L1x-VW-RnQ" secondAttribute="trailing" id="KeQ-Bl-0Ur"/>
+                            <constraint firstItem="L1x-VW-RnQ" firstAttribute="leading" secondItem="kfp-MN-Ndb" secondAttribute="leading" id="gGU-Tc-Bmw"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="captureButton" destination="aGF-Ey-QKe" id="otV-62-ll4"/>
-                        <outlet property="flashButton" destination="Qju-42-xcY" id="Hc7-J0-nia"/>
-                        <outlet property="flipCameraButton" destination="yJG-NZ-qdE" id="YGK-zo-6hS"/>
+                        <outlet property="captureButton" destination="nB9-LE-sFV" id="RNj-q7-Db0"/>
+                        <outlet property="flashButton" destination="gUa-pW-S5P" id="mOJ-tE-1m0"/>
+                        <outlet property="flipCameraButton" destination="Fua-X4-em7" id="zC6-ck-vYa"/>
                         <segue destination="tkP-Bk-Gem" kind="unwind" unwindAction="unwindSegueToMemePicker:" id="Fbt-gv-yLl"/>
                         <segue destination="BA7-Gy-Vbx" kind="show" identifier="PhotoPreviewSegue" id="8wN-fi-lFU">
                             <nil key="action"/>
@@ -842,7 +836,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CZv-Hj-F92" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1804" y="762"/>
+            <point key="canvasLocation" x="2601" y="971"/>
         </scene>
         <!--Waiting View Controller-->
         <scene sceneID="2Vg-Yt-PRA">
@@ -1309,12 +1303,70 @@
             </objects>
             <point key="canvasLocation" x="1804" y="-688"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="PRK-w5-b9T">
+            <objects>
+                <viewController id="w35-LS-Zg7" customClass="ViewController" customModule="CaptionIt" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="6lf-C7-Pp6"/>
+                        <viewControllerLayoutGuide type="bottom" id="npb-IY-jIG"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7im-Tp-D1c">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="urq-fa-8UO" customClass="SwiftyRecordButton" customModule="CaptionIt" customModuleProvider="target">
+                                <rect key="frame" x="150" y="572" width="75" height="75"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="75" id="Dc7-Ua-oGw"/>
+                                    <constraint firstAttribute="width" constant="75" id="Ll5-te-99A"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z7k-Rw-9EB">
+                                <rect key="frame" x="70" y="598" width="30" height="23"/>
+                                <state key="normal" image="flipCamera"/>
+                                <connections>
+                                    <action selector="cameraSwitchTapped:" destination="w35-LS-Zg7" eventType="touchUpInside" id="5sP-Nc-Ihn"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cjq-PH-rRw">
+                                <rect key="frame" x="275" y="594" width="18" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="18" id="DiK-FO-zz3"/>
+                                    <constraint firstAttribute="height" constant="30" id="Y7S-GG-MB1"/>
+                                </constraints>
+                                <state key="normal" image="flashOutline"/>
+                                <connections>
+                                    <action selector="toggleFlashTapped:" destination="w35-LS-Zg7" eventType="touchUpInside" id="Jht-wc-dYc"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Cjq-PH-rRw" firstAttribute="leading" secondItem="urq-fa-8UO" secondAttribute="trailing" constant="50" id="Bvb-mn-cYm"/>
+                            <constraint firstItem="urq-fa-8UO" firstAttribute="leading" secondItem="Z7k-Rw-9EB" secondAttribute="trailing" constant="50" id="Xh1-hs-72L"/>
+                            <constraint firstItem="urq-fa-8UO" firstAttribute="centerX" secondItem="7im-Tp-D1c" secondAttribute="centerX" id="XlN-9F-0Hq"/>
+                            <constraint firstAttribute="bottom" secondItem="urq-fa-8UO" secondAttribute="bottom" constant="20" symbolic="YES" id="gam-bW-Re8"/>
+                            <constraint firstItem="Z7k-Rw-9EB" firstAttribute="centerY" secondItem="urq-fa-8UO" secondAttribute="centerY" id="nVd-pB-P0L"/>
+                            <constraint firstItem="Cjq-PH-rRw" firstAttribute="centerY" secondItem="urq-fa-8UO" secondAttribute="centerY" id="qQ9-tH-jYe"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="captureButton" destination="urq-fa-8UO" id="9dl-C2-vqO"/>
+                        <outlet property="flashButton" destination="Cjq-PH-rRw" id="8ss-wu-Djq"/>
+                        <outlet property="flipCameraButton" destination="Z7k-Rw-9EB" id="AaP-52-8Zt"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eZr-z1-hLR" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2540" y="61"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Yello" width="39" height="45"/>
-        <image name="cancel" width="30" height="30"/>
         <image name="easter-bunny-pama" width="718" height="2070"/>
-        <image name="flash" width="18" height="30"/>
+        <image name="flashOutline" width="18" height="30"/>
         <image name="flipCamera" width="30" height="23"/>
         <image name="french-fries-pama" width="1285" height="2110"/>
         <image name="half-pama-face" width="809" height="571"/>
@@ -1327,11 +1379,11 @@
         <image name="trophy" width="64" height="64"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="012-IT-b9v"/>
+        <segue reference="1Kv-6F-L03"/>
         <segue reference="MMy-4o-26m"/>
-        <segue reference="fb7-aC-lzd"/>
-        <segue reference="kOB-VI-MXU"/>
-        <segue reference="5tl-gC-1Xp"/>
-        <segue reference="zNk-Td-R8z"/>
+        <segue reference="5sw-Qe-jf3"/>
+        <segue reference="YLA-hq-5xq"/>
+        <segue reference="Qah-F8-iFT"/>
+        <segue reference="ct7-pp-q0u"/>
     </inferredMetricsTieBreakers>
 </document>

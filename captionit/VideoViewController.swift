@@ -61,11 +61,11 @@ class VideoViewController: UIViewController {
         playerController!.view.frame = view.frame
         NotificationCenter.default.addObserver(self, selector: #selector(playerItemDidReachEnd), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: self.player!.currentItem)
         
-        let cancelButton = UIButton(frame: CGRect(x: 10.0, y: 10.0, width: 30.0, height: 30.0))
+        let cancelButton = UIButton(frame: CGRect(x: 20.0, y: 20.0, width: 30.0, height: 30.0))
         cancelButton.setImage(#imageLiteral(resourceName: "cancel"), for: UIControlState())
         cancelButton.addTarget(self, action: #selector(cancel), for: .touchUpInside)
         view.addSubview(cancelButton)
-        let useIcon = UIButton(frame: CGRect(x: 280.0, y: 550.0, width: 80.0, height: 80.0))
+        let useIcon = UIButton(frame: CGRect(x: view.frame.size.width - 90, y: view.frame.size.height - 90 , width: 80.0, height: 80.0))
         useIcon.setImage(#imageLiteral(resourceName: "sendIcon"), for: UIControlState())
         useIcon.addTarget(self, action: #selector(useVideo), for: .touchUpInside)
         view.addSubview(useIcon)
