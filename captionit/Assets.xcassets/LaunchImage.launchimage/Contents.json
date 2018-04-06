@@ -31,12 +31,14 @@
     {
       "orientation" : "portrait",
       "idiom" : "iphone",
+      "filename" : "logo-small.png",
       "minimum-system-version" : "7.0",
       "scale" : "2x"
     },
     {
       "orientation" : "portrait",
       "idiom" : "iphone",
+      "filename" : "logo-small-1.png",
       "minimum-system-version" : "7.0",
       "subtype" : "retina4",
       "scale" : "2x"

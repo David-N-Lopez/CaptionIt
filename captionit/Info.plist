@@ -24,14 +24,21 @@
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>Used to upload photo</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Used to upload audio</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Used to upload photo</string>
-    <key>Privacy</key>
-    <string>No Privacy</string>
+	<key>Privacy</key>
+	<string>No Privacy</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>SourceCodePro-Black.ttf</string>
+		<string>SourceCodePro-Bold.ttf</string>
+		<string>SourceSansPro-It.otf</string>
+		<string>SourceSansPro-Regular.otf</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
-    <key>NSMicrophoneUsageDescription</key>
-    <string>Used to upload audio</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>

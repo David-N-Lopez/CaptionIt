@@ -15,9 +15,11 @@ class WaitingViewController: UIViewController {
   var judgeName = String()
   var memeURL = String()
   
-  override func viewDidLoad() {
+    @IBOutlet weak var gifView: UIImageView!
+    override func viewDidLoad() {
     super.viewDidLoad()
     observeUsersComments()
+    gifView.image = UIImage.gifImageWithName(name: "pama-waiting-screen (2)")
     
   }
   

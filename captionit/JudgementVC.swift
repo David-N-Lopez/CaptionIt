@@ -44,7 +44,7 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
   }
   
   func getAllComments()  {
-    ref.child("rooms").child(self.groupId).child("comments").child(self.judgeID).observeSingleEvent(of: .value, with: { (snapshot) in
+    ref.child("rooms").child(self.groupId).child("comments").child(self.judgeID).observe(.value, with: { (snapshot) in
       if let comment = snapshot.value as? [String: Any] {
         let allKeys = (comment as NSDictionary).allKeys
         self.usersComments.removeAll()

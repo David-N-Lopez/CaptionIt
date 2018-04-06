@@ -42,6 +42,7 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
   }
   
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         return(users.count)
     }
   
@@ -52,10 +53,13 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
         if let currentUser = users[indexPath.row] as? [String : Any] {
             let isReady = currentUser["Ready"] as? Bool
             if isReady == false {
-                cell.imageView?.image = notReadyImage
+                cell.imageView?.image = UIImage.gifImageWithName(name: "pama-loading-screen")
             }
             else{
-                cell.imageView?.image = #imageLiteral(resourceName: "pama") //this is applying for all
+                let array = [#imageLiteral(resourceName: "bee-pama"),#imageLiteral(resourceName: "cat-pama"),#imageLiteral(resourceName: "NYE-pama"),#imageLiteral(resourceName: "pirate-pama"),#imageLiteral(resourceName: "snow-pama"),#imageLiteral(resourceName: "st-pats-pama(1)")]
+                let num = UInt32(array.count)
+                let random = Int(arc4random_uniform(num))
+                cell.imageView?.image = array[random] //this is applying for all
             }
             if let ID = currentUser["ID"] as? String {
                 self.getUserName(ID, "Undefined User", { (name) in

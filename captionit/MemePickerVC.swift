@@ -52,9 +52,9 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         super.viewDidLoad()
         let picker = UIImagePickerController()
         picker.delegate = self // delegate added
+        previewImage = #imageLiteral(resourceName: "pizza-pama")
         myImageView.image = previewImage
-        myTextView.text = "This is a meme. \nNow let's make this absurdly large to fit roughly three wait no let's make it five lines worth of text to really test the limits of this label box. So yeah."
-        myTextView.backgroundColor = UIColor.white
+        myTextView.text = "Choose your best image to make a spicy Meme!"
     }
 
     override func didReceiveMemoryWarning() {

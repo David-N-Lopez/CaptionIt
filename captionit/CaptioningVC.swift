@@ -25,8 +25,14 @@ class CaptioningVC: UIViewController,UITextFieldDelegate {
     super.viewDidLoad()
     self.myTextField.delegate = self
     setJudge()
+    let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+    view.addGestureRecognizer(tap)
     
   }
+    func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
+    }
   
   func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
     if let text = textField.text,

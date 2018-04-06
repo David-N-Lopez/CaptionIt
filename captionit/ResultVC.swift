@@ -18,6 +18,7 @@ class ResultVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
       tblResult.tableFooterView = UIView()
+      tblResult.backgroundColor = UIColor.white
       getAllUsers()
         // Do any additional setup after loading the view.
     }

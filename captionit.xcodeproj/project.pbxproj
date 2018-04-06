@@ -15,6 +15,9 @@
 		338756831FC3E7A800C78256 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338756821FC3E7A800C78256 /* Player.swift */; };
 		36FE7E2B3DC17071A4FE422F /* Pods_CaptionItTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5C0A6A1F8438B5A07393A3D /* Pods_CaptionItTests.framework */; };
 		37112042207177E300295A63 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37112041207177E300295A63 /* Assets.xcassets */; };
+		3711204B2074FFD600295A63 /* gifController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3711204A2074FFD600295A63 /* gifController.swift */; };
+		3711204F2075353400295A63 /* pama-loading-screen.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3711204E2075353300295A63 /* pama-loading-screen.gif */; };
+		371120512075355700295A63 /* pama-waiting-screen (2).gif in Resources */ = {isa = PBXBuildFile; fileRef = 371120502075355600295A63 /* pama-waiting-screen (2).gif */; };
 		373A6B212038096000378AC1 /* SwiftyCamVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373A6B202038096000378AC1 /* SwiftyCamVC.swift */; };
 		3740D9AF206C176A000DFC1D /* CaptioningVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3740D9AE206C176A000DFC1D /* CaptioningVC.swift */; };
 		37707CA3203A069A00143D6E /* SwiftyCamViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37707C9F203A069800143D6E /* SwiftyCamViewControllerDelegate.swift */; };
@@ -34,6 +37,10 @@
 		9F232C21207381BB00C438A5 /* ResultVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F232C20207381BB00C438A5 /* ResultVC.swift */; };
 		9F232C232073837300C438A5 /* ResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F232C222073837300C438A5 /* ResultCell.swift */; };
 		9F707DFC2072B68A00C2D9B5 /* WaitingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F707DFB2072B68900C2D9B5 /* WaitingViewController.swift */; };
+		AE8C4BDE20749618004529C1 /* SourceCodePro-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AE8C4BDD20745EF1004529C1 /* SourceCodePro-Black.ttf */; };
+		AE8C4BDF2074961B004529C1 /* SourceCodePro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AE8C4BDB20745EF1004529C1 /* SourceCodePro-Bold.ttf */; };
+		AE8C4BE02074961E004529C1 /* SourceSansPro-It.otf in Resources */ = {isa = PBXBuildFile; fileRef = AE8C4BDA20745EF1004529C1 /* SourceSansPro-It.otf */; };
+		AE8C4BE120749621004529C1 /* SourceSansPro-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = AE8C4BDC20745EF1004529C1 /* SourceSansPro-Regular.otf */; };
 		B2B1B0CB2026CB3900FD2A51 /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B1B0CA2026CB3900FD2A51 /* Users.swift */; };
 		B2B1B0CE2026CE4D00FD2A51 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B1B0CD2026CE4D00FD2A51 /* LoginViewController.swift */; };
 		B2B1B0D02026CE5700FD2A51 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B1B0CF2026CE5700FD2A51 /* RegisterViewController.swift */; };
@@ -80,6 +87,9 @@
 		331418231FB16BF40059F494 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		338756821FC3E7A800C78256 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		37112041207177E300295A63 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = captionit/Assets.xcassets; sourceTree = SOURCE_ROOT; };
+		3711204A2074FFD600295A63 /* gifController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = gifController.swift; path = captionit/gifController.swift; sourceTree = SOURCE_ROOT; };
+		3711204E2075353300295A63 /* pama-loading-screen.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "pama-loading-screen.gif"; sourceTree = "<group>"; };
+		371120502075355600295A63 /* pama-waiting-screen (2).gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "pama-waiting-screen (2).gif"; sourceTree = "<group>"; };
 		373A6B202038096000378AC1 /* SwiftyCamVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyCamVC.swift; sourceTree = "<group>"; };
 		3740D9AE206C176A000DFC1D /* CaptioningVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptioningVC.swift; sourceTree = "<group>"; };
 		37707C9F203A069800143D6E /* SwiftyCamViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyCamViewControllerDelegate.swift; sourceTree = "<group>"; };
@@ -103,6 +113,10 @@
 		9F232C20207381BB00C438A5 /* ResultVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultVC.swift; sourceTree = "<group>"; };
 		9F232C222073837300C438A5 /* ResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultCell.swift; sourceTree = "<group>"; };
 		9F707DFB2072B68900C2D9B5 /* WaitingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WaitingViewController.swift; path = captionit/WaitingViewController.swift; sourceTree = SOURCE_ROOT; };
+		AE8C4BDA20745EF1004529C1 /* SourceSansPro-It.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SourceSansPro-It.otf"; path = "captionit/SourceSansPro-It.otf"; sourceTree = SOURCE_ROOT; };
+		AE8C4BDB20745EF1004529C1 /* SourceCodePro-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SourceCodePro-Bold.ttf"; path = "captionit/SourceCodePro-Bold.ttf"; sourceTree = SOURCE_ROOT; };
+		AE8C4BDC20745EF1004529C1 /* SourceSansPro-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SourceSansPro-Regular.otf"; path = "captionit/SourceSansPro-Regular.otf"; sourceTree = SOURCE_ROOT; };
+		AE8C4BDD20745EF1004529C1 /* SourceCodePro-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SourceCodePro-Black.ttf"; path = "captionit/SourceCodePro-Black.ttf"; sourceTree = SOURCE_ROOT; };
 		B2B1B0CA2026CB3900FD2A51 /* Users.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
 		B2B1B0CD2026CE4D00FD2A51 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		B2B1B0CF2026CE5700FD2A51 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
@@ -185,6 +199,10 @@
 		331418001FB16BF30059F494 /* CaptionIt */ = {
 			isa = PBXGroup;
 			children = (
+				AE8C4BDD20745EF1004529C1 /* SourceCodePro-Black.ttf */,
+				AE8C4BDB20745EF1004529C1 /* SourceCodePro-Bold.ttf */,
+				AE8C4BDA20745EF1004529C1 /* SourceSansPro-It.otf */,
+				AE8C4BDC20745EF1004529C1 /* SourceSansPro-Regular.otf */,
 				3781242E2033676900051FDA /* SwiftyCam */,
 				B2B1B0D12026CFB400FD2A51 /* Extension */,
 				B2B1B0D42026D0F000FD2A51 /* Utility */,
@@ -194,8 +212,11 @@
 				48B062B72026BAA90045400A /* LaunchScreen.storyboard */,
 				48B062B92026BAA90045400A /* Main.storyboard */,
 				37865F23200BC4E9006F26AC /* notready.png */,
+				3711204A2074FFD600295A63 /* gifController.swift */,
 				37865F21200BC4D1006F26AC /* ready.png */,
+				3711204E2075353300295A63 /* pama-loading-screen.gif */,
 				331418011FB16BF40059F494 /* AppDelegate.swift */,
+				371120502075355600295A63 /* pama-waiting-screen (2).gif */,
 				331418031FB16BF40059F494 /* ViewController.swift */,
 				52B6CC1A2072C43600945942 /* CaptionCell.swift */,
 				52B6CC1B2072C43700945942 /* JudgementVC.swift */,
@@ -369,7 +390,7 @@
 				TargetAttributes = {
 					331417FD1FB16BF30059F494 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 3UZ3KPNXVC;
+						DevelopmentTeam = JKC7JRHQH5;
 						ProvisioningStyle = Automatic;
 					};
 					331418111FB16BF40059F494 = {
@@ -384,7 +405,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 331417F91FB16BF30059F494 /* Build configuration list for PBXProject "CaptionIt" */;
+			buildConfigurationList = 331417F91FB16BF30059F494 /* Build configuration list for PBXProject "captionit" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -409,11 +430,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE8C4BE120749621004529C1 /* SourceSansPro-Regular.otf in Resources */,
 				48B062BB2026BAA90045400A /* LaunchScreen.storyboard in Resources */,
+				3711204F2075353400295A63 /* pama-loading-screen.gif in Resources */,
+				AE8C4BE02074961E004529C1 /* SourceSansPro-It.otf in Resources */,
 				48B062BE2027844F0045400A /* GoogleService-Info.plist in Resources */,
 				48B062BC2026BAA90045400A /* Main.storyboard in Resources */,
+				371120512075355700295A63 /* pama-waiting-screen (2).gif in Resources */,
 				37865F24200BC4E9006F26AC /* notready.png in Resources */,
 				37112042207177E300295A63 /* Assets.xcassets in Resources */,
+				AE8C4BDF2074961B004529C1 /* SourceCodePro-Bold.ttf in Resources */,
+				AE8C4BDE20749618004529C1 /* SourceCodePro-Black.ttf in Resources */,
 				37865F22200BC4D1006F26AC /* ready.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -613,6 +640,7 @@
 				B2B1B0D02026CE5700FD2A51 /* RegisterViewController.swift in Sources */,
 				373A6B212038096000378AC1 /* SwiftyCamVC.swift in Sources */,
 				C8825BBB1FD10CF800089E7A /* Functions_Extensions.swift in Sources */,
+				3711204B2074FFD600295A63 /* gifController.swift in Sources */,
 				37707CAB203A077900143D6E /* PhotoViewController.swift in Sources */,
 				C8825BB91FD10C2C00089E7A /* User.swift in Sources */,
 				9F232C21207381BB00C438A5 /* ResultVC.swift in Sources */,
@@ -782,7 +810,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				DEVELOPMENT_TEAM = 3UZ3KPNXVC;
+				DEVELOPMENT_TEAM = JKC7JRHQH5;
 				INFOPLIST_FILE = CaptionIt/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.CaptionIt;
@@ -797,7 +825,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				DEVELOPMENT_TEAM = 3UZ3KPNXVC;
+				DEVELOPMENT_TEAM = JKC7JRHQH5;
 				INFOPLIST_FILE = CaptionIt/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.CaptionIt;
@@ -867,7 +895,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		331417F91FB16BF30059F494 /* Build configuration list for PBXProject "CaptionIt" */ = {
+		331417F91FB16BF30059F494 /* Build configuration list for PBXProject "captionit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				331418241FB16BF40059F494 /* Debug */,
