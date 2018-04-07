@@ -10,7 +10,7 @@ import UIKit
 import AVKit
 import FirebaseStorage
 import FirebaseDatabase
-
+import SVProgressHUD
 
 class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     var ref:DatabaseReference! = Database.database().reference()
@@ -28,7 +28,7 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
 
     @IBAction func submit(_ sender: UIButton) {
         print("start")
-      
+      SVProgressHUD.show()
         if (myImageView.image != nil || previewVideo != nil ){
             let currentPlayer = getCurrentPlayer()
             let image = myImageView.image
@@ -46,7 +46,8 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         let storageRef = storageR.reference()
             print("before")
           let uploadTask = storageRef.child(curPin!).child((currentPlayer?.username)!).putData(data as Data, metadata: nil) { metadata, error in
-            player?.pause()
+            self.player?.pause()
+            SVProgressHUD.dismiss()
                     if error != nil {
                         print("error")
                     } else {
@@ -88,6 +89,10 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     self.view.layer.addSublayer(playerLayer)
     player?.play()
     NotificationCenter.default.addObserver(self, selector: #selector(playerItemDidReachEnd), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: self.player!.currentItem)
+  }
+  
+  override func viewWillDisappear(_ animated: Bool) {
+    NotificationCenter.default.removeObserver(self)
   }
 
     override func didReceiveMemoryWarning() {

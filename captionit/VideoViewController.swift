@@ -106,6 +106,10 @@ class VideoViewController: UIViewController {
     
     }
   
+  override func viewWillDisappear(_ animated: Bool) {
+    NotificationCenter.default.removeObserver(self)
+  }
+  
     @objc fileprivate func playerItemDidReachEnd(_ notification: Notification) {
         if self.player != nil {
             self.player!.seek(to: kCMTimeZero)
