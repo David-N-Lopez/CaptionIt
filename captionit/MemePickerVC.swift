@@ -21,6 +21,7 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     var previewImage: UIImage?
     var previewVideo: URL?
     var mediaType  = 1
+    var player : AVPlayer?
     
     @IBOutlet weak var pickMeme: UIButton!
 
@@ -78,12 +79,12 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
   
   private func playVideo(from url:URL) {
 
-    let player = AVPlayer(url: url)
+    player = AVPlayer(url: url)
     
     let playerLayer = AVPlayerLayer(player: player)
     playerLayer.frame = self.myImageView.frame
     self.view.layer.addSublayer(playerLayer)
-    player.play()
+    player?.play()
     NotificationCenter.default.addObserver(self, selector: #selector(playerItemDidReachEnd), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: self.player!.currentItem)
   }
 
