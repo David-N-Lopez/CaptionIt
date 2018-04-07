@@ -42,8 +42,7 @@ class Player {
             let playerInfo = ["Ready":self.ready,
                               "judge":self.judge,
                               "hasBeenJudge": self.hasBeenJudge,
-                              "meme Video":self.memeVideo as Any,
-                              "meme Photo": self.memePhoto,
+                              "memeURL": self.memePhoto,
                               "ID": currentId ?? ""]//Maybe it is no saving the picture
             self.ref.child("rooms").child(curPin).child("players").child(currentId!).updateChildValues(playerInfo)
             self.pinNumber = curPin

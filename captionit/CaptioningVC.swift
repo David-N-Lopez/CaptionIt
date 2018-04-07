@@ -60,7 +60,7 @@ class CaptioningVC: UIViewController,UITextFieldDelegate {
           var value = player.value as! [String : Any]
           let udid = value["ID"] as! String
           let hasBeenJudge = value["hasBeenJudge"] as? Bool
-          let meme = value["meme Photo"] as! String
+          let meme = value["memeURL"] as! String
           if let type = value["mediaType"] as? Int {
             self.mediaType = type
           }
