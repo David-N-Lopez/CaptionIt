@@ -11,6 +11,7 @@ import AVKit
 import FirebaseStorage
 import FirebaseDatabase
 
+
 class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     var ref:DatabaseReference! = Database.database().reference()
     
@@ -27,6 +28,7 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
 
     @IBAction func submit(_ sender: UIButton) {
         print("start")
+      
         if (myImageView.image != nil || previewVideo != nil ){
             let currentPlayer = getCurrentPlayer()
             let image = myImageView.image
@@ -40,11 +42,11 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
               print(error)
             }
           }
-            print(data)
         let storageR = Storage.storage()
         let storageRef = storageR.reference()
             print("before")
           let uploadTask = storageRef.child(curPin!).child((currentPlayer?.username)!).putData(data as Data, metadata: nil) { metadata, error in
+            player?.pause()
                     if error != nil {
                         print("error")
                     } else {
