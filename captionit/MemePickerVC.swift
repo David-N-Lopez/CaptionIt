@@ -63,17 +63,17 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         picker.delegate = self // delegate added
     }
   
-  override func viewWillAppear(_ animated: Bool) {
+  override func viewDidAppear(_ animated: Bool) {
     if mediaType == 1 {
       if previewImage == nil {
         previewImage = #imageLiteral(resourceName: "pizza-pama")
       }
       myImageView.image = previewImage
-      myTextView.text = "Choose your best image to make a spicy Meme!"
     } else {
       //Show Video
       playVideo(from: previewVideo!)
     }
+    myTextView.text = "Choose your best image to make a spicy Meme!"
   }
   
   private func playVideo(from url:URL) {
@@ -84,6 +84,7 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     playerLayer.frame = self.myImageView.frame
     self.view.layer.addSublayer(playerLayer)
     player.play()
+    NotificationCenter.default.addObserver(self, selector: #selector(playerItemDidReachEnd), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: self.player!.currentItem)
   }
 
     override func didReceiveMemoryWarning() {
@@ -162,17 +163,12 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             controller.playersReady += 1
         }
     }
-
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+  
+  @objc fileprivate func playerItemDidReachEnd(_ notification: Notification) {
+    if self.player != nil {
+      self.player!.seek(to: kCMTimeZero)
+      self.player!.play()
     }
-    */
+  }
 
 }

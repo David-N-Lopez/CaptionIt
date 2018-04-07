@@ -504,10 +504,10 @@
                                     <action selector="selectPhotoButtonTapped:" destination="NIV-Xa-cxN" eventType="touchUpInside" id="qm5-zd-ccS"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="utA-DW-ovM">
-                                <rect key="frame" x="16" y="127" width="343" height="39"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="utA-DW-ovM">
+                                <rect key="frame" x="16" y="82" width="343" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="84" id="YNZ-gS-0bh"/>
+                                    <constraint firstAttribute="height" constant="40" id="YNZ-gS-0bh"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="SourceCodePro-Bold" family="Source Code Pro" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -539,7 +539,7 @@
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OpA-pa-QVa">
-                                <rect key="frame" x="16" y="174" width="343" height="322"/>
+                                <rect key="frame" x="16" y="130" width="343" height="366"/>
                                 <color key="backgroundColor" red="0.94509803920000002" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </imageView>
                         </subviews>
@@ -1384,7 +1384,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="1Kv-6F-L03"/>
         <segue reference="MMy-4o-26m"/>
-        <segue reference="5sw-Qe-jf3"/>
+        <segue reference="fb7-aC-lzd"/>
         <segue reference="DWq-qC-3Mu"/>
         <segue reference="Qah-F8-iFT"/>
         <segue reference="ct7-pp-q0u"/>
