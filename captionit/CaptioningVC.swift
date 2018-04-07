@@ -12,6 +12,7 @@ import FirebaseAuth
 import UIKit
 import AVKit
 import SDWebImage
+import SVProgressHUD
 
 class CaptioningVC: UIViewController,UITextFieldDelegate {
   @IBOutlet weak var meme: UIImageView!
@@ -98,12 +99,19 @@ class CaptioningVC: UIViewController,UITextFieldDelegate {
   private func playVideo(from url:URL) {
     
     player = AVPlayer(url: url)
-    
+    SVProgressHUD.show()
     let playerLayer = AVPlayerLayer(player: player)
     playerLayer.frame = self.meme.frame
     self.view.layer.addSublayer(playerLayer)
     player?.play()
     NotificationCenter.default.addObserver(self, selector: #selector(playerItemDidReachEnd), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: self.player!.currentItem)
+    player?.currentItem!.addObserver(self, forKeyPath: "status", options: NSKeyValueObservingOptions(), context: nil)
+  }
+  
+  func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutableRawPointer) {
+    if player?.currentItem?.status == AVPlayerItemStatus.readyToPlay {
+      SVProgressHUD.dismiss()
+    }
   }
   
   @objc fileprivate func playerItemDidReachEnd(_ notification: Notification) {
@@ -130,6 +138,7 @@ class CaptioningVC: UIViewController,UITextFieldDelegate {
   }
   
   override func viewWillDisappear(_ animated: Bool) {
+    player?.currentItem!.removeObserver(self, forKeyPath: "status")
     NotificationCenter.default.removeObserver(self)
   }
   
