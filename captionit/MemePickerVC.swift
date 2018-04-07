@@ -52,7 +52,9 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         super.viewDidLoad()
         let picker = UIImagePickerController()
         picker.delegate = self // delegate added
+      if previewImage == nil {
         previewImage = #imageLiteral(resourceName: "pizza-pama")
+      }
         myImageView.image = previewImage
         myTextView.text = "Choose your best image to make a spicy Meme!"
     }

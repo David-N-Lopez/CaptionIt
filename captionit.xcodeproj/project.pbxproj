@@ -390,7 +390,7 @@
 				TargetAttributes = {
 					331417FD1FB16BF30059F494 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = ZB4LYCQ84Z;
+						DevelopmentTeam = JKC7JRHQH5;
 						ProvisioningStyle = Automatic;
 					};
 					331418111FB16BF40059F494 = {
@@ -405,7 +405,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 331417F91FB16BF30059F494 /* Build configuration list for PBXProject "captionit" */;
+			buildConfigurationList = 331417F91FB16BF30059F494 /* Build configuration list for PBXProject "CaptionIt" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -810,7 +810,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				DEVELOPMENT_TEAM = ZB4LYCQ84Z;
+				DEVELOPMENT_TEAM = JKC7JRHQH5;
 				INFOPLIST_FILE = CaptionIt/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.CaptionIt;
@@ -825,7 +825,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				DEVELOPMENT_TEAM = ZB4LYCQ84Z;
+				DEVELOPMENT_TEAM = JKC7JRHQH5;
 				INFOPLIST_FILE = CaptionIt/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.CaptionIt;
@@ -895,7 +895,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		331417F91FB16BF30059F494 /* Build configuration list for PBXProject "captionit" */ = {
+		331417F91FB16BF30059F494 /* Build configuration list for PBXProject "CaptionIt" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				331418241FB16BF40059F494 /* Debug */,
