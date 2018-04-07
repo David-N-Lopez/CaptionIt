@@ -14,6 +14,7 @@ class WaitingViewController: UIViewController {
   var judgeID = String()
   var judgeName = String()
   var memeURL = String()
+  var mediaType = 1
   
     @IBOutlet weak var gifView: UIImageView!
     override func viewDidLoad() {

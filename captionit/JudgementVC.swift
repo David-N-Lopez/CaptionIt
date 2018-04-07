@@ -18,6 +18,7 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
   var judgeID = String()
   var judgeName = String()
   var memeURL = String()
+  var mediaType = 1
   
   var hasBeenJudgeRef: DatabaseReference?
   
@@ -85,7 +86,11 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let userCommentDic = usersComments[indexPath.row] as! [String: String]
     let captionCell = captionTableView.dequeueReusableCell(withIdentifier: "captionCell", for: indexPath) as! CaptionCell
+    if mediaType == 1 {
     captionCell.memeImageView.sd_setImage(with: URL(string:self.memeURL), placeholderImage: nil, options: .scaleDownLargeImages, completed: nil)
+    } else {
+      captionCell.playVideo(url: URL(string:self.memeURL)!)
+    }
     captionCell.lblCaption.text = userCommentDic["comment"]
     if self.judgeID == Auth.auth().currentUser?.uid {
       captionCell.btnReward.isHidden = false
@@ -96,12 +101,16 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     captionCell.btnReward.tag = indexPath.row
     captionCell.btnReward.addTarget(self, action: #selector(self.rewardPlayerAction(_:)), for: .touchUpInside)
     return captionCell
-    
   }
   
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     
     return UITableViewAutomaticDimension
+  }
+  
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    let cell = tableView.cellForRow(at: indexPath) as! CaptionCell
+    cell.player?.play()
   }
   
   func observerGameFinish()  {

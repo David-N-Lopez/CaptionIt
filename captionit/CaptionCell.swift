@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVKit
 
 class CaptionCell: UITableViewCell {
     
@@ -14,9 +15,10 @@ class CaptionCell: UITableViewCell {
     
     @IBOutlet weak var lblCaption: UILabel!
     @IBOutlet weak var btnReward: UIButton!
-    
+    var player: AVPlayer?
     override func awakeFromNib() {
         super.awakeFromNib()
+        setUpPlayer()
         // Initialization code
     }
     
@@ -25,5 +27,15 @@ class CaptionCell: UITableViewCell {
         
         // Configure the view for the selected state
     }
+  func playVideo(url:URL) {
+    player = AVPlayer(url: url)
+    player?.play()
+  }
+  
+  func setUpPlayer() {
+    let playerLayer = AVPlayerLayer(player: player)
+    playerLayer.frame = self.memeImageView.frame
+    self.contentView.layer.addSublayer(playerLayer)
+  }
     
 }

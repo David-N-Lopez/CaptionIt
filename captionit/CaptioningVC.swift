@@ -10,6 +10,7 @@ import Foundation
 import FirebaseDatabase
 import FirebaseAuth
 import UIKit
+import AVKit
 import SDWebImage
 
 class CaptioningVC: UIViewController,UITextFieldDelegate {
@@ -21,14 +22,16 @@ class CaptioningVC: UIViewController,UITextFieldDelegate {
   var currentJudge: String?
   var judgeID : String?
   var memeImageUrl : String?
+  var mediaType = 1
+  var player : AVPlayer?
   override func viewDidLoad() {
     super.viewDidLoad()
     self.myTextField.delegate = self
     setJudge()
     let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
     view.addGestureRecognizer(tap)
-    
   }
+  
     func dismissKeyboard() {
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
@@ -57,6 +60,9 @@ class CaptioningVC: UIViewController,UITextFieldDelegate {
           let udid = value["ID"] as! String
           let hasBeenJudge = value["hasBeenJudge"] as? Bool
           let meme = value["meme Photo"] as! String
+          if let type = value["mediaType"] as? Int {
+            self.mediaType = type
+          }
           if hasBeenJudge == false {
             self.memeImageUrl = meme
             ref.child("rooms").child(self.curPin!).child("players").child(username).updateChildValues(["judge":  true])
@@ -68,7 +74,11 @@ class CaptioningVC: UIViewController,UITextFieldDelegate {
                 self.performSegue(withIdentifier: "waitingRoomSegue", sender: self)
               }
             } else {
+              if self.mediaType == 1 {
               self.meme.sd_setImage(with: URL(string:meme), placeholderImage: nil, options: .scaleDownLargeImages, completed: nil)
+              } else {
+                self.playVideo(from: URL(string:meme)!)
+              }
             }
             
             return
@@ -83,6 +93,24 @@ class CaptioningVC: UIViewController,UITextFieldDelegate {
       
     })
     
+  }
+  
+  private func playVideo(from url:URL) {
+    
+    player = AVPlayer(url: url)
+    
+    let playerLayer = AVPlayerLayer(player: player)
+    playerLayer.frame = self.meme.frame
+    self.view.layer.addSublayer(playerLayer)
+    player?.play()
+    NotificationCenter.default.addObserver(self, selector: #selector(playerItemDidReachEnd), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: self.player!.currentItem)
+  }
+  
+  @objc fileprivate func playerItemDidReachEnd(_ notification: Notification) {
+    if self.player != nil {
+      self.player!.seek(to: kCMTimeZero)
+      self.player!.play()
+    }
   }
   
   @IBAction func actionUploadComment(_ sender : Any) {
@@ -101,6 +129,9 @@ class CaptioningVC: UIViewController,UITextFieldDelegate {
     
   }
   
+  override func viewWillDisappear(_ animated: Bool) {
+    NotificationCenter.default.removeObserver(self)
+  }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "judgement_segue" {
@@ -109,6 +140,7 @@ class CaptioningVC: UIViewController,UITextFieldDelegate {
         destinationVC.judgeID = self.judgeID!
         destinationVC.memeURL = memeImageUrl!
         destinationVC.judgeName = currentJudge!
+        destinationVC.mediaType = mediaType
       }
     } else if segue.identifier == "waitingRoomSegue" {
       if let destinationVC = segue.destination as? WaitingViewController {
@@ -116,6 +148,7 @@ class CaptioningVC: UIViewController,UITextFieldDelegate {
         destinationVC.judgeID = self.judgeID!
         destinationVC.memeURL = memeImageUrl!
         destinationVC.judgeName = currentJudge!
+        destinationVC.mediaType = mediaType
       }
     } else if segue.identifier == "Game_Over" {
       if let destinationVC = segue.destination as? ResultVC {

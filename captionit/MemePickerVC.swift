@@ -45,7 +45,12 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         let storageR = Storage.storage()
         let storageRef = storageR.reference()
             print("before")
-          let uploadTask = storageRef.child(curPin!).child((currentPlayer?.username)!).putData(data as Data, metadata: nil) { metadata, error in
+          
+          var playerName = (currentPlayer?.username)!
+          if mediaType == 2 {
+           playerName = "\(playerName).mov"
+          }
+          let uploadTask = storageRef.child(curPin!).child(playerName).putData(data as Data, metadata: nil) { metadata, error in
             self.player?.pause()
             SVProgressHUD.dismiss()
                     if error != nil {
@@ -89,6 +94,13 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     self.view.layer.addSublayer(playerLayer)
     player?.play()
     NotificationCenter.default.addObserver(self, selector: #selector(playerItemDidReachEnd), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: self.player!.currentItem)
+  }
+  
+  @objc fileprivate func playerItemDidReachEnd(_ notification: Notification) {
+    if self.player != nil {
+      self.player!.seek(to: kCMTimeZero)
+      self.player!.play()
+    }
   }
   
   override func viewWillDisappear(_ animated: Bool) {
@@ -157,6 +169,7 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         // do something interesting here!
         pickMeme.setTitle("Change Meme?", for:.normal)
         myImageView.image = newImage
+      previewImage = newImage
         dismiss(animated: true)
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -171,12 +184,5 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             controller.playersReady += 1
         }
     }
-  
-  @objc fileprivate func playerItemDidReachEnd(_ notification: Notification) {
-    if self.player != nil {
-      self.player!.seek(to: kCMTimeZero)
-      self.player!.play()
-    }
-  }
 
 }
