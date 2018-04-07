@@ -108,9 +108,10 @@ class CaptioningVC: UIViewController,UITextFieldDelegate {
     player?.currentItem!.addObserver(self, forKeyPath: "status", options: NSKeyValueObservingOptions(), context: nil)
   }
   
-  func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutableRawPointer) {
+  override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
     if player?.currentItem?.status == AVPlayerItemStatus.readyToPlay {
       SVProgressHUD.dismiss()
+      self.player!.play()
     }
   }
   
