@@ -43,7 +43,7 @@ class Player {
                               "judge":self.judge,
                               "hasBeenJudge": self.hasBeenJudge,
                               "memeURL": self.memePhoto,
-                              "ID": currentId ?? ""]//Maybe it is no saving the picture
+                              "ID": currentId ?? ""] as [String : Any]//Maybe it is no saving the picture
             self.ref.child("rooms").child(curPin).child("players").child(currentId!).updateChildValues(playerInfo)
             self.pinNumber = curPin
         }
