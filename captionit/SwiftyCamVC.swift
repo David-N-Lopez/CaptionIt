@@ -70,8 +70,11 @@ class camController: SwiftyCamViewController, SwiftyCamViewControllerDelegate {
     }
     
     func swiftyCam(_ swiftyCam: SwiftyCamViewController, didFinishProcessVideoAt url: URL) {
-        let newVC = VideoViewController(videoURL: url, pin: curPin)
-        self.present(newVC, animated: true, completion: nil)
+//        let newVC = VideoViewController(videoURL: url, pin: curPin)
+//        self.present(newVC, animated: true, completion: nil)
+      ifHasvideo = url
+      self.performSegue(withIdentifier:"VideoPreviewSegue", sender: self)
+      
     }
     
     func swiftyCam(_ swiftyCam: SwiftyCamViewController, didFocusAtPoint point: CGPoint) {
@@ -112,7 +115,6 @@ class camController: SwiftyCamViewController, SwiftyCamViewControllerDelegate {
     @IBAction func toggleFlashTapped(_ sender: Any) {
         flashEnabled = !flashEnabled
         if flashEnabled == true {
-            
             flashButton.setImage(#imageLiteral(resourceName: "flash"), for: UIControlState())
         } else {
             flashButton.setImage(#imageLiteral(resourceName: "flashOutline"), for: UIControlState())
@@ -123,7 +125,12 @@ class camController: SwiftyCamViewController, SwiftyCamViewControllerDelegate {
             let controller = segue.destination as! PhotoViewController
             controller.curPin = curPin
             controller.backgroundImage = ifHasPhoto
-        }
+        } else if segue.identifier == "VideoPreviewSegue" {
+        let controller = segue.destination as! VideoViewController
+        controller.curPin = curPin
+        controller.videoURL = ifHasvideo!
+        
+      }
     }
 
 }

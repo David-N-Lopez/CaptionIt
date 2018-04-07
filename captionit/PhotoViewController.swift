@@ -46,6 +46,7 @@ class PhotoViewController: UIViewController {
     func cancel() {        //need to segue now
         performSegue(withIdentifier: "returnToSwifty", sender: self)
     }
+  
 	func saveImage() {		//need to segue now
         performSegue(withIdentifier: "SavedImageSegue", sender: self)
 	}
@@ -63,6 +64,7 @@ class PhotoViewController: UIViewController {
             let controller = segue.destination as! RoomViewController
             controller.curPin = curPin //should I keep on passing the current pin
             controller.previewImage = backgroundImage
+            controller.mediaType = 1
           //  controller.pickMeme.setTitle("Change Meme?", for: .normal)
         }
     }

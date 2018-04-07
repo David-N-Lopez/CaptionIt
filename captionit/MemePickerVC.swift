@@ -20,27 +20,36 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     var curPin:String?
     var previewImage: UIImage?
     var previewVideo: URL?
-  
+    var mediaType  = 1
     
     @IBOutlet weak var pickMeme: UIButton!
 
     @IBAction func submit(_ sender: UIButton) {
         print("start")
-        if (myImageView.image != nil){
+        if (myImageView.image != nil || previewVideo != nil ){
             let currentPlayer = getCurrentPlayer()
             let image = myImageView.image
-            let data : Data = UIImageJPEGRepresentation(image!, 0.4)!
+            var data =  NSData()
+          if mediaType == 1 {
+            data = UIImageJPEGRepresentation(image!, 0.4)! as NSData
+          } else {
+            do {
+              data = try NSData.init(contentsOf: previewVideo!)
+            } catch(let error) {
+              print(error)
+            }
+          }
             print(data)
         let storageR = Storage.storage()
         let storageRef = storageR.reference()
             print("before")
-            let uploadTask = storageRef.child(curPin!).child((currentPlayer?.username)!).putData(data, metadata: nil) { metadata, error in
+          let uploadTask = storageRef.child(curPin!).child((currentPlayer?.username)!).putData(data as Data, metadata: nil) { metadata, error in
                     if error != nil {
                         print("error")
                     } else {
                         //try to make it private
                         let outputURL = (metadata?.downloadURL()?.absoluteString)!
-                        self.ref.child("rooms").child(self.curPin!).child("players").child(getUserId()!).updateChildValues(["meme Photo": outputURL, "Ready": true])
+                      self.ref.child("rooms").child(self.curPin!).child("players").child(getUserId()!).updateChildValues(["meme Photo": outputURL, "Ready": true, "mediaType": self.mediaType])
                         self.performSegue(withIdentifier: "PlayerHasImageSegue", sender: Any?.self)
                         
                     }
@@ -52,12 +61,30 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         super.viewDidLoad()
         let picker = UIImagePickerController()
         picker.delegate = self // delegate added
+    }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    if mediaType == 1 {
       if previewImage == nil {
         previewImage = #imageLiteral(resourceName: "pizza-pama")
       }
-        myImageView.image = previewImage
-        myTextView.text = "Choose your best image to make a spicy Meme!"
+      myImageView.image = previewImage
+      myTextView.text = "Choose your best image to make a spicy Meme!"
+    } else {
+      //Show Video
+      playVideo(from: previewVideo!)
     }
+  }
+  
+  private func playVideo(from url:URL) {
+
+    let player = AVPlayer(url: url)
+    
+    let playerLayer = AVPlayerLayer(player: player)
+    playerLayer.frame = self.myImageView.frame
+    self.view.layer.addSublayer(playerLayer)
+    player.play()
+  }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -72,7 +99,7 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             self.selectPicture()
         }))
         alert.addAction(UIAlertAction(title: "Make Your Meme", style: .default, handler: { action in
-            self.performSegue(withIdentifier: "SwiftyCam", sender: Any?)
+            self.performSegue(withIdentifier: "SwiftyCam", sender: self)
         }))
 
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))

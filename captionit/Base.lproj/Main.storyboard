@@ -1298,10 +1298,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
+                    <connections>
+                        <segue destination="NIV-Xa-cxN" kind="show" identifier="video_upload" id="DWq-qC-3Mu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YJs-9d-LeX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1804" y="-688"/>
+            <point key="canvasLocation" x="2329" y="-708"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="PRK-w5-b9T">
@@ -1382,7 +1385,7 @@
         <segue reference="1Kv-6F-L03"/>
         <segue reference="MMy-4o-26m"/>
         <segue reference="5sw-Qe-jf3"/>
-        <segue reference="YLA-hq-5xq"/>
+        <segue reference="DWq-qC-3Mu"/>
         <segue reference="Qah-F8-iFT"/>
         <segue reference="ct7-pp-q0u"/>
     </inferredMetricsTieBreakers>
