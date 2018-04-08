@@ -32,6 +32,7 @@ class CaptionCell: UITableViewCell {
   func playVideo(url:URL) {
     player = AVPlayer.init(url: url)
     let playerLayer = AVPlayerLayer(player: player)
+    playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
     playerLayer.frame = viewVideo.bounds
     viewVideo.layer.addSublayer(playerLayer)
   }

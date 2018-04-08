@@ -101,6 +101,7 @@ class CaptioningVC: UIViewController,UITextFieldDelegate {
     player = AVPlayer(url: url)
     SVProgressHUD.show()
     let playerLayer = AVPlayerLayer(player: player)
+    playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
     playerLayer.frame = self.meme.frame
     self.view.layer.addSublayer(playerLayer)
     player?.play()

@@ -75,6 +75,7 @@ class VideoViewController: UIViewController {
         super.viewDidAppear(animated)
       player = AVPlayer(url: videoURL!)
       playerController!.player = player!
+      playerController?.videoGravity = AVLayerVideoGravityResizeAspectFill
         player?.play()
       NotificationCenter.default.addObserver(self, selector: #selector(playerItemDidReachEnd), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: self.player!.currentItem)
     }
