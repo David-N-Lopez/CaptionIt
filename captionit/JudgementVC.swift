@@ -10,6 +10,7 @@ import UIKit
 import FirebaseDatabase
 import SDWebImage
 import FirebaseAuth
+import AVKit
 
 class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
   
@@ -87,8 +88,10 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     let userCommentDic = usersComments[indexPath.row] as! [String: String]
     let captionCell = captionTableView.dequeueReusableCell(withIdentifier: "captionCell", for: indexPath) as! CaptionCell
     if mediaType == 1 {
+      captionCell.viewVideo.isHidden = true
     captionCell.memeImageView.sd_setImage(with: URL(string:self.memeURL), placeholderImage: nil, options: .scaleDownLargeImages, completed: nil)
     } else {
+      captionCell.viewVideo.isHidden = false
       captionCell.playVideo(url: URL(string:self.memeURL)!)
     }
     captionCell.lblCaption.text = userCommentDic["comment"]
@@ -111,6 +114,10 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     let cell = tableView.cellForRow(at: indexPath) as! CaptionCell
     cell.player?.play()
+    if cell.player != nil {
+      cell.player!.seek(to: kCMTimeZero)
+      cell.player?.play()
+    }
   }
   
   func observerGameFinish()  {

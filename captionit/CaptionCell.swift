@@ -12,6 +12,7 @@ import AVKit
 class CaptionCell: UITableViewCell {
     
     @IBOutlet weak var memeImageView: UIImageView!
+  @IBOutlet weak var viewVideo: UIView!
     
     @IBOutlet weak var lblCaption: UILabel!
     @IBOutlet weak var btnReward: UIButton!
@@ -34,8 +35,9 @@ class CaptionCell: UITableViewCell {
   
   func setUpPlayer() {
     let playerLayer = AVPlayerLayer(player: player)
-    playerLayer.frame = self.memeImageView.frame
-    self.contentView.layer.addSublayer(playerLayer)
+    playerLayer.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
+    self.viewVideo.layer.addSublayer(playerLayer)
+//    self.viewVideo.layer.insertSublayer(playerLayer, at: 0)
   }
     
 }

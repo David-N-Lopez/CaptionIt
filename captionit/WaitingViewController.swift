@@ -44,6 +44,7 @@ class WaitingViewController: UIViewController {
         destinationVC.judgeID = judgeID
         destinationVC.memeURL = memeURL
         destinationVC.judgeName = judgeName
+        destinationVC.mediaType = mediaType
       }
     }
     

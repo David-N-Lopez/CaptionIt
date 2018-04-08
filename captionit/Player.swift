@@ -26,7 +26,7 @@ class Player {
     init (_ username: String){
         self.username = username
     }
-    func createGame(curPin: String){
+    func createGame(curPin: String) {
         self.pinNumber = curPin //questionable?
         
         self.ref.child("rooms").child(curPin) //Michael
