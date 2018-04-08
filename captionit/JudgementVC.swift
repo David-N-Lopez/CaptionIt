@@ -120,6 +120,7 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     }
   }
   
+  
   func observerGameFinish()  {
     
     hasBeenJudgeRef?.observe(.value, with: { (snapshot) in

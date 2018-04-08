@@ -13,13 +13,14 @@ class CaptionCell: UITableViewCell {
     
     @IBOutlet weak var memeImageView: UIImageView!
   @IBOutlet weak var viewVideo: UIView!
+  
     
     @IBOutlet weak var lblCaption: UILabel!
     @IBOutlet weak var btnReward: UIButton!
     var player: AVPlayer?
+  
     override func awakeFromNib() {
         super.awakeFromNib()
-        setUpPlayer()
         // Initialization code
     }
     
@@ -29,15 +30,11 @@ class CaptionCell: UITableViewCell {
         // Configure the view for the selected state
     }
   func playVideo(url:URL) {
-    player = AVPlayer(url: url)
-    player?.play()
+    player = AVPlayer.init(url: url)
+    let playerLayer = AVPlayerLayer(player: player)
+    playerLayer.frame = viewVideo.bounds
+    viewVideo.layer.addSublayer(playerLayer)
   }
   
-  func setUpPlayer() {
-    let playerLayer = AVPlayerLayer(player: player)
-    playerLayer.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
-    self.viewVideo.layer.addSublayer(playerLayer)
-//    self.viewVideo.layer.insertSublayer(playerLayer, at: 0)
-  }
     
 }

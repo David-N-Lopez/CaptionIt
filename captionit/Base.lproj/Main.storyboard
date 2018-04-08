@@ -1269,7 +1269,7 @@
                                             <outlet property="btnReward" destination="wT8-yR-cfc" id="Dxe-Mx-dLO"/>
                                             <outlet property="lblCaption" destination="1Tu-fE-K3K" id="CNp-oi-mbt"/>
                                             <outlet property="memeImageView" destination="mxI-HV-Hle" id="S4B-Fd-NsP"/>
-                                            <outlet property="viewVideo" destination="yMt-wb-Lg4" id="ixU-gD-AIU"/>
+                                            <outlet property="viewVideo" destination="yMt-wb-Lg4" id="eVK-HH-09k"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
