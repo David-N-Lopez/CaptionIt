@@ -110,18 +110,14 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
             }
             print("\(count) Active Users")
         }
-//                ref.child("rooms").child(curPin).child("players").observeSingleEvent(of: .value, with: { snapshot in
-//                    // I got the expected number of items
-//                    let enumerator = snapshot.children
-//                    while let rest = enumerator.nextObject() as? DataSnapshot {
-//                        let curRoom = rest.childSnapshot(forPath: "Ready").value as! Bool
-//                        if curRoom == true {
-//                            count+=1
-//        
-//                        }
-//                    }
-//                })
+
         return count
+    }
+    func displayErrorMsg(){
+        let alert = UIAlertController(title: "Can't start game, yet", message: "You need at least 3 players with a meme each to play", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        self.present(alert, animated: true)
+        
     }
     
     func getUserName(_ ID : String, _ defaultValue : String, _ response :@escaping (_ name : String) ->()) {
@@ -148,13 +144,16 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
      @IBAction func startGame() { //works now
-        if  self.countPlayersReady() == users.count{
+        if (self.countPlayersReady() == users.count && self.countPlayersReady()>2){
           gameStartRef?.setValue(true)
            self.performSegue(withIdentifier: "gameIsOn!", sender: Any?.self)
         }
         //        if playersReady>2 {
         //        performSegue(withIdentifier: "gameIsOn!", sender: Any?)
         //        }
+        else{
+            displayErrorMsg()
+        }
     }
     @IBAction func unwindSegueToRoomVC(_ sender:UIStoryboardSegue) { }
     

@@ -42,7 +42,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     }
                     
                 }
+                
             }
+            //error message
+                let alert = UIAlertController(title: "Room doesn't exist", message: "Try creating a new room or re-typing your pin number", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+                self.present(alert, animated: true)
+            
         })//Good
 
 
