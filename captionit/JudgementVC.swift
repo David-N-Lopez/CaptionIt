@@ -93,6 +93,18 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     } else {
       captionCell.viewVideo.isHidden = false
       captionCell.playVideo(url: URL(string:self.memeURL)!)
+        captionCell.player?.play()
+        if captionCell.player != nil {
+            captionCell.player!.seek(to: kCMTimeZero)
+            captionCell.player?.play()
+        }
+        NotificationCenter.default.addObserver(forName: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object:captionCell.player!.currentItem , queue:nil , using: { (_ notification: Notification) in
+            if captionCell.player != nil {
+                            captionCell.player!.seek(to: kCMTimeZero)
+                            captionCell.player!.play()
+                        }
+        })
+//         NotificationCenter.default.addObserver(self, selector: #selector(playerItemDidReachEnd), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: captionCell.player!.currentItem)
     }
     captionCell.lblCaption.text = userCommentDic["comment"]
     if self.judgeID == Auth.auth().currentUser?.uid {
@@ -106,6 +118,17 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     return captionCell
   }
   
+    
+   
+    @objc fileprivate func playerItemDidReachEnd(_ notification: Notification) {
+        
+        
+        print(notification.userInfo)
+//        if self.player != nil {
+//            self.player!.seek(to: kCMTimeZero)
+//            self.player!.play()
+//        }
+    }
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     
     return UITableViewAutomaticDimension
