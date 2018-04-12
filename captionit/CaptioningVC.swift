@@ -25,6 +25,8 @@ class CaptioningVC: UIViewController,UITextFieldDelegate {
   var memeImageUrl : String?
   var mediaType = 1
   var player : AVPlayer?
+  var round = 0
+  var totalUser = 0
   override func viewDidLoad() {
     super.viewDidLoad()
     self.myTextField.delegate = self
@@ -47,20 +49,21 @@ class CaptioningVC: UIViewController,UITextFieldDelegate {
     }
     return true
   }
+  
   func setJudge(){
-    
     ref.child("rooms").child(curPin!).child("players").observeSingleEvent(of: .value, with: { snapshot in
       // I got the expected number of items
       let allPlayers = snapshot.children
       print("hello")
       if let players  = allPlayers.allObjects as? [DataSnapshot]{
-        
+        self.totalUser = players.count
         for player in players{
           let username = player.key
           var value = player.value as! [String : Any]
           let udid = value["ID"] as! String
           let hasBeenJudge = value["hasBeenJudge"] as? Bool
           let meme = value["memeURL"] as! String
+          self.round += 1
           if let type = value["mediaType"] as? Int {
             self.mediaType = type
           }
@@ -152,6 +155,8 @@ class CaptioningVC: UIViewController,UITextFieldDelegate {
         destinationVC.memeURL = memeImageUrl!
         destinationVC.judgeName = currentJudge!
         destinationVC.mediaType = mediaType
+        destinationVC.round = round
+        destinationVC.totalUser = totalUser
       }
     } else if segue.identifier == "waitingRoomSegue" {
       if let destinationVC = segue.destination as? WaitingViewController {
@@ -160,6 +165,8 @@ class CaptioningVC: UIViewController,UITextFieldDelegate {
         destinationVC.memeURL = memeImageUrl!
         destinationVC.judgeName = currentJudge!
         destinationVC.mediaType = mediaType
+        destinationVC.round = round
+        destinationVC.totalUser = totalUser
       }
     } else if segue.identifier == "Game_Over" {
       if let destinationVC = segue.destination as? ResultVC {

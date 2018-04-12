@@ -15,6 +15,8 @@ class WaitingViewController: UIViewController {
   var judgeName = String()
   var memeURL = String()
   var mediaType = 1
+  var round = 0
+  var totalUser = 0
   
     @IBOutlet weak var gifView: UIImageView!
     override func viewDidLoad() {
@@ -32,8 +34,15 @@ class WaitingViewController: UIViewController {
   func observeUsersComments() {
     let userId = Auth.auth().currentUser?.uid
     
-    ref.child("rooms").child(groupId).child("comments").child(userId!).observe(.childAdded, with: { (snapshot) in
-      self.performSegue(withIdentifier: "judge_Review", sender: self)
+    ref.child("rooms").child(groupId).child("comments").child(userId!).observe(.value, with: { (snapshot) in
+      
+      if let comment = snapshot.value as? [String: Any] {
+        print(comment)
+        let allKeys = (comment as NSDictionary).allKeys
+        if allKeys.count == self.totalUser - 1 {
+            self.performSegue(withIdentifier: "judge_Review", sender: self)
+        }
+      }
     })
   }
   
@@ -45,6 +54,8 @@ class WaitingViewController: UIViewController {
         destinationVC.memeURL = memeURL
         destinationVC.judgeName = judgeName
         destinationVC.mediaType = mediaType
+        destinationVC.round = round
+        destinationVC.totalUser = totalUser
       }
     }
     
