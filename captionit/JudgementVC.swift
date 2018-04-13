@@ -13,24 +13,31 @@ import FirebaseAuth
 import AVKit
 
 class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
-  
+  @IBOutlet weak var btnNext: UIButton!
+  @IBOutlet weak var btnPrevious: UIButton!
+  @IBOutlet weak var viewSingleImage: UIView!
   @IBOutlet weak var imageCaption: UIImageView!
   @IBOutlet weak var viewVideo: UIView!
   var usersComments = [Any]()
   var groupId = String()
   var judgeID = String()
   var judgeName = String()
+  var strJudgeName = String()
   var memeURL = String()
   var mediaType = 1
   var player: AVPlayer?
   var hasBeenJudgeRef: DatabaseReference?
   var round = 0
   var totalUser = 0
-  
+  var currentCommentIndex = 0
+
+  @IBOutlet weak var imageJudge: UIImageView!
+  @IBOutlet weak var viewJudge: UIView!
   @IBOutlet weak var captionTableView: UITableView!
   @IBOutlet weak var textJudgeName: UILabel!
   @IBOutlet weak var textReadyUsers: UILabel!
   @IBOutlet weak var textRound: UILabel!
+  @IBOutlet weak var textSingleComment: UILabel!
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -39,7 +46,13 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     updateMemeMedia()
     observerGameFinish()
     getUserName(judgeID, "Default user") { (name) in
+      self.strJudgeName = name
+      if Auth.auth().currentUser?.uid == self.judgeID {
+        self.textRound.text = "ROOM #\(self.groupId)"
+        self.textJudgeName.text = "The Crazy Developers"
+      } else {
       self.textJudgeName.text = "\(name) is the judge!"
+      }
     }
     updateNumberOfUsersCommented()
     self.textRound.text = "Round \(round)"
@@ -47,6 +60,10 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     captionTableView.delegate = self
     captionTableView.estimatedRowHeight = 300
     captionTableView.tableFooterView = UIView()
+    if self.judgeID == Auth.auth().currentUser?.uid {
+      viewSingleImage.isHidden = false
+    }
+
     // Do any additional setup after loading the view.
   }
   
@@ -72,9 +89,16 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
                       "comment" : comment[userId]]
           self.usersComments.append(user)
         }
-        self.updateNumberOfUsersCommented()
+        if self.currentCommentIndex == 0 && Auth.auth().currentUser?.uid == self.judgeID && self.usersComments.count > 0 {
+          let comment = self.usersComments[0] as! [String : Any]
+          self.textSingleComment.text = comment["comment"] as? String
+        }
+        if self.totalUser == self.usersComments.count - 1 {
+          self.textReadyUsers.text = "Wait for \(self.strJudgeName) to pick funniest meme!"
+        } else {
+          self.updateNumberOfUsersCommented()
+        }
         self.captionTableView.reloadData()
-        
       }
       
     })
@@ -84,7 +108,11 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
   func updateMemeMedia() {
     if mediaType == 1 {
       viewVideo.isHidden = true
+      if Auth.auth().currentUser?.uid == self.judgeID {
       imageCaption.sd_setImage(with: URL(string:self.memeURL), placeholderImage: nil, options: .scaleDownLargeImages, completed: nil)
+      } else {
+        imageJudge.sd_setImage(with: URL(string:self.memeURL), placeholderImage: nil, options: .scaleDownLargeImages, completed: nil)
+      }
     } else {
       viewVideo.isHidden = false
       self.playVideo(url: URL(string:self.memeURL)!)
@@ -107,7 +135,11 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
       let playerLayer = AVPlayerLayer(player: player)
       playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
       playerLayer.frame = viewVideo.bounds
-      viewVideo.layer.addSublayer(playerLayer)
+      if self.judgeID == Auth.auth().currentUser?.uid {
+        viewJudge.layer.addSublayer(playerLayer)
+      } else {
+        viewVideo.layer.addSublayer(playerLayer)
+      }
     }
   
   //MARK: ACTIONS
@@ -149,11 +181,11 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     return UITableViewAutomaticDimension
   }
   
-  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    if self.judgeID == Auth.auth().currentUser?.uid {
-      self.rewardPlayerAction(indexPath.row)
-    }
-  }
+//  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//    if self.judgeID == Auth.auth().currentUser?.uid {
+//      self.rewardPlayerAction(indexPath.row)
+//    }
+//  }
   
   
   func observerGameFinish()  {
@@ -201,6 +233,41 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     attribute.addAttribute(NSFontAttributeName, value: UIFont.boldSystemFont(ofSize: 17), range: range)
     self.textReadyUsers.attributedText = attribute
   }
+  
+  //MARK :- Judge options
+  
+  @IBAction func previousImage(_ sender: Any) {
+    currentCommentIndex -= 1
+    if currentCommentIndex >= 0 && currentCommentIndex < usersComments.count {
+      let userCommentDic = usersComments[currentCommentIndex] as! [String: String]
+      textSingleComment.text = userCommentDic["comment"]
+      btnNext.isEnabled = true
+      if currentCommentIndex <= 0 {
+        btnPrevious.isEnabled = false
+      }
+    } else {
+        currentCommentIndex = 0
+    }
+  }
+  @IBAction func nextImage(_ sender: Any) {
+    currentCommentIndex += 1
+    if currentCommentIndex  >= 0 && currentCommentIndex < usersComments.count {
+      btnPrevious.isEnabled = true
+      let userCommentDic = usersComments[currentCommentIndex] as! [String: String]
+      textSingleComment.text = userCommentDic["comment"]
+      if currentCommentIndex >= userCommentDic.count {
+        btnNext.isEnabled = false
+      }
+    } else {
+      currentCommentIndex = usersComments.count - 1
+    }
+  }
+  @IBAction func setImage(_ sender: Any) {
+    if currentCommentIndex  >= 0 && currentCommentIndex < usersComments.count {
+    self.rewardPlayerAction(currentCommentIndex)
+    }
+  }
+  
   
 }
 
