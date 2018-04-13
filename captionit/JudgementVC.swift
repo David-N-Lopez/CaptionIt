@@ -51,21 +51,21 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    hasBeenJudgeRef = ref.child("rooms").child(groupId).child("players").child(judgeName).child("hasBeenJudge")
-    winnerRef = ref.child("rooms").child(groupId).child("comments").child(judgeName).child("winner")
-    getAllComments()
-    updateMemeMedia()
-    observerGameFinish()
-    observerWinnerOfGame()
     getUserName(judgeID, "Default user") { (name) in
       self.strJudgeName = name
       if Auth.auth().currentUser?.uid == self.judgeID {
         self.textRound.text = "ROOM #\(self.groupId)"
         self.textJudgeName.text = "The Crazy Developers"
       } else {
-      self.textJudgeName.text = "\(name) is the judge!"
+        self.textJudgeName.text = "\(name) is the judge!"
       }
     }
+    hasBeenJudgeRef = ref.child("rooms").child(groupId).child("players").child(judgeName).child("hasBeenJudge")
+    winnerRef = ref.child("rooms").child(groupId).child("comments").child(judgeName).child("winner")
+    getAllComments()
+    updateMemeMedia()
+    observerGameFinish()
+    observerWinnerOfGame()
     updateNumberOfUsersCommented()
     self.textRound.text = "Round \(round)"
     captionTableView.dataSource = self
@@ -76,7 +76,7 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
       viewSingleImage.isHidden = false
     }
     if totalUser == round {
-      btnNext.setTitle("Score Board", for: .normal)
+      btnNextRounds.setTitle("Score Board", for: .normal)
     }
 
     // Do any additional setup after loading the view.
@@ -334,6 +334,7 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
   }
   
   func updateNameWithComment(_ id : String) {
+    self.textWinnerName.text = ""
     self.getUserName(id, "Default User", { (name) in
       self.textWinnerName.text = name
     })
