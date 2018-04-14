@@ -107,7 +107,7 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
             self.usersComments.append(user)
           }
         }
-        if self.currentCommentIndex == 0 && Auth.auth().currentUser?.uid == self.judgeID && gameWinnerID.count == 0 {
+        if self.currentCommentIndex == 0 && Auth.auth().currentUser?.uid == self.judgeID && self.gameWinnerID.count == 0 {
           let comment = self.usersComments[0] as! [String : Any]
           self.textSingleComment.text = comment["comment"] as? String
         }
