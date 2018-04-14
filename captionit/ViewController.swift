@@ -15,6 +15,8 @@ var ref:DatabaseReference! = Database.database().reference()
 
 class ViewController: UIViewController, UITextFieldDelegate {
     var curPin:String = "0000"
+
+
     
     @IBOutlet weak var pinText: UITextField!
     
@@ -72,19 +74,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
      prepare for segue function
  
      */
-    
-    
-    @IBAction func logoutButtonTapped(_ sender: Any) {
-        do {
-            try Auth.auth().signOut()
-            let viewController = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
-            self.present(viewController, animated: true, completion: nil)
-        }
-        catch let error {
-            print(error.localizedDescription)
-        }
-        
-    }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()

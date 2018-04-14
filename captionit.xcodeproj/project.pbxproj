@@ -29,6 +29,8 @@
 		37707CAC203A077900143D6E /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37707CA9203A077700143D6E /* VideoViewController.swift */; };
 		37865F22200BC4D1006F26AC /* ready.png in Resources */ = {isa = PBXBuildFile; fileRef = 37865F21200BC4D1006F26AC /* ready.png */; };
 		37865F24200BC4E9006F26AC /* notready.png in Resources */ = {isa = PBXBuildFile; fileRef = 37865F23200BC4E9006F26AC /* notready.png */; };
+		37C91AAC20828292004B15C1 /* resetPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C91AAB20828292004B15C1 /* resetPasswordVC.swift */; };
+		37C91AAE208282BB004B15C1 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C91AAD208282BA004B15C1 /* SettingsController.swift */; };
 		48B062BB2026BAA90045400A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48B062B72026BAA90045400A /* LaunchScreen.storyboard */; };
 		48B062BC2026BAA90045400A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48B062B92026BAA90045400A /* Main.storyboard */; };
 		48B062BE2027844F0045400A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 48B062BD2027844F0045400A /* GoogleService-Info.plist */; };
@@ -102,6 +104,8 @@
 		37707CA9203A077700143D6E /* VideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
 		37865F21200BC4D1006F26AC /* ready.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ready.png; sourceTree = "<group>"; };
 		37865F23200BC4E9006F26AC /* notready.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = notready.png; sourceTree = "<group>"; };
+		37C91AAB20828292004B15C1 /* resetPasswordVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = resetPasswordVC.swift; path = captionit/resetPasswordVC.swift; sourceTree = SOURCE_ROOT; };
+		37C91AAD208282BA004B15C1 /* SettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsController.swift; path = captionit/SettingsController.swift; sourceTree = SOURCE_ROOT; };
 		39F99C7009FBAAF11318DB99 /* Pods-CaptionItUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaptionItUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CaptionItUITests/Pods-CaptionItUITests.release.xcconfig"; sourceTree = "<group>"; };
 		4698EE39776137999F197299 /* Pods-CaptionIt.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaptionIt.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CaptionIt/Pods-CaptionIt.debug.xcconfig"; sourceTree = "<group>"; };
 		48B062B82026BAA90045400A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = CaptionIt/Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -223,11 +227,13 @@
 				52B6CC1A2072C43600945942 /* CaptionCell.swift */,
 				52B6CC1B2072C43700945942 /* JudgementVC.swift */,
 				9F232C20207381BB00C438A5 /* ResultVC.swift */,
+				37C91AAD208282BA004B15C1 /* SettingsController.swift */,
 				9F232C222073837300C438A5 /* ResultCell.swift */,
 				9F707DFB2072B68900C2D9B5 /* WaitingViewController.swift */,
 				3740D9AE206C176A000DFC1D /* CaptioningVC.swift */,
 				C8825BC01FD4674F00089E7A /* EnterRoomViewController.swift */,
 				C8825BBC1FD26DC600089E7A /* MemePickerVC.swift */,
+				37C91AAB20828292004B15C1 /* resetPasswordVC.swift */,
 				37112041207177E300295A63 /* Assets.xcassets */,
 				3314180D1FB16BF40059F494 /* Info.plist */,
 				338756821FC3E7A800C78256 /* Player.swift */,
@@ -393,7 +399,7 @@
 				TargetAttributes = {
 					331417FD1FB16BF30059F494 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = JKC7JRHQH5;
+						DevelopmentTeam = 3UZ3KPNXVC;
 						ProvisioningStyle = Automatic;
 					};
 					331418111FB16BF40059F494 = {
@@ -408,7 +414,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 331417F91FB16BF30059F494 /* Build configuration list for PBXProject "captionit" */;
+			buildConfigurationList = 331417F91FB16BF30059F494 /* Build configuration list for PBXProject "CaptionIt" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -637,6 +643,7 @@
 				37707CA6203A069A00143D6E /* PreviewView.swift in Sources */,
 				C8825BB71FD10BBD00089E7A /* Game.swift in Sources */,
 				52B6CC1C2072C43700945942 /* CaptionCell.swift in Sources */,
+				37C91AAE208282BB004B15C1 /* SettingsController.swift in Sources */,
 				37707CAC203A077900143D6E /* VideoViewController.swift in Sources */,
 				B2B1B0CB2026CB3900FD2A51 /* Users.swift in Sources */,
 				9F707DFC2072B68A00C2D9B5 /* WaitingViewController.swift in Sources */,
@@ -656,6 +663,7 @@
 				331418021FB16BF40059F494 /* AppDelegate.swift in Sources */,
 				52B6CC1D2072C43700945942 /* JudgementVC.swift in Sources */,
 				C8825BBD1FD26DC600089E7A /* MemePickerVC.swift in Sources */,
+				37C91AAC20828292004B15C1 /* resetPasswordVC.swift in Sources */,
 				37707CA5203A069A00143D6E /* SwiftyCamButton.swift in Sources */,
 				9F232C232073837300C438A5 /* ResultCell.swift in Sources */,
 				B2B1B0CE2026CE4D00FD2A51 /* LoginViewController.swift in Sources */,
@@ -814,7 +822,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				DEVELOPMENT_TEAM = JKC7JRHQH5;
+				DEVELOPMENT_TEAM = 3UZ3KPNXVC;
 				INFOPLIST_FILE = CaptionIt/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.CaptionIt;
@@ -829,7 +837,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				DEVELOPMENT_TEAM = JKC7JRHQH5;
+				DEVELOPMENT_TEAM = 3UZ3KPNXVC;
 				INFOPLIST_FILE = CaptionIt/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.CaptionIt;
@@ -899,7 +907,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		331417F91FB16BF30059F494 /* Build configuration list for PBXProject "captionit" */ = {
+		331417F91FB16BF30059F494 /* Build configuration list for PBXProject "CaptionIt" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				331418241FB16BF40059F494 /* Debug */,
