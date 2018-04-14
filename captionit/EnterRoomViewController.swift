@@ -144,7 +144,7 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
      @IBAction func startGame() { //works now
-        if (self.countPlayersReady() == users.count && self.countPlayersReady()>2){
+        if (self.countPlayersReady() == users.count && self.countPlayersReady() >= 2){
           gameStartRef?.setValue(true)
            self.performSegue(withIdentifier: "gameIsOn!", sender: Any?.self)
         }

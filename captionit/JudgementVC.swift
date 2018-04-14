@@ -56,7 +56,7 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     hasBeenJudgeRef = ref.child("rooms").child(groupId).child("players").child(judgeName).child("hasBeenJudge")
     winnerRef = ref.child("rooms").child(groupId).child("comments").child(judgeName).child("winner")
     readyNextRoundRef = ref.child("rooms").child(groupId).child("readyPlayers")
-    readyNextRoundRef?.setValue(false)
+    readyNextRoundRef?.child(currentUserId!).setValue(false)
     getUserName(judgeID, "Default user") { (name) in
       self.strJudgeName = name
       if Auth.auth().currentUser?.uid == self.judgeID {
@@ -317,7 +317,7 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     if totalUser == round {
       self.performSegue(withIdentifier: "scoreboard_Segue", sender: self)
     } else {
-    readyNextRoundRef?.setValue(true)
+    readyNextRoundRef?.child(currentUserId!).setValue(true)
     self.viewWaiting.isHidden = false
     }
   }
