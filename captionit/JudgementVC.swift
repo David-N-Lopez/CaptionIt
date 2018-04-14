@@ -324,9 +324,12 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         })
         for (index, comment) in self.usersComments.enumerated() {
           let commentDic = comment as! [String: String]
-          if commentDic["id"] == self.currentUserId {
-            self.currentCommentIndex = index
+          if commentDic["id"] == winner {
+            self.currentCommentIndex = 0
             self.textSingleComment.text = commentDic["comment"]
+            self.usersComments.remove(at: index)
+            self.usersComments.insert(commentDic, at: 0)
+            
           }
         }
       }
