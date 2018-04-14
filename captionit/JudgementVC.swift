@@ -224,10 +224,7 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
       if let gameFinished = snapshot.value as? Bool {
         if gameFinished == true {
           self.hasBeenJudgeRef?.removeAllObservers()
-          if self.totalUser == self.round {
-            self.performSegue(withIdentifier: "scoreboard_Segue", sender: self)
-           
-          } else {
+          if self.totalUser != self.round {
           self.performSegue(withIdentifier: "game_Over", sender: self)
           }
         }
@@ -316,8 +313,12 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
   }
   
   @IBAction func actionNextRound(_ sender: Any) {
+    if totalUser == round {
+      self.performSegue(withIdentifier: "scoreboard_Segue", sender: self)
+    } else {
     readyNextRoundRef?.setValue(true)
     self.viewWaiting.isHidden = true
+    }
   }
   
   func oberverAllPlayersReady() {
