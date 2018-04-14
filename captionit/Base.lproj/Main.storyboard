@@ -1507,6 +1507,7 @@
                         <outlet property="viewJudge" destination="wZj-BB-o6j" id="dIm-o7-hCZ"/>
                         <outlet property="viewSingleImage" destination="hqw-RQ-vqD" id="Wlg-a1-OY8"/>
                         <outlet property="viewVideo" destination="i9Q-eD-6kS" id="wM6-lg-ykl"/>
+                        <outlet property="viewWaiting" destination="BRw-ud-Lj9" id="xGs-gU-DYc"/>
                         <outlet property="viewWinnerButtons" destination="NvS-Xv-l2I" id="FbL-Al-vPm"/>
                         <outlet property="viewWinnerName" destination="pur-lk-Lur" id="8r1-SD-rMU"/>
                         <segue destination="xlO-iX-Pfz" kind="show" identifier="game_Over" id="MMy-4o-26m">
@@ -1516,6 +1517,48 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aQm-Gg-gnW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="BRw-ud-Lj9">
+                    <rect key="frame" x="0.0" y="0.0" width="326" height="461"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3gD-D3-zmd">
+                            <rect key="frame" x="0.0" y="0.0" width="326" height="60"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo-small" translatesAutoresizingMaskIntoConstraints="NO" id="RMd-VG-G0j">
+                                    <rect key="frame" x="109.5" y="16" width="107" height="29"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="29" id="37n-NU-WA6"/>
+                                        <constraint firstAttribute="width" secondItem="RMd-VG-G0j" secondAttribute="height" multiplier="107:29" id="xft-nh-lFb"/>
+                                    </constraints>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" red="0.96305018659999997" green="0.44343158599999999" blue="0.1741285622" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="60" id="72L-21-JN6"/>
+                                <constraint firstItem="RMd-VG-G0j" firstAttribute="centerX" secondItem="3gD-D3-zmd" secondAttribute="centerX" id="Pg0-fi-Cx4"/>
+                                <constraint firstItem="RMd-VG-G0j" firstAttribute="centerY" secondItem="3gD-D3-zmd" secondAttribute="centerY" id="lby-yy-dpH"/>
+                            </constraints>
+                        </view>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Y8-Xd-MEv">
+                            <rect key="frame" x="30" y="200" width="266" height="61"/>
+                            <string key="text">Just a sec…
+The game is about to start!
+Tell your friends to hurry up!</string>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.96305018659999997" green="0.44343158599999999" blue="0.1741285622" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="3gD-D3-zmd" secondAttribute="trailing" id="HsM-EU-UXk"/>
+                        <constraint firstItem="3gD-D3-zmd" firstAttribute="leading" secondItem="BRw-ud-Lj9" secondAttribute="leading" id="eIl-BC-Gg7"/>
+                        <constraint firstItem="0Y8-Xd-MEv" firstAttribute="leading" secondItem="BRw-ud-Lj9" secondAttribute="leading" constant="30" id="pqQ-yN-XOY"/>
+                        <constraint firstAttribute="trailing" secondItem="0Y8-Xd-MEv" secondAttribute="trailing" constant="30" id="vkm-UC-IS0"/>
+                        <constraint firstItem="3gD-D3-zmd" firstAttribute="top" secondItem="BRw-ud-Lj9" secondAttribute="top" id="xy2-RP-uaZ"/>
+                        <constraint firstItem="0Y8-Xd-MEv" firstAttribute="centerY" secondItem="BRw-ud-Lj9" secondAttribute="centerY" id="z2h-Qi-ObO"/>
+                    </constraints>
+                </view>
             </objects>
             <point key="canvasLocation" x="-169" y="-1507"/>
         </scene>
@@ -1615,7 +1658,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="1Kv-6F-L03"/>
-        <segue reference="M1s-BG-5tk"/>
+        <segue reference="K1e-VU-dOg"/>
         <segue reference="MMy-4o-26m"/>
         <segue reference="fb7-aC-lzd"/>
         <segue reference="DWq-qC-3Mu"/>

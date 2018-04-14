@@ -18,6 +18,7 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
   @IBOutlet weak var viewSingleImage: UIView!
   @IBOutlet weak var imageCaption: UIImageView!
   @IBOutlet weak var viewVideo: UIView!
+  @IBOutlet weak var viewWaiting: UIView!
   var usersComments = [Any]()
   var groupId = String()
   var judgeID = String()
@@ -28,6 +29,7 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
   var player: AVPlayer?
   var hasBeenJudgeRef: DatabaseReference?
   var winnerRef: DatabaseReference?
+  var readyNextRoundRef: DatabaseReference?
   var round = 0
   var totalUser = 0
   var currentCommentIndex = 0
@@ -51,6 +53,10 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    hasBeenJudgeRef = ref.child("rooms").child(groupId).child("players").child(judgeName).child("hasBeenJudge")
+    winnerRef = ref.child("rooms").child(groupId).child("comments").child(judgeName).child("winner")
+    readyNextRoundRef = ref.child("rooms").child(groupId).child("readyPlayers")
+    readyNextRoundRef?.setValue(false)
     getUserName(judgeID, "Default user") { (name) in
       self.strJudgeName = name
       if Auth.auth().currentUser?.uid == self.judgeID {
@@ -60,8 +66,6 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         self.textJudgeName.text = "\(name) is the judge!"
       }
     }
-    hasBeenJudgeRef = ref.child("rooms").child(groupId).child("players").child(judgeName).child("hasBeenJudge")
-    winnerRef = ref.child("rooms").child(groupId).child("comments").child(judgeName).child("winner")
     getAllComments()
     updateMemeMedia()
     observerGameFinish()
@@ -87,11 +91,18 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     // Dispose of any resources that can be recreated.
   }
   
+  override func viewDidAppear(_ animated: Bool) {
+    self.viewWaiting.frame = self.view.bounds
+    self.view.addSubview(self.viewWaiting)
+    self.viewWaiting.isHidden = true
+  }
+  
   override func viewWillDisappear(_ animated: Bool) {
     player?.pause()
     NotificationCenter.default.removeObserver(self)
     hasBeenJudgeRef?.removeAllObservers()
     winnerRef?.removeAllObservers()
+    readyNextRoundRef?.removeAllObservers()
   }
   
   func getAllComments()  {
@@ -305,7 +316,22 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
   }
   
   @IBAction func actionNextRound(_ sender: Any) {
-    self.hasBeenJudgeRef?.setValue(true)
+    readyNextRoundRef?.setValue(true)
+    self.viewWaiting.isHidden = true
+  }
+  
+  func oberverAllPlayersReady() {
+    readyNextRoundRef?.observe(.value, with: { (snapshot) in
+      if let readyPlayers = snapshot.value as? [String:Bool] {
+        let allKeys = (readyPlayers as NSDictionary).allKeys as! [String]
+        for key in allKeys {
+          if readyPlayers[key] == false {
+            return
+          }
+          self.hasBeenJudgeRef?.setValue(true)
+        }
+      }
+    })
   }
   
   func observerWinnerOfGame() {
