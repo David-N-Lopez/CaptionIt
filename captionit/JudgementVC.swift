@@ -70,6 +70,7 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     updateMemeMedia()
     observerGameFinish()
     observerWinnerOfGame()
+    oberverAllPlayersReady()
     updateNumberOfUsersCommented()
     self.textRound.text = "Round \(round)"
     captionTableView.dataSource = self
@@ -317,7 +318,7 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
       self.performSegue(withIdentifier: "scoreboard_Segue", sender: self)
     } else {
     readyNextRoundRef?.setValue(true)
-    self.viewWaiting.isHidden = true
+    self.viewWaiting.isHidden = false
     }
   }
   
