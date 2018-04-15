@@ -75,7 +75,7 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
   override func viewDidAppear(_ animated: Bool) {
     if mediaType == 1 {
       if previewImage == nil {
-        previewImage = #imageLiteral(resourceName: "pizza-pama")
+        previewImage = UIImage.gifImageWithName(name: "pizza-pama")
       }
       myImageView.image = previewImage
     } else {

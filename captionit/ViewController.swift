@@ -15,7 +15,8 @@ var ref:DatabaseReference! = Database.database().reference()
 
 class ViewController: UIViewController, UITextFieldDelegate {
     var curPin:String = "0000"
-
+    
+    @IBOutlet weak var scubaGif: UIImageView!
 
     
     @IBOutlet weak var pinText: UITextField!
@@ -81,6 +82,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
         self.pinText.delegate = self
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
         view.addGestureRecognizer(tap)
+        
+        scubaGif.image = UIImage.gifImageWithName(name: "scuba-pama")
+        
     }
     func dismissKeyboard() {
         //Causes the view (or one of its embedded text fields) to resign the first responder status.

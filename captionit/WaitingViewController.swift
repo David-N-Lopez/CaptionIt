@@ -18,19 +18,15 @@ class WaitingViewController: UIViewController {
   var round = 0
   var totalUser = 0
   
+    @IBOutlet weak var pamaFriendsGif: UIImageView!
     @IBOutlet weak var gifView: UIImageView!
     override func viewDidLoad() {
     super.viewDidLoad()
     observeUsersComments()
     gifView.image = UIImage.gifImageWithName(name: "pama-waiting-screen (2)")
+    pamaFriendsGif.image = UIImage.gifImageWithName(name: "pama-and-friends")
+  }
     
-  }
-  
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
-  }
-  
   func observeUsersComments() {
     let userId = Auth.auth().currentUser?.uid
     

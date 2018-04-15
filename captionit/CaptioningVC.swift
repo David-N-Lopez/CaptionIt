@@ -16,7 +16,7 @@ import SVProgressHUD
 
 class CaptioningVC: UIViewController,UITextFieldDelegate {
   @IBOutlet weak var meme: UIImageView!
-  @IBOutlet weak var myTextView: UILabel!
+  @IBOutlet weak var displayMessage: UILabel!
   @IBOutlet weak var myTextField: UITextField!
   var curPin: String?
   var hasCurrentJudge:Bool?
@@ -39,17 +39,6 @@ class CaptioningVC: UIViewController,UITextFieldDelegate {
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
     }
-  
-  func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-    if let text = textField.text,
-      let textRange = Range(range, in: text) {
-      let updatedText = text.replacingCharacters(in: textRange,
-                                                 with: string)
-      myTextView.text = updatedText
-    }
-    return true
-  }
-  
   func setJudge(){
     ref.child("rooms").child(curPin!).child("players").observeSingleEvent(of: .value, with: { snapshot in
       // I got the expected number of items

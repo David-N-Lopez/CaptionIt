@@ -12,7 +12,7 @@ import FirebaseAuth
 class LoginViewController: UIViewController {
     
     @IBOutlet weak var closeButtton: UIButton!
-    
+    @IBOutlet weak var blinkingGif: UIImageView!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
@@ -23,7 +23,9 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
         view.addGestureRecognizer(tap)
+        blinkingGif.image = UIImage.gifImageWithName(name: "blinking-pama")
         // Do any additional setup after loading the view.
+        
     }
     func dismissKeyboard() {
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
@@ -76,7 +78,8 @@ class LoginViewController: UIViewController {
         let viewController = self.storyboard?.instantiateViewController(withIdentifier: "RegisterViewController") as! RegisterViewController
         self.present(viewController, animated: true, completion: nil)
     }
-    
+    @IBAction func unwindSegueToLogin(_ sender:UIStoryboardSegue) { }
+
     
     /*
      // MARK: - Navigation

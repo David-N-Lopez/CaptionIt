@@ -33,7 +33,7 @@ class PhotoViewController: UIViewController {
 		backgroundImageView.image = backgroundImage
 		view.addSubview(backgroundImageView)
         let cancelButton = UIButton(frame: CGRect(x: 20.0, y: 20.0, width: 30.0, height: 30.0))
-        cancelButton.setImage(#imageLiteral(resourceName: "cancel"), for: UIControlState())
+        cancelButton.setImage(#imageLiteral(resourceName: "close-button"), for: UIControlState())
         cancelButton.addTarget(self, action: #selector(cancel), for: .touchUpInside)
         view.addSubview(cancelButton)
         

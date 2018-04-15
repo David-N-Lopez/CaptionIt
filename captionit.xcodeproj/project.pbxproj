@@ -27,10 +27,14 @@
 		37707CAA203A077900143D6E /* SwiftyRecordButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37707CA7203A077500143D6E /* SwiftyRecordButton.swift */; };
 		37707CAB203A077900143D6E /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37707CA8203A077600143D6E /* PhotoViewController.swift */; };
 		37707CAC203A077900143D6E /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37707CA9203A077700143D6E /* VideoViewController.swift */; };
-		37865F22200BC4D1006F26AC /* ready.png in Resources */ = {isa = PBXBuildFile; fileRef = 37865F21200BC4D1006F26AC /* ready.png */; };
-		37865F24200BC4E9006F26AC /* notready.png in Resources */ = {isa = PBXBuildFile; fileRef = 37865F23200BC4E9006F26AC /* notready.png */; };
 		37C91AAC20828292004B15C1 /* resetPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C91AAB20828292004B15C1 /* resetPasswordVC.swift */; };
 		37C91AAE208282BB004B15C1 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37C91AAD208282BA004B15C1 /* SettingsController.swift */; };
+		37C91AB0208296F2004B15C1 /* scuba-pama.gif in Resources */ = {isa = PBXBuildFile; fileRef = 37C91AAF208296F1004B15C1 /* scuba-pama.gif */; };
+		37C91AB2208296F9004B15C1 /* pama-and-friends.gif in Resources */ = {isa = PBXBuildFile; fileRef = 37C91AB1208296F9004B15C1 /* pama-and-friends.gif */; };
+		37C91AB420829710004B15C1 /* pizza-pama.gif in Resources */ = {isa = PBXBuildFile; fileRef = 37C91AB32082970F004B15C1 /* pizza-pama.gif */; };
+		37C91AB620829715004B15C1 /* mummy.gif in Resources */ = {isa = PBXBuildFile; fileRef = 37C91AB520829714004B15C1 /* mummy.gif */; };
+		37C91AB82082972E004B15C1 /* blinking-pama.gif in Resources */ = {isa = PBXBuildFile; fileRef = 37C91AB72082972D004B15C1 /* blinking-pama.gif */; };
+		37C91ABC2082DECE004B15C1 /* blinking-pama.gif in Resources */ = {isa = PBXBuildFile; fileRef = 37C91ABB2082DECD004B15C1 /* blinking-pama.gif */; };
 		48B062BB2026BAA90045400A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48B062B72026BAA90045400A /* LaunchScreen.storyboard */; };
 		48B062BC2026BAA90045400A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48B062B92026BAA90045400A /* Main.storyboard */; };
 		48B062BE2027844F0045400A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 48B062BD2027844F0045400A /* GoogleService-Info.plist */; };
@@ -102,10 +106,14 @@
 		37707CA7203A077500143D6E /* SwiftyRecordButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyRecordButton.swift; sourceTree = "<group>"; };
 		37707CA8203A077600143D6E /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		37707CA9203A077700143D6E /* VideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
-		37865F21200BC4D1006F26AC /* ready.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ready.png; sourceTree = "<group>"; };
-		37865F23200BC4E9006F26AC /* notready.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = notready.png; sourceTree = "<group>"; };
 		37C91AAB20828292004B15C1 /* resetPasswordVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = resetPasswordVC.swift; path = captionit/resetPasswordVC.swift; sourceTree = SOURCE_ROOT; };
 		37C91AAD208282BA004B15C1 /* SettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsController.swift; path = captionit/SettingsController.swift; sourceTree = SOURCE_ROOT; };
+		37C91AAF208296F1004B15C1 /* scuba-pama.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "scuba-pama.gif"; sourceTree = "<group>"; };
+		37C91AB1208296F9004B15C1 /* pama-and-friends.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "pama-and-friends.gif"; sourceTree = "<group>"; };
+		37C91AB32082970F004B15C1 /* pizza-pama.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "pizza-pama.gif"; sourceTree = "<group>"; };
+		37C91AB520829714004B15C1 /* mummy.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = mummy.gif; sourceTree = "<group>"; };
+		37C91AB72082972D004B15C1 /* blinking-pama.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "blinking-pama.gif"; sourceTree = "<group>"; };
+		37C91ABB2082DECD004B15C1 /* blinking-pama.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = "blinking-pama.gif"; path = "../../Git CaptionIt copy/CaptionIt/captionit/blinking-pama.gif"; sourceTree = "<group>"; };
 		39F99C7009FBAAF11318DB99 /* Pods-CaptionItUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaptionItUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CaptionItUITests/Pods-CaptionItUITests.release.xcconfig"; sourceTree = "<group>"; };
 		4698EE39776137999F197299 /* Pods-CaptionIt.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaptionIt.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CaptionIt/Pods-CaptionIt.debug.xcconfig"; sourceTree = "<group>"; };
 		48B062B82026BAA90045400A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = CaptionIt/Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -217,11 +225,15 @@
 				48B062BD2027844F0045400A /* GoogleService-Info.plist */,
 				48B062B72026BAA90045400A /* LaunchScreen.storyboard */,
 				48B062B92026BAA90045400A /* Main.storyboard */,
-				37865F23200BC4E9006F26AC /* notready.png */,
 				3711204A2074FFD600295A63 /* gifController.swift */,
-				37865F21200BC4D1006F26AC /* ready.png */,
 				3711204E2075353300295A63 /* pama-loading-screen.gif */,
+				37C91AAF208296F1004B15C1 /* scuba-pama.gif */,
+				37C91AB72082972D004B15C1 /* blinking-pama.gif */,
 				331418011FB16BF40059F494 /* AppDelegate.swift */,
+				37C91AB32082970F004B15C1 /* pizza-pama.gif */,
+				37C91ABB2082DECD004B15C1 /* blinking-pama.gif */,
+				37C91AB520829714004B15C1 /* mummy.gif */,
+				37C91AB1208296F9004B15C1 /* pama-and-friends.gif */,
 				371120502075355600295A63 /* pama-waiting-screen (2).gif */,
 				331418031FB16BF40059F494 /* ViewController.swift */,
 				52B6CC1A2072C43600945942 /* CaptionCell.swift */,
@@ -439,18 +451,22 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37C91AB82082972E004B15C1 /* blinking-pama.gif in Resources */,
 				AE8C4BE120749621004529C1 /* SourceSansPro-Regular.otf in Resources */,
 				48B062BB2026BAA90045400A /* LaunchScreen.storyboard in Resources */,
+				37C91AB620829715004B15C1 /* mummy.gif in Resources */,
 				3711204F2075353400295A63 /* pama-loading-screen.gif in Resources */,
 				AE8C4BE02074961E004529C1 /* SourceSansPro-It.otf in Resources */,
+				37C91AB0208296F2004B15C1 /* scuba-pama.gif in Resources */,
 				48B062BE2027844F0045400A /* GoogleService-Info.plist in Resources */,
+				37C91AB420829710004B15C1 /* pizza-pama.gif in Resources */,
 				48B062BC2026BAA90045400A /* Main.storyboard in Resources */,
 				371120512075355700295A63 /* pama-waiting-screen (2).gif in Resources */,
-				37865F24200BC4E9006F26AC /* notready.png in Resources */,
 				37112042207177E300295A63 /* Assets.xcassets in Resources */,
 				AE8C4BDF2074961B004529C1 /* SourceCodePro-Bold.ttf in Resources */,
 				AE8C4BDE20749618004529C1 /* SourceCodePro-Black.ttf in Resources */,
-				37865F22200BC4D1006F26AC /* ready.png in Resources */,
+				37C91AB2208296F9004B15C1 /* pama-and-friends.gif in Resources */,
+				37C91ABC2082DECE004B15C1 /* blinking-pama.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

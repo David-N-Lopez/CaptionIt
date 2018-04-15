@@ -49,7 +49,6 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "playercell")
-        let notReadyImage : UIImage = UIImage(named: "notready.png")!
         if let currentUser = users[indexPath.row] as? [String : Any] {
             let isReady = currentUser["Ready"] as? Bool
             if isReady == false {

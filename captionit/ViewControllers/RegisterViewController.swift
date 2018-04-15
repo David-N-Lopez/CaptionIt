@@ -15,7 +15,6 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var reenterPasswordTextField: UITextField!
     
     @IBOutlet weak var registerButton: UIButton!
     
@@ -53,9 +52,6 @@ class RegisterViewController: UIViewController {
         }
         else if(self.passwordTextField.text == "") {
             self.showAlert(message: "Please enter password")
-        }
-        else if(self.reenterPasswordTextField.text != self.passwordTextField.text) {
-            self.showAlert(message: "Please enter same password")
         }
         else {
             self.showProgressHUD()

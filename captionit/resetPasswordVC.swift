@@ -24,10 +24,16 @@ class resetPasswordVC: UIViewController {
     @IBAction func resetPassword (_ sender: Any){
         if let rstEmail = resetEmail.text{
             Auth.auth().sendPasswordReset(withEmail: rstEmail) { (error) in
-                print(error)
-                let alert = UIAlertController(title: "Check your email ", message: "we sent you an email to update your password!", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Understood", style: .cancel, handler: nil))
-                self.present(alert, animated: true)
+                if(error == nil){
+                    let alert = UIAlertController(title: "Check your email ", message: "we sent you an email to update your password!", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Understood", style: .cancel, handler: nil))
+                    self.present(alert, animated: true)
+                }
+                else{
+                    let alert = UIAlertController(title: "Invalid email", message: "Please enter a valid email to update your password", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Understood", style: .cancel, handler: nil))
+                    self.present(alert, animated: true)
+                }
             }
         }
     }
