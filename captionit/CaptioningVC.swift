@@ -181,7 +181,6 @@ class CaptioningVC: UIViewController,UITextFieldDelegate {
   }
   //leaveCaptioningSegue
   @IBAction func actionLeaveGame(_ sender : Any) {
-    Group.singleton.removeErrorObservers()
     let currentUser = Auth.auth().currentUser?.uid
     ref.child("rooms").child(curPin!).child("players").child(currentUser!).removeValue()
   }
@@ -189,6 +188,7 @@ class CaptioningVC: UIViewController,UITextFieldDelegate {
   func alertErroOccured() {
     let controller = UIAlertController(title: "Error", message: "Something went wrong", preferredStyle: .alert)
     let action = UIAlertAction(title: "Ok", style: .cancel) { (action) in
+      
       self.performSegue(withIdentifier: "leaveCaptioningSegue", sender: self)
     }
     controller.addAction(action)

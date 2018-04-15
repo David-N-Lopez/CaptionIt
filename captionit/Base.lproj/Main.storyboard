@@ -917,11 +917,12 @@
                         <segue destination="RuM-35-ciu" kind="show" identifier="judge_Review" id="012-IT-b9v">
                             <nil key="action"/>
                         </segue>
+                        <segue destination="VgS-mf-yE5" kind="show" identifier="leaveSegue" id="OPD-U3-paK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4LZ-Ia-wk5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-695.20000000000005" y="-755.17241379310349"/>
+            <point key="canvasLocation" x="-903" y="-761"/>
         </scene>
         <!--CaptioningVC-->
         <scene sceneID="5Tl-Sc-XhG">
@@ -1963,6 +1964,6 @@ Tell your friends to hurry up!</string>
         <segue reference="fb7-aC-lzd"/>
         <segue reference="kOB-VI-MXU"/>
         <segue reference="5tl-gC-1Xp"/>
-        <segue reference="OkD-1Z-p55"/>
+        <segue reference="OPD-U3-paK"/>
     </inferredMetricsTieBreakers>
 </document>
