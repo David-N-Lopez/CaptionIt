@@ -49,7 +49,6 @@ class Group: NSObject {
     NotificationCenter.default.post(name: NSNotification.Name(rawValue: errorOccured), object: nil)
    let currentId = Auth.auth().currentUser?.uid
     ref.child("rooms").child(curPin).child("players").child(currentId!).removeValue()
-    
   }
   
   func removeErrorObservers() {

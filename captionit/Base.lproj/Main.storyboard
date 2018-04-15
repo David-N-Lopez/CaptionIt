@@ -888,7 +888,7 @@
                                     <color key="titleColor" red="0.95686280729999995" green="0.87450987099999999" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="VgS-mf-yE5" kind="show" identifier="leaveSegue" id="HEY-eh-2sI"/>
+                                    <action selector="actionLeaveGame:" destination="WKA-mm-dfx" eventType="touchUpInside" id="Gnf-fJ-XSM"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xyX-ao-cky">
@@ -1957,7 +1957,7 @@ Tell your friends to hurry up!</string>
         <image name="trophy" width="64" height="64"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="1Kv-6F-L03"/>
+        <segue reference="012-IT-b9v"/>
         <segue reference="M1s-BG-5tk"/>
         <segue reference="MMy-4o-26m"/>
         <segue reference="fb7-aC-lzd"/>

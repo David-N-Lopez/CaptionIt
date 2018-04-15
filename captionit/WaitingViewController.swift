@@ -72,5 +72,12 @@ class WaitingViewController: UIViewController {
     controller.addAction(action)
     self.present(controller, animated: true, completion: nil)
   }
+  
+  //leaveCaptioningSegue
+  @IBAction func actionLeaveGame(_ sender : Any) {
+    Group.singleton.removeErrorObservers()
+    let currentUser = Auth.auth().currentUser?.uid
+    ref.child("rooms").child(groupId).child("players").child(currentUser!).removeValue()
+  }
 }
 
