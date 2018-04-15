@@ -34,12 +34,12 @@
 		37C91AB420829710004B15C1 /* pizza-pama.gif in Resources */ = {isa = PBXBuildFile; fileRef = 37C91AB32082970F004B15C1 /* pizza-pama.gif */; };
 		37C91AB620829715004B15C1 /* mummy.gif in Resources */ = {isa = PBXBuildFile; fileRef = 37C91AB520829714004B15C1 /* mummy.gif */; };
 		37C91AB82082972E004B15C1 /* blinking-pama.gif in Resources */ = {isa = PBXBuildFile; fileRef = 37C91AB72082972D004B15C1 /* blinking-pama.gif */; };
-		37C91ABC2082DECE004B15C1 /* blinking-pama.gif in Resources */ = {isa = PBXBuildFile; fileRef = 37C91ABB2082DECD004B15C1 /* blinking-pama.gif */; };
 		48B062BB2026BAA90045400A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48B062B72026BAA90045400A /* LaunchScreen.storyboard */; };
 		48B062BC2026BAA90045400A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48B062B92026BAA90045400A /* Main.storyboard */; };
 		48B062BE2027844F0045400A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 48B062BD2027844F0045400A /* GoogleService-Info.plist */; };
 		52B6CC1C2072C43700945942 /* CaptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B6CC1A2072C43600945942 /* CaptionCell.swift */; };
 		52B6CC1D2072C43700945942 /* JudgementVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B6CC1B2072C43700945942 /* JudgementVC.swift */; };
+		9F1315DD208344B8005E1571 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1315DC208344B8005E1571 /* Group.swift */; };
 		9F232C21207381BB00C438A5 /* ResultVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F232C20207381BB00C438A5 /* ResultVC.swift */; };
 		9F232C232073837300C438A5 /* ResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F232C222073837300C438A5 /* ResultCell.swift */; };
 		9F28D3C2207F83F3008E69A1 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F28D3C1207F83F1008E69A1 /* UIViewExtension.swift */; };
@@ -113,7 +113,6 @@
 		37C91AB32082970F004B15C1 /* pizza-pama.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "pizza-pama.gif"; sourceTree = "<group>"; };
 		37C91AB520829714004B15C1 /* mummy.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = mummy.gif; sourceTree = "<group>"; };
 		37C91AB72082972D004B15C1 /* blinking-pama.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "blinking-pama.gif"; sourceTree = "<group>"; };
-		37C91ABB2082DECD004B15C1 /* blinking-pama.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = "blinking-pama.gif"; path = "../../Git CaptionIt copy/CaptionIt/captionit/blinking-pama.gif"; sourceTree = "<group>"; };
 		39F99C7009FBAAF11318DB99 /* Pods-CaptionItUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaptionItUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CaptionItUITests/Pods-CaptionItUITests.release.xcconfig"; sourceTree = "<group>"; };
 		4698EE39776137999F197299 /* Pods-CaptionIt.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaptionIt.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CaptionIt/Pods-CaptionIt.debug.xcconfig"; sourceTree = "<group>"; };
 		48B062B82026BAA90045400A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = CaptionIt/Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -123,6 +122,7 @@
 		52B6CC1B2072C43700945942 /* JudgementVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JudgementVC.swift; sourceTree = "<group>"; };
 		66477E30E7D502DFDCA04972 /* Pods-CaptionItTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaptionItTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CaptionItTests/Pods-CaptionItTests.debug.xcconfig"; sourceTree = "<group>"; };
 		7026546AF55B443CE276CE2B /* Pods-CaptionItTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaptionItTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CaptionItTests/Pods-CaptionItTests.release.xcconfig"; sourceTree = "<group>"; };
+		9F1315DC208344B8005E1571 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Group.swift; path = captionit/Group.swift; sourceTree = SOURCE_ROOT; };
 		9F232C20207381BB00C438A5 /* ResultVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultVC.swift; sourceTree = "<group>"; };
 		9F232C222073837300C438A5 /* ResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultCell.swift; sourceTree = "<group>"; };
 		9F28D3C1207F83F1008E69A1 /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIViewExtension.swift; path = captionit/Extension/UIViewExtension.swift; sourceTree = SOURCE_ROOT; };
@@ -231,7 +231,6 @@
 				37C91AB72082972D004B15C1 /* blinking-pama.gif */,
 				331418011FB16BF40059F494 /* AppDelegate.swift */,
 				37C91AB32082970F004B15C1 /* pizza-pama.gif */,
-				37C91ABB2082DECD004B15C1 /* blinking-pama.gif */,
 				37C91AB520829714004B15C1 /* mummy.gif */,
 				37C91AB1208296F9004B15C1 /* pama-and-friends.gif */,
 				371120502075355600295A63 /* pama-waiting-screen (2).gif */,
@@ -251,6 +250,7 @@
 				338756821FC3E7A800C78256 /* Player.swift */,
 				C8825BB41FD10B9200089E7A /* Room.swift */,
 				C8825BB61FD10BBD00089E7A /* Game.swift */,
+				9F1315DC208344B8005E1571 /* Group.swift */,
 				37707CA8203A077600143D6E /* PhotoViewController.swift */,
 				37707CA7203A077500143D6E /* SwiftyRecordButton.swift */,
 				37707CA9203A077700143D6E /* VideoViewController.swift */,
@@ -411,7 +411,7 @@
 				TargetAttributes = {
 					331417FD1FB16BF30059F494 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 3UZ3KPNXVC;
+						DevelopmentTeam = JKC7JRHQH5;
 						ProvisioningStyle = Automatic;
 					};
 					331418111FB16BF40059F494 = {
@@ -466,7 +466,6 @@
 				AE8C4BDF2074961B004529C1 /* SourceCodePro-Bold.ttf in Resources */,
 				AE8C4BDE20749618004529C1 /* SourceCodePro-Black.ttf in Resources */,
 				37C91AB2208296F9004B15C1 /* pama-and-friends.gif in Resources */,
-				37C91ABC2082DECE004B15C1 /* blinking-pama.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -651,6 +650,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F1315DD208344B8005E1571 /* Group.swift in Sources */,
 				9F28D3C2207F83F3008E69A1 /* UIViewExtension.swift in Sources */,
 				37707CAA203A077900143D6E /* SwiftyRecordButton.swift in Sources */,
 				B2B1B0D62026D0FF00FD2A51 /* Utility.swift in Sources */,
@@ -838,7 +838,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				DEVELOPMENT_TEAM = 3UZ3KPNXVC;
+				DEVELOPMENT_TEAM = JKC7JRHQH5;
 				INFOPLIST_FILE = CaptionIt/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.CaptionIt;
@@ -853,7 +853,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				DEVELOPMENT_TEAM = 3UZ3KPNXVC;
+				DEVELOPMENT_TEAM = JKC7JRHQH5;
 				INFOPLIST_FILE = CaptionIt/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.CaptionIt;

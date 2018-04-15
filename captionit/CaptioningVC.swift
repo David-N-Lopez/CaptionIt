@@ -31,9 +31,20 @@ class CaptioningVC: UIViewController,UITextFieldDelegate {
     super.viewDidLoad()
     self.myTextField.delegate = self
     setJudge()
+    Group.singleton.observeAnyoneLeftGame(curPin!)
+    Group.singleton.startTime()
+    NotificationCenter.default.addObserver(
+      self,
+      selector: #selector(self.alertErroOccured),
+      name: NSNotification.Name(rawValue: errorOccured),
+      object: nil)
+    
+
     let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
     view.addGestureRecognizer(tap)
   }
+  
+  
   
     func dismissKeyboard() {
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
@@ -64,6 +75,7 @@ class CaptioningVC: UIViewController,UITextFieldDelegate {
             self.judgeID = udid
             if Auth.auth().currentUser?.uid == udid {
               DispatchQueue.main.asyncAfter(deadline: .now() + 1) { // change 2 to desired number of seconds
+                Group.singleton.stopTimer()
                 self.performSegue(withIdentifier: "waitingRoomSegue", sender: self)
               }
             } else {
@@ -78,6 +90,7 @@ class CaptioningVC: UIViewController,UITextFieldDelegate {
           }
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { // change 2 to desired number of seconds
+          Group.singleton.stopTimer()
           self.performSegue(withIdentifier: "Game_Over", sender: self)
         }
         
@@ -123,6 +136,8 @@ class CaptioningVC: UIViewController,UITextFieldDelegate {
   
   func uploadComment() {
     let currentUser = Auth.auth().currentUser?.uid
+   
+   Group.singleton.stopTimer()
     ref.child("rooms").child(self.curPin!).child("comments").child(self.judgeID!).child(currentUser!).setValue(myTextField.text) { (error, reff) in
       if error == nil {
         self.performSegue(withIdentifier: "judgement_segue", sender: self)
@@ -162,8 +177,21 @@ class CaptioningVC: UIViewController,UITextFieldDelegate {
         destinationVC.curPin = self.curPin!
       }
     }
-    
+  }
+  //leaveCaptioningSegue
+  @IBAction func actionLeaveGame(_ sender : Any) {
+    Group.singleton.removeErrorObservers()
+    let currentUser = Auth.auth().currentUser?.uid
+    ref.child("rooms").child(curPin!).child("players").child(currentUser!).removeValue()
   }
   
+  func alertErroOccured() {
+    let controller = UIAlertController(title: "Error", message: "Something went wrong", preferredStyle: .alert)
+    let action = UIAlertAction(title: "Ok", style: .cancel) { (action) in
+      self.performSegue(withIdentifier: "leaveCaptioningSegue", sender: self)
+    }
+    controller.addAction(action)
+    self.present(controller, animated: true, completion: nil)
+  }
 }
 

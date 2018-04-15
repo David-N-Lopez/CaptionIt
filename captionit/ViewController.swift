@@ -82,7 +82,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         self.pinText.delegate = self
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
         view.addGestureRecognizer(tap)
-        
+        Group.singleton.curPin = "0"
         scubaGif.image = UIImage.gifImageWithName(name: "scuba-pama")
         
     }

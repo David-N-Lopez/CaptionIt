@@ -60,13 +60,13 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="a9V-ku-oK4">
-                                <rect key="frame" x="41" y="342" width="292" height="325"/>
+                                <rect key="frame" x="41" y="386" width="292" height="325"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="325" id="WWL-4k-Eyg"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rGD-L4-QlB" userLabel="Create Game">
-                                <rect key="frame" x="41" y="221" width="295" height="45"/>
+                                <rect key="frame" x="41" y="222.5" width="295" height="45"/>
                                 <color key="backgroundColor" red="0.99607843137254903" green="0.8666666666666667" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="psJ-qV-h9x"/>
@@ -118,7 +118,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CREATE A GAME." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yJz-Fz-477">
-                                <rect key="frame" x="41" y="193" width="149" height="20"/>
+                                <rect key="frame" x="41" y="193" width="149" height="21.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="149" id="vNy-qv-XIO"/>
                                 </constraints>
@@ -127,7 +127,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="JOIN A GAME." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="si4-a6-wB3">
-                                <rect key="frame" x="41" y="105" width="113" height="20"/>
+                                <rect key="frame" x="41" y="103.5" width="122.5" height="21.5"/>
                                 <fontDescription key="fontDescription" name="SourceCodePro-Bold" family="Source Code Pro" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -380,7 +380,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Room Pin Number: 0000" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kKz-kL-Z7t">
-                                <rect key="frame" x="93.5" y="51" width="188" height="40"/>
+                                <rect key="frame" x="80.5" y="51" width="214.5" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="qqn-m8-lAi"/>
                                 </constraints>
@@ -394,7 +394,7 @@
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <color key="sectionIndexColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="playercell" id="N4S-uN-IdJ">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="playercell" id="N4S-uN-IdJ">
                                         <rect key="frame" x="0.0" y="28" width="343" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="N4S-uN-IdJ" id="IjU-hd-9ab">
@@ -666,7 +666,7 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="JOIN WITH EMAIL." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Fy-dz-Jw2">
-                                        <rect key="frame" x="40" y="243" width="145" height="20"/>
+                                        <rect key="frame" x="40" y="241.5" width="163.5" height="21.5"/>
                                         <fontDescription key="fontDescription" name="SourceCodePro-Bold" family="Source Code Pro" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -876,7 +876,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Relax and let the memes FLOW..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2g1-OV-vFT">
-                                <rect key="frame" x="0.0" y="347" width="375" height="34"/>
+                                <rect key="frame" x="0.0" y="347" width="375" height="78"/>
                                 <fontDescription key="fontDescription" name="SourceCodePro-Bold" family="Source Code Pro" pointSize="14"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -935,17 +935,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QcE-wd-NgL">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QcE-wd-NgL">
                                 <rect key="frame" x="31" y="194" width="312" height="278"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="278" id="JLZ-xG-x1V"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bkm-2R-yUe">
-                                <rect key="frame" x="31" y="548" width="312" height="46"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bkm-2R-yUe">
+                                <rect key="frame" x="31" y="566" width="312" height="46"/>
                                 <color key="backgroundColor" red="0.94509803920000002" green="0.35294117650000001" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="312" id="dhy-8t-v3c"/>
                                     <constraint firstAttribute="height" constant="46" id="l4y-PM-0uS"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="SourceCodePro-Bold" family="Source Code Pro" pointSize="17"/>
@@ -974,21 +973,19 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aOb-u2-q4R">
-                                <rect key="frame" x="31" y="13" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aOb-u2-q4R">
+                                <rect key="frame" x="20" y="10" width="40" height="30"/>
                                 <state key="normal" title="Leave">
                                     <color key="titleColor" red="0.95686280729999995" green="0.87450987099999999" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="VgS-mf-yE5" kind="show" identifier="leaveCaptioningSegue" id="QBT-SP-a7w"/>
+                                    <action selector="actionLeaveGame:" destination="xlO-iX-Pfz" eventType="touchUpInside" id="dNX-ZF-ETs"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QW2-gZ-2il">
-                                <rect key="frame" x="31" y="153" width="312" height="33"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QW2-gZ-2il">
+                                <rect key="frame" x="31" y="138" width="312" height="46"/>
                                 <color key="backgroundColor" red="0.94509803920000002" green="0.35294117650000001" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="312" id="SRv-QD-OSc"/>
                                     <constraint firstAttribute="height" constant="46" id="xjg-se-0nH"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="SourceCodePro-Bold" family="Source Code Pro" pointSize="17"/>
@@ -1001,8 +998,8 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Caption It!" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UuF-oI-PW8">
-                                <rect key="frame" x="31" y="107" width="312" height="45"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Caption It!" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UuF-oI-PW8">
+                                <rect key="frame" x="31" y="502" width="312" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="CRB-iw-6sG"/>
                                 </constraints>
@@ -1013,16 +1010,24 @@
                         </subviews>
                         <color key="backgroundColor" red="0.94509803921568625" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="bkm-2R-yUe" firstAttribute="trailing" secondItem="UuF-oI-PW8" secondAttribute="trailing" id="1g0-4M-NWk"/>
                             <constraint firstItem="I0k-uX-dJ9" firstAttribute="top" secondItem="1Yb-ZE-3yY" secondAttribute="bottom" id="3j7-cd-8Yv"/>
                             <constraint firstItem="UuF-oI-PW8" firstAttribute="trailing" secondItem="QcE-wd-NgL" secondAttribute="trailing" id="Cxk-UF-ed5"/>
+                            <constraint firstItem="QcE-wd-NgL" firstAttribute="trailing" secondItem="QW2-gZ-2il" secondAttribute="trailing" id="JEo-cL-Kol"/>
                             <constraint firstItem="bkm-2R-yUe" firstAttribute="top" secondItem="UuF-oI-PW8" secondAttribute="bottom" constant="19" id="LVL-4D-0yX"/>
+                            <constraint firstItem="aOb-u2-q4R" firstAttribute="leading" secondItem="9eJ-3z-o99" secondAttribute="leading" constant="20" id="OGS-xK-qZk"/>
                             <constraint firstAttribute="trailingMargin" secondItem="QcE-wd-NgL" secondAttribute="trailing" constant="16" id="THO-6o-5to"/>
+                            <constraint firstItem="QW2-gZ-2il" firstAttribute="centerX" secondItem="9eJ-3z-o99" secondAttribute="centerX" id="Uyx-Ex-23u"/>
                             <constraint firstItem="ExH-MP-xc3" firstAttribute="leading" secondItem="UuF-oI-PW8" secondAttribute="leading" id="dWP-5f-ZUc"/>
                             <constraint firstItem="UuF-oI-PW8" firstAttribute="leading" secondItem="QcE-wd-NgL" secondAttribute="leading" id="ee0-JR-nLi"/>
                             <constraint firstItem="I0k-uX-dJ9" firstAttribute="centerX" secondItem="9eJ-3z-o99" secondAttribute="centerX" id="gKr-pQ-YqE"/>
-                            <constraint firstItem="UuF-oI-PW8" firstAttribute="top" secondItem="ExH-MP-xc3" secondAttribute="bottom" constant="8" symbolic="YES" id="hI7-EY-g9n"/>
                             <constraint firstItem="I0k-uX-dJ9" firstAttribute="leading" secondItem="9eJ-3z-o99" secondAttribute="leadingMargin" constant="115" id="hhb-sZ-deu"/>
-                            <constraint firstItem="UuF-oI-PW8" firstAttribute="top" secondItem="QcE-wd-NgL" secondAttribute="bottom" constant="63" id="vwb-sD-KCf"/>
+                            <constraint firstItem="QcE-wd-NgL" firstAttribute="centerY" secondItem="9eJ-3z-o99" secondAttribute="centerY" id="m36-KM-laJ"/>
+                            <constraint firstItem="bkm-2R-yUe" firstAttribute="leading" secondItem="UuF-oI-PW8" secondAttribute="leading" id="nox-Fo-LV2"/>
+                            <constraint firstItem="QcE-wd-NgL" firstAttribute="leading" secondItem="QW2-gZ-2il" secondAttribute="leading" id="pa7-tt-Kau"/>
+                            <constraint firstItem="QcE-wd-NgL" firstAttribute="top" secondItem="QW2-gZ-2il" secondAttribute="bottom" constant="10" id="rZa-um-wKv"/>
+                            <constraint firstItem="aOb-u2-q4R" firstAttribute="top" secondItem="9eJ-3z-o99" secondAttribute="top" constant="10" id="vsd-tu-aRX"/>
+                            <constraint firstItem="UuF-oI-PW8" firstAttribute="top" secondItem="QcE-wd-NgL" secondAttribute="bottom" constant="30" id="vwb-sD-KCf"/>
                             <constraint firstItem="QcE-wd-NgL" firstAttribute="leading" secondItem="9eJ-3z-o99" secondAttribute="leadingMargin" constant="15" id="waj-w3-inP"/>
                             <constraint firstItem="ExH-MP-xc3" firstAttribute="trailing" secondItem="UuF-oI-PW8" secondAttribute="trailing" id="xrm-77-UCz"/>
                         </constraints>
@@ -1038,11 +1043,12 @@
                             <nil key="action"/>
                         </segue>
                         <segue destination="TWa-z8-Re4" kind="show" identifier="Game_Over" id="M1s-BG-5tk"/>
+                        <segue destination="VgS-mf-yE5" kind="show" identifier="leaveCaptioningSegue" id="OkD-1Z-p55"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iRj-kb-5vW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="944.79999999999995" y="-1386.656671664168"/>
+            <point key="canvasLocation" x="1114" y="-1487"/>
         </scene>
         <!--ResultVC-->
         <scene sceneID="yJv-Po-asN">
@@ -1057,7 +1063,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qsh-Tm-y9l">
-                                <rect key="frame" x="152.5" y="563" width="70" height="40"/>
+                                <rect key="frame" x="141.5" y="605" width="92" height="42"/>
                                 <color key="backgroundColor" red="0.94509803921568625" green="0.3529411764705882" blue="0.13333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="SourceCodePro-Bold" family="Source Code Pro" pointSize="17"/>
                                 <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
@@ -1074,11 +1080,11 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Isx-t7-UXP">
-                                <rect key="frame" x="0.0" y="80" width="375" height="473"/>
+                                <rect key="frame" x="0.0" y="80" width="375" height="515"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="sectionIndexBackgroundColor" red="0.94509803920000002" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ResultCell" rowHeight="76" id="XnN-eb-Ygx" customClass="ResultCell" customModule="CaptionIt" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ResultCell" rowHeight="76" id="XnN-eb-Ygx" customClass="ResultCell" customModule="CaptionIt" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="76"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="XnN-eb-Ygx" id="h8N-WJ-AM4">
@@ -1130,7 +1136,7 @@
                                 </connections>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="★SCOREBOARD★" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lm3-a4-JqF">
-                                <rect key="frame" x="85" y="30" width="205" height="27"/>
+                                <rect key="frame" x="95.5" y="30" width="184" height="29"/>
                                 <fontDescription key="fontDescription" name="SourceCodePro-Bold" family="Source Code Pro" pointSize="23"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -1180,11 +1186,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="gva-gx-rXG">
-                                <rect key="frame" x="30" y="341.5" width="315" height="281.5"/>
+                                <rect key="frame" x="30" y="341.5" width="315" height="325.5"/>
                                 <color key="backgroundColor" red="0.94520336390000004" green="0.9490503669" blue="0.94894474740000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="sectionIndexBackgroundColor" red="0.94520336389541626" green="0.94905036687850952" blue="0.94894474744796753" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="captionCell" rowHeight="90" id="l5p-bY-TPO" customClass="CaptionCell" customModule="CaptionIt" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="captionCell" rowHeight="90" id="l5p-bY-TPO" customClass="CaptionCell" customModule="CaptionIt" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="315" height="90"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="l5p-bY-TPO" id="hi4-16-D2D">
@@ -1486,6 +1492,7 @@
                             <nil key="action"/>
                         </segue>
                         <segue destination="TWa-z8-Re4" kind="show" identifier="scoreboard_Segue" id="K1e-VU-dOg"/>
+                        <segue destination="VgS-mf-yE5" kind="show" identifier="leave_Segue" id="s2w-7w-AWw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aQm-Gg-gnW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1627,7 +1634,7 @@ Tell your friends to hurry up!</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="new email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2EZ-DG-Fea">
-                                <rect key="frame" x="40" y="186" width="201" height="40"/>
+                                <rect key="frame" x="40" y="187.5" width="201" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="GNt-jM-cx7"/>
                                 </constraints>
@@ -1641,7 +1648,7 @@ Tell your friends to hurry up!</string>
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="new username" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Lbr-ct-gcZ">
-                                <rect key="frame" x="40" y="273" width="201" height="40"/>
+                                <rect key="frame" x="40" y="276" width="201" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="Q2r-Nf-nqA"/>
                                 </constraints>
@@ -1674,7 +1681,7 @@ Tell your friends to hurry up!</string>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZaY-Gh-3Dt">
-                                <rect key="frame" x="239" y="186" width="95" height="40"/>
+                                <rect key="frame" x="239" y="187.5" width="95" height="40"/>
                                 <color key="backgroundColor" red="0.94509803920000002" green="0.35294117650000001" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="SourceCodePro-Bold" family="Source Code Pro" pointSize="17"/>
                                 <state key="normal" title="SUBMIT">
@@ -1690,7 +1697,7 @@ Tell your friends to hurry up!</string>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="htq-fG-HAw">
-                                <rect key="frame" x="239" y="273" width="95" height="40"/>
+                                <rect key="frame" x="239" y="276" width="95" height="40"/>
                                 <color key="backgroundColor" red="0.94509803920000002" green="0.35294117650000001" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="SourceCodePro-Bold" family="Source Code Pro" pointSize="17"/>
                                 <state key="normal" title="SUBMIT">
@@ -1706,19 +1713,19 @@ Tell your friends to hurry up!</string>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CHANGE USERNAME" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PNB-I2-HTE">
-                                <rect key="frame" x="40" y="245" width="170" height="20"/>
+                                <rect key="frame" x="40" y="246.5" width="153" height="21.5"/>
                                 <fontDescription key="fontDescription" name="SourceCodePro-Bold" family="Source Code Pro" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CHANGE EMAIL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GDN-vD-Lc5">
-                                <rect key="frame" x="40" y="159" width="126" height="20"/>
+                                <rect key="frame" x="40" y="159" width="122.5" height="21.5"/>
                                 <fontDescription key="fontDescription" name="SourceCodePro-Bold" family="Source Code Pro" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CHANGE PASSWORD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vOV-N3-lBH">
-                                <rect key="frame" x="40" y="66" width="171" height="22"/>
+                                <rect key="frame" x="40" y="66" width="153" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="22" id="a4t-73-PW0"/>
                                 </constraints>
@@ -1780,7 +1787,7 @@ Tell your friends to hurry up!</string>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jvw-si-Tz0">
-                                <rect key="frame" x="135" y="380" width="240" height="128"/>
+                                <rect key="frame" x="135" y="383" width="240" height="125"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="240" id="vhD-7r-gyG"/>
                                 </constraints>
@@ -1952,10 +1959,10 @@ Tell your friends to hurry up!</string>
     <inferredMetricsTieBreakers>
         <segue reference="1Kv-6F-L03"/>
         <segue reference="M1s-BG-5tk"/>
-        <segue reference="Jha-3s-L4O"/>
+        <segue reference="MMy-4o-26m"/>
         <segue reference="fb7-aC-lzd"/>
         <segue reference="kOB-VI-MXU"/>
         <segue reference="5tl-gC-1Xp"/>
-        <segue reference="QBT-SP-a7w"/>
+        <segue reference="OkD-1Z-p55"/>
     </inferredMetricsTieBreakers>
 </document>

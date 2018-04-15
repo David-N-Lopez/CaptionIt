@@ -23,8 +23,14 @@ class WaitingViewController: UIViewController {
     override func viewDidLoad() {
     super.viewDidLoad()
     observeUsersComments()
+      Group.singleton.startTime()
     gifView.image = UIImage.gifImageWithName(name: "pama-waiting-screen (2)")
     pamaFriendsGif.image = UIImage.gifImageWithName(name: "pama-and-friends")
+      NotificationCenter.default.addObserver(
+        self,
+        selector: #selector(self.alertErroOccured),
+        name: NSNotification.Name(rawValue: errorOccured),
+        object: nil)
   }
     
   func observeUsersComments() {
@@ -44,6 +50,7 @@ class WaitingViewController: UIViewController {
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "judge_Review" {
+      Group.singleton.stopTimer()
       if let destinationVC = segue.destination as? JudgementVC {
         destinationVC.groupId = groupId
         destinationVC.judgeID = judgeID
@@ -55,6 +62,15 @@ class WaitingViewController: UIViewController {
       }
     }
     
+  }
+  
+  func alertErroOccured() {
+    let controller = UIAlertController(title: "Error", message: "Something went wrong", preferredStyle: .alert)
+    let action = UIAlertAction(title: "Ok", style: .cancel) { (action) in
+      self.performSegue(withIdentifier: "leaveSegue", sender: self)
+    }
+    controller.addAction(action)
+    self.present(controller, animated: true, completion: nil)
   }
 }
 

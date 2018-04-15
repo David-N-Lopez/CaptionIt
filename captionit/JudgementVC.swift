@@ -53,6 +53,7 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    Group.singleton.startTime()
     hasBeenJudgeRef = ref.child("rooms").child(groupId).child("players").child(judgeName).child("hasBeenJudge")
     winnerRef = ref.child("rooms").child(groupId).child("comments").child(judgeName).child("winner")
     readyNextRoundRef = ref.child("rooms").child(groupId).child("readyPlayers")
@@ -83,7 +84,11 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     if totalUser == round {
       btnNextRounds.setTitle("Score Board", for: .normal)
     }
-
+    NotificationCenter.default.addObserver(
+      self,
+      selector: #selector(self.alertErroOccured),
+      name: NSNotification.Name(rawValue: errorOccured),
+      object: nil)
     // Do any additional setup after loading the view.
   }
   
@@ -124,6 +129,8 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
           self.textSingleComment.text = comment["comment"] as? String
         }
         if self.totalUser - 1 == self.usersComments.count {
+          Group.singleton.stopTimer()
+          Group.singleton.startTime()
           self.textReadyUsers.text = "Wait for \(self.strJudgeName) to pick funniest meme!"
         } else {
           self.updateNumberOfUsersCommented()
@@ -238,10 +245,12 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
     if segue.identifier == "game_Over" {
       if let destinationVC = segue.destination as? CaptioningVC {
+        Group.singleton.stopTimer()
         destinationVC.curPin = self.groupId
       }
     } else if segue.identifier == "scoreboard_Segue" {
       if let destinationVC = segue.destination as? ResultVC {
+        Group.singleton.stopTimer()
         destinationVC.curPin = self.groupId
       }
     }
@@ -330,8 +339,8 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
           if readyPlayers[key] == false {
             return
           }
-          self.hasBeenJudgeRef?.setValue(true)
         }
+        self.hasBeenJudgeRef?.setValue(true)
       }
     })
   }
@@ -374,6 +383,15 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     } else {
       self.viewWinnerName.backgroundColor = #colorLiteral(red: 0.9785731435, green: 0.07145081846, blue: 0.007269420236, alpha: 1)
     }
+  }
+  
+  func alertErroOccured() {
+    let controller = UIAlertController(title: "Error", message: "Something went wrong", preferredStyle: .alert)
+    let action = UIAlertAction(title: "Ok", style: .cancel) { (action) in
+      self.performSegue(withIdentifier: "leave_Segue", sender: self)
+    }
+    controller.addAction(action)
+    self.present(controller, animated: true, completion: nil)
   }
 }
 
