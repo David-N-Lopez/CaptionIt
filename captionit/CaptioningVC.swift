@@ -27,11 +27,12 @@ class CaptioningVC: UIViewController,UITextFieldDelegate {
   var player : AVPlayer?
   var round = 0
   var totalUser = 0
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     self.myTextField.delegate = self
-    setJudge()
     Group.singleton.observeAnyoneLeftGame(curPin!)
+    setJudge()
     Group.singleton.startTime()
     NotificationCenter.default.addObserver(
       self,

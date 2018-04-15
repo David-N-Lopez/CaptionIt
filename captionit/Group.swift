@@ -28,9 +28,9 @@ class Group: NSObject {
       let allPlayers = snapshot.children
       
       if let players  = allPlayers.allObjects as? [DataSnapshot]{
-        self.playersRef?.removeObserver(withHandle: self.handle)
         print("observer notification sent")
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: errorOccured), object: nil)
+        self.playersRef?.removeObserver(withHandle: self.handle)
       }
     })
   }
@@ -41,7 +41,6 @@ class Group: NSObject {
   
   func stopTimer() {
     gameTimer.invalidate()
-  self.playersRef?.removeObserver(withHandle: self.handle)
   }
   
   func runTimedCode() {
