@@ -14,14 +14,14 @@ import AVKit
 import SDWebImage
 import SVProgressHUD
 
-class CaptioningVC: UIViewController,UITextFieldDelegate {
+class CaptioningVC: UIViewController, UITextViewDelegate{
   @IBOutlet weak var meme: UIImageView!
-  @IBOutlet weak var displayMessage: UILabel!
-  @IBOutlet weak var myTextField: UITextField!
+  @IBOutlet weak var myTextField: UITextView!
   var curPin: String?
   var hasCurrentJudge:Bool?
   var currentJudge: String?
-  var judgeID : String?
+  var judgeID:String?
+  var judgeId = String()
   var memeImageUrl : String?
   var mediaType = 1
   var player : AVPlayer?
@@ -30,7 +30,6 @@ class CaptioningVC: UIViewController,UITextFieldDelegate {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.myTextField.delegate = self
     Group.singleton.observeAnyoneLeftGame(curPin!)
     setJudge()
     Group.singleton.startTime()
@@ -39,18 +38,26 @@ class CaptioningVC: UIViewController,UITextFieldDelegate {
       selector: #selector(self.alertErroOccured),
       name: NSNotification.Name(rawValue: errorOccured),
       object: nil)
-    
-
+    myTextField.delegate = self
+    myTextField.text = "CaptionIt!"
+    myTextField.textColor = UIColor.lightGray
     let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
     view.addGestureRecognizer(tap)
   }
   
+  func textViewDidBeginEditing(_ textView: UITextView) {
+        
+        if myTextField.textColor == UIColor.lightGray {
+            myTextField.text = ""
+            myTextField.textColor = UIColor.black
+        }
+    }
   
-  
-    func dismissKeyboard() {
+  func dismissKeyboard() {
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
     }
+
   func setJudge(){
     ref.child("rooms").child(curPin!).child("players").observeSingleEvent(of: .value, with: { snapshot in
       // I got the expected number of items

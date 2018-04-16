@@ -393,5 +393,9 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     controller.addAction(action)
     self.present(controller, animated: true, completion: nil)
   }
+    @IBAction func leave(_ sender: Any){
+        
+        performSegue(withIdentifier: "leave_Segue", sender: Any?)
+    }
 }
 
