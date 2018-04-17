@@ -20,13 +20,14 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
         print("hellow from enter room controller")
         roomPin.text = "Room Pin Number: \(curPin)"
         fetchUsers()
-      observeStartGame()
-      
-        
         // Do any additional setup after loading the view
         //        weak var delegate: UIViewController!
     }
-    
+  
+  override func viewWillAppear(_ animated: Bool) {
+    observeStartGame()
+  }
+  
   override func viewWillDisappear(_ animated: Bool) {
     gameStartRef?.removeAllObservers()
   }
@@ -35,7 +36,11 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
     gameStartRef?.observe(.value, with: { (snapshot) in
       if let startGame = snapshot.value as? Bool {
         if startGame == true {
-          self.performSegue(withIdentifier: "gameIsOn!", sender: Any?.self)
+//          self.performSegue(withIdentifier: "gameIsOn!", sender: Any?.self)
+          self.gameStartRef?.removeAllObservers()
+          let controller = self.storyboard?.instantiateViewController(withIdentifier: "CaptioningVC") as! CaptioningVC
+          controller.curPin = self.curPin
+          self.navigationController?.pushViewController(controller, animated: true)
         }
       }
     })
@@ -139,34 +144,24 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     @IBAction func addMeme() {
-        performSegue(withIdentifier: "addmeme", sender: self)
+      let controller = self.storyboard?.instantiateViewController(withIdentifier: "RoomViewController") as! RoomViewController
+      controller.curPin = curPin
+      self.navigationController?.pushViewController(controller, animated: true)
+      
     }
     
      @IBAction func startGame() { //works now
         if (self.countPlayersReady() == users.count && self.countPlayersReady() >= 2){
+          gameStartRef?.removeAllObservers()
           gameStartRef?.setValue(true)
-           self.performSegue(withIdentifier: "gameIsOn!", sender: Any?.self)
+          let controller = self.storyboard?.instantiateViewController(withIdentifier: "CaptioningVC") as! CaptioningVC
+          controller.curPin = curPin
+          self.navigationController?.pushViewController(controller, animated: true)
         }
-        //        if playersReady>2 {
-        //        performSegue(withIdentifier: "gameIsOn!", sender: Any?)
-        //        }
         else{
             displayErrorMsg()
         }
     }
     @IBAction func unwindSegueToRoomVC(_ sender:UIStoryboardSegue) { }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "addmeme" {
-            let controller = segue.destination as! RoomViewController
-            controller.curPin = curPin
-        }
-        if segue.identifier == "gameIsOn!" {
-            let controller = segue.destination as! CaptioningVC
-            controller.curPin = curPin
-            
-            
-        }
-    
-}
 }

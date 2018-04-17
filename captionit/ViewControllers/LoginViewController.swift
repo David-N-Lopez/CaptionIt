@@ -64,7 +64,8 @@ class LoginViewController: UIViewController {
             Users.loginUser(email: emailTextField.text!, password: passwordTextField.text!, callback: { (success, user, error) in
                 self.dismissProgressHUD()
                 if(success) {
-                    self.dismiss(animated: true, completion: nil)
+//                    self.dismiss(animated: true, completion: nil)
+                  AppDelegate.sharedDelegate.moveToEnterRoom(index: 0)
                 }
                 else {
                     self.showAlert(message: error!.localizedDescription)

@@ -86,7 +86,7 @@ class VideoViewController: UIViewController {
   
     /********************Dismisses the view***********************/
     func cancel() {
-        dismiss(animated: true, completion: nil)
+      self.navigationController?.popViewController(animated: true)
     }
 
     /********************Use video will store the url under your name
@@ -124,6 +124,7 @@ class VideoViewController: UIViewController {
       controller.curPin = curPin //should I keep on passing the current pin
       controller.previewVideo = videoURL!
       controller.mediaType = 2
+      controller.pickerGallery = false
       //  controller.pickMeme.setTitle("Change Meme?", for: .normal)
     }
   }

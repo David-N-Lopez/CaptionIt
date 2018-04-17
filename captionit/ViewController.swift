@@ -30,7 +30,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
             let enumerator = snapshot.children
             
             while let rest = enumerator.nextObject() as? DataSnapshot {
-                let curRoom = rest.childSnapshot(forPath: "roomPin").value as! String
+              guard let curRoom = rest.childSnapshot(forPath: "roomPin").value as? String else {
+                self.showAlert(message: "Something Went Wrong")
+                return
+              }
                 
                 
                 if (self.pinText.text == curRoom) {
@@ -41,7 +44,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     
                     if let currentPlayer = getCurrentPlayer(){
                         currentPlayer.joinGame(curPin: curRoom)
-                        self.performSegue(withIdentifier: "toroom1", sender: self)
+//                        self.performSegue(withIdentifier: "toroom1", sender: self)
+                      let controller = self.storyboard?.instantiateViewController(withIdentifier: "EnterRoomViewController") as! EnterRoomViewController
+                      controller.curPin = self.curPin
+                      self.navigationController?.pushViewController(controller, animated: true)
+                      return
                     }
                     
                 }
@@ -65,8 +72,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
             if let currentPlayer = getCurrentPlayer(){
                 
                 currentPlayer.createGame(curPin: curPin)
-                performSegue(withIdentifier: "toroom1", sender: self)
-                
+              let controller = self.storyboard?.instantiateViewController(withIdentifier: "EnterRoomViewController") as! EnterRoomViewController
+              controller.curPin = curPin
+              self.navigationController?.pushViewController(controller, animated: true)
+//                performSegue(withIdentifier: "toroom1", sender: self)
+              
                 }
     }
     /*
@@ -124,13 +134,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
      
  
     */
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toroom1" {
-            let controller = segue.destination as! EnterRoomViewController
-            controller.curPin = curPin
-        }
-    }
+
+  @IBAction func actionInviteFriend(_ sender: UIButton) {
+    let controller = self.storyboard?.instantiateViewController(withIdentifier: "InviteViewController") as! InviteViewController
+    self.navigationController?.pushViewController(controller, animated: true)
+  }
   
     @IBAction func unwindSegueToMainVC(_ sender:UIStoryboardSegue) { }
 }

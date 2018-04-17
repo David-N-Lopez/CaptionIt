@@ -33,6 +33,7 @@ class camController: SwiftyCamViewController, SwiftyCamViewControllerDelegate {
         shouldUseDeviceOrientation = true
         allowAutoRotate = true
         audioEnabled = true
+      videoQuality = .iframe960x540
 
     }
     
@@ -47,7 +48,11 @@ class camController: SwiftyCamViewController, SwiftyCamViewControllerDelegate {
     
     func swiftyCam(_ swiftyCam: SwiftyCamViewController, didTake photo: UIImage) {
         ifHasPhoto = photo
-        self.performSegue(withIdentifier:"PhotoPreviewSegue", sender: self)
+      let controller = self.storyboard?.instantiateViewController(withIdentifier: "PhotoViewController") as! PhotoViewController
+      controller.curPin = curPin
+      controller.backgroundImage = ifHasPhoto
+      self.navigationController?.pushViewController(controller, animated: true)
+      
 
     }
     
@@ -70,11 +75,11 @@ class camController: SwiftyCamViewController, SwiftyCamViewControllerDelegate {
     }
     
     func swiftyCam(_ swiftyCam: SwiftyCamViewController, didFinishProcessVideoAt url: URL) {
-//        let newVC = VideoViewController(videoURL: url, pin: curPin)
-//        self.present(newVC, animated: true, completion: nil)
       ifHasvideo = url
-      self.performSegue(withIdentifier:"VideoPreviewSegue", sender: self)
-      
+      let controller = self.storyboard?.instantiateViewController(withIdentifier: "VideoViewController") as! VideoViewController
+      controller.curPin = curPin
+      controller.videoURL = url
+      self.navigationController?.pushViewController(controller, animated: true)
     }
     
     func swiftyCam(_ swiftyCam: SwiftyCamViewController, didFocusAtPoint point: CGPoint) {
@@ -120,17 +125,6 @@ class camController: SwiftyCamViewController, SwiftyCamViewControllerDelegate {
             flashButton.setImage(#imageLiteral(resourceName: "flashOutline"), for: UIControlState())
         }
     }
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "PhotoPreviewSegue" {
-            let controller = segue.destination as! PhotoViewController
-            controller.curPin = curPin
-            controller.backgroundImage = ifHasPhoto
-        } else if segue.identifier == "VideoPreviewSegue" {
-        let controller = segue.destination as! VideoViewController
-        controller.curPin = curPin
-        controller.videoURL = ifHasvideo!
-        
-      }
-    }
+    
 
 }

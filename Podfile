@@ -12,6 +12,7 @@ target 'CaptionIt' do
   pod 'Firebase/Storage'
   pod 'SVProgressHUD'
   pod 'SDWebImage', '~> 4.0'
+  pod 'IQKeyboardManagerSwift'
 
   target 'CaptionItTests' do
     inherit! :search_paths

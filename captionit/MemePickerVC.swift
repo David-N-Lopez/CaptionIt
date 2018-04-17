@@ -23,6 +23,7 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     var previewVideo: URL?
     var mediaType  = 1
     var player : AVPlayer?
+    var pickerGallery = true
     
     @IBOutlet weak var pickMeme: UIButton!
 
@@ -59,8 +60,14 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
                         //try to make it private
                         let outputURL = (metadata?.downloadURL()?.absoluteString)!
                       self.ref.child("rooms").child(self.curPin!).child("players").child(getUserId()!).updateChildValues(["memeURL": outputURL, "Ready": true, "mediaType": self.mediaType])
-                        self.performSegue(withIdentifier: "PlayerHasImageSegue", sender: Any?.self)
-                        
+                      if self.pickerGallery {
+                        self.navigationController?.popViewController(animated: true)
+                      } else {
+                        var viewControllers = self.navigationController?.viewControllers
+                        viewControllers?.removeLast(4) // views to pop
+                        self.navigationController?.setViewControllers(viewControllers!, animated: true)
+                      }
+                      
                     }
                     
                 }}
@@ -120,7 +127,10 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             self.selectPicture()
         }))
         alert.addAction(UIAlertAction(title: "Make Your Meme", style: .default, handler: { action in
-            self.performSegue(withIdentifier: "SwiftyCam", sender: self)
+//            self.performSegue(withIdentifier: "SwiftyCam", sender: self)
+          let controller = self.storyboard?.instantiateViewController(withIdentifier: "camController") as! camController
+          controller.curPin = self.curPin
+          self.navigationController?.pushViewController(controller, animated: true)
         }))
 
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
@@ -171,18 +181,6 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         myImageView.image = newImage
       previewImage = newImage
         dismiss(animated: true)
-    }
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "SwiftyCam" {
-            let controller = segue.destination as! camController
-            controller.curPin = curPin
-        }
-        if segue.identifier == "PlayerHasImageSegue"{
-            let controller = segue.destination as! EnterRoomViewController
-            controller.playerReady = true
-            controller.curPin = self.curPin!
-            controller.playersReady += 1
-        }
     }
 
 }

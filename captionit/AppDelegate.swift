@@ -8,16 +8,26 @@
 
 import UIKit
 import Firebase
-//import FirebaseAuth
+import IQKeyboardManagerSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+  class var sharedDelegate:AppDelegate {
+    return UIApplication.shared.delegate as! AppDelegate
+  }
+  
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override   for customization after application launch.
         FirebaseApp.configure()
+      IQKeyboardManager.sharedManager().enable = true
+      if Auth.auth().currentUser?.uid != nil {
+        moveToEnterRoom(index: 0)
+      } else {
+        moveToLoginRoom(index: 0)
+      }
         application.isStatusBarHidden = true
         return true
     }
@@ -44,7 +54,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+  
+  func moveToEnterRoom(index : Int) {
+    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+    let productListVC = storyboard.instantiateViewController(withIdentifier: "ViewController") as! ViewController
+    let navigationController = UINavigationController.init(rootViewController: productListVC)
+    navigationController.navigationBar.isHidden = true
+    let appdelegate = UIApplication.shared.delegate as! AppDelegate
+    appdelegate.window?.rootViewController = navigationController
+  }
 
+  func moveToLoginRoom(index : Int) {
+    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+    let productListVC = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+    let navigationController = UINavigationController.init(rootViewController: productListVC)
+    navigationController.navigationBar.isHidden = true
+    let appdelegate = UIApplication.shared.delegate as! AppDelegate
+    appdelegate.window?.rootViewController = navigationController
+  }
 
 }
 

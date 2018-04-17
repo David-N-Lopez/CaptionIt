@@ -11,6 +11,8 @@ import FirebaseDatabase
 import SDWebImage
 import FirebaseAuth
 import AVKit
+import Photos
+import SVProgressHUD
 
 class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
   @IBOutlet weak var btnNext: UIButton!
@@ -19,6 +21,8 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
   @IBOutlet weak var imageCaption: UIImageView!
   @IBOutlet weak var viewVideo: UIView!
   @IBOutlet weak var viewWaiting: UIView!
+  @IBOutlet weak var saveMediaView: DesignableView!
+  
   var usersComments = [Any]()
   var groupId = String()
   var judgeID = String()
@@ -35,6 +39,8 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
   var currentCommentIndex = 0
   var gameWinnerID = ""
   let currentUserId = Auth.auth().currentUser?.uid
+  var mediaData: Data?
+  var videoSaved: String?
 
   // Judge
   @IBOutlet weak var imageJudge: UIImageView!
@@ -69,9 +75,6 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     }
     getAllComments()
     updateMemeMedia()
-    observerGameFinish()
-    observerWinnerOfGame()
-    oberverAllPlayersReady()
     updateNumberOfUsersCommented()
     self.textRound.text = "Round \(round)"
     captionTableView.dataSource = self
@@ -95,6 +98,12 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    observerGameFinish()
+    observerWinnerOfGame()
+    oberverAllPlayersReady()
   }
   
   override func viewDidAppear(_ animated: Bool) {
@@ -233,7 +242,15 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         if gameFinished == true {
           self.hasBeenJudgeRef?.removeAllObservers()
           if self.totalUser != self.round {
-          self.performSegue(withIdentifier: "game_Over", sender: self)
+//          self.performSegue(withIdentifier: "game_Over", sender: self)
+            Group.singleton.stopTimer()
+            if self.judgeID == Auth.auth().currentUser?.uid {
+              var viewControllers = self.navigationController?.viewControllers
+              viewControllers?.removeLast(2) // views to pop
+              self.navigationController?.setViewControllers(viewControllers!, animated: true)
+            } else {
+              self.navigationController?.popViewController(animated: true)
+            }
           }
         }
       }
@@ -241,21 +258,6 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
   }
   
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    
-    if segue.identifier == "game_Over" {
-      if let destinationVC = segue.destination as? CaptioningVC {
-        Group.singleton.stopTimer()
-        destinationVC.curPin = self.groupId
-      }
-    } else if segue.identifier == "scoreboard_Segue" {
-      if let destinationVC = segue.destination as? ResultVC {
-        Group.singleton.stopTimer()
-        destinationVC.curPin = self.groupId
-      }
-    }
-    
-  }
   
   func getUserName(_ ID : String, _ defaultValue : String, _ response :@escaping (_ name : String) ->()) {
     ref.child("Users").child(ID).observeSingleEvent(of: .value, with: { (snapshot) in
@@ -323,8 +325,12 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
   }
   
   @IBAction func actionNextRound(_ sender: Any) {
-    if totalUser == round {
-      self.performSegue(withIdentifier: "scoreboard_Segue", sender: self)
+    if totalUser <= round {
+//      self.performSegue(withIdentifier: "scoreboard_Segue", sender: self)
+      let controller = self.storyboard?.instantiateViewController(withIdentifier: "ResultVC") as! ResultVC
+      Group.singleton.stopTimer()
+      controller.curPin = self.groupId
+      self.navigationController?.pushViewController(controller, animated: true)
     } else {
     readyNextRoundRef?.child(currentUserId!).setValue(true)
     self.viewWaiting.isHidden = false
@@ -388,14 +394,122 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
   func alertErroOccured() {
     let controller = UIAlertController(title: "Error", message: "Something went wrong", preferredStyle: .alert)
     let action = UIAlertAction(title: "Ok", style: .cancel) { (action) in
-      self.performSegue(withIdentifier: "leave_Segue", sender: self)
+//      self.performSegue(withIdentifier: "leave_Segue", sender: self)
+      self.navigationController?.popToRootViewController(animated: true)
     }
     controller.addAction(action)
     self.present(controller, animated: true, completion: nil)
   }
+  
     @IBAction func leave(_ sender: Any){
-        
-        performSegue(withIdentifier: "leave_Segue", sender: Any?)
+      let controller = UIAlertController(title: "CaptionIt!", message: "Are you sure you want to Leave?", preferredStyle: .alert)
+      let leave = UIAlertAction(title: "Leave", style: .default) { (action) in
+        let currentUser = Auth.auth().currentUser?.uid
+        ref.child("rooms").child(self.groupId).child("players").child(currentUser!).removeValue()
+      }
+      let cancel = UIAlertAction(title: "Stay", style: .cancel, handler: nil)
+      controller.addAction(leave)
+      controller.addAction(cancel)
+      self.present(controller, animated: true, completion: nil)
     }
+  
+  @IBAction func actionSaveMedia(_ sender: Any){
+    if mediaType == 1 {
+     let image = UIImage(view: self.saveMediaView)
+      UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
+      self.showAlert(message: "Your image was successfully saved")
+    } else {
+      SVProgressHUD.show()
+//      let filePath = saveVideoToPath(memeURL)
+      saveVideoToPath(memeURL, completion: { (result, filePath) in
+        PHPhotoLibrary.shared().performChanges({
+          PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: URL(string:filePath)!)
+        }) { saved, error in
+          SVProgressHUD.dismiss()
+          if saved {
+            self.showAlert(message: "Your video was successfully saved")
+          }
+        }
+      })
+    }
+  }
+  
+  @IBAction func actionShareMedia(_ sender: Any) {
+    if mediaType == 1 {
+      let image = UIImage(view: self.saveMediaView)
+      self.shareImage(image)
+    } else {
+      self.shareVideo(memeURL)
+    }
+  }
+  
+  func saveVideoToPath(_ url: String, completion: @escaping (_ result: Bool, _ filePath: String)->()) {
+    if videoSaved != nil {
+      completion(true, videoSaved!)
+      return
+    }
+    SVProgressHUD.show()
+    DispatchQueue.global(qos: .background).async {
+      let videoURL = URL(string:url)
+      let urlData = NSData.init(contentsOf: videoURL!)
+      
+      if ((urlData) != nil){
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        let docDirectory = paths[0]
+        let filePath = "\(docDirectory)/tmpVideo.mov"
+        urlData?.write(toFile: filePath, atomically: true)
+        DispatchQueue.main.async {
+          SVProgressHUD.dismiss()
+          self.videoSaved = filePath
+          completion(true, filePath)
+        }
+      } else {
+        DispatchQueue.main.async {
+          SVProgressHUD.dismiss()
+          self.showAlert(message: "Unable to get video")
+          return
+        }
+      }
+    }
+  }
+  
+  func shareVideo(_ url : String) {
+      // file saved
+//      let filePath = saveVideoToPath(url)
+    saveVideoToPath(url) { (result, filePath) in
+      let videoLink = NSURL(fileURLWithPath: filePath)
+      let message = self.textSingleComment.text ?? ""
+      let objectsToShare = [videoLink, message] as [Any] //comment!, imageData!, myWebsite!]
+      let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+      
+      activityVC.setValue("Video", forKey: "subject")
+      self.excludeshareExtensions(activityVC)
+      self.present(activityVC, animated: true, completion: nil)
+    }
+    }
+  
+  func shareImage(_ image : UIImage) {
+    // file saved
+    //      let filePath = saveVideoToPath(url)
+    let message = self.textSingleComment.text ?? ""
+    if mediaData == nil {
+    mediaData = UIImageJPEGRepresentation(image, 1)
+    }
+    let objectsToShare = [mediaData!, message] as [Any] //comment!, imageData!, myWebsite!]
+      let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+      excludeshareExtensions(activityVC)
+      self.present(activityVC, animated: true, completion: nil)
+  }
+  
+  func excludeshareExtensions(_ activityVC: UIActivityViewController) {
+    //New Excluded Activities Code
+    if #available(iOS 9.0, *) {
+      activityVC.excludedActivityTypes = [ UIActivityType.addToReadingList, UIActivityType.assignToContact, UIActivityType.copyToPasteboard, UIActivityType.openInIBooks, UIActivityType.postToTencentWeibo, UIActivityType.postToVimeo, UIActivityType.postToWeibo, UIActivityType.print]
+    } else {
+      // Fallback on earlier versions
+      activityVC.excludedActivityTypes = [ UIActivityType.addToReadingList, UIActivityType.assignToContact, UIActivityType.copyToPasteboard, UIActivityType.postToTencentWeibo, UIActivityType.postToVimeo, UIActivityType.postToWeibo, UIActivityType.print ]
+    }
+  }
+  
 }
 

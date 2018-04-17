@@ -7,35 +7,63 @@
 //
 
 import UIKit
-import FirebaseDatabase
+import Firebase
 
 class ResultVC: UIViewController {
   @IBOutlet weak var tblResult: UITableView!
   var users = [Any]()
   var curPin = String()
   var highestScore = 0
+  var userScoreViewed = 0
+  var totalUsers = 0
+  var viewedRef: DatabaseReference?
+  let currentID = Auth.auth().currentUser?.uid
+  // Create a storage reference from our storage service
+  let storageRef = Storage.storage().reference()
   
-    override func viewDidLoad() {
-        super.viewDidLoad()
-      tblResult.tableFooterView = UIView()
-      tblResult.backgroundColor = UIColor.white
-      getAllUsers()
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    tblResult.tableFooterView = UIView()
+    tblResult.backgroundColor = UIColor.white
+    viewedRef = ref.child("rooms").child(curPin).child("playersViewed")
+    viewedRef?.child(currentID!).setValue(1)
+    getAllUsers()
+    observeScoreBoardViewed()
+    Group.singleton.removeErrorObservers()
+    // Do any additional setup after loading the view.
+  }
+  
+  override func didReceiveMemoryWarning() {
+    super.didReceiveMemoryWarning()
+    // Dispose of any resources that can be recreated.
+  }
+  
+  override func viewWillDisappear(_ animated: Bool) {
+    viewedRef?.removeAllObservers()
+  }
+  
+  func observeScoreBoardViewed() {
+    viewedRef?.observe(.value, with: { (snapshot) in
+      if let users = snapshot.value as? [String : Any] {
+        self.userScoreViewed = users.count
+      }
+    })
+  }
   
   func getAllUsers() {
     ref.child("rooms").child(curPin).child("players").observeSingleEvent(of: .value, with: { (snapshot) in
       if let result = snapshot.children.allObjects as? [DataSnapshot] {
+        self.totalUsers = result.count
         for child in result {
           let orderID = child.key
           var value = child.value as! [String : Any]
           value["userName"] = "Undefined User"
           self.users.append(value)
+          if orderID == getUserId() {
+            if let mediaUrl = value["memeURL"] as? String {
+              self.firebaseDeleteMedia(mediaUrl)
+            }
+          }
           //
         }
         let desc = NSSortDescriptor(key: "score", ascending: false) { // comparator function
@@ -50,14 +78,35 @@ class ResultVC: UIViewController {
         DispatchQueue.main.async {
           self.tblResult.reloadData()
         }
-    }
-  })
+      }
+    })
   }
   
   @IBAction func actionFinishGame(_ sender : UIButton) {
-    self.performSegue(withIdentifier: "restart_Game", sender: self)
+    
+    if totalUsers == userScoreViewed {
+      ref.child("rooms").child(self.curPin).removeValue(completionBlock: { (error, snapshot) in
+        self.navigationController?.popToRootViewController(animated: true)
+      })
+    } else {
+      self.navigationController?.popToRootViewController(animated: true)
+    }
   }
-
+  
+  func firebaseDeleteMedia(_ url : String) {
+    let storage = Storage.storage()
+    let storageRef = storage.reference(forURL: url)
+    //Removes image from storage
+    storageRef.delete { error in
+      if let error = error {
+        print(error)
+      } else {
+        // File deleted successfully
+        
+      }
+    }
+  
+  }
 }
 
 extension ResultVC : UITableViewDelegate,UITableViewDataSource {
@@ -103,5 +152,5 @@ extension ResultVC : UITableViewDelegate,UITableViewDataSource {
       }
     })
   }
-
+  
 }

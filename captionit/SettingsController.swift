@@ -79,15 +79,21 @@ class SettingsController: UIViewController, UITextFieldDelegate {
     }
      
     @IBAction func logoutButtonTapped(_ sender: Any) {
+      let controller = UIAlertController(title: "CaptionIt!", message: "Are you sure you want to Logout?", preferredStyle: .alert)
+      let leave = UIAlertAction(title: "Logout", style: .default) { (action) in
         do {
-            try Auth.auth().signOut()
-            let viewController = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
-            self.present(viewController, animated: true, completion: nil)
+          try Auth.auth().signOut()
+          AppDelegate.sharedDelegate.moveToLoginRoom(index: 0)
         }
         catch let error {
-            print(error.localizedDescription)
+          print(error.localizedDescription)
         }
-        
+      }
+      let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+      controller.addAction(leave)
+      controller.addAction(cancel)
+      self.present(controller, animated: true, completion: nil)
+      
     }
 
     

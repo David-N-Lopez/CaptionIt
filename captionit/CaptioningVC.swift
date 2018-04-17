@@ -27,10 +27,18 @@ class CaptioningVC: UIViewController, UITextViewDelegate{
   var player : AVPlayer?
   var round = 0
   var totalUser = 0
-  
+  var isJudge = false
   override func viewDidLoad() {
     super.viewDidLoad()
     Group.singleton.observeAnyoneLeftGame(curPin!)
+    myTextField.delegate = self
+    myTextField.text = "CaptionIt!"
+    myTextField.textColor = UIColor.lightGray
+    let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+    view.addGestureRecognizer(tap)
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
     setJudge()
     Group.singleton.startTime()
     NotificationCenter.default.addObserver(
@@ -38,11 +46,6 @@ class CaptioningVC: UIViewController, UITextViewDelegate{
       selector: #selector(self.alertErroOccured),
       name: NSNotification.Name(rawValue: errorOccured),
       object: nil)
-    myTextField.delegate = self
-    myTextField.text = "CaptionIt!"
-    myTextField.textColor = UIColor.lightGray
-    let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
-    view.addGestureRecognizer(tap)
   }
   
   func textViewDidBeginEditing(_ textView: UITextView) {
@@ -65,13 +68,13 @@ class CaptioningVC: UIViewController, UITextViewDelegate{
       print("hello")
       if let players  = allPlayers.allObjects as? [DataSnapshot]{
         self.totalUser = players.count
+        self.round += 1
         for player in players{
           let username = player.key
           var value = player.value as! [String : Any]
           let udid = value["ID"] as! String
           let hasBeenJudge = value["hasBeenJudge"] as? Bool
           let meme = value["memeURL"] as! String
-          self.round += 1
           if let type = value["mediaType"] as? Int {
             self.mediaType = type
           }
@@ -82,9 +85,18 @@ class CaptioningVC: UIViewController, UITextViewDelegate{
             self.currentJudge = username
             self.judgeID = udid
             if Auth.auth().currentUser?.uid == udid {
+             self.isJudge = true
               DispatchQueue.main.asyncAfter(deadline: .now() + 1) { // change 2 to desired number of seconds
                 Group.singleton.stopTimer()
-                self.performSegue(withIdentifier: "waitingRoomSegue", sender: self)
+                let destinationVC = self.storyboard?.instantiateViewController(withIdentifier: "WaitingViewController") as! WaitingViewController
+                destinationVC.groupId = self.curPin!
+                destinationVC.judgeID = self.judgeID!
+                destinationVC.memeURL = self.memeImageUrl!
+                destinationVC.judgeName = self.currentJudge!
+                destinationVC.mediaType = self.mediaType
+                destinationVC.round = self.round
+                destinationVC.totalUser = self.totalUser
+                self.navigationController?.pushViewController(destinationVC, animated: true)
               }
             } else {
               if self.mediaType == 1 {
@@ -99,7 +111,9 @@ class CaptioningVC: UIViewController, UITextViewDelegate{
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { // change 2 to desired number of seconds
           Group.singleton.stopTimer()
-          self.performSegue(withIdentifier: "Game_Over", sender: self)
+          let controller = self.storyboard?.instantiateViewController(withIdentifier: "ResultVC") as! ResultVC
+          controller.curPin = self.curPin!
+          self.navigationController?.pushViewController(controller, animated: true)
         }
         
         
@@ -148,55 +162,46 @@ class CaptioningVC: UIViewController, UITextViewDelegate{
    Group.singleton.stopTimer()
     ref.child("rooms").child(self.curPin!).child("comments").child(self.judgeID!).child(currentUser!).setValue(myTextField.text) { (error, reff) in
       if error == nil {
-        self.performSegue(withIdentifier: "judgement_segue", sender: self)
+
+        let destinationVC = self.storyboard?.instantiateViewController(withIdentifier: "JudgementVC") as! JudgementVC
+        destinationVC.groupId = self.curPin!
+        destinationVC.judgeID = self.judgeID!
+        destinationVC.memeURL = self.memeImageUrl!
+        destinationVC.judgeName = self.currentJudge!
+        destinationVC.mediaType = self.mediaType
+        destinationVC.round = self.round
+        destinationVC.totalUser = self.totalUser
+        self.navigationController?.pushViewController(destinationVC, animated: true)
       }
     }
     
   }
   
   override func viewWillDisappear(_ animated: Bool) {
+    if self.isJudge == false {
     player?.currentItem!.removeObserver(self, forKeyPath: "status")
+    }
     NotificationCenter.default.removeObserver(self)
   }
   
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    if segue.identifier == "judgement_segue" {
-      if let destinationVC = segue.destination as? JudgementVC {
-        destinationVC.groupId = self.curPin!
-        destinationVC.judgeID = self.judgeID!
-        destinationVC.memeURL = memeImageUrl!
-        destinationVC.judgeName = currentJudge!
-        destinationVC.mediaType = mediaType
-        destinationVC.round = round
-        destinationVC.totalUser = totalUser
-      }
-    } else if segue.identifier == "waitingRoomSegue" {
-      if let destinationVC = segue.destination as? WaitingViewController {
-        destinationVC.groupId = self.curPin!
-        destinationVC.judgeID = self.judgeID!
-        destinationVC.memeURL = memeImageUrl!
-        destinationVC.judgeName = currentJudge!
-        destinationVC.mediaType = mediaType
-        destinationVC.round = round
-        destinationVC.totalUser = totalUser
-      }
-    } else if segue.identifier == "Game_Over" {
-      if let destinationVC = segue.destination as? ResultVC {
-        destinationVC.curPin = self.curPin!
-      }
-    }
-  }
   //leaveCaptioningSegue
   @IBAction func actionLeaveGame(_ sender : Any) {
-    let currentUser = Auth.auth().currentUser?.uid
-    ref.child("rooms").child(curPin!).child("players").child(currentUser!).removeValue()
+    let controller = UIAlertController(title: "CaptionIt!", message: "Are you sure you want to Leave?", preferredStyle: .alert)
+    let leave = UIAlertAction(title: "Leave", style: .default) { (action) in
+      let currentUser = Auth.auth().currentUser?.uid
+      ref.child("rooms").child(self.curPin!).child("players").child(currentUser!).removeValue()
+    }
+    let cancel = UIAlertAction(title: "Stay", style: .cancel, handler: nil)
+    controller.addAction(leave)
+    controller.addAction(cancel)
+    self.present(controller, animated: true, completion: nil)
   }
   
   func alertErroOccured() {
     let controller = UIAlertController(title: "Error", message: "Something went wrong", preferredStyle: .alert)
     let action = UIAlertAction(title: "Ok", style: .cancel) { (action) in
-      
-      self.performSegue(withIdentifier: "leaveCaptioningSegue", sender: self)
+      self.navigationController?.popToRootViewController(animated: true)
+//      self.performSegue(withIdentifier: "leaveCaptioningSegue", sender: self)
     }
     controller.addAction(action)
     self.present(controller, animated: true, completion: nil)

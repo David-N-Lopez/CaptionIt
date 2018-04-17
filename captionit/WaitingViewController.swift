@@ -42,32 +42,25 @@ class WaitingViewController: UIViewController {
         print(comment)
         let allKeys = (comment as NSDictionary).allKeys
         if allKeys.count == self.totalUser - 1 {
-            self.performSegue(withIdentifier: "judge_Review", sender: self)
+          let destinationVC = self.storyboard?.instantiateViewController(withIdentifier: "JudgementVC") as! JudgementVC
+          destinationVC.groupId = self.groupId
+          destinationVC.judgeID = self.judgeID
+          destinationVC.memeURL = self.memeURL
+          destinationVC.judgeName = self.judgeName
+          destinationVC.mediaType = self.mediaType
+          destinationVC.round = self.round
+          destinationVC.totalUser = self.totalUser
+          self.navigationController?.pushViewController(destinationVC, animated: true)
         }
       }
     })
   }
   
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    if segue.identifier == "judge_Review" {
-      Group.singleton.stopTimer()
-      if let destinationVC = segue.destination as? JudgementVC {
-        destinationVC.groupId = groupId
-        destinationVC.judgeID = judgeID
-        destinationVC.memeURL = memeURL
-        destinationVC.judgeName = judgeName
-        destinationVC.mediaType = mediaType
-        destinationVC.round = round
-        destinationVC.totalUser = totalUser
-      }
-    }
-    
-  }
-  
   func alertErroOccured() {
     let controller = UIAlertController(title: "Error", message: "Something went wrong", preferredStyle: .alert)
     let action = UIAlertAction(title: "Ok", style: .cancel) { (action) in
-      self.performSegue(withIdentifier: "leaveSegue", sender: self)
+//      self.performSegue(withIdentifier: "leaveSegue", sender: self)
+      self.navigationController?.popToRootViewController(animated: true)
     }
     controller.addAction(action)
     self.present(controller, animated: true, completion: nil)
@@ -76,8 +69,15 @@ class WaitingViewController: UIViewController {
   //leaveCaptioningSegue
   @IBAction func actionLeaveGame(_ sender : Any) {
     
-    let currentUser = Auth.auth().currentUser?.uid
-    ref.child("rooms").child(groupId).child("players").child(currentUser!).removeValue()
+    let controller = UIAlertController(title: "CaptionIt!", message: "Are you sure you want to Leave?", preferredStyle: .alert)
+    let leave = UIAlertAction(title: "Leave", style: .default) { (action) in
+      let currentUser = Auth.auth().currentUser?.uid
+      ref.child("rooms").child(self.groupId).child("players").child(currentUser!).removeValue()
+    }
+    let cancel = UIAlertAction(title: "Stay", style: .cancel, handler: nil)
+    controller.addAction(leave)
+    controller.addAction(cancel)
+    self.present(controller, animated: true, completion: nil)
   }
 }
 
