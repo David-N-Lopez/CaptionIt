@@ -41,7 +41,8 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
   let currentUserId = Auth.auth().currentUser?.uid
   var mediaData: Data?
   var videoSaved: String?
-
+  var oncePlayed = Bool()
+    
  let glimpse = Glimpse()
     var saveClicked = Bool()
     
@@ -65,6 +66,7 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
   override func viewDidLoad() {
     super.viewDidLoad()
     saveClicked = false
+    oncePlayed = false
     Group.singleton.startTime()
     hasBeenJudgeRef = ref.child("rooms").child(groupId).child("players").child(judgeName).child("hasBeenJudge")
     winnerRef = ref.child("rooms").child(groupId).child("comments").child(judgeName).child("winner")
@@ -187,7 +189,7 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         player?.play()
       }
       NotificationCenter.default.addObserver(forName: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object:player!.currentItem , queue:nil , using: { (_ notification: Notification) in
-        
+        self.oncePlayed = true
         if self.saveClicked == true{
             self.saveClicked = false
 //             print("video ends here")
@@ -462,37 +464,35 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
       UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
       self.showAlert(message: "Your image was successfully saved")
     } else {
-        saveClicked = true
-      SVProgressHUD.show()
-         print("video started")
-        glimpse.startRecording(saveMediaView, withCallback: { (url) in
-             print("video ended")
-            self.saveClicked = false
-            SVProgressHUD.dismiss()
-            self.videoSaved = url?.relativePath
-            UISaveVideoAtPathToSavedPhotosAlbum( self.videoSaved!, self, nil, nil)
-
-        })
-        let time : Int = Int(CMTimeGetSeconds((self.player?.currentItem?.asset.duration)!))
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(time), execute: {
-            self.glimpse.stop()
-           print("video ends here")
-
-            // Put your code which should be executed with a delay here
-        })
-       
-////      let filePath = saveVideoToPath(memeURL)
-//      saveVideoToPath(memeURL, completion: { (result, filePath) in
-//        PHPhotoLibrary.shared().performChanges({
-//          PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: URL(string:filePath)!)
-//        }) { saved, error in
-//          SVProgressHUD.dismiss()
-//          if saved {
-//            self.showAlert(message: "Your video was successfully saved")
-//          }
+//        if saveClicked == false{
+//            if oncePlayed == true{
+//                saveClicked = true
+//                SVProgressHUD.show()
+//                print("video started")
+//                glimpse.startRecording(saveMediaView, withCallback: { (url) in
+//                    print("video ended")
+//                    self.saveClicked = false
+//                    SVProgressHUD.dismiss()
+//                    self.videoSaved = url?.relativePath
+//                    UISaveVideoAtPathToSavedPhotosAlbum( self.videoSaved!, self, nil, nil)
+//                    self.showAlert(message: "Your video was successfully saved")
+//
+//                })
+//                let time : Int = Int(CMTimeGetSeconds((self.player?.currentItem?.asset.duration)!))
+//
+//                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(time), execute: {
+//                    self.glimpse.stop()
+//                    print("video ends here")
+//
+//                    // Put your code which should be executed with a delay here
+//                })
+//            }
+//            else{
+//                self.showAlert(message: "Video is preparing please wait")
+//            }
+//        }else{
+//            return
 //        }
-//      })
     }
   }
   
@@ -506,50 +506,50 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     }
   }
   
-//  func saveVideoToPath(_ url: String, completion: @escaping (_ result: Bool, _ filePath: String)->()) {
-//    if videoSaved != nil {
-//      completion(true, videoSaved!)
-//      return
-//    }
-//    SVProgressHUD.show()
-//    DispatchQueue.global(qos: .background).async {
-//      let videoURL = URL(string:url)
+  func saveVideoToPath(_ url: String, completion: @escaping (_ result: Bool, _ filePath: String)->()) {
+    if videoSaved != nil {
+      completion(true, videoSaved!)
+      return
+    }
+    SVProgressHUD.show()
+    DispatchQueue.global(qos: .background).async {
+      let videoURL = URL(string:url)
+
+//      let urlData = NSData.init(contentsOf: videoURL!)
 //
-////      let urlData = NSData.init(contentsOf: videoURL!)
-////
-////      if ((urlData) != nil){
-////        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
-////        let docDirectory = paths[0]
-////        let filePath = "\(docDirectory)/tmpVideo.mov"
-////        urlData?.write(toFile: filePath, atomically: true)
-////        DispatchQueue.main.async {
-////          SVProgressHUD.dismiss()
-////          self.videoSaved = filePath
-////          completion(true, filePath)
-////        }
-////      } else {
-////        DispatchQueue.main.async {
-////          SVProgressHUD.dismiss()
-////          self.showAlert(message: "Unable to get video")
-////          return
-////        }
-////      }
-////    }
-//  }
+//      if ((urlData) != nil){
+//        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+//        let docDirectory = paths[0]
+//        let filePath = "\(docDirectory)/tmpVideo.mov"
+//        urlData?.write(toFile: filePath, atomically: true)
+//        DispatchQueue.main.async {
+//          SVProgressHUD.dismiss()
+//          self.videoSaved = filePath
+//          completion(true, filePath)
+//        }
+//      } else {
+//        DispatchQueue.main.async {
+//          SVProgressHUD.dismiss()
+//          self.showAlert(message: "Unable to get video")
+//          return
+//        }
+//      }
+//    }
+  }
     
   func shareVideo(_ url : String) {
-//      // file saved
-//    let filePath = saveVideoToPath(url)
-//    saveVideoToPath(url) { (result, filePath) in
-//      let videoLink = NSURL(fileURLWithPath: filePath)
-//      let message = self.textSingleComment.text ?? ""
-//      let objectsToShare = [videoLink, message] as [Any] //comment!, imageData!, myWebsite!]
-//      let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
-//
-//      activityVC.setValue("Video", forKey: "subject")
-//      self.excludeshareExtensions(activityVC)
-//      self.present(activityVC, animated: true, completion: nil)
-//    }
+      // file saved
+    let filePath = saveVideoToPath(url)
+    saveVideoToPath(url) { (result, filePath) in
+      let videoLink = NSURL(fileURLWithPath: filePath)
+      let message = self.textSingleComment.text ?? ""
+      let objectsToShare = [videoLink, message] as [Any] //comment!, imageData!, myWebsite!]
+      let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+
+      activityVC.setValue("Video", forKey: "subject")
+      self.excludeshareExtensions(activityVC)
+      self.present(activityVC, animated: true, completion: nil)
+    }
     }
     
     
