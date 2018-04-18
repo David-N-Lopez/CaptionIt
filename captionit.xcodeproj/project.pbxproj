@@ -39,6 +39,7 @@
 		48B062BE2027844F0045400A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 48B062BD2027844F0045400A /* GoogleService-Info.plist */; };
 		52B6CC1C2072C43700945942 /* CaptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B6CC1A2072C43600945942 /* CaptionCell.swift */; };
 		52B6CC1D2072C43700945942 /* JudgementVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B6CC1B2072C43700945942 /* JudgementVC.swift */; };
+		9F0E65F020878AF000A4365B /* PushNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0E65EF20878AF000A4365B /* PushNotificationManager.swift */; };
 		9F1315DD208344B8005E1571 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1315DC208344B8005E1571 /* Group.swift */; };
 		9F232C21207381BB00C438A5 /* ResultVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F232C20207381BB00C438A5 /* ResultVC.swift */; };
 		9F232C232073837300C438A5 /* ResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F232C222073837300C438A5 /* ResultCell.swift */; };
@@ -125,6 +126,7 @@
 		66477E30E7D502DFDCA04972 /* Pods-CaptionItTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaptionItTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CaptionItTests/Pods-CaptionItTests.debug.xcconfig"; sourceTree = "<group>"; };
 		7026546AF55B443CE276CE2B /* Pods-CaptionItTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaptionItTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CaptionItTests/Pods-CaptionItTests.release.xcconfig"; sourceTree = "<group>"; };
 		9F0E65EE2087637A00A4365B /* CaptionIt.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CaptionIt.entitlements; sourceTree = "<group>"; };
+		9F0E65EF20878AF000A4365B /* PushNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationManager.swift; sourceTree = "<group>"; };
 		9F1315DC208344B8005E1571 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Group.swift; path = captionit/Group.swift; sourceTree = SOURCE_ROOT; };
 		9F232C20207381BB00C438A5 /* ResultVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultVC.swift; sourceTree = "<group>"; };
 		9F232C222073837300C438A5 /* ResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultCell.swift; sourceTree = "<group>"; };
@@ -258,6 +260,7 @@
 				C8825BB41FD10B9200089E7A /* Room.swift */,
 				C8825BB61FD10BBD00089E7A /* Game.swift */,
 				9F1315DC208344B8005E1571 /* Group.swift */,
+				9F0E65EF20878AF000A4365B /* PushNotificationManager.swift */,
 				37707CA8203A077600143D6E /* PhotoViewController.swift */,
 				37707CA7203A077500143D6E /* SwiftyRecordButton.swift */,
 				37707CA9203A077700143D6E /* VideoViewController.swift */,
@@ -605,6 +608,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-CaptionIt/Pods-CaptionIt-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
@@ -616,6 +620,7 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
@@ -673,6 +678,7 @@
 				B2B1B0D62026D0FF00FD2A51 /* Utility.swift in Sources */,
 				331418041FB16BF40059F494 /* ViewController.swift in Sources */,
 				37707CA4203A069A00143D6E /* SwiftyCamViewController.swift in Sources */,
+				9F0E65F020878AF000A4365B /* PushNotificationManager.swift in Sources */,
 				37707CA6203A069A00143D6E /* PreviewView.swift in Sources */,
 				C8825BB71FD10BBD00089E7A /* Game.swift in Sources */,
 				52B6CC1C2072C43700945942 /* CaptionCell.swift in Sources */,

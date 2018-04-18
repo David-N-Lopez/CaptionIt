@@ -58,7 +58,9 @@ class RegisterViewController: UIViewController {
             Users.registerUser(username: usernameTextField.text!, email: emailTextField.text!, password: passwordTextField.text!, callback: { (success, user, error) in
                 self.dismissProgressHUD()
                 if(success) {
-//                    self.dismiss(animated: true, completion: nil)
+                  if let id = getUserId() {
+                    ref.child("Users").child(id).child("token").setValue(Group.singleton.token)
+                  }
                   AppDelegate.sharedDelegate.moveToEnterRoom(index: 0)
                 }
                 else {

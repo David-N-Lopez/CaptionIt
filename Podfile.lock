@@ -1,4 +1,5 @@
 PODS:
+  - Alamofire (4.7.0)
   - Firebase/Auth (4.11.0):
     - Firebase/Core
     - FirebaseAuth (= 4.5.0)
@@ -68,6 +69,7 @@ PODS:
   - SVProgressHUD (2.2.1)
 
 DEPENDENCIES:
+  - Alamofire (~> 4.7)
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
@@ -78,6 +80,7 @@ DEPENDENCIES:
   - SVProgressHUD
 
 SPEC CHECKSUMS:
+  Alamofire: 907e0a98eb68cdb7f9d1f541a563d6ac5dc77b25
   Firebase: cc13dfab1038c8b45d7903e01fc690451d6d0b24
   FirebaseAnalytics: 3dfae28d4a5e06f86c4fae830efc2ad3fadb19bc
   FirebaseAuth: 147bf340a0706b44ca1753d6b41ebafd9687cfe6
@@ -95,6 +98,6 @@ SPEC CHECKSUMS:
   SDWebImage: de4d90b5bff3571eae7bd16202b1f43135409fa5
   SVProgressHUD: db27c54e6e18bc903341661fc9feb55e04905cc4
 
-PODFILE CHECKSUM: 63eb8379042e39ab62d7dbc468e408b556ab6b14
+PODFILE CHECKSUM: ec25c9a9fbf7e771fb4ceb268af581fcda083a2d
 
 COCOAPODS: 1.4.0

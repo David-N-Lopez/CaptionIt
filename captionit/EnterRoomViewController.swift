@@ -39,6 +39,7 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
         if startGame == true {
           //          self.performSegue(withIdentifier: "gameIsOn!", sender: Any?.self)
           self.gameStartRef?.removeAllObservers()
+          Group.singleton.users = self.users
           let controller = self.storyboard?.instantiateViewController(withIdentifier: "CaptioningVC") as! CaptioningVC
           controller.curPin = self.curPin
           self.navigationController?.pushViewController(controller, animated: true)
@@ -153,7 +154,9 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
   @IBAction func startGame() { //works now
     if (self.countPlayersReady() == users.count && self.countPlayersReady() >= 2){
       gameStartRef?.removeAllObservers()
+      Group.singleton.users = users
       gameStartRef?.setValue(true)
+      Group.singleton.sendNotification("Game Started")
       let controller = self.storyboard?.instantiateViewController(withIdentifier: "CaptioningVC") as! CaptioningVC
       controller.curPin = curPin
       self.navigationController?.pushViewController(controller, animated: true)

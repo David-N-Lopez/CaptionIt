@@ -20,6 +20,8 @@ class Group: NSObject {
   var handle: UInt = 0
   var playersRef: DatabaseReference?
   var gameTimer: Timer!
+  var users = [Any]()
+  var token = ""
   
   func observeAnyoneLeftGame(_ groupPin: String) {
     curPin = groupPin
@@ -47,7 +49,7 @@ class Group: NSObject {
   func runTimedCode() {
     stopTimer()
     NotificationCenter.default.post(name: NSNotification.Name(rawValue: errorOccured), object: nil)
-   let currentId = Auth.auth().currentUser?.uid
+    let currentId = Auth.auth().currentUser?.uid
     ref.child("rooms").child(curPin).child("players").child(currentId!).removeValue()
   }
   
@@ -56,6 +58,29 @@ class Group: NSObject {
     if gameTimer != nil {
       gameTimer.invalidate()
     }
+  }
+  
+  func sendNotification(_ message: String) {
+    for user in users {
+      if let userDic = user as? [String : Any] {
+        let id = userDic["ID"] as! String
+        if id != getUserId() {
+          ref.child("Users").child(id).child("token").observeSingleEvent(of: .value, with: { (snapshot) in
+            if let token = snapshot.value as? String {
+              PushNotificationManager.sendNotificationToDevice(deviceToken: token, gameID: self.curPin, taskMessage: message)
+            }
+          })
+        }
+      }
+    }
+  }
+  
+  func sendNotificationToJudge(_ judgeId: String, _ message: String) {
+    ref.child("Users").child(judgeId).child("token").observeSingleEvent(of: .value, with: { (snapshot) in
+      if let token = snapshot.value as? String {
+        PushNotificationManager.sendNotificationToDevice(deviceToken: token, gameID: self.curPin, taskMessage: message)
+      }
+    })
   }
   
 }

@@ -14,6 +14,7 @@ target 'CaptionIt' do
   pod 'SVProgressHUD'
   pod 'SDWebImage', '~> 4.0'
   pod 'IQKeyboardManagerSwift'
+  pod 'Alamofire', '~> 4.7'
 
   target 'CaptionItTests' do
     inherit! :search_paths

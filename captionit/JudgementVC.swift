@@ -63,7 +63,7 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     hasBeenJudgeRef = ref.child("rooms").child(groupId).child("players").child(judgeName).child("hasBeenJudge")
     winnerRef = ref.child("rooms").child(groupId).child("comments").child(judgeName).child("winner")
     readyNextRoundRef = ref.child("rooms").child(groupId).child("readyPlayers")
-    readyNextRoundRef?.child(currentUserId!).setValue(false)
+//    readyNextRoundRef?.child(currentUserId!).setValue(false)
     getUserName(judgeID, "Default user") { (name) in
       self.strJudgeName = name
       if Auth.auth().currentUser?.uid == self.judgeID {
@@ -137,9 +137,16 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
           let comment = self.usersComments[0] as! [String : Any]
           self.textSingleComment.text = comment["comment"] as? String
         }
-        if self.totalUser - 1 == self.usersComments.count {
+        if self.totalUser - 1 == self.usersComments.count && self.gameWinnerID.count == 0 {
           Group.singleton.stopTimer()
           Group.singleton.startTime()
+          var id = self.getUserID(0)
+          if id == self.judgeID {
+            id = self.getUserID(1)
+          }
+          if id == getUserId() {
+            Group.singleton.sendNotificationToJudge(self.judgeID, "Select Caption")
+          }
           self.textReadyUsers.text = "Wait for \(self.strJudgeName) to pick funniest meme!"
         } else {
           self.updateNumberOfUsersCommented()
@@ -150,6 +157,11 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     })
   }
   
+  func getUserID(_ at: Int) -> String {
+    let userDic = self.usersComments[0] as? [String: Any]
+    let id = userDic!["id"] as? String
+    return id!
+  }
   
   func updateMemeMedia() {
     if mediaType == 1 {
@@ -320,6 +332,7 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
   }
   @IBAction func setImage(_ sender: Any) {
     if currentCommentIndex  >= 0 && currentCommentIndex < usersComments.count {
+      Group.singleton.sendNotification("The judge has finished judging")
     self.rewardPlayerAction(currentCommentIndex)
     }
   }
@@ -341,11 +354,16 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     readyNextRoundRef?.observe(.value, with: { (snapshot) in
       if let readyPlayers = snapshot.value as? [String:Bool] {
         let allKeys = (readyPlayers as NSDictionary).allKeys as! [String]
-        for key in allKeys {
-          if readyPlayers[key] == false {
+        print("Current \(self.currentUserId!)")
+        print("All Keys Found \(allKeys)")
+        if allKeys.count != self.totalUser {
             return
           }
+        let id = allKeys[0]
+        if id == getUserId() {
+          Group.singleton.sendNotification("Next Round Started")
         }
+        self.readyNextRoundRef?.removeValue()
         self.hasBeenJudgeRef?.setValue(true)
       }
     })
