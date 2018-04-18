@@ -37,6 +37,8 @@
 		48B062BB2026BAA90045400A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48B062B72026BAA90045400A /* LaunchScreen.storyboard */; };
 		48B062BC2026BAA90045400A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48B062B92026BAA90045400A /* Main.storyboard */; };
 		48B062BE2027844F0045400A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 48B062BD2027844F0045400A /* GoogleService-Info.plist */; };
+		525069652087690D00A1F750 /* Glimpse.m in Sources */ = {isa = PBXBuildFile; fileRef = 525069602087690D00A1F750 /* Glimpse.m */; };
+		525069662087690D00A1F750 /* GlimpseAssetWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 525069612087690D00A1F750 /* GlimpseAssetWriter.m */; };
 		52B6CC1C2072C43700945942 /* CaptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B6CC1A2072C43600945942 /* CaptionCell.swift */; };
 		52B6CC1D2072C43700945942 /* JudgementVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B6CC1B2072C43700945942 /* JudgementVC.swift */; };
 		9F0E65F020878AF000A4365B /* PushNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0E65EF20878AF000A4365B /* PushNotificationManager.swift */; };
@@ -80,6 +82,13 @@
 			remoteGlobalIDString = 331417FD1FB16BF30059F494;
 			remoteInfo = CaptionIt;
 		};
+		525069632087690D00A1F750 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 525069592087690D00A1F750 /* Glimpse.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 08F243751700928300DFFB78;
+			remoteInfo = Glimpse;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -121,6 +130,13 @@
 		48B062B82026BAA90045400A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = CaptionIt/Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		48B062BA2026BAA90045400A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = CaptionIt/Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		48B062BD2027844F0045400A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		525069592087690D00A1F750 /* Glimpse.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = Glimpse.xcodeproj; sourceTree = "<group>"; };
+		5250695D2087690D00A1F750 /* Glimpse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Glimpse.h; sourceTree = "<group>"; };
+		5250695E2087690D00A1F750 /* GlimpseAssetWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlimpseAssetWriter.h; sourceTree = "<group>"; };
+		5250695F2087690D00A1F750 /* Glimpse-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Glimpse-Prefix.pch"; sourceTree = "<group>"; };
+		525069602087690D00A1F750 /* Glimpse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Glimpse.m; sourceTree = "<group>"; };
+		525069612087690D00A1F750 /* GlimpseAssetWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlimpseAssetWriter.m; sourceTree = "<group>"; };
+		52A282F0208772E30018EB65 /* CaptionIt-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CaptionIt-Bridging-Header.h"; sourceTree = "<group>"; };
 		52B6CC1A2072C43600945942 /* CaptionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CaptionCell.swift; sourceTree = "<group>"; };
 		52B6CC1B2072C43700945942 /* JudgementVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JudgementVC.swift; sourceTree = "<group>"; };
 		66477E30E7D502DFDCA04972 /* Pods-CaptionItTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaptionItTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CaptionItTests/Pods-CaptionItTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -267,6 +283,7 @@
 				C8825BB81FD10C2C00089E7A /* User.swift */,
 				C8825BBA1FD10CF800089E7A /* Functions_Extensions.swift */,
 				373A6B202038096000378AC1 /* SwiftyCamVC.swift */,
+				52A282F0208772E30018EB65 /* CaptionIt-Bridging-Header.h */,
 			);
 			path = CaptionIt;
 			sourceTree = "<group>";
@@ -300,6 +317,35 @@
 			path = SwiftyCam;
 			sourceTree = "<group>";
 		};
+		525069582087690D00A1F750 /* Glimpse */ = {
+			isa = PBXGroup;
+			children = (
+				525069592087690D00A1F750 /* Glimpse.xcodeproj */,
+				5250695C2087690D00A1F750 /* Glimpse */,
+			);
+			path = Glimpse;
+			sourceTree = "<group>";
+		};
+		5250695A2087690D00A1F750 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				525069642087690D00A1F750 /* libGlimpse.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5250695C2087690D00A1F750 /* Glimpse */ = {
+			isa = PBXGroup;
+			children = (
+				5250695D2087690D00A1F750 /* Glimpse.h */,
+				5250695E2087690D00A1F750 /* GlimpseAssetWriter.h */,
+				5250695F2087690D00A1F750 /* Glimpse-Prefix.pch */,
+				525069602087690D00A1F750 /* Glimpse.m */,
+				525069612087690D00A1F750 /* GlimpseAssetWriter.m */,
+			);
+			path = Glimpse;
+			sourceTree = "<group>";
+		};
 		B2B1B0C92026CB2900FD2A51 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -330,6 +376,7 @@
 		B2B1B0D42026D0F000FD2A51 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				525069582087690D00A1F750 /* Glimpse */,
 				B2B1B0D52026D0FF00FD2A51 /* Utility.swift */,
 			);
 			path = Utility;
@@ -442,7 +489,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 331417F91FB16BF30059F494 /* Build configuration list for PBXProject "captionit" */;
+			buildConfigurationList = 331417F91FB16BF30059F494 /* Build configuration list for PBXProject "CaptionIt" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -453,6 +500,12 @@
 			mainGroup = 331417F51FB16BF30059F494;
 			productRefGroup = 331417FF1FB16BF30059F494 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 5250695A2087690D00A1F750 /* Products */;
+					ProjectRef = 525069592087690D00A1F750 /* Glimpse.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				331417FD1FB16BF30059F494 /* CaptionIt */,
@@ -461,6 +514,16 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		525069642087690D00A1F750 /* libGlimpse.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libGlimpse.a;
+			remoteRef = 525069632087690D00A1F750 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		331417FC1FB16BF30059F494 /* Resources */ = {
@@ -673,6 +736,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F1315DD208344B8005E1571 /* Group.swift in Sources */,
+				525069652087690D00A1F750 /* Glimpse.m in Sources */,
 				9F28D3C2207F83F3008E69A1 /* UIViewExtension.swift in Sources */,
 				37707CAA203A077900143D6E /* SwiftyRecordButton.swift in Sources */,
 				B2B1B0D62026D0FF00FD2A51 /* Utility.swift in Sources */,
@@ -705,6 +769,7 @@
 				52B6CC1D2072C43700945942 /* JudgementVC.swift in Sources */,
 				C8825BBD1FD26DC600089E7A /* MemePickerVC.swift in Sources */,
 				37C91AAC20828292004B15C1 /* resetPasswordVC.swift in Sources */,
+				525069662087690D00A1F750 /* GlimpseAssetWriter.m in Sources */,
 				37707CA5203A069A00143D6E /* SwiftyCamButton.swift in Sources */,
 				9F232C232073837300C438A5 /* ResultCell.swift in Sources */,
 				B2B1B0CE2026CE4D00FD2A51 /* LoginViewController.swift in Sources */,
@@ -869,6 +934,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.CaptionIt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "CaptionIt/CaptionIt-Bridging-Header.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -885,6 +952,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.CaptionIt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "CaptionIt/CaptionIt-Bridging-Header.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -950,7 +1019,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		331417F91FB16BF30059F494 /* Build configuration list for PBXProject "captionit" */ = {
+		331417F91FB16BF30059F494 /* Build configuration list for PBXProject "CaptionIt" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				331418241FB16BF40059F494 /* Debug */,

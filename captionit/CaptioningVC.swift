@@ -28,6 +28,8 @@ class CaptioningVC: UIViewController, UITextViewDelegate{
   var round = 0
   var totalUser = 0
   var isJudge = false
+    
+    
   override func viewDidLoad() {
     super.viewDidLoad()
     Group.singleton.observeAnyoneLeftGame(curPin!)
@@ -123,8 +125,7 @@ class CaptioningVC: UIViewController, UITextViewDelegate{
     
   }
   
-  private func playVideo(from url:URL) {
-    
+    private func playVideo(from url:URL){
     player = AVPlayer(url: url)
     SVProgressHUD.show()
     let playerLayer = AVPlayerLayer(player: player)
@@ -145,6 +146,7 @@ class CaptioningVC: UIViewController, UITextViewDelegate{
   
   @objc fileprivate func playerItemDidReachEnd(_ notification: Notification) {
     if self.player != nil {
+     
       self.player!.seek(to: kCMTimeZero)
       self.player!.play()
     }
