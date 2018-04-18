@@ -39,7 +39,7 @@ class Group: NSObject {
   }
   
   func startTime() {
-    gameTimer = Timer.scheduledTimer(timeInterval: 300, target: self, selector: #selector(runTimedCode), userInfo: nil, repeats: false)
+    gameTimer = Timer.scheduledTimer(timeInterval: 500, target: self, selector: #selector(runTimedCode), userInfo: nil, repeats: false)
   }
   
   func stopTimer() {

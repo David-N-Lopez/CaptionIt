@@ -28,8 +28,8 @@ class CaptioningVC: UIViewController, UITextViewDelegate{
   var round = 0
   var totalUser = 0
   var isJudge = false
-    
-    
+  var playerLayer : AVPlayerLayer?
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     Group.singleton.observeAnyoneLeftGame(curPin!)
@@ -129,10 +129,10 @@ class CaptioningVC: UIViewController, UITextViewDelegate{
     private func playVideo(from url:URL){
     player = AVPlayer(url: url)
     SVProgressHUD.show()
-    let playerLayer = AVPlayerLayer(player: player)
-    playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
-    playerLayer.frame = self.meme.frame
-    self.view.layer.addSublayer(playerLayer)
+    playerLayer = AVPlayerLayer(player: player)
+      playerLayer?.videoGravity = AVLayerVideoGravityResizeAspectFill
+      playerLayer?.frame = self.meme.frame
+      self.view.layer.addSublayer(playerLayer!)
     player?.play()
     NotificationCenter.default.addObserver(self, selector: #selector(playerItemDidReachEnd), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: self.player!.currentItem)
     player?.currentItem!.addObserver(self, forKeyPath: "status", options: NSKeyValueObservingOptions(), context: nil)
@@ -186,6 +186,9 @@ class CaptioningVC: UIViewController, UITextViewDelegate{
       player?.currentItem!.removeObserver(self, forKeyPath: "status")
     }
     NotificationCenter.default.removeObserver(self)
+    if playerLayer != nil {
+      playerLayer?.removeFromSuperlayer()
+    }
   }
   //leaveCaptioningSegue
   @IBAction func actionLeaveGame(_ sender : Any) {
