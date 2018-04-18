@@ -183,10 +183,9 @@ class CaptioningVC: UIViewController, UITextViewDelegate{
     }
     NotificationCenter.default.removeObserver(self)
   }
-  
   //leaveCaptioningSegue
   @IBAction func actionLeaveGame(_ sender : Any) {
-    let controller = UIAlertController(title: "CaptionIt!", message: "Are you sure you want to Leave?", preferredStyle: .alert)
+    let controller = UIAlertController(title: "The game is still in progress!", message: "Are you sure you want to leave? if you leave, your friends will no longer be able to keep on playing", preferredStyle: .alert)
     let leave = UIAlertAction(title: "Leave", style: .default) { (action) in
       let currentUser = Auth.auth().currentUser?.uid
       ref.child("rooms").child(self.curPin!).child("players").child(currentUser!).removeValue()
@@ -198,7 +197,7 @@ class CaptioningVC: UIViewController, UITextViewDelegate{
   }
   
   func alertErroOccured() {
-    let controller = UIAlertController(title: "Error", message: "Something went wrong", preferredStyle: .alert)
+    let controller = UIAlertController(title: "Error: Something went wrong", message: "One of your friends unexpectedly left the game.", preferredStyle: .alert)
     let action = UIAlertAction(title: "Ok", style: .cancel) { (action) in
       self.navigationController?.popToRootViewController(animated: true)
 //      self.performSegue(withIdentifier: "leaveCaptioningSegue", sender: self)

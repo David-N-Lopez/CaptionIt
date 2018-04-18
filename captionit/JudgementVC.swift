@@ -392,7 +392,7 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
   }
   
   func alertErroOccured() {
-    let controller = UIAlertController(title: "Error", message: "Something went wrong", preferredStyle: .alert)
+    let controller = UIAlertController(title: "Error: something went wrong.", message: "One of your friends unexpectedly left the game.", preferredStyle: .alert)
     let action = UIAlertAction(title: "Ok", style: .cancel) { (action) in
 //      self.performSegue(withIdentifier: "leave_Segue", sender: self)
       self.navigationController?.popToRootViewController(animated: true)
@@ -402,7 +402,7 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
   }
   
     @IBAction func leave(_ sender: Any){
-      let controller = UIAlertController(title: "CaptionIt!", message: "Are you sure you want to Leave?", preferredStyle: .alert)
+      let controller = UIAlertController(title: "The game is still in progress!", message: "Are you sure you want to leave? if you leave, your friends will no longer be able to keep on playing", preferredStyle: .alert)
       let leave = UIAlertAction(title: "Leave", style: .default) { (action) in
         let currentUser = Auth.auth().currentUser?.uid
         ref.child("rooms").child(self.groupId).child("players").child(currentUser!).removeValue()

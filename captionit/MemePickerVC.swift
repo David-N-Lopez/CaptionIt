@@ -30,7 +30,7 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     @IBAction func submit(_ sender: UIButton) {
         print("start")
       SVProgressHUD.show()
-        if (myImageView.image != nil || previewVideo != nil ){
+        if (myImageView.image != nil || previewVideo != nil || myImageView != #imageLiteral(resourceName: "pizza-pama")){
             let currentPlayer = getCurrentPlayer()
             let image = myImageView.image
             var data =  NSData()
@@ -71,6 +71,13 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
                     }
                     
                 }}
+        if (myImageView == #imageLiteral(resourceName: "pizza-pama")){
+            let alert = UIAlertController(title: "Please pick a meme", message: "We know pizza pama is beautiful, but please don't use it as a meme.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok!", style: .cancel, handler: nil))
+            self.present(alert, animated: true)
+
+            
+        }
     }
      
     override func viewDidLoad() {
@@ -121,16 +128,16 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
 
     @IBAction func selectPhotoButtonTapped(_ sender: UIButton) {
 
-        let alert = UIAlertController(title: "Where do you want to get your meme from?", message: "You can take footage rn or grab some from your cameraroll, you decide.", preferredStyle: .alert)
+        let alert = UIAlertController(title: "How will you make your meme?", message: "You can take an image/video with our Meme Cam or grab one from your Camera Roll.", preferredStyle: .alert)
         
-        alert.addAction(UIAlertAction(title: "CameraRoll", style: .default, handler: { action in
-            self.selectPicture()
-        }))
-        alert.addAction(UIAlertAction(title: "Make Your Meme", style: .default, handler: { action in
+        alert.addAction(UIAlertAction(title: "Meme Cam", style: .default, handler: { action in
 //            self.performSegue(withIdentifier: "SwiftyCam", sender: self)
           let controller = self.storyboard?.instantiateViewController(withIdentifier: "camController") as! camController
           controller.curPin = self.curPin
           self.navigationController?.pushViewController(controller, animated: true)
+        }))
+        alert.addAction(UIAlertAction(title: "Camera Roll", style: .default, handler: { action in
+            self.selectPicture()
         }))
 
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))

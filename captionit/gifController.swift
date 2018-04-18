@@ -304,7 +304,7 @@ extension UIImage {
         
         
         
-        let animation = UIImage.animatedImage(with: frames, duration: Double(duration) / 5000.0)
+        let animation = UIImage.animatedImage(with: frames, duration: Double(duration) / 3000.0)
         
         
         

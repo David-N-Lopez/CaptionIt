@@ -417,7 +417,7 @@
 				TargetAttributes = {
 					331417FD1FB16BF30059F494 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = JKC7JRHQH5;
+						DevelopmentTeam = 3UZ3KPNXVC;
 						ProvisioningStyle = Automatic;
 					};
 					331418111FB16BF40059F494 = {
@@ -848,7 +848,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				DEVELOPMENT_TEAM = JKC7JRHQH5;
+				DEVELOPMENT_TEAM = 3UZ3KPNXVC;
 				INFOPLIST_FILE = CaptionIt/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.CaptionIt;
@@ -863,7 +863,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				DEVELOPMENT_TEAM = JKC7JRHQH5;
+				DEVELOPMENT_TEAM = 3UZ3KPNXVC;
 				INFOPLIST_FILE = CaptionIt/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.CaptionIt;

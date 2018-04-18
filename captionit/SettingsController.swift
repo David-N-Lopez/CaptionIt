@@ -79,7 +79,7 @@ class SettingsController: UIViewController, UITextFieldDelegate {
     }
      
     @IBAction func logoutButtonTapped(_ sender: Any) {
-      let controller = UIAlertController(title: "CaptionIt!", message: "Are you sure you want to Logout?", preferredStyle: .alert)
+      let controller = UIAlertController(title: "Wait!", message: "Are you sure you want to Logout?", preferredStyle: .alert)
       let leave = UIAlertAction(title: "Logout", style: .default) { (action) in
         do {
           try Auth.auth().signOut()
