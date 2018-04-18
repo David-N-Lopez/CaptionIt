@@ -189,5 +189,9 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
       previewImage = newImage
         dismiss(animated: true)
     }
-
+  
+@IBAction func actionBack(_ sender: UIButton) {
+  self.navigationController?.popViewController(animated: true)
+  
+  }
 }

@@ -102,12 +102,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if(Auth.auth().currentUser == nil) {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
-                let viewController = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
-                self.present(viewController, animated: true, completion: nil)
-            })
-        }
+       pinText.text = nil
     }
     
     override func didReceiveMemoryWarning() {
@@ -134,10 +129,25 @@ class ViewController: UIViewController, UITextFieldDelegate {
      
  
     */
+  
+  func sendInvites() {
+    let id = "id1277137775"
+    if let name = NSURL(string: "https://itunes.apple.com/us/app/myapp/\(id)?ls=1&mt=8") {
+      let textToShare = "Hey, Lets play onlne caption game. Download application"
+      let objectsToShare = [name,textToShare] as [Any]
+      let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+      
+      self.present(activityVC, animated: true, completion: nil)
+    }
+    else
+    {
+      // show alert for not available
+      showAlert(message: "Application not available")
+    }
+  }
 
   @IBAction func actionInviteFriend(_ sender: UIButton) {
-    let controller = self.storyboard?.instantiateViewController(withIdentifier: "InviteViewController") as! InviteViewController
-    self.navigationController?.pushViewController(controller, animated: true)
+        sendInvites()
   }
   
     @IBAction func unwindSegueToMainVC(_ sender:UIStoryboardSegue) { }

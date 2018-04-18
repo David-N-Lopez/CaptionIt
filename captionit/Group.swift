@@ -31,6 +31,7 @@ class Group: NSObject {
         print("observer notification sent")
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: errorOccured), object: nil)
         self.playersRef?.removeObserver(withHandle: self.handle)
+        ref.child("rooms").child(groupPin).removeValue()
       }
     })
   }
@@ -52,7 +53,9 @@ class Group: NSObject {
   
   func removeErrorObservers() {
     self.playersRef?.removeObserver(withHandle: self.handle)
-    gameTimer.invalidate()
+    if gameTimer != nil {
+      gameTimer.invalidate()
+    }
   }
   
 }
