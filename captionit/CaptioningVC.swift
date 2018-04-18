@@ -41,6 +41,7 @@ class CaptioningVC: UIViewController, UITextViewDelegate{
   }
   
   override func viewWillAppear(_ animated: Bool) {
+    myTextField.text = nil
     setJudge()
     Group.singleton.startTime()
     NotificationCenter.default.addObserver(
@@ -180,8 +181,9 @@ class CaptioningVC: UIViewController, UITextViewDelegate{
   }
   
   override func viewWillDisappear(_ animated: Bool) {
+    
     if self.isJudge == false {
-    player?.currentItem!.removeObserver(self, forKeyPath: "status")
+      player?.currentItem!.removeObserver(self, forKeyPath: "status")
     }
     NotificationCenter.default.removeObserver(self)
   }
