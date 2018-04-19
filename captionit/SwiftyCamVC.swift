@@ -33,7 +33,7 @@ class camController: SwiftyCamViewController, SwiftyCamViewControllerDelegate {
         shouldUseDeviceOrientation = true
         allowAutoRotate = true
         audioEnabled = true
-        videoQuality = .resolution1920x1080
+        videoQuality = .medium
 
     }
     
@@ -125,6 +125,10 @@ class camController: SwiftyCamViewController, SwiftyCamViewControllerDelegate {
             flashButton.setImage(#imageLiteral(resourceName: "flashOutline"), for: UIControlState())
         }
     }
+  
+  @IBAction func actionBack(_ sender: Any) {
+    self.navigationController?.popViewController(animated: true)
     
+  }
 
 }

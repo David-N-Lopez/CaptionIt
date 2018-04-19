@@ -876,6 +876,17 @@
                                             <action selector="toggleFlashTapped:" destination="550-1v-EdA" eventType="touchUpInside" id="O2l-3V-Z4b"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aVn-H9-zVc">
+                                        <rect key="frame" x="20" y="20" width="45" height="56"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                        <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                        <state key="normal" title="←">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="actionBack:" destination="550-1v-EdA" eventType="touchUpInside" id="Yd8-XA-Lk7"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -884,6 +895,8 @@
                                     <constraint firstItem="gUa-pW-S5P" firstAttribute="centerY" secondItem="nB9-LE-sFV" secondAttribute="centerY" id="Qyz-dr-uLK"/>
                                     <constraint firstItem="nB9-LE-sFV" firstAttribute="leading" secondItem="Fua-X4-em7" secondAttribute="trailing" constant="50" id="crh-QD-Vfm"/>
                                     <constraint firstItem="gUa-pW-S5P" firstAttribute="leading" secondItem="nB9-LE-sFV" secondAttribute="trailing" constant="50" id="j0v-pa-rwb"/>
+                                    <constraint firstItem="aVn-H9-zVc" firstAttribute="top" secondItem="L1x-VW-RnQ" secondAttribute="top" constant="20" id="rBt-LX-XCv"/>
+                                    <constraint firstItem="aVn-H9-zVc" firstAttribute="leading" secondItem="L1x-VW-RnQ" secondAttribute="leading" constant="20" id="uaH-gA-7TO"/>
                                     <constraint firstAttribute="bottom" secondItem="nB9-LE-sFV" secondAttribute="bottom" constant="20" symbolic="YES" id="w6L-ia-at0"/>
                                 </constraints>
                             </view>

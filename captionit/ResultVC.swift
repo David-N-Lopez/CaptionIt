@@ -83,7 +83,7 @@ class ResultVC: UIViewController {
   }
   
   @IBAction func actionFinishGame(_ sender : UIButton) {
-    
+    Group.singleton.deleteMediaForGroup()
     if totalUsers == userScoreViewed {
       ref.child("rooms").child(self.curPin).removeValue(completionBlock: { (error, snapshot) in
         self.navigationController?.popToRootViewController(animated: true)

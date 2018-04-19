@@ -7,8 +7,7 @@
 //
 
 import UIKit
-import FirebaseDatabase
-import FirebaseAuth
+import Firebase
 
 let errorOccured = "errorOccured"
 
@@ -22,6 +21,7 @@ class Group: NSObject {
   var gameTimer: Timer!
   var users = [Any]()
   var token = ""
+  var url = ""
   
   func observeAnyoneLeftGame(_ groupPin: String) {
     curPin = groupPin
@@ -31,6 +31,7 @@ class Group: NSObject {
       
       if let players  = allPlayers.allObjects as? [DataSnapshot]{
         print("observer notification sent")
+        self.deleteMediaForGroup()
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: errorOccured), object: nil)
         self.playersRef?.removeObserver(withHandle: self.handle)
         ref.child("rooms").child(groupPin).removeValue()
@@ -82,5 +83,36 @@ class Group: NSObject {
       }
     })
   }
+  
+ private func firebaseDeleteMedia(_ url : String) {
+    let storage = Storage.storage()
+    let storageRef = storage.reference(forURL: url)
+    //Removes image from storage
+    storageRef.delete { error in
+      if let error = error {
+        print(error)
+      } else {
+        // File deleted successfully
+        
+      }
+    }
+  }
+  
+  func deleteMediaForGroup() {
+    for user in users {
+      if let userDic = user as? [String : Any] {
+        if let url = userDic["memeURL"] as? String {
+        firebaseDeleteMedia(url)
+        }
+      }
+    }
+  }
+  
+  func deleteCurrentUserMedia() {
+    if url.count > 0 {
+      firebaseDeleteMedia(url)
+    }
+  }
+  
   
 }

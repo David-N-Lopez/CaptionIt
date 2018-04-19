@@ -59,6 +59,7 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
                     } else {
                         //try to make it private
                         let outputURL = (metadata?.downloadURL()?.absoluteString)!
+                     Group.singleton.url = outputURL
                       self.ref.child("rooms").child(self.curPin!).child("players").child(getUserId()!).updateChildValues(["memeURL": outputURL, "Ready": true, "mediaType": self.mediaType])
                       if self.pickerGallery {
                         self.navigationController?.popViewController(animated: true)

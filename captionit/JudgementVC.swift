@@ -514,6 +514,7 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     SVProgressHUD.show()
     DispatchQueue.global(qos: .background).async {
       let videoURL = URL(string:url)
+    }
 
 //      let urlData = NSData.init(contentsOf: videoURL!)
 //
@@ -539,7 +540,7 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
   func shareVideo(_ url : String) {
       // file saved
-    let filePath = saveVideoToPath(url)
+//    let filePath = saveVideoToPath(url, completion: nil)
     saveVideoToPath(url) { (result, filePath) in
       let videoLink = NSURL(fileURLWithPath: filePath)
       let message = self.textSingleComment.text ?? ""

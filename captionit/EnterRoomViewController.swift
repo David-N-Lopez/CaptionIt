@@ -26,7 +26,6 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
   override func viewWillAppear(_ animated: Bool) {
     observeStartGame()
     fetchUsers()
-    
   }
   
   override func viewWillDisappear(_ animated: Bool) {
@@ -49,7 +48,6 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
   }
   
   public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    
     return(users.count)
   }
   
@@ -97,6 +95,7 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
           self.users.append(value)
           //
         }
+        
         DispatchQueue.main.async {
           self.tableView.reloadData()
         }
@@ -157,6 +156,7 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
       Group.singleton.users = users
       gameStartRef?.setValue(true)
       Group.singleton.sendNotification("Game Started")
+      Group.singleton.users = self.users
       let controller = self.storyboard?.instantiateViewController(withIdentifier: "CaptioningVC") as! CaptioningVC
       controller.curPin = curPin
       self.navigationController?.pushViewController(controller, animated: true)
@@ -169,6 +169,7 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
   @IBAction func actionBack() {
     let currentUser = Auth.auth().currentUser?.uid
     ref.child("rooms").child(self.curPin).child("players").child(currentUser!).removeValue { (error, reff) in
+      Group.singleton.deleteCurrentUserMedia()
       if self.users.count == 0  {
         self.ref.child("rooms").child(self.curPin).removeValue()
       } else if self.users.count == 1 {
@@ -179,6 +180,5 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
       }
       self.navigationController?.popViewController(animated: true)
     }
-    
   }
 }
