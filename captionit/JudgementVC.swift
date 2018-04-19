@@ -68,6 +68,11 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     saveClicked = false
     oncePlayed = false
     Group.singleton.startTime()
+    if mediaType == 2 {
+      saveVideoToPath(memeURL, completion: { (success, filePath) in
+        self.videoSaved = filePath
+      })
+    }
     hasBeenJudgeRef = ref.child("rooms").child(groupId).child("players").child(judgeName).child("hasBeenJudge")
     winnerRef = ref.child("rooms").child(groupId).child("comments").child(judgeName).child("winner")
     readyNextRoundRef = ref.child("rooms").child(groupId).child("readyPlayers")
@@ -373,6 +378,7 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
       self.navigationController?.pushViewController(controller, animated: true)
     } else {
     readyNextRoundRef?.child(currentUserId!).setValue(true)
+    player?.pause()
     self.viewWaiting.isHidden = false
     }
   }
@@ -464,6 +470,10 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
       UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
       self.showAlert(message: "Your image was successfully saved")
     } else {
+      saveVideoToPath(self.memeURL, completion: { (success, filePath) in
+        UISaveVideoAtPathToSavedPhotosAlbum(filePath, self, nil, nil)
+        self.showAlert(message: "Your video was successfully saved")
+      })
 //        if saveClicked == false{
 //            if oncePlayed == true{
 //                saveClicked = true
@@ -512,30 +522,28 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
       return
     }
     SVProgressHUD.show()
+    let videoURL = URL(string:url)
+    let urlData = NSData.init(contentsOf: videoURL!)
     DispatchQueue.global(qos: .background).async {
-      let videoURL = URL(string:url)
+      if ((urlData) != nil){
+        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
+        let docDirectory = paths[0]
+        let filePath = "\(docDirectory)/tmpVideo.mov"
+        urlData?.write(toFile: filePath, atomically: true)
+        DispatchQueue.main.async {
+          SVProgressHUD.dismiss()
+          self.videoSaved = filePath
+          completion(true, filePath)
+        }
+      } else {
+        DispatchQueue.main.async {
+          SVProgressHUD.dismiss()
+          self.showAlert(message: "Unable to get video")
+          return
+        }
+      }
     }
-
-//      let urlData = NSData.init(contentsOf: videoURL!)
-//
-//      if ((urlData) != nil){
-//        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
-//        let docDirectory = paths[0]
-//        let filePath = "\(docDirectory)/tmpVideo.mov"
-//        urlData?.write(toFile: filePath, atomically: true)
-//        DispatchQueue.main.async {
-//          SVProgressHUD.dismiss()
-//          self.videoSaved = filePath
-//          completion(true, filePath)
-//        }
-//      } else {
-//        DispatchQueue.main.async {
-//          SVProgressHUD.dismiss()
-//          self.showAlert(message: "Unable to get video")
-//          return
-//        }
-//      }
-//    }
+    
   }
     
   func shareVideo(_ url : String) {
@@ -543,8 +551,7 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
 //    let filePath = saveVideoToPath(url, completion: nil)
     saveVideoToPath(url) { (result, filePath) in
       let videoLink = NSURL(fileURLWithPath: filePath)
-      let message = self.textSingleComment.text ?? ""
-      let objectsToShare = [videoLink, message] as [Any] //comment!, imageData!, myWebsite!]
+      let objectsToShare = [videoLink] as [Any] //comment!, imageData!, myWebsite!]
       let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
 
       activityVC.setValue("Video", forKey: "subject")
@@ -558,11 +565,10 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
   func shareImage(_ image : UIImage) {
     // file saved
     //      let filePath = saveVideoToPath(url)
-    let message = self.textSingleComment.text ?? ""
     if mediaData == nil {
     mediaData = UIImageJPEGRepresentation(image, 1)
     }
-    let objectsToShare = [mediaData!, message] as [Any] //comment!, imageData!, myWebsite!]
+    let objectsToShare = [mediaData!] as [Any] //comment!, imageData!, myWebsite!]
       let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
       excludeshareExtensions(activityVC)
       self.present(activityVC, animated: true, completion: nil)

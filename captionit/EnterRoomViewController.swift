@@ -59,7 +59,7 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
       if isReady == false {
         cell.imageView?.image = UIImage.gifImageWithName(name: "pama-loading-screen")
       }
-      else{
+      else {
         let array = [#imageLiteral(resourceName: "bee-pama"),#imageLiteral(resourceName: "cat-pama"),#imageLiteral(resourceName: "NYE-pama"),#imageLiteral(resourceName: "pirate-pama"),#imageLiteral(resourceName: "snow-pama"),#imageLiteral(resourceName: "st-pats-pama(1)")]
         let num = UInt32(array.count)
         let random = Int(arc4random_uniform(num))
