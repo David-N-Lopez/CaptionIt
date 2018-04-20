@@ -18,8 +18,8 @@ extension Int {
         self.init(Int(min + arc4random_uniform(max - min)) - delta)
     }}
 func generatePIN()->String?{
-    let min = Int(pow(Double(10), Double(3))) - 1
-    let max = Int(pow(Double(10), Double(4))) - 1
+    let min = Int(pow(Double(10), Double(4))) - 1
+    let max = Int(pow(Double(10), Double(5))) - 1
     return String(Int(min...max))
 }
 

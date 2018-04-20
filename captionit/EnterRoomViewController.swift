@@ -61,9 +61,7 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
       }
       else {
         let array = [#imageLiteral(resourceName: "bee-pama"),#imageLiteral(resourceName: "cat-pama"),#imageLiteral(resourceName: "NYE-pama"),#imageLiteral(resourceName: "pirate-pama"),#imageLiteral(resourceName: "snow-pama"),#imageLiteral(resourceName: "st-pats-pama(1)")]
-        let num = UInt32(array.count)
-        let random = Int(arc4random_uniform(num))
-        cell.imageView?.image = array[random] //this is applying for all
+        cell.imageView?.image = array[indexPath.row % 6] //this is applying for all
       }
       if let ID = currentUser["ID"] as? String {
         self.getUserName(ID, "Undefined User", { (name) in

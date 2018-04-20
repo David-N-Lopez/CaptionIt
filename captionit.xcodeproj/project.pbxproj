@@ -937,6 +937,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "CaptionIt/CaptionIt-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -955,6 +956,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "CaptionIt/CaptionIt-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

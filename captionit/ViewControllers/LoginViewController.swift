@@ -23,7 +23,7 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
         view.addGestureRecognizer(tap)
-//        blinkingGif.image = UIImage.gifImageWithName(name: "blinking-pama")
+        blinkingGif.image = UIImage.gifImageWithName(name: "blinking-pama")
         // Do any additional setup after loading the view.
         
     }
