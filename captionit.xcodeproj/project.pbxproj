@@ -49,6 +49,7 @@
 		9F47F0ED20851963007E8E36 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F47F0EC20851963007E8E36 /* UIImageExtension.swift */; };
 		9F707DFC2072B68A00C2D9B5 /* WaitingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F707DFB2072B68900C2D9B5 /* WaitingViewController.swift */; };
 		9FCA95162085E33B004C1ECD /* InviteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FCA95152085E33B004C1ECD /* InviteViewController.swift */; };
+		9FEBFED22089E38800022F4F /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEBFED12089E38800022F4F /* Constant.swift */; };
 		AE8C4BDE20749618004529C1 /* SourceCodePro-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AE8C4BDD20745EF1004529C1 /* SourceCodePro-Black.ttf */; };
 		AE8C4BDF2074961B004529C1 /* SourceCodePro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AE8C4BDB20745EF1004529C1 /* SourceCodePro-Bold.ttf */; };
 		AE8C4BE02074961E004529C1 /* SourceSansPro-It.otf in Resources */ = {isa = PBXBuildFile; fileRef = AE8C4BDA20745EF1004529C1 /* SourceSansPro-It.otf */; };
@@ -150,6 +151,7 @@
 		9F47F0EC20851963007E8E36 /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIImageExtension.swift; path = captionit/Extension/UIImageExtension.swift; sourceTree = SOURCE_ROOT; };
 		9F707DFB2072B68900C2D9B5 /* WaitingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WaitingViewController.swift; path = captionit/WaitingViewController.swift; sourceTree = SOURCE_ROOT; };
 		9FCA95152085E33B004C1ECD /* InviteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = InviteViewController.swift; path = captionit/InviteViewController.swift; sourceTree = SOURCE_ROOT; };
+		9FEBFED12089E38800022F4F /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Constant.swift; path = captionit/Constant.swift; sourceTree = SOURCE_ROOT; };
 		AE8C4BDA20745EF1004529C1 /* SourceSansPro-It.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SourceSansPro-It.otf"; path = "captionit/SourceSansPro-It.otf"; sourceTree = SOURCE_ROOT; };
 		AE8C4BDB20745EF1004529C1 /* SourceCodePro-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SourceCodePro-Bold.ttf"; path = "captionit/SourceCodePro-Bold.ttf"; sourceTree = SOURCE_ROOT; };
 		AE8C4BDC20745EF1004529C1 /* SourceSansPro-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SourceSansPro-Regular.otf"; path = "captionit/SourceSansPro-Regular.otf"; sourceTree = SOURCE_ROOT; };
@@ -273,6 +275,7 @@
 				37112041207177E300295A63 /* Assets.xcassets */,
 				3314180D1FB16BF40059F494 /* Info.plist */,
 				338756821FC3E7A800C78256 /* Player.swift */,
+				9FEBFED12089E38800022F4F /* Constant.swift */,
 				C8825BB41FD10B9200089E7A /* Room.swift */,
 				C8825BB61FD10BBD00089E7A /* Game.swift */,
 				9F1315DC208344B8005E1571 /* Group.swift */,
@@ -489,7 +492,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 331417F91FB16BF30059F494 /* Build configuration list for PBXProject "CaptionIt" */;
+			buildConfigurationList = 331417F91FB16BF30059F494 /* Build configuration list for PBXProject "captionit" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -770,6 +773,7 @@
 				C8825BBD1FD26DC600089E7A /* MemePickerVC.swift in Sources */,
 				37C91AAC20828292004B15C1 /* resetPasswordVC.swift in Sources */,
 				525069662087690D00A1F750 /* GlimpseAssetWriter.m in Sources */,
+				9FEBFED22089E38800022F4F /* Constant.swift in Sources */,
 				37707CA5203A069A00143D6E /* SwiftyCamButton.swift in Sources */,
 				9F232C232073837300C438A5 /* ResultCell.swift in Sources */,
 				B2B1B0CE2026CE4D00FD2A51 /* LoginViewController.swift in Sources */,
@@ -1021,7 +1025,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		331417F91FB16BF30059F494 /* Build configuration list for PBXProject "CaptionIt" */ = {
+		331417F91FB16BF30059F494 /* Build configuration list for PBXProject "captionit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				331418241FB16BF40059F494 /* Debug */,

@@ -58,10 +58,14 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
       let isReady = currentUser["Ready"] as? Bool
       if isReady == false {
         cell.imageView?.image = UIImage.gifImageWithName(name: "pama-loading-screen")
+        cell.contentView.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        cell.textLabel?.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
       }
       else {
         let array = [#imageLiteral(resourceName: "bee-pama"),#imageLiteral(resourceName: "cat-pama"),#imageLiteral(resourceName: "NYE-pama"),#imageLiteral(resourceName: "pirate-pama"),#imageLiteral(resourceName: "snow-pama"),#imageLiteral(resourceName: "st-pats-pama(1)")]
         cell.imageView?.image = array[indexPath.row % 6] //this is applying for all
+        cell.contentView.backgroundColor = #colorLiteral(red: 0.9906545281, green: 0.8612887263, blue: 0.02440710366, alpha: 1)
+        cell.textLabel?.backgroundColor = #colorLiteral(red: 0.9906545281, green: 0.8612887263, blue: 0.02440710366, alpha: 1)
       }
       if let ID = currentUser["ID"] as? String {
         self.getUserName(ID, "Undefined User", { (name) in
@@ -153,7 +157,7 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
       gameStartRef?.removeAllObservers()
       Group.singleton.users = users
       gameStartRef?.setValue(true)
-      Group.singleton.sendNotification("Game Started")
+      Group.singleton.sendNotification(Constant.startGame)
       Group.singleton.users = self.users
       let controller = self.storyboard?.instantiateViewController(withIdentifier: "CaptioningVC") as! CaptioningVC
       controller.curPin = curPin

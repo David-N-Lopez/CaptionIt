@@ -130,7 +130,7 @@ class CaptioningVC: UIViewController, UITextViewDelegate{
     player = AVPlayer(url: url)
     SVProgressHUD.show()
     playerLayer = AVPlayerLayer(player: player)
-      playerLayer?.videoGravity = AVLayerVideoGravityResizeAspectFill
+//      playerLayer?.videoGravity = AVLayerVideoGravityResizeAspectFill
       playerLayer?.frame = self.meme.frame
       self.view.layer.addSublayer(playerLayer!)
     player?.play()

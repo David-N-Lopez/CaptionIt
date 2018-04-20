@@ -158,7 +158,7 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
             id = self.getUserID(1)
           }
           if id == getUserId() {
-            Group.singleton.sendNotificationToJudge(self.judgeID, "Select Caption")
+            Group.singleton.sendNotificationToJudge(self.judgeID, Constant.selectCaption)
           }
           self.textReadyUsers.text = "Wait for \(self.strJudgeName) to pick funniest meme!"
         } else {
@@ -212,7 +212,7 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     func playVideo(url:URL) {
       player = AVPlayer.init(url: url)
       let playerLayer = AVPlayerLayer(player: player)
-      playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
+//      playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
       playerLayer.frame = viewVideo.bounds
       if self.judgeID == Auth.auth().currentUser?.uid || gameWinnerID.count > 0 {
         viewJudge.layer.addSublayer(playerLayer)
@@ -364,7 +364,7 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
   }
   @IBAction func setImage(_ sender: Any) {
     if currentCommentIndex  >= 0 && currentCommentIndex < usersComments.count {
-      Group.singleton.sendNotification("The judge has finished judging")
+      Group.singleton.sendNotification(Constant.finishedJudging)
     self.rewardPlayerAction(currentCommentIndex)
     }
   }
@@ -394,7 +394,7 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
           }
         let id = allKeys[0]
         if id == getUserId() {
-          Group.singleton.sendNotification("Next Round Started")
+          Group.singleton.sendNotification(Constant.nextRound)
         }
         self.readyNextRoundRef?.removeValue()
         self.hasBeenJudgeRef?.setValue(true)

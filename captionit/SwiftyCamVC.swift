@@ -33,7 +33,7 @@ class camController: SwiftyCamViewController, SwiftyCamViewControllerDelegate {
         shouldUseDeviceOrientation = true
         allowAutoRotate = true
         audioEnabled = true
-        videoQuality = .medium
+        videoQuality = .high
 
     }
     
