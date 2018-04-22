@@ -1,6 +1,7 @@
 import UIKit
 import FirebaseDatabase
 import FirebaseAuth
+import SwiftyGif
 //  TODO: CHANGE THE TABLE SO IT DISPLAYS THE PLAYERS BASED ON FIREBASE CHANGE MAKE SURE THAT "ISREADY" CHANGES INDIVIDUALLY THEN START GAME GO DIRECTLY TO CAPTIONING AND SHOW IMAGE BASED ON URL.ADD TEXT AND SAVE BOTH SEPARATELY
 
 class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -52,27 +53,28 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
   }
   
   public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    
-    let cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "playercell")
+//
+    let cell = tableView.dequeueReusableCell(withIdentifier: "playercell") as! PlayerReadyCell
+    cell.imagePlayer.animationManager?.clear()
     if let currentUser = users[indexPath.row] as? [String : Any] {
       let isReady = currentUser["Ready"] as? Bool
       if isReady == false {
-        cell.imageView?.image = UIImage.gifImageWithName(name: "pama-loading-screen")
+        let gifManager = SwiftyGifManager(memoryLimit:30)
+        let gif = UIImage(gifName: "pama-loading-screen")
+        cell.imagePlayer.setGifImage(gif, manager: gifManager, loopCount: -1)
         cell.contentView.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-        cell.textLabel?.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
       }
       else {
         let array = [#imageLiteral(resourceName: "bee-pama"),#imageLiteral(resourceName: "cat-pama"),#imageLiteral(resourceName: "NYE-pama"),#imageLiteral(resourceName: "pirate-pama"),#imageLiteral(resourceName: "snow-pama"),#imageLiteral(resourceName: "st-pats-pama(1)")]
-        cell.imageView?.image = array[indexPath.row % 6] //this is applying for all
+        cell.imagePlayer.image = array[indexPath.row % 6] //this is applying for all
         cell.contentView.backgroundColor = #colorLiteral(red: 0.9906545281, green: 0.8612887263, blue: 0.02440710366, alpha: 1)
-        cell.textLabel?.backgroundColor = #colorLiteral(red: 0.9906545281, green: 0.8612887263, blue: 0.02440710366, alpha: 1)
       }
       if let ID = currentUser["ID"] as? String {
         self.getUserName(ID, "Undefined User", { (name) in
-          cell.textLabel?.text = name
+          cell.textName.text = name
         })
       } else {
-        cell.textLabel?.text = currentUser["userName"] as? String
+        cell.textName.text = currentUser["userName"] as? String
       }
       
       //            cell.textLabel?.text = self.get

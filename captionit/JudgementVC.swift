@@ -22,6 +22,8 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
   @IBOutlet weak var viewVideo: UIView!
   @IBOutlet weak var viewWaiting: UIView!
   @IBOutlet weak var saveMediaView: DesignableView!
+  @IBOutlet weak var btnWinnerPrev: UIButton!
+  @IBOutlet weak var btnWinnerNext: UIButton!
   
   var usersComments = [Any]()
   var groupId = String()
@@ -149,6 +151,12 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         if self.currentCommentIndex == 0 && Auth.auth().currentUser?.uid == self.judgeID && self.gameWinnerID.count == 0 {
           let comment = self.usersComments[0] as! [String : Any]
           self.textSingleComment.text = comment["comment"] as? String
+          if self.usersComments.count == 1 {
+            self.btnNext.alpha = 0.5
+            self.btnNext.isEnabled = false
+            self.btnWinnerNext.alpha = 0.5
+            self.btnWinnerNext.isEnabled = false
+          }
         }
         if self.totalUser - 1 == self.usersComments.count && self.gameWinnerID.count == 0 {
           Group.singleton.stopTimer()
@@ -339,17 +347,30 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
       }
       textSingleComment.text = userCommentDic["comment"]
       btnNext.isEnabled = true
+      btnNext.alpha = 1
+      btnWinnerNext.isEnabled = true
+      btnWinnerNext.alpha = 1
       if currentCommentIndex <= 0 {
         btnPrevious.isEnabled = false
+        btnPrevious.alpha = 0.5
+        btnWinnerPrev.isEnabled = false
+        btnWinnerPrev.alpha = 0.5
       }
     } else {
-        currentCommentIndex = 0
+      btnPrevious.isEnabled = false
+      btnPrevious.alpha = 0.5
+      btnWinnerPrev.isEnabled = false
+      btnWinnerPrev.alpha = 0.5
+      currentCommentIndex = 0
     }
   }
   @IBAction func nextImage(_ sender: Any) {
     currentCommentIndex += 1
     if currentCommentIndex  >= 0 && currentCommentIndex < usersComments.count {
       btnPrevious.isEnabled = true
+      btnPrevious.alpha = 1
+      btnWinnerPrev.isEnabled = true
+      btnWinnerPrev.alpha = 1
       let userCommentDic = usersComments[currentCommentIndex] as! [String: String]
       if gameWinnerID.count > 0 {
         self.updateNameWithComment(userCommentDic["id"]!)
@@ -357,8 +378,15 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
       textSingleComment.text = userCommentDic["comment"]
       if currentCommentIndex >= userCommentDic.count {
         btnNext.isEnabled = false
+        btnNext.alpha = 0.5
+        btnWinnerNext.isEnabled = false
+        btnWinnerNext.alpha = 0.5
       }
     } else {
+      btnNext.isEnabled = false
+      btnNext.alpha = 0.5
+      btnWinnerNext.isEnabled = false
+      btnWinnerNext.alpha = 0.5
       currentCommentIndex = usersComments.count - 1
     }
   }
@@ -415,6 +443,12 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
           self.textJudgeName.text = "\(winnerName) is the winner"
           self.textWinnerName.text = winnerName
           self.viewWinnerName.backgroundColor = #colorLiteral(red: 0.2458627252, green: 1, blue: 0.003417990503, alpha: 1)
+          if self.usersComments.count == 1 {
+            self.btnNext.alpha = 0.5
+            self.btnNext.isEnabled = false
+            self.btnWinnerNext.alpha = 0.5
+            self.btnWinnerNext.isEnabled = false
+          }
         })
         for (index, comment) in self.usersComments.enumerated() {
           let commentDic = comment as! [String: String]

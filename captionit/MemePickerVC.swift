@@ -11,12 +11,15 @@ import AVKit
 import FirebaseStorage
 import FirebaseDatabase
 import SVProgressHUD
+import SwiftyGif
 
 class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     var ref:DatabaseReference! = Database.database().reference()
     
     @IBOutlet weak var myImageView: UIImageView!
     @IBOutlet weak var myTextView: UILabel!
+  @IBOutlet weak var uploadButton: UIButton!
+  
     
     var curPin:String?
     var previewImage: UIImage?
@@ -24,6 +27,7 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     var mediaType  = 1
     var player : AVPlayer?
     var pickerGallery = true
+  let gifManager = SwiftyGifManager(memoryLimit:10)
     
     @IBOutlet weak var pickMeme: UIButton!
 
@@ -90,11 +94,18 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
   override func viewDidAppear(_ animated: Bool) {
     if mediaType == 1 {
       if previewImage == nil {
-        previewImage = UIImage.gifImageWithName(name: "pizza-pama")
+        let gif = UIImage(gifName: "pizza-pama")
+        myImageView.setGifImage(gif, manager: gifManager, loopCount: -1)
+      } else {
+        gifManager.clear()
+        uploadButton.isEnabled = true
+        uploadButton.alpha = 1
+        myImageView.image = previewImage
       }
-      myImageView.image = previewImage
     } else {
       //Show Video
+      uploadButton.isEnabled = true
+      uploadButton.alpha = 1
       playVideo(from: previewVideo!)
     }
     myTextView.text = "Choose your best image to make a spicy Meme!"
@@ -183,7 +194,7 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         } else {
             return
         }
-        
+        myImageView.clear()
         // do something interesting here!
         pickMeme.setTitle("Change Meme?", for:.normal)
         myImageView.image = newImage

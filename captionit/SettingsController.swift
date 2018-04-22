@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import FirebaseAuth
 import FirebaseDatabase
+import SwiftyGif
 
 
 
@@ -25,7 +26,10 @@ class SettingsController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
         view.addGestureRecognizer(tap)
-        mummyGif.image = UIImage.gifImageWithName(name: "mummy")
+//        mummyGif.image = UIImage.gifImageWithName(name: "mummy")
+      let gifManager = SwiftyGifManager(memoryLimit:10)
+      let gif = UIImage(gifName: "mummy")
+      mummyGif.setGifImage(gif, manager: gifManager, loopCount: -1)
     }
     func dismissKeyboard() {
         //Causes the view (or one of its embedded text fields) to resign the first responder status.

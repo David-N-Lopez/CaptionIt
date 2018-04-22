@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseAuth
+import SwiftyGif
 
 class WaitingViewController: UIViewController {
   var groupId = String()
@@ -24,8 +25,14 @@ class WaitingViewController: UIViewController {
     super.viewDidLoad()
     observeUsersComments()
       Group.singleton.startTime()
-    gifView.image = UIImage.gifImageWithName(name: "pama-waiting-screen (2)")
-    pamaFriendsGif.image = UIImage.gifImageWithName(name: "pama-and-friends")
+      
+      let gifManager = SwiftyGifManager(memoryLimit:10)
+      let gif = UIImage(gifName: "pama-waiting-screen (2)")
+      gifView.setGifImage(gif, manager: gifManager, loopCount: -1)
+      
+      let gifSecond = UIImage(gifName: "pama-and-friends")
+      pamaFriendsGif.setGifImage(gifSecond, manager: gifManager, loopCount: -1)
+      
       NotificationCenter.default.addObserver(
         self,
         selector: #selector(self.alertErroOccured),

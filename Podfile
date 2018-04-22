@@ -15,7 +15,7 @@ target 'CaptionIt' do
   pod 'SDWebImage', '~> 4.0'
   pod 'IQKeyboardManagerSwift'
   pod 'Alamofire', '~> 4.7'
-
+  pod 'SwiftyGif'
   target 'CaptionItTests' do
     inherit! :search_paths
     # Pods for testing

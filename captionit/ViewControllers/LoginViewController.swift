@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseAuth
+import SwiftyGif
 
 class LoginViewController: UIViewController {
     
@@ -23,7 +24,10 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
         view.addGestureRecognizer(tap)
-        blinkingGif.image = UIImage.gifImageWithName(name: "blinking-pama")
+//        blinkingGif.image = UIImage.gifImageWithName(name: "blinking-pama")
+      let gifManager = SwiftyGifManager(memoryLimit:10)
+      let gif = UIImage(gifName: "blinking-pama")
+      blinkingGif.setGifImage(gif, manager: gifManager, loopCount: -1)
         // Do any additional setup after loading the view.
         
     }
