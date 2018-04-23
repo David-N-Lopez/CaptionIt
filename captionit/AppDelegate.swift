@@ -12,6 +12,8 @@ import UserNotifications
 import Firebase
 import FirebaseInstanceID
 import FirebaseMessaging
+import Fabric
+import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, MessagingDelegate {
@@ -25,6 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override   for customization after application launch.
         FirebaseApp.configure()
+        Fabric.with([Crashlytics.self])
       IQKeyboardManager.sharedManager().enable = true
       if #available(iOS 10.0, *) {
         // For iOS 10 display notification (sent via APNS)
@@ -42,14 +45,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
       }
       Messaging.messaging().isAutoInitEnabled = true
       application.registerForRemoteNotifications()
-      if Auth.auth().currentUser?.uid != nil {
-        moveToEnterRoom(index: 0)
+      if AppSetting.isUserLogin == false {
+        moveToDemoScreen(index: 0)
       } else {
-        moveToLoginRoom(index: 0)
+        moveToViewController()
       }
         application.isStatusBarHidden = true
         return true
     }
+  
+  func moveToViewController() {
+    if Auth.auth().currentUser?.uid != nil {
+      moveToEnterRoom(index: 0)
+    } else {
+      moveToLoginRoom(index: 0)
+    }
+  }
 
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -104,6 +115,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
   func moveToEnterRoom(index : Int) {
     let storyboard = UIStoryboard(name: "Main", bundle: nil)
     let productListVC = storyboard.instantiateViewController(withIdentifier: "ViewController") as! ViewController
+    let navigationController = UINavigationController.init(rootViewController: productListVC)
+    navigationController.navigationBar.isHidden = true
+    let appdelegate = UIApplication.shared.delegate as! AppDelegate
+    appdelegate.window?.rootViewController = navigationController
+  }
+  
+  func moveToDemoScreen(index : Int) {
+    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+    let productListVC = storyboard.instantiateViewController(withIdentifier: "DemoViewController") as! DemoViewController
     let navigationController = UINavigationController.init(rootViewController: productListVC)
     navigationController.navigationBar.isHidden = true
     let appdelegate = UIApplication.shared.delegate as! AppDelegate

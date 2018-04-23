@@ -16,6 +16,9 @@ target 'CaptionIt' do
   pod 'IQKeyboardManagerSwift'
   pod 'Alamofire', '~> 4.7'
   pod 'SwiftyGif'
+  pod 'Fabric'
+  pod 'Crashlytics'
+  
   target 'CaptionItTests' do
     inherit! :search_paths
     # Pods for testing

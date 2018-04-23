@@ -12,6 +12,7 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
   var playersReady = 0
   var gameStartRef: DatabaseReference?
   
+  @IBOutlet weak var btnStartGame: UIButton!
   @IBOutlet weak var tableView: UITableView!
   
   override func viewDidLoad() {
@@ -99,8 +100,14 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
           self.users.append(value)
           //
         }
-        
         DispatchQueue.main.async {
+          if self.countPlayersReady() == self.users.count && self.users.count > 1 {
+            self.btnStartGame.isEnabled = true
+            self.btnStartGame.alpha = 1
+          } else {
+            self.btnStartGame.isEnabled = false
+            self.btnStartGame.alpha = 0.5
+          }
           self.tableView.reloadData()
         }
       }
