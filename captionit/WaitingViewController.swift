@@ -18,6 +18,7 @@ class WaitingViewController: UIViewController {
   var mediaType = 1
   var round = 0
   var totalUser = 0
+  var totalComments = 0
   
     @IBOutlet weak var pamaFriendsGif: UIImageView!
     @IBOutlet weak var gifView: UIImageView!
@@ -35,9 +36,20 @@ class WaitingViewController: UIViewController {
       
       NotificationCenter.default.addObserver(
         self,
-        selector: #selector(self.alertErroOccured),
+        selector: #selector(self.alertErroOccured(_ :)),
         name: NSNotification.Name(rawValue: errorOccured),
         object: nil)
+      NotificationCenter.default.addObserver(
+        self,
+        selector: #selector(self.userTimerExpired),
+        name: NSNotification.Name(rawValue: timerExpired),
+        object: nil)
+  }
+  
+  override func viewWillDisappear(_ animated: Bool) {
+    NotificationCenter.default.removeObserver(self)
+    let userId = Auth.auth().currentUser?.uid
+    ref.child("rooms").child(groupId).child("comments").child(userId!).removeAllObservers()
   }
     
   func observeUsersComments() {
@@ -48,28 +60,52 @@ class WaitingViewController: UIViewController {
       if let comment = snapshot.value as? [String: Any] {
         print(comment)
         let allKeys = (comment as NSDictionary).allKeys
+        self.totalComments = allKeys.count
         if allKeys.count == self.totalUser - 1 {
-          let destinationVC = self.storyboard?.instantiateViewController(withIdentifier: "JudgementVC") as! JudgementVC
-          destinationVC.groupId = self.groupId
-          destinationVC.judgeID = self.judgeID
-          destinationVC.memeURL = self.memeURL
-          destinationVC.judgeName = self.judgeName
-          destinationVC.mediaType = self.mediaType
-          destinationVC.round = self.round
-          destinationVC.totalUser = self.totalUser
-          self.navigationController?.pushViewController(destinationVC, animated: true)
+          self.moveToDestinationVC()
         }
       }
     })
   }
   
-  func alertErroOccured() {
-    let controller = UIAlertController(title: "Error: something went wrong", message: "One of your friends unexpectedly left the game.s", preferredStyle: .alert)
-    let action = UIAlertAction(title: "Ok", style: .cancel) { (action) in
-//      self.performSegue(withIdentifier: "leaveSegue", sender: self)
+  func moveToDestinationVC() {
+    let destinationVC = self.storyboard?.instantiateViewController(withIdentifier: "JudgementVC") as! JudgementVC
+    destinationVC.groupId = self.groupId
+    destinationVC.judgeID = self.judgeID
+    destinationVC.memeURL = self.memeURL
+    destinationVC.judgeName = self.judgeName
+    destinationVC.mediaType = self.mediaType
+    destinationVC.round = self.round
+    destinationVC.totalUser = self.totalUser
+    self.navigationController?.pushViewController(destinationVC, animated: true)
+  }
+  
+  func alertErroOccured(_ notification: NSNotification) {
+      // do something with your image
+      if Group.singleton.totalUser <= 1 {
+        let controller = UIAlertController(title: "Error: Something went wrong", message: "All of your friends unexpectedly left the game.", preferredStyle: .alert)
+        let action = UIAlertAction(title: "Ok", style: .cancel) { (action) in
+          Group.singleton.removeErrorObservers()
+          Group.singleton.deleteMediaForGroup()
+          self.navigationController?.popToRootViewController(animated: true)
+        }
+        controller.addAction(action)
+        self.present(controller, animated: true, completion: nil)
+        return
+      } else {
+        self.totalUser = Group.singleton.totalUser
+        if self.totalComments == Group.singleton.totalUser - 1 {
+          self.moveToDestinationVC()
+        }
+    }
+  }
+  
+  func userTimerExpired()  {
+    let controller = UIAlertController(title: "Error", message: "Something went wrong", preferredStyle: .alert)
+    let leave = UIAlertAction(title: "Okay", style: .default) { (action) in
       self.navigationController?.popToRootViewController(animated: true)
     }
-    controller.addAction(action)
+    controller.addAction(leave)
     self.present(controller, animated: true, completion: nil)
   }
   
@@ -78,8 +114,10 @@ class WaitingViewController: UIViewController {
     
     let controller = UIAlertController(title: "Wait! the game is still in progress.", message: "Are you sure you want to leave? if you leave, your friends will no longer be able to keep on playing", preferredStyle: .alert)
     let leave = UIAlertAction(title: "Leave", style: .default) { (action) in
+      Group.singleton.removeErrorObservers()
       let currentUser = Auth.auth().currentUser?.uid
       ref.child("rooms").child(self.groupId).child("players").child(currentUser!).removeValue()
+      self.navigationController?.popToRootViewController(animated: true)
     }
     let cancel = UIAlertAction(title: "Stay", style: .cancel, handler: nil)
     controller.addAction(leave)

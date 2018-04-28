@@ -18,7 +18,7 @@ class DemoViewController: UIViewController {
   
     override func viewDidLoad() {
         super.viewDidLoad()
-      arrImages = [#imageLiteral(resourceName: "kiwi-pama"),#imageLiteral(resourceName: "french-fries-pama")]
+      arrImages = [#imageLiteral(resourceName: "premium-badge"),#imageLiteral(resourceName: "trophy")]
       mPager.numberOfPages = arrImages.count
       mPager.currentPage = 0
     }

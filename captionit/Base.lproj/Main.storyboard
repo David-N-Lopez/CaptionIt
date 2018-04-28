@@ -1538,21 +1538,15 @@
                                                     </button>
                                                 </subviews>
                                             </stackView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3X2-ct-Hjs">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3X2-ct-Hjs">
                                                 <rect key="frame" x="1" y="40" width="258" height="40"/>
                                                 <color key="backgroundColor" red="0.96305018659999997" green="0.44343158599999999" blue="0.1741285622" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="Aj4-sI-Wos"/>
                                                 </constraints>
-                                                <state key="normal">
-                                                    <attributedString key="attributedTitle">
-                                                        <fragment content="Next Round">
-                                                            <attributes>
-                                                                <color key="NSColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <font key="NSFont" size="19" name="HelveticaNeue"/>
-                                                            </attributes>
-                                                        </fragment>
-                                                    </attributedString>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="19"/>
+                                                <state key="normal" title="Next Round">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -1655,7 +1649,7 @@
                     </view>
                     <connections>
                         <outlet property="btnNext" destination="07f-lZ-Doe" id="bIX-NM-fUe"/>
-                        <outlet property="btnNextRounds" destination="3X2-ct-Hjs" id="yaZ-Ft-w4i"/>
+                        <outlet property="btnNextRounds" destination="3X2-ct-Hjs" id="CyT-aT-aFq"/>
                         <outlet property="btnPrevious" destination="uG4-IV-sd7" id="yP7-xy-xXT"/>
                         <outlet property="btnWinnerNext" destination="ubi-Tt-hQs" id="VPV-2z-Og7"/>
                         <outlet property="btnWinnerPrev" destination="Sq2-KD-dhM" id="OVH-5n-0Ii"/>

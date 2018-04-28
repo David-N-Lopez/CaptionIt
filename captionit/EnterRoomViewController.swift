@@ -21,6 +21,7 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
     gameStartRef?.setValue(false)
     print("hellow from enter room controller")
     roomPin.text = "Room Pin Number: \(curPin)"
+    Group.singleton.curPin = curPin
     // Do any additional setup after loading the view
     //        weak var delegate: UIViewController!
   }
@@ -94,9 +95,13 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
     ref.child("rooms").child(curPin).child("players").observe(.value, with: { (snapshot) in
       if let result = snapshot.children.allObjects as? [DataSnapshot] {
         self.users.removeAll()
-        for child in result {
+        for (index, child) in result.enumerated() {
           var value = child.value as! [String : Any]
           value["userName"] = "Undefined User"
+          let id = value["ID"] as? String
+          if id == getUserId() {
+            Group.singleton.userIndex = index
+          }
           self.users.append(value)
           //
         }

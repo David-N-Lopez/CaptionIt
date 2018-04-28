@@ -81,7 +81,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
-      
+      Group.singleton.removeUserFromGame()
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
   

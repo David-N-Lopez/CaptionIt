@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 
 let errorOccured = "errorOccured"
+let timerExpired = "timerExpired"
 
 class Group: NSObject {
   
@@ -18,29 +19,53 @@ class Group: NSObject {
   var totalUser = 0
   var handle: UInt = 0
   var playersRef: DatabaseReference?
+  var groupRef: DatabaseReference?
   var gameTimer: Timer!
   var users = [Any]()
   var token = ""
   var url = ""
+  var judgeID = ""
+  var round = 0
+  var userIndex = 0
   
   func observeAnyoneLeftGame(_ groupPin: String) {
     curPin = groupPin
+    self.round = 0
     playersRef = ref.child("rooms").child(groupPin).child("players")
+    groupRef = ref.child("rooms").child(groupPin).child("triggerUsers")
     handle = playersRef!.observe(.childRemoved, with: { (snapshot) in
-      let allPlayers = snapshot.children
+      let allPlayers = snapshot.value
       
-      if let players  = allPlayers.allObjects as? [DataSnapshot]{
+      if let players  = allPlayers as? [String : Any] {
+        print(players)
+        var isJudge = false
+        let id = players["ID"] as! String
+        if id == self.judgeID {
+          isJudge = true
+        }
+        self.round -= 1
+        
+        if self.totalUser == 1 {
+          ref.child("rooms").child(groupPin).removeValue()
+          self.deleteMediaForGroup()
+        }
+        self.playersRef?.observeSingleEvent(of: .value, with: { (snapshot) in
+          if let allPlayesInfo = snapshot.value as? [String : Any] {
+            let allUsers = (allPlayesInfo as NSDictionary).allKeys
+            self.totalUser = allUsers.count
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: errorOccured), object: nil, userInfo: ["isJudge": isJudge])
+          }
+        })
+        self.firebaseDeleteMedia(players["memeURL"] as! String)
         print("observer notification sent")
-        self.deleteMediaForGroup()
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: errorOccured), object: nil)
-        self.playersRef?.removeObserver(withHandle: self.handle)
-        ref.child("rooms").child(groupPin).removeValue()
+        //self.playersRef?.removeObserver(withHandle: self.handle)
       }
     })
   }
   
+  
   func startTime() {
-    gameTimer = Timer.scheduledTimer(timeInterval: 500, target: self, selector: #selector(runTimedCode), userInfo: nil, repeats: false)
+    gameTimer = Timer.scheduledTimer(timeInterval: 800, target: self, selector: #selector(runTimedCode), userInfo: nil, repeats: false)
   }
   
   func stopTimer() {
@@ -49,9 +74,22 @@ class Group: NSObject {
   
   func runTimedCode() {
     stopTimer()
-    NotificationCenter.default.post(name: NSNotification.Name(rawValue: errorOccured), object: nil)
-    let currentId = Auth.auth().currentUser?.uid
-    ref.child("rooms").child(curPin).child("players").child(currentId!).removeValue()
+    removeErrorObservers()
+    NotificationCenter.default.post(name: NSNotification.Name(rawValue: timerExpired), object: nil)
+    deleteMediaForGroup()
+    ref.child("rooms").child(curPin).child("players").removeValue()
+  }
+  
+//  func triggerCheckActiveUsers() {
+//    groupRef?.observeSingleEvent(of: .value, with: { (snapshot) in
+//      if let triggered = snapshot.value as? Bool {
+//        self.groupRef?.setValue(!triggered)
+//      }
+//    })
+//  }
+  
+  func setAllUsersInactive() {
+    
   }
   
   func removeErrorObservers() {
@@ -112,6 +150,11 @@ class Group: NSObject {
     if url.count > 0 {
       firebaseDeleteMedia(url)
     }
+  }
+  
+  func removeUserFromGame() {
+    let uid = getUserId()
+    ref.child("rooms").child(curPin).child("players").child(uid!).removeValue()
   }
   
   

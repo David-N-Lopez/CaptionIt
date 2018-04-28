@@ -47,8 +47,13 @@ class CaptioningVC: UIViewController, UITextViewDelegate{
     Group.singleton.startTime()
     NotificationCenter.default.addObserver(
       self,
-      selector: #selector(self.alertErroOccured),
+      selector: #selector(self.alertErroOccured(_ :)),
       name: NSNotification.Name(rawValue: errorOccured),
+      object: nil)
+    NotificationCenter.default.addObserver(
+      self,
+      selector: #selector(self.userTimerExpired),
+      name: NSNotification.Name(rawValue: timerExpired),
       object: nil)
   }
   
@@ -83,7 +88,8 @@ class CaptioningVC: UIViewController, UITextViewDelegate{
       print("hello")
       if let players  = allPlayers.allObjects as? [DataSnapshot]{
         self.totalUser = players.count
-        self.round += 1
+        Group.singleton.totalUser = self.totalUser
+        Group.singleton.round += 1
         for player in players{
           let username = player.key
           var value = player.value as! [String : Any]
@@ -95,6 +101,7 @@ class CaptioningVC: UIViewController, UITextViewDelegate{
           }
           if hasBeenJudge == false {
             self.memeImageUrl = meme
+           Group.singleton.judgeID = udid
             ref.child("rooms").child(self.curPin!).child("players").child(username).updateChildValues(["judge":  true])
             self.hasCurrentJudge = hasBeenJudge
             self.currentJudge = username
@@ -138,6 +145,15 @@ class CaptioningVC: UIViewController, UITextViewDelegate{
     
   }
   
+  func userTimerExpired()  {
+    let controller = UIAlertController(title: "Error", message: "Something went wrong", preferredStyle: .alert)
+    let leave = UIAlertAction(title: "Okay", style: .default) { (action) in
+      self.navigationController?.popToRootViewController(animated: true)
+    }
+    controller.addAction(leave)
+    self.present(controller, animated: true, completion: nil)
+  }
+  
     private func playVideo(from url:URL){
     player = AVPlayer(url: url)
     SVProgressHUD.show()
@@ -177,7 +193,6 @@ class CaptioningVC: UIViewController, UITextViewDelegate{
    Group.singleton.stopTimer()
     ref.child("rooms").child(self.curPin!).child("comments").child(self.judgeID!).child(currentUser!).setValue(myTextField.text) { (error, reff) in
       if error == nil {
-
         let destinationVC = self.storyboard?.instantiateViewController(withIdentifier: "JudgementVC") as! JudgementVC
         destinationVC.groupId = self.curPin!
         destinationVC.judgeID = self.judgeID!
@@ -206,8 +221,10 @@ class CaptioningVC: UIViewController, UITextViewDelegate{
   @IBAction func actionLeaveGame(_ sender : Any) {
     let controller = UIAlertController(title: "The game is still in progress!", message: "Are you sure you want to leave? if you leave, your friends will no longer be able to keep on playing", preferredStyle: .alert)
     let leave = UIAlertAction(title: "Leave", style: .default) { (action) in
+      Group.singleton.removeErrorObservers()
       let currentUser = Auth.auth().currentUser?.uid
-      ref.child("rooms").child(self.curPin!).child("players").child(currentUser!).removeValue()
+  ref.child("rooms").child(self.curPin!).child("players").child(currentUser!).removeValue()
+      self.navigationController?.popToRootViewController(animated: true)
     }
     let cancel = UIAlertAction(title: "Stay", style: .cancel, handler: nil)
     controller.addAction(leave)
@@ -215,14 +232,30 @@ class CaptioningVC: UIViewController, UITextViewDelegate{
     self.present(controller, animated: true, completion: nil)
   }
   
-  func alertErroOccured() {
-    let controller = UIAlertController(title: "Error: Something went wrong", message: "One of your friends unexpectedly left the game.", preferredStyle: .alert)
-    let action = UIAlertAction(title: "Ok", style: .cancel) { (action) in
-      self.navigationController?.popToRootViewController(animated: true)
-//      self.performSegue(withIdentifier: "leaveCaptioningSegue", sender: self)
+  func alertErroOccured(_ notification: NSNotification) {
+    if let wasJudge = notification.userInfo?["isJudge"] as? Bool {
+      // do something with your image
+      if Group.singleton.totalUser <= 1 {
+        let controller = UIAlertController(title: "Error: Something went wrong", message: "All of your friends unexpectedly left the game.", preferredStyle: .alert)
+        let action = UIAlertAction(title: "Ok", style: .cancel) { (action) in
+          Group.singleton.removeErrorObservers()
+          Group.singleton.deleteMediaForGroup()
+          self.navigationController?.popToRootViewController(animated: true)
+        }
+        controller.addAction(action)
+        self.present(controller, animated: true, completion: nil)
+        return
+      }
+      if wasJudge {
+        let controller = UIAlertController(title: "Error: Something went wrong", message: "Judge Left the game", preferredStyle: .alert)
+        let action = UIAlertAction(title: "Ok", style: .cancel) { (action) in
+          self.meme.image = nil;
+          self.setJudge()
+        }
+        controller.addAction(action)
+        self.present(controller, animated: true, completion: nil)
+      }
     }
-    controller.addAction(action)
-    self.present(controller, animated: true, completion: nil)
   }
 }
 

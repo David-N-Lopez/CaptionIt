@@ -44,6 +44,7 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
   var mediaData: Data?
   var videoSaved: String?
   var oncePlayed = Bool()
+  var playersReady = 0
     
  let glimpse = Glimpse()
     var saveClicked = Bool()
@@ -67,6 +68,8 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    totalUser = Group.singleton.totalUser
+    round = Group.singleton.round
     saveClicked = false
     oncePlayed = false
     Group.singleton.startTime()
@@ -99,13 +102,18 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     if self.judgeID == Auth.auth().currentUser?.uid {
       viewSingleImage.isHidden = false
     }
-    if totalUser == round {
+    if totalUser <= round {
       btnNextRounds.setTitle("Score Board", for: .normal)
     }
     NotificationCenter.default.addObserver(
       self,
-      selector: #selector(self.alertErroOccured),
+      selector: #selector(self.alertErroOccured(_ :)),
       name: NSNotification.Name(rawValue: errorOccured),
+      object: nil)
+    NotificationCenter.default.addObserver(
+      self,
+      selector: #selector(self.userTimerExpired),
+      name: NSNotification.Name(rawValue: timerExpired),
       object: nil)
     // Do any additional setup after loading the view.
   }
@@ -135,6 +143,16 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     readyNextRoundRef?.removeAllObservers()
   }
   
+  
+  func userTimerExpired()  {
+    let controller = UIAlertController(title: "Error", message: "Something went wrong", preferredStyle: .alert)
+    let leave = UIAlertAction(title: "Okay", style: .default) { (action) in
+      self.navigationController?.popToRootViewController(animated: true)
+    }
+    controller.addAction(leave)
+    self.present(controller, animated: true, completion: nil)
+  }
+  
   func getAllComments()  {
     ref.child("rooms").child(self.groupId).child("comments").child(self.judgeID).observe(.value, with: { (snapshot) in
       if let comment = snapshot.value as? [String: Any] {
@@ -158,7 +176,7 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
             self.btnWinnerNext.isEnabled = false
           }
         }
-        if self.totalUser - 1 == self.usersComments.count && self.gameWinnerID.count == 0 {
+        if Group.singleton.totalUser - 1 == self.usersComments.count && self.gameWinnerID.count == 0 {
           Group.singleton.stopTimer()
           Group.singleton.startTime()
           var id = self.getUserID(0)
@@ -326,7 +344,7 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
   }
   
   func updateNumberOfUsersCommented() {
-    let main_string = "\(usersComments.count)/\(totalUser - 1) memes are ready to go!"
+    let main_string = "\(usersComments.count)/\(Group.singleton.totalUser - 1) memes are ready to go!"
     let string_to_color = "\(usersComments.count)/\(totalUser - 1)"
     
     let range = (main_string as NSString).range(of: string_to_color)
@@ -417,6 +435,7 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         let allKeys = (readyPlayers as NSDictionary).allKeys as! [String]
         print("Current \(self.currentUserId!)")
         print("All Keys Found \(allKeys)")
+        self.playersReady = allKeys.count
         if allKeys.count != self.totalUser {
             return
           }
@@ -476,21 +495,68 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     }
   }
   
-  func alertErroOccured() {
-    let controller = UIAlertController(title: "Error: something went wrong.", message: "One of your friends unexpectedly left the game.", preferredStyle: .alert)
-    let action = UIAlertAction(title: "Ok", style: .cancel) { (action) in
-//      self.performSegue(withIdentifier: "leave_Segue", sender: self)
-      self.navigationController?.popToRootViewController(animated: true)
+  func alertErroOccured(_ notification: NSNotification) {
+    
+    if let wasJudge = notification.userInfo?["isJudge"] as? Bool {
+      // do something with your image
+      self.totalUser = Group.singleton.totalUser
+      self.round = Group.singleton.round
+      if totalUser <= round {
+        btnNextRounds.setTitle("Score Board", for: .normal)
+      }
+      if Group.singleton.totalUser <= 1 {
+        let controller = UIAlertController(title: "Error: Something went wrong", message: "All of your friends unexpectedly left the game.", preferredStyle: .alert)
+        let action = UIAlertAction(title: "Ok", style: .cancel) { (action) in
+          Group.singleton.removeErrorObservers()
+          Group.singleton.deleteMediaForGroup()
+          self.navigationController?.popToRootViewController(animated: true)
+        }
+        controller.addAction(action)
+        self.present(controller, animated: true, completion: nil)
+        return
+      }
+      if wasJudge {
+        
+        let controller = UIAlertController(title: "Error: Something went wrong", message: "Judge Left the game", preferredStyle: .alert)
+        let action = UIAlertAction(title: "Ok", style: .cancel) { (action) in
+          self.navigationController?.popViewController(animated: true)
+        }
+        controller.addAction(action)
+        self.present(controller, animated: true, completion: nil)
+        
+      } else {
+        if self.totalUser - 1 != self.usersComments.count && self.gameWinnerID.count == 0  {
+          self.totalUser = Group.singleton.totalUser
+          if self.totalUser - 1 == self.usersComments.count {
+            Group.singleton.stopTimer()
+            Group.singleton.startTime()
+            var id = self.getUserID(0)
+            if id == self.judgeID {
+              id = self.getUserID(1)
+            }
+            if id == getUserId() {
+              Group.singleton.sendNotificationToJudge(self.judgeID, Constant.selectCaption)
+            }
+            self.textReadyUsers.text = "Wait for \(self.strJudgeName) to pick funniest meme!"
+          } else {
+            if self.playersReady == self.totalUser {
+              self.readyNextRoundRef?.removeValue()
+              self.hasBeenJudgeRef?.setValue(true)
+            }
+          }
+        }
+      }
+      
     }
-    controller.addAction(action)
-    self.present(controller, animated: true, completion: nil)
   }
   
     @IBAction func leave(_ sender: Any){
       let controller = UIAlertController(title: "The game is still in progress!", message: "Are you sure you want to leave? if you leave, your friends will no longer be able to keep on playing", preferredStyle: .alert)
       let leave = UIAlertAction(title: "Leave", style: .default) { (action) in
+        Group.singleton.removeErrorObservers()
         let currentUser = Auth.auth().currentUser?.uid
         ref.child("rooms").child(self.groupId).child("players").child(currentUser!).removeValue()
+        self.navigationController?.popToRootViewController(animated: true)
       }
       let cancel = UIAlertAction(title: "Stay", style: .cancel, handler: nil)
       controller.addAction(leave)

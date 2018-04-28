@@ -34,7 +34,7 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     @IBAction func submit(_ sender: UIButton) {
         print("start")
       SVProgressHUD.show()
-        if (myImageView.image != nil || previewVideo != nil || myImageView != #imageLiteral(resourceName: "pizza-pama")){
+        if (myImageView.image != nil || previewVideo != nil || myImageView != #imageLiteral(resourceName: "pizza-pama")) {
             let currentPlayer = getCurrentPlayer()
             let image = myImageView.image
             var data =  NSData()
