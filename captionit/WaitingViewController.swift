@@ -19,14 +19,18 @@ class WaitingViewController: UIViewController {
   var round = 0
   var totalUser = 0
   var totalComments = 0
+  var gameTimer: Timer!
+  var totalTime = 65
   
-    @IBOutlet weak var pamaFriendsGif: UIImageView!
+  @IBOutlet weak var lblTimer: UILabel!
+  @IBOutlet weak var pamaFriendsGif: UIImageView!
     @IBOutlet weak var gifView: UIImageView!
     override func viewDidLoad() {
     super.viewDidLoad()
     observeUsersComments()
       Group.singleton.startTime()
-      
+      startTimer()
+      lblTimer.text = Group.singleton.timeFormatted(totalTime)
       let gifManager = SwiftyGifManager(memoryLimit:10)
       let gif = UIImage(gifName: "pama-waiting-screen (2)")
       gifView.setGifImage(gif, manager: gifManager, loopCount: -1)
@@ -48,6 +52,10 @@ class WaitingViewController: UIViewController {
   
   override func viewWillDisappear(_ animated: Bool) {
     NotificationCenter.default.removeObserver(self)
+    gameTimer.invalidate()
+    if gameTimer != nil {
+      gameTimer = nil
+    }
     let userId = Auth.auth().currentUser?.uid
     ref.child("rooms").child(groupId).child("comments").child(userId!).removeAllObservers()
   }
@@ -124,5 +132,22 @@ class WaitingViewController: UIViewController {
     controller.addAction(cancel)
     self.present(controller, animated: true, completion: nil)
   }
+  
+  func startTimer() {
+    gameTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(runTimedCode), userInfo: nil, repeats: true)
+  }
+  
+  func runTimedCode() {
+    if totalTime <= 0 {
+      lblTimer.text = Group.singleton.timeFormatted(totalTime)
+      gameTimer.invalidate()
+      gameTimer = nil
+      self.moveToDestinationVC()
+    } else {
+      totalTime -= 1
+      lblTimer.text = Group.singleton.timeFormatted(totalTime)
+    }
+  }
+  
 }
 

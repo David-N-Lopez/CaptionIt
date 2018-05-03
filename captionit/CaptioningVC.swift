@@ -15,6 +15,7 @@ import SDWebImage
 import SVProgressHUD
 
 class CaptioningVC: UIViewController, UITextViewDelegate{
+  @IBOutlet weak var lblTimer: UILabel!
   @IBOutlet weak var meme: UIImageView!
   @IBOutlet weak var myTextField: UITextView!
   @IBOutlet weak var btnUpload: UIButton!
@@ -30,6 +31,8 @@ class CaptioningVC: UIViewController, UITextViewDelegate{
   var totalUser = 0
   var isJudge = false
   var playerLayer : AVPlayerLayer?
+  var gameTimer: Timer!
+  var totalTime = 60
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -121,6 +124,7 @@ class CaptioningVC: UIViewController, UITextViewDelegate{
                 self.navigationController?.pushViewController(destinationVC, animated: true)
               }
             } else {
+              self.startTimer()
               if self.mediaType == 1 {
               self.meme.sd_setImage(with: URL(string:meme), placeholderImage: nil, options: .scaleDownLargeImages, completed: nil)
               } else {
@@ -255,6 +259,23 @@ class CaptioningVC: UIViewController, UITextViewDelegate{
         controller.addAction(action)
         self.present(controller, animated: true, completion: nil)
       }
+    }
+  }
+  
+  func startTimer() {
+    gameTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(runTimedCode), userInfo: nil, repeats: true)
+  }
+  
+  func runTimedCode() {
+    if totalTime <= 0 {
+      lblTimer.text = Group.singleton.timeFormatted(totalTime)
+      myTextField.text = "I wasn't feeling creative"
+      gameTimer.invalidate()
+      gameTimer = nil
+      uploadComment()
+    } else {
+      totalTime -= 1
+      lblTimer.text = Group.singleton.timeFormatted(totalTime)
     }
   }
 }

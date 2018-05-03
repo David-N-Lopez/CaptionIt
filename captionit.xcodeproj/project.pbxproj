@@ -42,6 +42,9 @@
 		52B6CC1C2072C43700945942 /* CaptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B6CC1A2072C43600945942 /* CaptionCell.swift */; };
 		52B6CC1D2072C43700945942 /* JudgementVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B6CC1B2072C43700945942 /* JudgementVC.swift */; };
 		9F0807C4208E072900EB6182 /* DemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0807C3208E072900EB6182 /* DemoViewController.swift */; };
+		9F09F68E209AF3A000281313 /* pama-tutorial.gif in Resources */ = {isa = PBXBuildFile; fileRef = 9F09F68D209AF3A000281313 /* pama-tutorial.gif */; };
+		9F09F690209AF4FB00281313 /* fries.gif in Resources */ = {isa = PBXBuildFile; fileRef = 9F09F68F209AF4FB00281313 /* fries.gif */; };
+		9F09F692209AF59C00281313 /* pama.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F09F691209AF59C00281313 /* pama.png */; };
 		9F0E65F020878AF000A4365B /* PushNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0E65EF20878AF000A4365B /* PushNotificationManager.swift */; };
 		9F1315DD208344B8005E1571 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1315DC208344B8005E1571 /* Group.swift */; };
 		9F232C21207381BB00C438A5 /* ResultVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F232C20207381BB00C438A5 /* ResultVC.swift */; };
@@ -150,6 +153,9 @@
 		66477E30E7D502DFDCA04972 /* Pods-CaptionItTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaptionItTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CaptionItTests/Pods-CaptionItTests.debug.xcconfig"; sourceTree = "<group>"; };
 		7026546AF55B443CE276CE2B /* Pods-CaptionItTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaptionItTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CaptionItTests/Pods-CaptionItTests.release.xcconfig"; sourceTree = "<group>"; };
 		9F0807C3208E072900EB6182 /* DemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoViewController.swift; sourceTree = "<group>"; };
+		9F09F68D209AF3A000281313 /* pama-tutorial.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "pama-tutorial.gif"; sourceTree = "<group>"; };
+		9F09F68F209AF4FB00281313 /* fries.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = fries.gif; sourceTree = "<group>"; };
+		9F09F691209AF59C00281313 /* pama.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pama.png; sourceTree = "<group>"; };
 		9F0E65EE2087637A00A4365B /* CaptionIt.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CaptionIt.entitlements; sourceTree = "<group>"; };
 		9F0E65EF20878AF000A4365B /* PushNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationManager.swift; sourceTree = "<group>"; };
 		9F1315DC208344B8005E1571 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Group.swift; path = captionit/Group.swift; sourceTree = SOURCE_ROOT; };
@@ -255,6 +261,7 @@
 		331418001FB16BF30059F494 /* CaptionIt */ = {
 			isa = PBXGroup;
 			children = (
+				9F09F68B209AF39400281313 /* Images */,
 				9F0E65EE2087637A00A4365B /* CaptionIt.entitlements */,
 				AE8C4BDD20745EF1004529C1 /* SourceCodePro-Black.ttf */,
 				AE8C4BDB20745EF1004529C1 /* SourceCodePro-Bold.ttf */,
@@ -269,6 +276,7 @@
 				48B062BD2027844F0045400A /* GoogleService-Info.plist */,
 				48B062B72026BAA90045400A /* LaunchScreen.storyboard */,
 				48B062B92026BAA90045400A /* Main.storyboard */,
+				9F09F691209AF59C00281313 /* pama.png */,
 				3711204A2074FFD600295A63 /* gifController.swift */,
 				3711204E2075353300295A63 /* pama-loading-screen.gif */,
 				37C91AAF208296F1004B15C1 /* scuba-pama.gif */,
@@ -368,6 +376,15 @@
 				525069612087690D00A1F750 /* GlimpseAssetWriter.m */,
 			);
 			path = Glimpse;
+			sourceTree = "<group>";
+		};
+		9F09F68B209AF39400281313 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				9F09F68F209AF4FB00281313 /* fries.gif */,
+				9F09F68D209AF3A000281313 /* pama-tutorial.gif */,
+			);
+			path = Images;
 			sourceTree = "<group>";
 		};
 		9FF7B6D3208E1DEE00E9E3F4 /* AppSetting */ = {
@@ -571,15 +588,18 @@
 			files = (
 				37C91AB82082972E004B15C1 /* blinking-pama.gif in Resources */,
 				AE8C4BE120749621004529C1 /* SourceSansPro-Regular.otf in Resources */,
+				9F09F690209AF4FB00281313 /* fries.gif in Resources */,
 				48B062BB2026BAA90045400A /* LaunchScreen.storyboard in Resources */,
 				37C91AB620829715004B15C1 /* mummy.gif in Resources */,
 				3711204F2075353400295A63 /* pama-loading-screen.gif in Resources */,
+				9F09F68E209AF3A000281313 /* pama-tutorial.gif in Resources */,
 				AE8C4BE02074961E004529C1 /* SourceSansPro-It.otf in Resources */,
 				37C91AB0208296F2004B15C1 /* scuba-pama.gif in Resources */,
 				48B062BE2027844F0045400A /* GoogleService-Info.plist in Resources */,
 				37C91AB420829710004B15C1 /* pizza-pama.gif in Resources */,
 				48B062BC2026BAA90045400A /* Main.storyboard in Resources */,
 				371120512075355700295A63 /* pama-waiting-screen (2).gif in Resources */,
+				9F09F692209AF59C00281313 /* pama.png in Resources */,
 				37112042207177E300295A63 /* Assets.xcassets in Resources */,
 				AE8C4BDF2074961B004529C1 /* SourceCodePro-Bold.ttf in Resources */,
 				AE8C4BDE20749618004529C1 /* SourceCodePro-Black.ttf in Resources */,
