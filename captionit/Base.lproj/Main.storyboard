@@ -2050,13 +2050,14 @@ Tell your friends to hurry up!</string>
                                 <rect key="frame" x="0.0" y="302" width="320" height="266"/>
                                 <subviews>
                                     <pageControl opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="PV7-Oy-lK1">
-                                        <rect key="frame" x="71" y="15.5" width="177" height="37"/>
+                                        <rect key="frame" x="84" y="18" width="152" height="37"/>
                                         <color key="pageIndicatorTintColor" white="1" alpha="0.48111087328767121" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="currentPageIndicatorTintColor" red="0.99457865953445435" green="0.86523979902267456" blue="0.014423438347876072" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </pageControl>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tPI-I5-UMx">
-                                        <rect key="frame" x="20" y="15" width="51" height="38"/>
+                                        <rect key="frame" x="20" y="15" width="64" height="43"/>
                                         <color key="backgroundColor" red="0.99457865950000002" green="0.86523979900000003" blue="0.01442343835" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" name="SourceCodePro-Bold" family="Source Code Pro" pointSize="18"/>
                                         <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                         <state key="normal" title="Prev">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -2071,8 +2072,9 @@ Tell your friends to hurry up!</string>
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1ev-Yd-ggC">
-                                        <rect key="frame" x="248" y="15" width="52" height="38"/>
+                                        <rect key="frame" x="236" y="15" width="64" height="43"/>
                                         <color key="backgroundColor" red="0.99457865950000002" green="0.86523979900000003" blue="0.01442343835" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" name="SourceCodePro-Bold" family="Source Code Pro" pointSize="18"/>
                                         <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                         <state key="normal" title="Next">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -2087,16 +2089,17 @@ Tell your friends to hurry up!</string>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tMm-mi-hbf">
-                                        <rect key="frame" x="15" y="112.5" width="290" height="41"/>
+                                        <rect key="frame" x="15" y="110.5" width="290" height="45.5"/>
                                         <string key="text">Join an existing game or 
 create a new one.</string>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <fontDescription key="fontDescription" name="SourceCodePro-Bold" family="Source Code Pro" pointSize="18"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PPY-VT-qak">
-                                        <rect key="frame" x="250" y="213" width="50" height="38"/>
+                                        <rect key="frame" x="236" y="208" width="64" height="43"/>
                                         <color key="backgroundColor" red="0.99457865950000002" green="0.86523979900000003" blue="0.01442343835" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" name="SourceCodePro-Bold" family="Source Code Pro" pointSize="18"/>
                                         <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
                                         <state key="normal" title="Skip">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
