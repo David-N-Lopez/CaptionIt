@@ -212,7 +212,10 @@ class CaptioningVC: UIViewController, UITextViewDelegate{
   }
   
   override func viewWillDisappear(_ animated: Bool) {
-    
+    if gameTimer != nil {
+      gameTimer.invalidate()
+      gameTimer = nil
+    }
     if self.isJudge == false {
       player?.currentItem!.removeObserver(self, forKeyPath: "status")
     }
