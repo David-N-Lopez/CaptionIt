@@ -60,9 +60,9 @@
 		9FF7B6DC208E1DEF00E9E3F4 /* ObjC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF7B6D9208E1DEE00E9E3F4 /* ObjC.m */; };
 		9FF7B6DE208E1F7300E9E3F4 /* UserdefaultExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF7B6DD208E1F7300E9E3F4 /* UserdefaultExtension.swift */; };
 		9FFB791E208CCF260095082E /* PlayerReadyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FFB791D208CCF260095082E /* PlayerReadyCell.swift */; };
-		AE8C4BDE20749618004529C1 /* SourceCodePro-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AE8C4BDD20745EF1004529C1 /* SourceCodePro-Black.ttf */; };
+		AE25EDED209EDC8B00EB7FB9 /* SourceSansPro-It.otf in Resources */ = {isa = PBXBuildFile; fileRef = AE8C4BDA20745EF1004529C1 /* SourceSansPro-It.otf */; };
+		AE25EDEE209EDC8F00EB7FB9 /* SourceCodePro-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AE8C4BDD20745EF1004529C1 /* SourceCodePro-Black.ttf */; };
 		AE8C4BDF2074961B004529C1 /* SourceCodePro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AE8C4BDB20745EF1004529C1 /* SourceCodePro-Bold.ttf */; };
-		AE8C4BE02074961E004529C1 /* SourceSansPro-It.otf in Resources */ = {isa = PBXBuildFile; fileRef = AE8C4BDA20745EF1004529C1 /* SourceSansPro-It.otf */; };
 		AE8C4BE120749621004529C1 /* SourceSansPro-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = AE8C4BDC20745EF1004529C1 /* SourceSansPro-Regular.otf */; };
 		B2B1B0CB2026CB3900FD2A51 /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B1B0CA2026CB3900FD2A51 /* Users.swift */; };
 		B2B1B0CE2026CE4D00FD2A51 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B1B0CD2026CE4D00FD2A51 /* LoginViewController.swift */; };
@@ -545,7 +545,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 331417F91FB16BF30059F494 /* Build configuration list for PBXProject "CaptionIt" */;
+			buildConfigurationList = 331417F91FB16BF30059F494 /* Build configuration list for PBXProject "captionit" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -593,16 +593,16 @@
 				37C91AB620829715004B15C1 /* mummy.gif in Resources */,
 				3711204F2075353400295A63 /* pama-loading-screen.gif in Resources */,
 				9F09F68E209AF3A000281313 /* pama-tutorial.gif in Resources */,
-				AE8C4BE02074961E004529C1 /* SourceSansPro-It.otf in Resources */,
 				37C91AB0208296F2004B15C1 /* scuba-pama.gif in Resources */,
 				48B062BE2027844F0045400A /* GoogleService-Info.plist in Resources */,
 				37C91AB420829710004B15C1 /* pizza-pama.gif in Resources */,
+				AE25EDED209EDC8B00EB7FB9 /* SourceSansPro-It.otf in Resources */,
 				48B062BC2026BAA90045400A /* Main.storyboard in Resources */,
 				371120512075355700295A63 /* pama-waiting-screen (2).gif in Resources */,
 				9F09F692209AF59C00281313 /* pama.png in Resources */,
+				AE25EDEE209EDC8F00EB7FB9 /* SourceCodePro-Black.ttf in Resources */,
 				37112042207177E300295A63 /* Assets.xcassets in Resources */,
 				AE8C4BDF2074961B004529C1 /* SourceCodePro-Bold.ttf in Resources */,
-				AE8C4BDE20749618004529C1 /* SourceCodePro-Black.ttf in Resources */,
 				37C91AB2208296F9004B15C1 /* pama-and-friends.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1104,7 +1104,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		331417F91FB16BF30059F494 /* Build configuration list for PBXProject "CaptionIt" */ = {
+		331417F91FB16BF30059F494 /* Build configuration list for PBXProject "captionit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				331418241FB16BF40059F494 /* Debug */,
