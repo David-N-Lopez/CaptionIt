@@ -32,7 +32,7 @@ class CaptioningVC: UIViewController, UITextViewDelegate{
   var isJudge = false
   var playerLayer : AVPlayerLayer?
   var gameTimer: Timer!
-  var totalTime = 60
+  var totalTime = 120
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -254,6 +254,10 @@ class CaptioningVC: UIViewController, UITextViewDelegate{
         return
       }
       if wasJudge {
+        if self.gameTimer != nil {
+          self.gameTimer.invalidate()
+          self.gameTimer = nil
+        }
         let controller = UIAlertController(title: "Error: Something went wrong", message: "Judge Left the game", preferredStyle: .alert)
         let action = UIAlertAction(title: "Ok", style: .cancel) { (action) in
           self.meme.image = nil;
@@ -266,6 +270,7 @@ class CaptioningVC: UIViewController, UITextViewDelegate{
   }
   
   func startTimer() {
+    totalTime = 120
     gameTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(runTimedCode), userInfo: nil, repeats: true)
   }
   

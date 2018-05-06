@@ -20,7 +20,7 @@ class WaitingViewController: UIViewController {
   var totalUser = 0
   var totalComments = 0
   var gameTimer: Timer!
-  var totalTime = 65
+  var totalTime = 125
   
   @IBOutlet weak var lblTimer: UILabel!
   @IBOutlet weak var pamaFriendsGif: UIImageView!
@@ -52,8 +52,8 @@ class WaitingViewController: UIViewController {
   
   override func viewWillDisappear(_ animated: Bool) {
     NotificationCenter.default.removeObserver(self)
-    gameTimer.invalidate()
     if gameTimer != nil {
+      gameTimer.invalidate()
       gameTimer = nil
     }
     let userId = Auth.auth().currentUser?.uid

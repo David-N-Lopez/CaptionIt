@@ -65,7 +65,7 @@ class Group: NSObject {
   
   
   func startTime() {
-    gameTimer = Timer.scheduledTimer(timeInterval: 800, target: self, selector: #selector(runTimedCode), userInfo: nil, repeats: false)
+    gameTimer = Timer.scheduledTimer(timeInterval: 8000, target: self, selector: #selector(runTimedCode), userInfo: nil, repeats: false)
   }
   
   func stopTimer() {
