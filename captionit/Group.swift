@@ -45,6 +45,15 @@ class Group: NSObject {
         }
         self.round -= 1
         
+        for (index, user) in self.users.enumerated() {
+          if let userDic = user as? [String : Any] {
+            let userID = userDic["ID"] as! String
+            if id == userID {
+              self.users.remove(at: index)
+            }
+          }
+        }
+        
         if self.totalUser == 1 {
           ref.child("rooms").child(groupPin).removeValue()
           self.deleteMediaForGroup()

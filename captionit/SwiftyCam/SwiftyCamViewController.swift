@@ -831,6 +831,12 @@ open class SwiftyCamViewController: UIViewController {
 	}
 
 	fileprivate func capturePhotoAsyncronously(completionHandler: @escaping(Bool) -> ()) {
+   
+    guard self.session.isRunning == true else {
+      print("Cannot take photo while session isn't running")
+      return
+    }
+    
 		if let videoConnection = photoFileOutput?.connection(withMediaType: AVMediaTypeVideo) {
 
 			photoFileOutput?.captureStillImageAsynchronously(from: videoConnection, completionHandler: {(sampleBuffer, error) in

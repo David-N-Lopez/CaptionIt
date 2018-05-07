@@ -171,6 +171,11 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
           self.btnNext.alpha = 0.5
           self.btnWinnerNext.isEnabled = false
           self.btnWinnerNext.alpha = 0.5
+        } else {
+          self.btnNext.isEnabled = true
+          self.btnNext.alpha = 1
+          self.btnWinnerNext.isEnabled = true
+          self.btnWinnerNext.alpha = 1
         }
         if self.currentCommentIndex == 0 && Auth.auth().currentUser?.uid == self.judgeID && self.gameWinnerID.count == 0 {
           let comment = self.usersComments[0] as! [String : Any]
@@ -400,7 +405,7 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         self.updateNameWithComment(userCommentDic["id"]!)
       }
       textSingleComment.text = userCommentDic["comment"]
-      if currentCommentIndex >= userCommentDic.count {
+      if currentCommentIndex >= usersComments.count - 1 {
         btnNext.isEnabled = false
         btnNext.alpha = 0.5
         btnWinnerNext.isEnabled = false
@@ -468,11 +473,20 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
           self.textJudgeName.text = "\(winnerName) is the winner"
           self.textWinnerName.text = winnerName
           self.viewWinnerName.backgroundColor = #colorLiteral(red: 0.2458627252, green: 1, blue: 0.003417990503, alpha: 1)
+          self.btnPrevious.alpha = 0.5
+          self.btnPrevious.isEnabled = false
+          self.btnWinnerPrev.alpha = 0.5
+          self.btnWinnerPrev.isEnabled = false
           if self.usersComments.count == 1 {
             self.btnNext.alpha = 0.5
             self.btnNext.isEnabled = false
             self.btnWinnerNext.alpha = 0.5
             self.btnWinnerNext.isEnabled = false
+          } else {
+            self.btnNext.alpha = 1
+            self.btnNext.isEnabled = true
+            self.btnWinnerNext.alpha = 1
+            self.btnWinnerNext.isEnabled = true
           }
         })
         for (index, comment) in self.usersComments.enumerated() {
