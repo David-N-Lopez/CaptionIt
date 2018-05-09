@@ -17,6 +17,7 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false;
     gameStartRef = ref.child("rooms").child(curPin).child("isPlaying")
     gameStartRef?.setValue(false)
     print("hellow from enter room controller")
