@@ -25,7 +25,7 @@ class DemoViewController: UIViewController {
         super.viewDidLoad()
       btnPrevious.alpha = 0.5
       btnPrevious.isEnabled = false
-      arrImages = ["pama-tutorial.gif","pama-and-friends.gif","fries.gif","fries.gif","pama-tutorial.gif"]
+      arrImages = ["pama-tutorial.gif","pama-and-friends.gif","fries.gif","fries.gif","confetti-2.gif"]
       arrNotes = ["Join an existing game or create a new one.","invite your friends to join.","upload your funniest picture or video.","caption it!", "choose the best caption."]
       
       mPager.numberOfPages = arrImages.count

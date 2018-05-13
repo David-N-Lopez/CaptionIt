@@ -34,7 +34,8 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     @IBAction func submit(_ sender: UIButton) {
         print("start")
       SVProgressHUD.show()
-        if (myImageView.image != nil || previewVideo != nil || myImageView != #imageLiteral(resourceName: "pizza-pama")) {
+        if (myImageView.image != nil || previewVideo != nil) { // still need to check that the user is uploading something
+        
             let currentPlayer = getCurrentPlayer()
             let image = myImageView.image
             var data =  NSData()
@@ -76,13 +77,6 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
                     }
                     
                 }}
-        if (myImageView == #imageLiteral(resourceName: "pizza-pama")){
-            let alert = UIAlertController(title: "Please pick a meme", message: "We know pizza pama is beautiful, but please don't use it as a meme.", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Ok!", style: .cancel, handler: nil))
-            self.present(alert, animated: true)
-
-            
-        }
     }
      
     override func viewDidLoad() {
@@ -94,7 +88,7 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
   override func viewDidAppear(_ animated: Bool) {
     if mediaType == 1 {
       if previewImage == nil {
-        let gif = UIImage(gifName: "pizza-pama")
+        let gif = UIImage(gifName: "pizza-pama (1)")
         myImageView.setGifImage(gif, manager: gifManager, loopCount: -1)
       } else {
         gifManager.clear()

@@ -38,7 +38,7 @@ class PhotoViewController: UIViewController {
         view.addSubview(cancelButton)
         
         let useIcon = UIButton(frame: CGRect(x: view.frame.size.width - 90, y: view.frame.size.height - 90 , width: 80.0, height: 80.0))
-        useIcon.setImage(#imageLiteral(resourceName: "sendIcon"), for: UIControlState())
+        useIcon.setImage(#imageLiteral(resourceName: "contrast-arrow-black"), for: UIControlState())
         useIcon.addTarget(self, action: #selector(saveImage), for: .touchUpInside)
         view.addSubview(useIcon)
         

@@ -28,7 +28,7 @@ class SettingsController: UIViewController, UITextFieldDelegate {
         view.addGestureRecognizer(tap)
 //        mummyGif.image = UIImage.gifImageWithName(name: "mummy")
       let gifManager = SwiftyGifManager(memoryLimit:10)
-      let gif = UIImage(gifName: "mummy")
+      let gif = UIImage(gifName: "mummy (1)")
       mummyGif.setGifImage(gif, manager: gifManager, loopCount: -1)
     }
     func dismissKeyboard() {

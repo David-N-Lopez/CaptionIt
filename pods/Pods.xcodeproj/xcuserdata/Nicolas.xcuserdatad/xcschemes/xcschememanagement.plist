@@ -74,6 +74,11 @@
 			<key>orderHint</key>
 			<integer>13</integer>
 		</dict>
+		<key>SwiftyGif.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>15</integer>
+		</dict>
 		<key>leveldb-library.xcscheme</key>
 		<dict>
 			<key>isShown</key>

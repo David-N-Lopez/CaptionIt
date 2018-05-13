@@ -91,7 +91,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         Group.singleton.curPin = "0"
 //        scubaGif.image = UIImage.gifImageWithName(name: "scuba-pama")
       let gifManager = SwiftyGifManager(memoryLimit:10)
-      let gif = UIImage(gifName: "scuba-pama")
+      let gif = UIImage(gifName: "scuba-pama-large")
       scubaGif.setGifImage(gif, manager: gifManager, loopCount: -1)
       
       

@@ -61,14 +61,13 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
     cell.imagePlayer.animationManager?.clear()
     if let currentUser = users[indexPath.row] as? [String : Any] {
       let isReady = currentUser["Ready"] as? Bool
+         let array = [#imageLiteral(resourceName: "bee-pama"),#imageLiteral(resourceName: "cat-pama"),#imageLiteral(resourceName: "NYE-pama"),#imageLiteral(resourceName: "pirate-pama"),#imageLiteral(resourceName: "snow-pama"),#imageLiteral(resourceName: "st-pats-pama(1)")]
       if isReady == false {
-        let gifManager = SwiftyGifManager(memoryLimit:30)
-        let gif = UIImage(gifName: "pama-loading-screen")
-        cell.imagePlayer.setGifImage(gif, manager: gifManager, loopCount: -1)
+        cell.imagePlayer.image = array[indexPath.row % 6]
         cell.contentView.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
       }
       else {
-        let array = [#imageLiteral(resourceName: "bee-pama"),#imageLiteral(resourceName: "cat-pama"),#imageLiteral(resourceName: "NYE-pama"),#imageLiteral(resourceName: "pirate-pama"),#imageLiteral(resourceName: "snow-pama"),#imageLiteral(resourceName: "st-pats-pama(1)")]
+       
         cell.imagePlayer.image = array[indexPath.row % 6] //this is applying for all
         cell.contentView.backgroundColor = #colorLiteral(red: 0.9906545281, green: 0.8612887263, blue: 0.02440710366, alpha: 1)
       }
