@@ -46,7 +46,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     self.navigationController?.pushViewController(controller, animated: true)
                     return
                   }
-                  
                 }
               }
             }
@@ -54,10 +53,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 let alert = UIAlertController(title: "Room doesn't exist", message: "Try creating a new room or re-typing your pin number", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
                 self.present(alert, animated: true)
-            
         })//Good
-
-
     }
     /*******************create game makes reference to the player function createGame******************/
     
@@ -91,7 +87,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         Group.singleton.curPin = "0"
 //        scubaGif.image = UIImage.gifImageWithName(name: "scuba-pama")
       let gifManager = SwiftyGifManager(memoryLimit:10)
-      let gif = UIImage(gifName: "scuba-pama-large")
+      let gif = UIImage(gifName: "scuba-pama-final")
       scubaGif.setGifImage(gif, manager: gifManager, loopCount: -1)
       
       

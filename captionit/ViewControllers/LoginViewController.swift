@@ -26,7 +26,7 @@ class LoginViewController: UIViewController {
         view.addGestureRecognizer(tap)
 //        blinkingGif.image = UIImage.gifImageWithName(name: "blinking-pama")
       let gifManager = SwiftyGifManager(memoryLimit:10)
-      let gif = UIImage(gifName: "blinking-pama")
+      let gif = UIImage(gifName: "blinking-pama-correct")
       blinkingGif.setGifImage(gif, manager: gifManager, loopCount: -1)
         // Do any additional setup after loading the view.
         

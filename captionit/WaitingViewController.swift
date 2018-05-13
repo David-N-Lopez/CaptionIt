@@ -23,7 +23,7 @@ class WaitingViewController: UIViewController {
   var totalTime = 125
   
   @IBOutlet weak var lblTimer: UILabel!
-  @IBOutlet weak var pamaFriendsGif: UIImageView!
+ 
     @IBOutlet weak var gifView: UIImageView!
     override func viewDidLoad() {
     super.viewDidLoad()
@@ -32,11 +32,10 @@ class WaitingViewController: UIViewController {
       startTimer()
       lblTimer.text = Group.singleton.timeFormatted(totalTime)
       let gifManager = SwiftyGifManager(memoryLimit:10)
-      let gif = UIImage(gifName: "pama-waiting-screen (2)")
-      gifView.setGifImage(gif, manager: gifManager, loopCount: -1)
+      let gif = UIImage(gifName: "pama")
+      gifView.setGifImage(gif, manager: gifManager, loopCount: 1)
       
-      let gifSecond = UIImage(gifName: "pama-and-friends")
-      pamaFriendsGif.setGifImage(gifSecond, manager: gifManager, loopCount: -1)
+   
       
       NotificationCenter.default.addObserver(
         self,
