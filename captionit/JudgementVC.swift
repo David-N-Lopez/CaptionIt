@@ -472,7 +472,7 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         self.getUserName(winner, "Winner", { (winnerName) in
           self.textJudgeName.text = "\(winnerName) is the winner"
           self.textWinnerName.text = winnerName
-          self.viewWinnerName.backgroundColor = #colorLiteral(red: 0.2458627252, green: 1, blue: 0.003417990503, alpha: 1)
+          self.viewWinnerName.backgroundColor = #colorLiteral(red: 0.2470588235, green: 1, blue: 0.003921568627, alpha: 1)
           self.btnPrevious.alpha = 0.5
           self.btnPrevious.isEnabled = false
           self.btnWinnerPrev.alpha = 0.5
@@ -511,7 +511,7 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     if id == self.gameWinnerID {
       self.viewWinnerName.backgroundColor = #colorLiteral(red: 0.2458627252, green: 1, blue: 0.003417990503, alpha: 1)
     } else {
-      self.viewWinnerName.backgroundColor = #colorLiteral(red: 0.9785731435, green: 0.07145081846, blue: 0.007269420236, alpha: 1)
+      self.viewWinnerName.backgroundColor = #colorLiteral(red: 0.9803921569, green: 0.07058823529, blue: 0.007843137255, alpha: 1)
     }
   }
   

@@ -169,8 +169,10 @@ class Group: NSObject {
   }
   
   func removeUserFromGame() {
-    let uid = getUserId()
-    ref.child("rooms").child(curPin).child("players").child(uid!).removeValue()
+    if let uid = getUserId() {
+     ref.child("rooms").child(curPin).child("players").child(uid).removeValue()
+    }
+    
   }
   
   
