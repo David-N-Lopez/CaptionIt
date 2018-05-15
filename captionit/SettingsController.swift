@@ -29,7 +29,7 @@ class SettingsController: UIViewController, UITextFieldDelegate {
 //        mummyGif.image = UIImage.gifImageWithName(name: "mummy")
       let gifManager = SwiftyGifManager(memoryLimit:10)
       let gif = UIImage(gifName: "mummy (1)")
-      mummyGif.setGifImage(gif, manager: gifManager, loopCount: -1)
+      mummyGif.setGifImage(gif, manager: gifManager, loopCount: 1)
     }
     func dismissKeyboard() {
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
