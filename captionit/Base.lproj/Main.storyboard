@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="soC-Ci-kS4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="soC-Ci-kS4">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -13,6 +13,12 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="HelveticaNeue.ttc">
+            <string>HelveticaNeue</string>
+        </array>
+        <array key="PingFang.ttc">
+            <string>PingFangSC-Semibold</string>
+        </array>
         <array key="SourceCodePro-Bold.ttf">
             <string>SourceCodePro-Bold</string>
         </array>
@@ -1787,7 +1793,7 @@ Tell your friends to hurry up!</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="new username" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Lbr-ct-gcZ">
-                                <rect key="frame" x="28.000000000000014" y="344" width="249.33333333333337" height="55"/>
+                                <rect key="frame" x="28.000000000000014" y="343.66666666666669" width="250.33333333333337" height="55.333333333333314"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Lbr-ct-gcZ" secondAttribute="height" multiplier="50:11" id="W0R-v9-oHG"/>
                                     <constraint firstAttribute="width" secondItem="Lbr-ct-gcZ" secondAttribute="height" multiplier="50:11" id="vLi-tf-bYd"/>
@@ -1802,7 +1808,7 @@ Tell your friends to hurry up!</string>
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VHs-K2-VpU">
-                                <rect key="frame" x="277.33333333333331" y="225.33333333333334" width="108.66666666666669" height="54.666666666666657"/>
+                                <rect key="frame" x="278.33333333333331" y="225" width="107.66666666666669" height="54.666666666666686"/>
                                 <color key="backgroundColor" red="0.94509803920000002" green="0.35294117650000001" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="108" id="aTZ-46-K4g"/>
@@ -1822,7 +1828,7 @@ Tell your friends to hurry up!</string>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="htq-fG-HAw">
-                                <rect key="frame" x="277.33333333333331" y="344" width="108.66666666666669" height="55"/>
+                                <rect key="frame" x="278.33333333333331" y="343.66666666666669" width="107.66666666666669" height="55.333333333333314"/>
                                 <color key="backgroundColor" red="0.94509803920000002" green="0.35294117650000001" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="htq-fG-HAw" secondAttribute="height" multiplier="108:55" id="dV2-jF-Viq"/>
@@ -1841,7 +1847,7 @@ Tell your friends to hurry up!</string>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CHANGE USERNAME" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PNB-I2-HTE">
-                                <rect key="frame" x="20" y="303" width="153" height="21"/>
+                                <rect key="frame" x="20" y="302.66666666666669" width="153" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="PNB-I2-HTE" secondAttribute="height" multiplier="51:7" id="k9m-tx-fld"/>
                                     <constraint firstAttribute="width" secondItem="PNB-I2-HTE" secondAttribute="height" multiplier="51:7" id="xJ8-Wg-9fs"/>
@@ -1871,7 +1877,7 @@ Tell your friends to hurry up!</string>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="new password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IOp-dC-F3W">
-                                <rect key="frame" x="28.000000000000014" y="225.33333333333334" width="249.33333333333337" height="54.666666666666657"/>
+                                <rect key="frame" x="28.000000000000014" y="225" width="250.33333333333337" height="54.666666666666686"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="IOp-dC-F3W" secondAttribute="height" multiplier="50:11" id="1uf-gA-qhs"/>
                                     <constraint firstAttribute="width" secondItem="IOp-dC-F3W" secondAttribute="height" multiplier="50:11" id="f6e-8n-1T3"/>
@@ -1922,7 +1928,7 @@ Tell your friends to hurry up!</string>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CHANGE PASSWORD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vOV-N3-lBH">
-                                <rect key="frame" x="19" y="195.33333333333334" width="154" height="22"/>
+                                <rect key="frame" x="19" y="195" width="154" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="vOV-N3-lBH" secondAttribute="height" multiplier="7:1" id="5uw-eM-aPq"/>
                                     <constraint firstAttribute="width" secondItem="vOV-N3-lBH" secondAttribute="height" multiplier="7:1" id="vKe-2Q-aTK"/>
