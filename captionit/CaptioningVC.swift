@@ -19,6 +19,7 @@ class CaptioningVC: UIViewController, UITextViewDelegate{
   @IBOutlet weak var meme: UIImageView!
   @IBOutlet weak var myTextField: UITextView!
   @IBOutlet weak var btnUpload: UIButton!
+  @IBOutlet weak var btnRandomCaption: UIButton!
   var curPin: String?
   var hasCurrentJudge:Bool?
   var currentJudge: String?
@@ -40,6 +41,7 @@ class CaptioningVC: UIViewController, UITextViewDelegate{
     myTextField.delegate = self
     myTextField.text = "CaptionIt!"
     myTextField.textColor = UIColor.lightGray
+    btnRandomCaption.contentHorizontalAlignment = .left
     let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
     view.addGestureRecognizer(tap)
   }
