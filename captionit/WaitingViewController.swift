@@ -32,7 +32,7 @@ class WaitingViewController: UIViewController {
       startTimer()
       lblTimer.text = Group.singleton.timeFormatted(totalTime)
       let gifManager = SwiftyGifManager(memoryLimit:10)
-      let gif = UIImage(gifName: "pama")
+      let gif = UIImage(gifName: "pama-waiting-screen (2)")
       gifView.setGifImage(gif, manager: gifManager, loopCount: 1)
       
    

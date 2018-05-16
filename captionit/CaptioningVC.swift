@@ -71,7 +71,7 @@ class CaptioningVC: UIViewController, UITextViewDelegate{
     }
   
   func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-    if myTextField.text.count > 0 {
+    if myTextField.text != "" {
       btnUpload.isEnabled = true
       btnUpload.alpha = 1
     } else {
@@ -212,7 +212,10 @@ class CaptioningVC: UIViewController, UITextViewDelegate{
     }
     
   }
-  
+    @IBAction func addRandomCaption(_ sender : Any){
+        let randomArray = ["Draw me like one of your French girls","I. Declare. Bankruptcy!","When you thirsty AF", "When you are washing dishes, and someone adds a dish in","Liberals","Millenials"]
+        myTextField.text = randomArray[4 ]
+    }
   override func viewWillDisappear(_ animated: Bool) {
     if gameTimer != nil {
       gameTimer.invalidate()
