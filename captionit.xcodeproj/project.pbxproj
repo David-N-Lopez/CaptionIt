@@ -71,6 +71,7 @@
 		B2B1B0D02026CE5700FD2A51 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B1B0CF2026CE5700FD2A51 /* RegisterViewController.swift */; };
 		B2B1B0D32026CFC900FD2A51 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B1B0D22026CFC900FD2A51 /* UIViewController.swift */; };
 		B2B1B0D62026D0FF00FD2A51 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B1B0D52026D0FF00FD2A51 /* Utility.swift */; };
+		C81FF19A20AFAD50007E4B19 /* fries-text.gif in Resources */ = {isa = PBXBuildFile; fileRef = C81FF19820AFAD4E007E4B19 /* fries-text.gif */; };
 		C8825BB51FD10B9200089E7A /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8825BB41FD10B9200089E7A /* Room.swift */; };
 		C8825BB71FD10BBD00089E7A /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8825BB61FD10BBD00089E7A /* Game.swift */; };
 		C8825BB91FD10C2C00089E7A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8825BB81FD10C2C00089E7A /* User.swift */; };
@@ -189,6 +190,7 @@
 		B2B1B0D22026CFC900FD2A51 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		B2B1B0D52026D0FF00FD2A51 /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		BCDA3BFD9F652BA4F962D1A8 /* Pods_CaptionIt.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CaptionIt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C81FF19820AFAD4E007E4B19 /* fries-text.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "fries-text.gif"; sourceTree = "<group>"; };
 		C8825BB41FD10B9200089E7A /* Room.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
 		C8825BB61FD10BBD00089E7A /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		C8825BB81FD10C2C00089E7A /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -290,6 +292,7 @@
 				331418011FB16BF40059F494 /* AppDelegate.swift */,
 				379674EF20A6CABA003F4DAD /* confetti-2.gif */,
 				37C91AB1208296F9004B15C1 /* pama-and-friends.gif */,
+				C81FF19820AFAD4E007E4B19 /* fries-text.gif */,
 				379674FE20A817AA003F4DAD /* blinking-pama-correct.gif */,
 				371120502075355600295A63 /* pama-waiting-screen (2).gif */,
 				331418031FB16BF40059F494 /* ViewController.swift */,
@@ -609,6 +612,7 @@
 				AE25EDEE209EDC8F00EB7FB9 /* SourceCodePro-Black.ttf in Resources */,
 				379674F120A6CABB003F4DAD /* confetti-2.gif in Resources */,
 				37112042207177E300295A63 /* Assets.xcassets in Resources */,
+				C81FF19A20AFAD50007E4B19 /* fries-text.gif in Resources */,
 				379674F520A6CAD5003F4DAD /* pizza-pama (1).gif in Resources */,
 				AE8C4BDF2074961B004529C1 /* SourceCodePro-Bold.ttf in Resources */,
 				37C91AB2208296F9004B15C1 /* pama-and-friends.gif in Resources */,
