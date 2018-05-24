@@ -14,6 +14,7 @@ import FirebaseInstanceID
 import FirebaseMessaging
 import Fabric
 import Crashlytics
+import FBSDKLoginKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, MessagingDelegate {
@@ -52,7 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         moveToViewController()
       }
         application.isStatusBarHidden = true
-        return true
+        return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }
   
   func moveToViewController() {
@@ -79,6 +80,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
   func endBackgroundUpdateTask() {
     UIApplication.shared.endBackgroundTask(self.backgroundUpdateTask)
     self.backgroundUpdateTask = UIBackgroundTaskInvalid
+  }
+  
+  func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+    return FBSDKApplicationDelegate.sharedInstance().application(application, open: url, sourceApplication: sourceApplication, annotation: annotation)
   }
   
     func applicationWillEnterForeground(_ application: UIApplication) {

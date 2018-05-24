@@ -47,6 +47,10 @@
 		9F09F68E209AF3A000281313 /* pama-tutorial.gif in Resources */ = {isa = PBXBuildFile; fileRef = 9F09F68D209AF3A000281313 /* pama-tutorial.gif */; };
 		9F09F690209AF4FB00281313 /* fries.gif in Resources */ = {isa = PBXBuildFile; fileRef = 9F09F68F209AF4FB00281313 /* fries.gif */; };
 		9F09F692209AF59C00281313 /* pama.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F09F691209AF59C00281313 /* pama.png */; };
+		9F0A833420B7015600A012B7 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9F0A833320B7015600A012B7 /* Info.plist */; };
+		9F0A833720B736BC00A012B7 /* FBInviteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A833620B736BC00A012B7 /* FBInviteViewController.swift */; };
+		9F0A833B20B7394E00A012B7 /* FBInviteVC+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A833A20B7394E00A012B7 /* FBInviteVC+Extension.swift */; };
+		9F0A833D20B739C900A012B7 /* InviteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A833C20B739C900A012B7 /* InviteCell.swift */; };
 		9F0E65F020878AF000A4365B /* PushNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0E65EF20878AF000A4365B /* PushNotificationManager.swift */; };
 		9F1315DD208344B8005E1571 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1315DC208344B8005E1571 /* Group.swift */; };
 		9F232C21207381BB00C438A5 /* ResultVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F232C20207381BB00C438A5 /* ResultVC.swift */; };
@@ -111,7 +115,6 @@
 		331417FE1FB16BF30059F494 /* CaptionIt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CaptionIt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		331418011FB16BF40059F494 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		331418031FB16BF40059F494 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		3314180D1FB16BF40059F494 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		331418121FB16BF40059F494 /* CaptionItTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CaptionItTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		331418161FB16BF40059F494 /* CaptionItTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptionItTests.swift; sourceTree = "<group>"; };
 		331418181FB16BF40059F494 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -161,6 +164,10 @@
 		9F09F68D209AF3A000281313 /* pama-tutorial.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "pama-tutorial.gif"; sourceTree = "<group>"; };
 		9F09F68F209AF4FB00281313 /* fries.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = fries.gif; sourceTree = "<group>"; };
 		9F09F691209AF59C00281313 /* pama.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pama.png; sourceTree = "<group>"; };
+		9F0A833320B7015600A012B7 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9F0A833620B736BC00A012B7 /* FBInviteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FBInviteViewController.swift; path = captionit/InviteViewController/FBInviteViewController.swift; sourceTree = SOURCE_ROOT; };
+		9F0A833A20B7394E00A012B7 /* FBInviteVC+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "FBInviteVC+Extension.swift"; path = "captionit/InviteViewController/Extension/FBInviteVC+Extension.swift"; sourceTree = SOURCE_ROOT; };
+		9F0A833C20B739C900A012B7 /* InviteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = InviteCell.swift; path = captionit/InviteViewController/Cell/InviteCell.swift; sourceTree = SOURCE_ROOT; };
 		9F0E65EE2087637A00A4365B /* CaptionIt.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CaptionIt.entitlements; sourceTree = "<group>"; };
 		9F0E65EF20878AF000A4365B /* PushNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationManager.swift; sourceTree = "<group>"; };
 		9F1315DC208344B8005E1571 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Group.swift; path = captionit/Group.swift; sourceTree = SOURCE_ROOT; };
@@ -267,6 +274,8 @@
 		331418001FB16BF30059F494 /* CaptionIt */ = {
 			isa = PBXGroup;
 			children = (
+				9F0A833520B7366B00A012B7 /* InviteViewController */,
+				9F0A833320B7015600A012B7 /* Info.plist */,
 				9F09F68B209AF39400281313 /* Images */,
 				9F0E65EE2087637A00A4365B /* CaptionIt.entitlements */,
 				AE8C4BDD20745EF1004529C1 /* SourceCodePro-Black.ttf */,
@@ -311,7 +320,6 @@
 				C8825BBC1FD26DC600089E7A /* MemePickerVC.swift */,
 				37C91AAB20828292004B15C1 /* resetPasswordVC.swift */,
 				37112041207177E300295A63 /* Assets.xcassets */,
-				3314180D1FB16BF40059F494 /* Info.plist */,
 				338756821FC3E7A800C78256 /* Player.swift */,
 				9FEBFED12089E38800022F4F /* Constant.swift */,
 				C8825BB41FD10B9200089E7A /* Room.swift */,
@@ -396,6 +404,32 @@
 			path = Images;
 			sourceTree = "<group>";
 		};
+		9F0A833520B7366B00A012B7 /* InviteViewController */ = {
+			isa = PBXGroup;
+			children = (
+				9F0A833920B7393900A012B7 /* Cell */,
+				9F0A833820B7393100A012B7 /* Extension */,
+				9F0A833620B736BC00A012B7 /* FBInviteViewController.swift */,
+			);
+			path = InviteViewController;
+			sourceTree = "<group>";
+		};
+		9F0A833820B7393100A012B7 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				9F0A833A20B7394E00A012B7 /* FBInviteVC+Extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		9F0A833920B7393900A012B7 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				9F0A833C20B739C900A012B7 /* InviteCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		9FF7B6D3208E1DEE00E9E3F4 /* AppSetting */ = {
 			isa = PBXGroup;
 			children = (
@@ -468,7 +502,6 @@
 				331417FB1FB16BF30059F494 /* Frameworks */,
 				331417FC1FB16BF30059F494 /* Resources */,
 				9D0B3FE18A81AA9A12CDB49B /* [CP] Embed Pods Frameworks */,
-				130FF2031FBFCFA484AFF769 /* [CP] Copy Pods Resources */,
 				9FD05FBE208DBFB900806ACA /* ShellScript */,
 			);
 			buildRules = (
@@ -488,8 +521,6 @@
 				3314180E1FB16BF40059F494 /* Sources */,
 				3314180F1FB16BF40059F494 /* Frameworks */,
 				331418101FB16BF40059F494 /* Resources */,
-				550B57A0E153812A9C17EF4C /* [CP] Embed Pods Frameworks */,
-				C26E9E0F7FAAD24DEB105ED3 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -509,8 +540,6 @@
 				331418191FB16BF40059F494 /* Sources */,
 				3314181A1FB16BF40059F494 /* Frameworks */,
 				3314181B1FB16BF40059F494 /* Resources */,
-				83BE3C6D738AE9BCCFF139A9 /* [CP] Embed Pods Frameworks */,
-				9F04656A1BDBA8A16DB3F067 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -603,6 +632,7 @@
 				3711204F2075353400295A63 /* pama-loading-screen.gif in Resources */,
 				9F09F68E209AF3A000281313 /* pama-tutorial.gif in Resources */,
 				3796750320A8265E003F4DAD /* pama.gif in Resources */,
+				9F0A833420B7015600A012B7 /* Info.plist in Resources */,
 				48B062BE2027844F0045400A /* GoogleService-Info.plist in Resources */,
 				AE25EDED209EDC8B00EB7FB9 /* SourceSansPro-It.otf in Resources */,
 				48B062BC2026BAA90045400A /* Main.storyboard in Resources */,
@@ -636,36 +666,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		130FF2031FBFCFA484AFF769 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CaptionIt/Pods-CaptionIt-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		550B57A0E153812A9C17EF4C /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CaptionItTests/Pods-CaptionItTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		5A14281DAAFC82262F2D70AE /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -720,21 +720,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		83BE3C6D738AE9BCCFF139A9 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CaptionItUITests/Pods-CaptionItUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		9D0B3FE18A81AA9A12CDB49B /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -743,6 +728,13 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-CaptionIt/Pods-CaptionIt-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKShareKit/FBSDKShareKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookCore/FacebookCore.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookLogin/FacebookLogin.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookShare/FacebookShare.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
@@ -756,6 +748,13 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKShareKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookLogin.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookShare.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
@@ -771,21 +770,6 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CaptionIt/Pods-CaptionIt-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		9F04656A1BDBA8A16DB3F067 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CaptionItUITests/Pods-CaptionItUITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		9FD05FBE208DBFB900806ACA /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -798,21 +782,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Fabric/run\" 8020c9bd12e4172bc1e3226236c955034425c86b 07e170b9e3c0d1758e4b1b39d00aa5665777fdf143570748f4f2c58139639dfb";
-		};
-		C26E9E0F7FAAD24DEB105ED3 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CaptionItTests/Pods-CaptionItTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -828,6 +797,7 @@
 				B2B1B0D62026D0FF00FD2A51 /* Utility.swift in Sources */,
 				331418041FB16BF40059F494 /* ViewController.swift in Sources */,
 				37707CA4203A069A00143D6E /* SwiftyCamViewController.swift in Sources */,
+				9F0A833D20B739C900A012B7 /* InviteCell.swift in Sources */,
 				9F0E65F020878AF000A4365B /* PushNotificationManager.swift in Sources */,
 				37707CA6203A069A00143D6E /* PreviewView.swift in Sources */,
 				C8825BB71FD10BBD00089E7A /* Game.swift in Sources */,
@@ -850,6 +820,7 @@
 				9F47F0ED20851963007E8E36 /* UIImageExtension.swift in Sources */,
 				C8825BB91FD10C2C00089E7A /* User.swift in Sources */,
 				9F232C21207381BB00C438A5 /* ResultVC.swift in Sources */,
+				9F0A833B20B7394E00A012B7 /* FBInviteVC+Extension.swift in Sources */,
 				338756831FC3E7A800C78256 /* Player.swift in Sources */,
 				C8825BC11FD4674F00089E7A /* EnterRoomViewController.swift in Sources */,
 				3740D9AF206C176A000DFC1D /* CaptioningVC.swift in Sources */,
@@ -862,6 +833,7 @@
 				37C91AAC20828292004B15C1 /* resetPasswordVC.swift in Sources */,
 				525069662087690D00A1F750 /* GlimpseAssetWriter.m in Sources */,
 				9FEBFED22089E38800022F4F /* Constant.swift in Sources */,
+				9F0A833720B736BC00A012B7 /* FBInviteViewController.swift in Sources */,
 				37707CA5203A069A00143D6E /* SwiftyCamButton.swift in Sources */,
 				9F232C232073837300C438A5 /* ResultCell.swift in Sources */,
 				9F0807C4208E072900EB6182 /* DemoViewController.swift in Sources */,

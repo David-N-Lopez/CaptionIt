@@ -2,6 +2,7 @@ import UIKit
 import FirebaseDatabase
 import FirebaseAuth
 import SwiftyGif
+
 //  TODO: CHANGE THE TABLE SO IT DISPLAYS THE PLAYERS BASED ON FIREBASE CHANGE MAKE SURE THAT "ISREADY" CHANGES INDIVIDUALLY THEN START GAME GO DIRECTLY TO CAPTIONING AND SHOW IMAGE BASED ON URL.ADD TEXT AND SAVE BOTH SEPARATELY
 
 class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
@@ -182,6 +183,11 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
     }
   }
   
+  @IBAction func InviteFriends() {
+    let controller = self.storyboard?.instantiateViewController(withIdentifier: "FBInviteViewController") as! FBInviteViewController
+    self.navigationController?.pushViewController(controller, animated: true)
+  }
+  
   @IBAction func actionBack() {
     let currentUser = Auth.auth().currentUser?.uid
     ref.child("rooms").child(self.curPin).child("players").child(currentUser!).removeValue { (error, reff) in
@@ -197,4 +203,6 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
       self.navigationController?.popViewController(animated: true)
     }
   }
+  
+  
 }

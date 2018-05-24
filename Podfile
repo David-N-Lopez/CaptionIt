@@ -18,6 +18,9 @@ target 'CaptionIt' do
   pod 'SwiftyGif'
   pod 'Fabric'
   pod 'Crashlytics'
+  pod 'FacebookCore'
+  pod 'FacebookLogin'
+  pod 'FacebookShare'
   
   target 'CaptionItTests' do
     inherit! :search_paths
