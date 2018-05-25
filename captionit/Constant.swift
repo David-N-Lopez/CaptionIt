@@ -13,4 +13,6 @@ struct Constant {
  static let selectCaption = "Select Caption"
  static let finishedJudging = "The judge has finished judging"
  static let nextRound = "Next Round Started"
+  
+  static let NotifyToJoin = "Invited you to join"
 }

@@ -15,9 +15,13 @@ import FirebaseDatabase
 
 class FBInviteViewController: UIViewController {
   @IBOutlet weak var tblInvite: UITableView!
+  @IBOutlet weak var btnInvite: UIButton!
+  
+  var groupId = "0"
   var friendsArray = [Any]()
   var IDArray = [String]()
   var listFriends = [Any]()
+  var selectedIndex = [Int]()
   
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -105,6 +109,7 @@ class FBInviteViewController: UIViewController {
         
       }
     }
+    selectedIndex.removeAll()
     tblInvite.reloadData()
   }
   
@@ -124,5 +129,16 @@ class FBInviteViewController: UIViewController {
       }
     })
   }
-
+  @IBAction func actionSendInvite(_ sender: Any) {
+    print(selectedIndex)
+    for index in selectedIndex {
+      let friendDetail = listFriends[index] as! [String: Any]
+      if let token = friendDetail["token"] as? String {
+        let inviteMessage = "\(Constant.NotifyToJoin) \(self.groupId)"
+        PushNotificationManager.notifyToJoin(deviceToken: token, gameID: self.groupId, taskMessage: inviteMessage)
+      }
+    }
+    self.navigationController?.popViewController(animated: true)
+  }
+  
 }

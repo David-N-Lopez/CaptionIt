@@ -42,4 +42,37 @@ static let serverKey = "AAAAPpcDbrI:APA91bGDDdaV4ZkEMDfMzJEm6kiRI3zFIlVWyfT0wLMy
         print(response.response as Any) // URL response
         print(response.result.value as Any)   // result of response serialization
     }    }
+  
+  static func notifyToJoin(deviceToken: String, gameID: String, taskMessage: String) {
+    
+    // setup alamofire url
+    let fcmURL = "https://fcm.googleapis.com/fcm/send"
+    
+    // add application/json and add authorization key
+    let parameters: Parameters = [
+      "to": "\(deviceToken)",
+      "priority": "high",
+      "notification": [
+        "title": taskMessage,
+        "content_available": true,
+        "sound": "default"
+      ],
+      "data": [
+        "gameID": "\(gameID)",
+        "notification_type": "Join_Game"
+      ]
+    ]
+    let headers: HTTPHeaders = [
+      "Content-Type": "application/json",
+      "Authorization": "key=\(serverKey)"
+    ]
+    
+    Alamofire.request(fcmURL, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
+      .responseJSON { response in
+        print("Completed Notification")
+        print(response.request as Any)  // original URL request
+        print(response.response as Any) // URL response
+        print(response.result.value as Any)   // result of response serialization
+    }    }
+  
 }

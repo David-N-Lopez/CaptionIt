@@ -185,6 +185,7 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
   
   @IBAction func InviteFriends() {
     let controller = self.storyboard?.instantiateViewController(withIdentifier: "FBInviteViewController") as! FBInviteViewController
+    controller.groupId = curPin
     self.navigationController?.pushViewController(controller, animated: true)
   }
   

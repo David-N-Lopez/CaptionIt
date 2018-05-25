@@ -23,6 +23,31 @@ extension FBInviteViewController: UITableViewDelegate, UITableViewDataSource {
     } else {
         cell.lblName.text = "Undefined"
     }
+    if selectedIndex.contains(indexPath.row) {
+      cell.imageSelected.isHidden = false
+    } else {
+      cell.imageSelected.isHidden = true
+    }
     return cell
+  }
+  
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    let cell = tableView.cellForRow(at: indexPath) as! InviteCell
+    if selectedIndex.contains(indexPath.row) {
+      cell.imageSelected.isHidden = true
+      if let index = selectedIndex.index(of: indexPath.row) {
+      selectedIndex.remove(at: index)
+      }
+    } else {
+      cell.imageSelected.isHidden = false
+      selectedIndex.append(indexPath.row)
+    }
+    if selectedIndex.count > 0 {
+      btnInvite.isEnabled = true
+      btnInvite.alpha = 1
+    } else {
+      btnInvite.isEnabled = false
+      btnInvite.alpha = 0.5
+    }
   }
 }

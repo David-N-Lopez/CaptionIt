@@ -118,14 +118,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     Messaging.messaging().apnsToken = deviceToken as Data
   }
   
-//  func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void)
-//  {
-//    //Handle the notification
-//    completionHandler(
-//      [UNNotificationPresentationOptions.alert,
-//       UNNotificationPresentationOptions.sound,
-//       UNNotificationPresentationOptions.badge])
-//  }
+  func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void)
+  {
+    //Handle the notification
+    let userInformation = notification.request.content.userInfo
+    print(userInformation)
+    if let type = userInformation["notification_type"] as? String {
+      if type == "Join_Game" {
+        completionHandler(
+          [UNNotificationPresentationOptions.alert,
+           UNNotificationPresentationOptions.sound,
+           UNNotificationPresentationOptions.badge])
+      }
+    }
+  }
   
   func moveToEnterRoom(index : Int) {
     let storyboard = UIStoryboard(name: "Main", bundle: nil)
