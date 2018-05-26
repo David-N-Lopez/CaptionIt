@@ -82,6 +82,7 @@
 		C8825BBB1FD10CF800089E7A /* Functions_Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8825BBA1FD10CF800089E7A /* Functions_Extensions.swift */; };
 		C8825BBD1FD26DC600089E7A /* MemePickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8825BBC1FD26DC600089E7A /* MemePickerVC.swift */; };
 		C8825BC11FD4674F00089E7A /* EnterRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8825BC01FD4674F00089E7A /* EnterRoomViewController.swift */; };
+		C8D9BC1320B9BC7000F9D281 /* 3ArrowsPointingDown.gif in Resources */ = {isa = PBXBuildFile; fileRef = C8D9BC1120B9BC6F00F9D281 /* 3ArrowsPointingDown.gif */; };
 		D9B11E096BCA9C40BECB2968 /* Pods_CaptionItUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1827A0190DFB7A23422BFB20 /* Pods_CaptionItUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -204,6 +205,7 @@
 		C8825BBA1FD10CF800089E7A /* Functions_Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Functions_Extensions.swift; sourceTree = "<group>"; };
 		C8825BBC1FD26DC600089E7A /* MemePickerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemePickerVC.swift; sourceTree = "<group>"; };
 		C8825BC01FD4674F00089E7A /* EnterRoomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnterRoomViewController.swift; sourceTree = "<group>"; };
+		C8D9BC1120B9BC6F00F9D281 /* 3ArrowsPointingDown.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 3ArrowsPointingDown.gif; sourceTree = "<group>"; };
 		CA460E990876CD9B005BECE8 /* Pods-CaptionItUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CaptionItUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CaptionItUITests/Pods-CaptionItUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		D5C0A6A1F8438B5A07393A3D /* Pods_CaptionItTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CaptionItTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -294,6 +296,7 @@
 				379674F420A6CAD4003F4DAD /* pizza-pama (1).gif */,
 				9F09F691209AF59C00281313 /* pama.png */,
 				379674F220A6CACC003F4DAD /* mummy (1).gif */,
+				C8D9BC1120B9BC6F00F9D281 /* 3ArrowsPointingDown.gif */,
 				3796750220A8265D003F4DAD /* pama.gif */,
 				3711204A2074FFD600295A63 /* gifController.swift */,
 				3711204E2075353300295A63 /* pama-loading-screen.gif */,
@@ -583,7 +586,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 331417F91FB16BF30059F494 /* Build configuration list for PBXProject "CaptionIt" */;
+			buildConfigurationList = 331417F91FB16BF30059F494 /* Build configuration list for PBXProject "captionit" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -628,6 +631,7 @@
 				9F09F690209AF4FB00281313 /* fries.gif in Resources */,
 				48B062BB2026BAA90045400A /* LaunchScreen.storyboard in Resources */,
 				379674F320A6CACD003F4DAD /* mummy (1).gif in Resources */,
+				C8D9BC1320B9BC7000F9D281 /* 3ArrowsPointingDown.gif in Resources */,
 				379674FF20A817AB003F4DAD /* blinking-pama-correct.gif in Resources */,
 				3711204F2075353400295A63 /* pama-loading-screen.gif in Resources */,
 				9F09F68E209AF3A000281313 /* pama-tutorial.gif in Resources */,
@@ -1088,7 +1092,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		331417F91FB16BF30059F494 /* Build configuration list for PBXProject "CaptionIt" */ = {
+		331417F91FB16BF30059F494 /* Build configuration list for PBXProject "captionit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				331418241FB16BF40059F494 /* Debug */,

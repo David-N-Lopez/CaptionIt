@@ -15,7 +15,8 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
   
   @IBOutlet weak var btnStartGame: UIButton!
   @IBOutlet weak var tableView: UITableView!
-  
+  @IBOutlet weak var leftArrow: UIImageView!
+  @IBOutlet weak var rightArrow: UIImageView!
   override func viewDidLoad() {
     super.viewDidLoad()
     self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false;
