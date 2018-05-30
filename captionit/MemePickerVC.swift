@@ -18,7 +18,7 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     @IBOutlet weak var myImageView: UIImageView!
     @IBOutlet weak var myTextView: UILabel!
-  @IBOutlet weak var uploadButton: UIButton!
+    @IBOutlet weak var uploadButton: UIButton!
   
     
     var curPin:String?
@@ -33,7 +33,7 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
 
     @IBAction func submit(_ sender: UIButton) {
         print("start")
-      SVProgressHUD.show()
+      self.showProgressHUD()
         if (myImageView.image != nil || previewVideo != nil) { // still need to check that the user is uploading something
         
             let currentPlayer = getCurrentPlayer()

@@ -11,6 +11,7 @@ import SVProgressHUD
 
 extension UIViewController {
     func showProgressHUD() {
+      SVProgressHUD.setDefaultMaskType(.black)
         SVProgressHUD.show()
     }
     
