@@ -25,6 +25,21 @@ class Users {
         })
         
     }
+  
+  static func updateUserName(userName: String,callback: @escaping ((_ success: Bool, _ error: Error?) -> Void)) {
+    let refUser: DatabaseReference! = Database.database().reference()
+    let key = refUser.child("Users").child(Auth.auth().currentUser!.uid)
+    let caption = ["id": Auth.auth().currentUser!.uid,
+                   "username": userName]
+    key.setValue(caption) { (error, reff) in
+      if error == nil {
+        callback(true,nil)
+      } else {
+        callback(false,error)
+      }
+    }
+    
+  }
     
     static func loginUser(email: String, password: String, callback: ((_ success: Bool, _ user: User?, _ error: Error?) -> Void)?) {
         Auth.auth().signIn(withEmail: email, password: password) { (user, error) in

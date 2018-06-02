@@ -9,6 +9,11 @@
 import UIKit
 import FirebaseAuth
 import SwiftyGif
+import FacebookCore
+import FacebookLogin
+import FBSDKLoginKit
+import SVProgressHUD
+
 
 class LoginViewController: UIViewController {
     
@@ -17,7 +22,10 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
-    @IBOutlet weak var loginButton: UIButton!
+  @IBOutlet weak var btnSignup: UIButton!
+  @IBOutlet weak var btnSignIn: UIButton!
+  @IBOutlet weak var viewSignUp: UIView!
+  @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var registerButton: UIButton!
     
     override func viewDidLoad() {
@@ -80,11 +88,89 @@ class LoginViewController: UIViewController {
         }
     }
     
-    
-    @IBAction func registerButtonTapped(_ sender: Any) {
-        let viewController = self.storyboard?.instantiateViewController(withIdentifier: "RegisterViewController") as! RegisterViewController
-        self.present(viewController, animated: true, completion: nil)
+  func resetButton() {
+    btnSignup.isSelected = false
+    btnSignIn.isSelected = false
+    btnSignIn.titleLabel?.font = UIFont(name: "SourceSansPro-Regular", size: 17)
+    btnSignup.titleLabel?.font = UIFont(name: "SourceSansPro-Regular", size: 17)
+
+  }
+  
+    @IBAction func registerButtonTapped(_ sender: UIButton) {
+      if sender.isSelected {
+        return
+      }
+      resetButton()
+      sender.isSelected = false
+      sender.titleLabel?.font = UIFont(name: "SourceCodePro-Bold", size: 17)
+      if sender.tag == 1 {
+        viewSignUp.alpha = 0
+        viewSignUp.isHidden = false
+        UIView.animate(withDuration: 0.4, animations: {
+          self.viewSignUp.alpha = 1
+        })
+      } else {
+        viewSignUp.alpha = 1
+
+        UIView.animate(withDuration: 0.4, animations: {
+          self.viewSignUp.alpha = 0
+        }, completion: { (success) in
+          self.viewSignUp.isHidden = true
+        })
+      }
     }
+  
+  
+  @IBAction func actionFaceBookLogin(_ sender: UIButton) {
+    let fbLoginManager = FBSDKLoginManager()
+    
+    fbLoginManager.logIn(withReadPermissions: ["public_profile", "email"], from: self) { (result, error) in
+      if let error = error {
+        print("Failed to login: \(error.localizedDescription)")
+        return
+      }
+      
+      guard let accessToken = FBSDKAccessToken.current() else {
+        print("Failed to get access token")
+        return
+      }
+      
+      let credential = FacebookAuthProvider.credential(withAccessToken: accessToken.tokenString)
+      
+      // Perform login by calling Firebase APIs
+      self.showProgressHUD()
+      Auth.auth().signIn(with: credential, completion: { (user, error) in
+        self.dismissProgressHUD()
+        if let error = error {
+          print("Login error: \(error.localizedDescription)")
+          let alertController = UIAlertController(title: "Login Error", message: error.localizedDescription, preferredStyle: .alert)
+          let okayAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+          alertController.addAction(okayAction)
+          self.present(alertController, animated: true, completion: nil)
+          
+          return
+        }
+        
+        // Present the main view
+        if let id = getUserId() {
+          ref.child("Users").child(id).child("token").setValue(Group.singleton.token)
+        }
+//        AppDelegate.sharedDelegate.moveToEnterRoom(index: 0)
+        let viewController = self.storyboard?.instantiateViewController(withIdentifier: "RegisterViewController") as! RegisterViewController
+        viewController.type = .Facebook
+        self.present(viewController, animated: true, completion: nil)
+        
+      })
+      
+    }
+  }
+  
+  @IBAction func actionEmailLogin(_ sender: UIButton) {
+    let viewController = self.storyboard?.instantiateViewController(withIdentifier: "RegisterViewController") as! RegisterViewController
+    viewController.type = .register
+    self.present(viewController, animated: true, completion: nil)
+  }
+  
     @IBAction func unwindSegueToLogin(_ sender:UIStoryboardSegue) { }
 
     

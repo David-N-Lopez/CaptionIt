@@ -8,11 +8,18 @@
 
 import UIKit
 
+enum registerControllerType {
+  case register
+  case Facebook
+}
+
 class RegisterViewController: UIViewController {
     
     @IBOutlet weak var closeButtton: UIButton!
-    
-    @IBOutlet weak var usernameTextField: UITextField!
+  var type:registerControllerType = .register
+  @IBOutlet weak var viewFaceBook: UIView!
+  @IBOutlet weak var textFBName: UITextField!
+  @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
@@ -20,6 +27,9 @@ class RegisterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+      if type == . Facebook {
+        viewFaceBook.isHidden = false
+      }
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
         view.addGestureRecognizer(tap)
         // Do any additional setup after loading the view.
@@ -71,7 +81,27 @@ class RegisterViewController: UIViewController {
     }
     
     
-    /*
+  @IBAction func actionUpdateUserName(_ sender: Any) {
+    if(self.textFBName.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "") {
+      self.showAlert(message: "Please enter username")
+    } else {
+      self.showProgressHUD()
+      Users.updateUserName(userName: self.textFBName.text!, callback: { (success, error) in
+        self.dismissProgressHUD()
+        if success {
+          if let id = getUserId() {
+            ref.child("Users").child(id).child("token").setValue(Group.singleton.token)
+          }
+          AppDelegate.sharedDelegate.moveToEnterRoom(index: 0)
+        } else {
+          if let err = error {
+           self.showAlert(message: err.localizedDescription)
+          }
+        }
+      })
+    }
+  }
+  /*
      // MARK: - Navigation
      
      // In a storyboard-based application, you will often want to do a little preparation before navigation
