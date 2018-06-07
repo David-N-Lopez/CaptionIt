@@ -147,18 +147,22 @@ class LoginViewController: UIViewController {
           let okayAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
           alertController.addAction(okayAction)
           self.present(alertController, animated: true, completion: nil)
-          
           return
         }
         
         // Present the main view
         if let id = getUserId() {
           ref.child("Users").child(id).child("token").setValue(Group.singleton.token)
+          ref.child("Users").child(id).child("username").observeSingleEvent(of: .value, with: { (snapshot) in
+            if (snapshot.value as? String) != nil {
+              AppDelegate.sharedDelegate.moveToEnterRoom(index: 0)
+            } else {
+              let viewController = self.storyboard?.instantiateViewController(withIdentifier: "RegisterViewController") as! RegisterViewController
+              viewController.type = .Facebook
+              self.present(viewController, animated: true, completion: nil)
+            }
+          })
         }
-//        AppDelegate.sharedDelegate.moveToEnterRoom(index: 0)
-        let viewController = self.storyboard?.instantiateViewController(withIdentifier: "RegisterViewController") as! RegisterViewController
-        viewController.type = .Facebook
-        self.present(viewController, animated: true, completion: nil)
         
       })
       
