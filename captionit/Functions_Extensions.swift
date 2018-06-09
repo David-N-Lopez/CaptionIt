@@ -52,13 +52,17 @@ func getCurrentPlayer () -> Player? {
     var currentPlayer: Player
     let user = Auth.auth().currentUser;
     if (user != nil) {
-        if let  name =  user!.email{ //CHANGE SO THAT THE CURRENTPLAYER IS INITIALIZED WITH USERNAME THIS MAY BE DONE BY ADDING USERNAME OR NAME TO FIREBASE AUTHENTICATION OR ADDING USERNAME TO DATABASE AND PAIRING IT WITH THE CURRENT USER.
+        if let  name =  user!.email { //CHANGE SO THAT THE CURRENTPLAYER IS INITIALIZED WITH USERNAME THIS MAY BE DONE BY ADDING USERNAME OR NAME TO FIREBASE AUTHENTICATION OR ADDING USERNAME TO DATABASE AND PAIRING IT WITH THE CURRENT USER.
             //Player has to be initialized with the  current players' username
         
             let temporaryString = name.components(separatedBy: "@")
             currentPlayer = Player(temporaryString[0])
             return currentPlayer
         }
+      if let name = user?.displayName {
+        currentPlayer = Player(name)
+        return currentPlayer
+      }
     }
     return nil
     

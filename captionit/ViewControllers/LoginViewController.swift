@@ -15,6 +15,7 @@ import FBSDKLoginKit
 import SVProgressHUD
 
 
+
 class LoginViewController: UIViewController {
     
     @IBOutlet weak var closeButtton: UIButton!
@@ -135,6 +136,16 @@ class LoginViewController: UIViewController {
         return
       }
       
+      
+      if let res = result {
+        if res.isCancelled {
+          print("Login Cancelled")
+          return
+        }
+      } else {
+        return
+      }
+      
       let credential = FacebookAuthProvider.credential(withAccessToken: accessToken.tokenString)
       
       // Perform login by calling Firebase APIs
@@ -152,6 +163,7 @@ class LoginViewController: UIViewController {
         
         // Present the main view
         if let id = getUserId() {
+          self.getFBUserData()
           ref.child("Users").child(id).child("token").setValue(Group.singleton.token)
           ref.child("Users").child(id).child("username").observeSingleEvent(of: .value, with: { (snapshot) in
             if (snapshot.value as? String) != nil {
@@ -168,6 +180,24 @@ class LoginViewController: UIViewController {
       
     }
   }
+  
+  //function is fetching the user data
+  func getFBUserData() {
+    if(AccessToken.current != nil){
+      FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id"]).start(completionHandler: { (connection, result, error) -> Void in
+        if (error == nil){
+          if let response = result as? [String : Any] {
+            if let facebookID = response["id"] as? String {
+              if let userId = getUserId() {
+                ref.child("Users").child(userId).child("facebookID").setValue(facebookID)
+              }
+            }
+          }
+        }
+      })
+    }
+  }
+  
   
   @IBAction func actionEmailLogin(_ sender: UIButton) {
     let viewController = self.storyboard?.instantiateViewController(withIdentifier: "RegisterViewController") as! RegisterViewController
