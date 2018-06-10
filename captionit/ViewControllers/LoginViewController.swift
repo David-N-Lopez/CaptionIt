@@ -198,7 +198,6 @@ class LoginViewController: UIViewController {
     }
   }
   
-  
   @IBAction func actionEmailLogin(_ sender: UIButton) {
     let viewController = self.storyboard?.instantiateViewController(withIdentifier: "RegisterViewController") as! RegisterViewController
     viewController.type = .register
