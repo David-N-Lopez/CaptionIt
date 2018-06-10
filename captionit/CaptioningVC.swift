@@ -15,11 +15,14 @@ import SDWebImage
 import SVProgressHUD
 
 class CaptioningVC: UIViewController, UITextViewDelegate{
+  
   @IBOutlet weak var lblTimer: UILabel!
+  @IBOutlet weak var labelJudgeName: UILabel!
   @IBOutlet weak var meme: UIImageView!
   @IBOutlet weak var myTextField: UITextView!
   @IBOutlet weak var btnUpload: UIButton!
   @IBOutlet weak var btnRandomCaption: UIButton!
+  
   var curPin: String?
   var hasCurrentJudge:Bool?
   var currentJudge: String?
@@ -40,6 +43,7 @@ class CaptioningVC: UIViewController, UITextViewDelegate{
     Group.singleton.observeAnyoneLeftGame(curPin!)
     myTextField.delegate = self
     myTextField.text = "CaptionIt!"
+    self.labelJudgeName.text = nil
     myTextField.textColor = UIColor.lightGray
     btnRandomCaption.contentHorizontalAlignment = .left
     let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
@@ -48,6 +52,7 @@ class CaptioningVC: UIViewController, UITextViewDelegate{
   
   override func viewWillAppear(_ animated: Bool) {
     myTextField.text = nil
+    self.labelJudgeName.text = nil
     setJudge()
     Group.singleton.startTime()
     NotificationCenter.default.addObserver(
@@ -127,6 +132,9 @@ class CaptioningVC: UIViewController, UITextViewDelegate{
               }
             } else {
               self.startTimer()
+              self.getUserName(self.judgeID!, "Default User", { (name) in
+                self.labelJudgeName.text = "CAPTION \(name)'s MEME!"
+              })
               if self.mediaType == 1 {
               self.meme.sd_setImage(with: URL(string:meme), placeholderImage: nil, options: .scaleDownLargeImages, completed: nil)
               } else {
@@ -276,6 +284,20 @@ class CaptioningVC: UIViewController, UITextViewDelegate{
         self.present(controller, animated: true, completion: nil)
       }
     }
+  }
+  
+  func getUserName(_ ID : String, _ defaultValue : String, _ response :@escaping (_ name : String) ->()) {
+    ref.child("Users").child(ID).observeSingleEvent(of: .value, with: { (snapshot) in
+      if let userResponse = snapshot.value as? [String: Any] {
+        if let name = userResponse["username"] as? String {
+          response(name)
+        } else {
+          response(defaultValue)
+        }
+      } else {
+        response(defaultValue)
+      }
+    })
   }
   
   func startTimer() {
