@@ -151,8 +151,8 @@ class LoginViewController: UIViewController {
       // Perform login by calling Firebase APIs
       self.showProgressHUD()
       Auth.auth().signIn(with: credential, completion: { (user, error) in
-        self.dismissProgressHUD()
         if let error = error {
+          self.dismissProgressHUD()
           print("Login error: \(error.localizedDescription)")
           let alertController = UIAlertController(title: "Login Error", message: error.localizedDescription, preferredStyle: .alert)
           let okayAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
@@ -166,6 +166,7 @@ class LoginViewController: UIViewController {
           self.getFBUserData()
           ref.child("Users").child(id).child("token").setValue(Group.singleton.token)
           ref.child("Users").child(id).child("username").observeSingleEvent(of: .value, with: { (snapshot) in
+            self.dismissProgressHUD()
             if (snapshot.value as? String) != nil {
               AppDelegate.sharedDelegate.moveToEnterRoom(index: 0)
             } else {

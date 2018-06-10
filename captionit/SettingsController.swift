@@ -11,6 +11,10 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 import SwiftyGif
+import FacebookCore
+import FacebookLogin
+import FBSDKLoginKit
+import FacebookShare
 
 
 
@@ -84,7 +88,15 @@ class SettingsController: UIViewController, UITextFieldDelegate {
      
     @IBAction func logoutButtonTapped(_ sender: Any) {
       let controller = UIAlertController(title: "Wait!", message: "Are you sure you want to Logout?", preferredStyle: .alert)
+      
+      
       let leave = UIAlertAction(title: "Logout", style: .default) { (action) in
+        let deletepermission = FBSDKGraphRequest(graphPath: "me/permissions/", parameters: nil, httpMethod: "DELETE")
+        deletepermission?.start(completionHandler: {(connection,result,error)-> Void in
+          let manager = FBSDKLoginManager()
+          manager.logOut()
+          print("the delete permission is (result)")
+        })
         do {
           try Auth.auth().signOut()
           AppDelegate.sharedDelegate.moveToLoginRoom(index: 0)
