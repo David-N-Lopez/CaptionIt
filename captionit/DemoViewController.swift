@@ -124,7 +124,7 @@ extension DemoViewController : UICollectionViewDelegate, UICollectionViewDataSou
       btnPrevious.isEnabled = true
     }
     if indexPath.row + 1 == arrImages.count {
-      self.btnDone.setTitle("LET'S START!", for: .normal)
+      self.btnDone.setTitle("START!", for: .normal)
       self.btnDone.setTitleColor(#colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1), for: .normal)
       btnNext.alpha = 0.5
       btnNext.isEnabled = false
