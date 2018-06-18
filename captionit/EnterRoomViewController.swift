@@ -15,9 +15,9 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
   var gameStartRef: DatabaseReference?
   
   @IBOutlet weak var btnStartGame: UIButton!
+  @IBOutlet weak var btnAddMeme: UIButton!
+  @IBOutlet weak var btnInvite: UIButton!
   @IBOutlet weak var tableView: UITableView!
-  @IBOutlet weak var leftArrow: UIImageView!
-  @IBOutlet weak var rightArrow: UIImageView!
   override func viewDidLoad() {
     super.viewDidLoad()
     self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false;
@@ -28,6 +28,11 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
     Group.singleton.curPin = curPin
     // Do any additional setup after loading the view
     //        weak var delegate: UIViewController!
+    
+    
+    //PULSATE BUTTONS
+    btnAddMeme.pulsate()
+
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -50,6 +55,9 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
           controller.curPin = self.curPin
           self.navigationController?.pushViewController(controller, animated: true)
         }
+        else{
+            self.btnInvite.pulsate()
+        }
       }
     })
   }
@@ -68,6 +76,8 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
       if isReady == false {
         cell.imagePlayer.image = array[indexPath.row % 6]
         cell.contentView.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        //here include arrows for add meme
+
       }
       else {
        

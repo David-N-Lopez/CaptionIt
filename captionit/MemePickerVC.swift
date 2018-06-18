@@ -83,6 +83,7 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         super.viewDidLoad()
         let picker = UIImagePickerController()
         picker.delegate = self // delegate added
+        pickMeme.pulsate()
     }
   
   override func viewDidAppear(_ animated: Bool) {

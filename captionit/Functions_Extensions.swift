@@ -23,6 +23,23 @@ func generatePIN()->String?{
     return String(Int(min...max))
 }
 
+extension UIButton {
+    
+    func pulsate() {
+        
+        let pulse = CASpringAnimation(keyPath: "transform.scale")
+        pulse.duration = 2
+        pulse.fromValue = 0.94
+        pulse.toValue = 1.0
+        pulse.autoreverses = true
+        pulse.repeatCount = 0.5
+        pulse.initialVelocity = 1.5
+        pulse.damping = 4
+        layer.add(pulse, forKey: "pulse")
+        
+    }
+}
+
 //change so pins arent called every time
 let pin1 = generatePIN()
 let pin2 = generatePIN()

@@ -18,6 +18,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     var curPin:String = "0000"
     let gifManager = SwiftyGifManager(memoryLimit:10)
     @IBOutlet weak var scubaGif: UIImageView!
+    @IBOutlet weak var createGameBtn : UIButton!
 
     
     @IBOutlet weak var pinText: UITextField!
@@ -89,6 +90,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
       let gifManager = SwiftyGifManager(memoryLimit:10)
       let gif = UIImage(gifName: "scuba-pama-final")
       scubaGif.setGifImage(gif, manager: gifManager, loopCount: -1)
+        createGameBtn.pulsate()
+        
+        
       
       
     }
@@ -129,7 +133,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
   func sendInvites() {
     let id = "id1277137775"
     if let name = NSURL(string: "https://itunes.apple.com/us/app/myapp/\(id)?ls=1&mt=8") {
-      let textToShare = "Hey, Lets play onlne caption game. Download application"
+      let textToShare = "Have you tried the FIRST meme game app? It's like cards against humanity, but for your phone!"
       let objectsToShare = [name,textToShare] as [Any]
       let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
       
