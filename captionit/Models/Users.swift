@@ -29,15 +29,23 @@ class Users {
   static func updateUserName(userName: String,callback: @escaping ((_ success: Bool, _ error: Error?) -> Void)) {
     let refUser: DatabaseReference! = Database.database().reference()
     let key = refUser.child("Users").child(Auth.auth().currentUser!.uid)
-    let caption = ["id": Auth.auth().currentUser!.uid,
-                   "username": userName]
-    key.setValue(caption) { (error, reff) in
+    key.child("username").setValue(userName)
+    key.child("id").setValue(Auth.auth().currentUser!.uid) { (error, ref) in
       if error == nil {
         callback(true,nil)
       } else {
         callback(false,error)
       }
     }
+//    let caption = ["id": Auth.auth().currentUser!.uid,
+//                   "username": userName]
+//    key.setValue(caption) { (error, reff) in
+//      if error == nil {
+//        callback(true,nil)
+//      } else {
+//        callback(false,error)
+//      }
+//    }
     
   }
     

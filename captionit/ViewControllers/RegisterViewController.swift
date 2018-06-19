@@ -22,7 +22,7 @@ class RegisterViewController: UIViewController {
   @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-    
+    @IBOutlet weak var btnBack: UIButton!
     @IBOutlet weak var registerButton: UIButton!
     
     override func viewDidLoad() {
@@ -32,6 +32,9 @@ class RegisterViewController: UIViewController {
       }
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
         view.addGestureRecognizer(tap)
+      if self.navigationController?.childViewControllers.count == 1 {
+        btnBack.isHidden = true
+      }
         // Do any additional setup after loading the view.
     }
     func dismissKeyboard() {

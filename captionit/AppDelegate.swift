@@ -58,7 +58,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
   
   func moveToViewController() {
     if Auth.auth().currentUser?.uid != nil {
-      moveToEnterRoom(index: 0)
+      ref.child("Users").child(Auth.auth().currentUser!.uid).child("username").observeSingleEvent(of: .value, with: { (snapshot) in
+        
+        if (snapshot.value as? String) != nil {
+          self.moveToEnterRoom(index: 0)
+        } else {
+          let storyboard = UIStoryboard(name: "Main", bundle: nil)
+          let viewController = storyboard.instantiateViewController(withIdentifier: "RegisterViewController") as! RegisterViewController
+          viewController.type = .Facebook
+          let navigationController = UINavigationController.init(rootViewController: viewController)
+          navigationController.navigationBar.isHidden = true
+          let appdelegate = UIApplication.shared.delegate as! AppDelegate
+          appdelegate.window?.rootViewController = navigationController
+        }
+      })
     } else {
       moveToLoginRoom(index: 0)
     }
