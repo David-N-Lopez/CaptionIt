@@ -588,11 +588,11 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     if mediaType == 1 {
      let image = UIImage(view: self.saveMediaView)
       UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
-      self.showAlert(message: "Your image was successfully saved")
+      self.showAlert(message: "Your meme has been successfully saved")
     } else {
       saveVideoToPath(self.memeURL, completion: { (success, filePath) in
         UISaveVideoAtPathToSavedPhotosAlbum(filePath, self, nil, nil)
-        self.showAlert(message: "Your video was successfully saved")
+        self.showAlert(message: "Your meme has been successfully saved")
       })
 //        if saveClicked == false{
 //            if oncePlayed == true{

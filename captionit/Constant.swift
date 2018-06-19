@@ -9,10 +9,10 @@
 import Foundation
 
 struct Constant {
- static let startGame = "Game Started"
- static let selectCaption = "Select Caption"
- static let finishedJudging = "The judge has finished judging"
- static let nextRound = "Next Round Started"
+ static let startGame = "Hurry! the Game Started."
+ static let selectCaption = "Come back! It is your turn to select the best MEME!"
+ static let finishedJudging = "Come and checkout who won!"
+ static let nextRound = "The next Round Started"
   
-  static let NotifyToJoin = "Invited you to join"
+  static let NotifyToJoin = "You have been invited to join a game!"
 }
