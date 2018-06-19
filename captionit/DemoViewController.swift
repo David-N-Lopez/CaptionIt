@@ -20,9 +20,11 @@ class DemoViewController: UIViewController {
   var arrImages = [String]()
   var arrNotes = [String]()
   let gifManager = SwiftyGifManager(memoryLimit:10)
+  var isCalledOnce = false
   
     override func viewDidLoad() {
         super.viewDidLoad()
+      
       btnPrevious.alpha = 0.5
       btnPrevious.isEnabled = false
       arrImages = ["pama-tutorial.gif","pama-and-friends.gif","fries.gif","fries.gif","confetti-2.gif"]
@@ -65,7 +67,7 @@ class DemoViewController: UIViewController {
   
 }
 
-extension DemoViewController : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension DemoViewController : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIScrollViewDelegate {
   
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
     return arrImages.count
@@ -73,10 +75,11 @@ extension DemoViewController : UICollectionViewDelegate, UICollectionViewDataSou
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DemoCell", for: indexPath) as! DemoCell
-    let gif = UIImage(gifName: arrImages[indexPath.row])
-    cell.image.setGifImage(gif, manager: gifManager, loopCount: -1)
-    
-//    cell.image.image = arrImages[indexPath.row]
+    if indexPath.row == 0 && isCalledOnce == false {
+      isCalledOnce = true
+      let gif = UIImage(gifName: arrImages[indexPath.row])
+      cell.image.setGifImage(gif, manager: gifManager, loopCount: -1)
+    }
     return cell
   }
   
@@ -89,29 +92,21 @@ extension DemoViewController : UICollectionViewDelegate, UICollectionViewDataSou
   }
   
   
-  
-//  func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-//    var visibleRect = CGRect()
-//
-//    visibleRect.origin = mCollectionImages.contentOffset
-//    visibleRect.size = mCollectionImages.bounds.size
-//
-//    let visiblePoint = CGPoint(x: visibleRect.midX, y: visibleRect.midY)
-//
-//    guard let indexPath = mCollectionImages.indexPathForItem(at: visiblePoint) else { return }
-//    mPager.currentPage = indexPath.row
-//    if indexPath.row == 0 {
-//      btnPrevious.alpha = 0.5
-//      btnPrevious.isEnabled = false
-//    }
-//    if indexPath.row + 1 == arrImages.count {
-//      self.btnDone.setTitle("Done", for: .normal)
-//      btnNext.alpha = 0.5
-//      btnNext.isEnabled = false
-//    } else {
-//      self.btnDone.setTitle("Skip", for: .normal)
-//    }
-//  }
+  func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+    var visibleRect = CGRect()
+    
+    visibleRect.origin = mCollectionImages.contentOffset
+    visibleRect.size = mCollectionImages.bounds.size
+    
+    let visiblePoint = CGPoint(x: visibleRect.midX, y: visibleRect.midY)
+    
+    guard let indexPath = mCollectionImages.indexPathForItem(at: visiblePoint) else { return }
+    if let cell = mCollectionImages.cellForItem(at: indexPath) as? DemoCell {
+      let gif = UIImage(gifName: arrImages[indexPath.row])
+      print(indexPath.row)
+      cell.image.setGifImage(gif, manager: gifManager, loopCount: -1)
+    }
+  }
   
   func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
     mPager.currentPage = indexPath.row
