@@ -49,8 +49,6 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
  let glimpse = Glimpse()
     var saveClicked = Bool()
     
-    
-
   // Judge
   @IBOutlet weak var imageJudge: UIImageView!
   @IBOutlet weak var viewJudge: UIView!

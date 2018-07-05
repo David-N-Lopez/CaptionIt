@@ -19,8 +19,9 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     @IBOutlet weak var myImageView: UIImageView!
     @IBOutlet weak var myTextView: UILabel!
     @IBOutlet weak var uploadButton: UIButton!
-  
-    
+    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var previewView: UIView!
+    @IBOutlet weak var carouselView: UIView!
     var curPin:String?
     var previewImage: UIImage?
     var previewVideo: URL?
@@ -29,12 +30,16 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     var pickerGallery = true
   let gifManager = SwiftyGifManager(memoryLimit:10)
     
+    //Carousel Variables
+    var contentInstance = carouselMemes.fetchInterests()
+    let cellScaling: CGFloat = 0.6
+    
     @IBOutlet weak var pickMeme: UIButton!
 
     @IBAction func submit(_ sender: UIButton) {
         print("start")
       self.showProgressHUD()
-        if (myImageView.image != nil || previewVideo != nil) { // still need to check that the user is uploading something
+     if (myImageView.image != nil || previewVideo != nil) { // still need to check that the user is uploading something
         
             let currentPlayer = getCurrentPlayer()
             let image = myImageView.image
@@ -84,18 +89,32 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         let picker = UIImagePickerController()
         picker.delegate = self // delegate added
         pickMeme.pulsate()
+        let screenSize = UIScreen.main.bounds.size
+        let cellWidth = floor(screenSize.width * cellScaling)
+        let cellHeight = floor(screenSize.height * cellScaling)
+        
+        let insetX = (view.bounds.width - cellWidth) / 2.0
+        let insetY = (view.bounds.height - cellHeight) / 2.0
+        
+        let layout = collectionView!.collectionViewLayout as! UICollectionViewFlowLayout
+        layout.itemSize = CGSize(width: cellWidth, height: cellHeight)
+        collectionView?.contentInset = UIEdgeInsets(top: insetY, left: insetX, bottom: insetY, right: insetX)
+        
+        collectionView?.dataSource = self
+        collectionView?.delegate = self
     }
   
   override func viewDidAppear(_ animated: Bool) {
     if mediaType == 1 {
       if previewImage == nil {
-        let gif = UIImage(gifName: "pizza-pama (1)")
-        myImageView.setGifImage(gif, manager: gifManager, loopCount: -1)
+//        //check this out
+//        //NICOOOO
+//        let gif = UIImage(gifName: "pizza-pama (1)")
+//        myImageView.setGifImage(gif, manager: gifManager, loopCount: -1)
+        previewView.isHidden = true
+        carouselView.isHidden = false
       } else {
-        gifManager.clear()
-        uploadButton.isEnabled = true
-        uploadButton.alpha = 1
-        myImageView.image = previewImage
+        imageUploaded()
       }
     } else {
       //Show Video
@@ -103,8 +122,15 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
       uploadButton.alpha = 1
       playVideo(from: previewVideo!)
     }
-    myTextView.text = "Choose your best image to make a spicy Meme!"
+    myTextView.text = "Pick an image below, or make your own with your camera roll or taking a picture!"
   }
+    func imageUploaded(){
+        previewView.isHidden = false
+        carouselView.isHidden = true
+        uploadButton.isEnabled = true
+        uploadButton.alpha = 1
+        myImageView.image = previewImage
+    }
   
   private func playVideo(from url:URL) {
 
@@ -134,23 +160,12 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     }
 
     @IBAction func selectPhotoButtonTapped(_ sender: UIButton) {
-
-        let alert = UIAlertController(title: "How will you make your meme?", message: "You can take an image/video with our Meme Cam or grab one from your Camera Roll.", preferredStyle: .alert)
-        
-        alert.addAction(UIAlertAction(title: "Meme Cam", style: .default, handler: { action in
-//            self.performSegue(withIdentifier: "SwiftyCam", sender: self)
           let controller = self.storyboard?.instantiateViewController(withIdentifier: "camController") as! camController
           controller.curPin = self.curPin
           self.navigationController?.pushViewController(controller, animated: true)
-        }))
-        alert.addAction(UIAlertAction(title: "Camera Roll", style: .default, handler: { action in
-            self.selectPicture()
-        }))
-
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        self.present(alert, animated: true)
-
-        
+    }
+    @IBAction func selectCameraRoll(_ sender: UIButton) {
+               self.selectPicture()
     }
     /********************Compresses the Video Maybe include this in the upload section ***********************/
     func compressVideo(inputURL: URL, outputURL: URL, handler:@escaping (_ exportSession: AVAssetExportSession?)-> Void) {
@@ -196,6 +211,7 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
       previewImage = newImage
         dismiss(animated: true)
     }
+
   
 @IBAction func actionBack(_ sender: UIButton) {
   self.navigationController?.popViewController(animated: true)

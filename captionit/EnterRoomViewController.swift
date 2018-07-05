@@ -24,12 +24,10 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
     gameStartRef = ref.child("rooms").child(curPin).child("isPlaying")
     gameStartRef?.setValue(false)
     print("hellow from enter room controller")
-    roomPin.text = "Room Pin Number: \(curPin)"
+    roomPin.text = curPin
     Group.singleton.curPin = curPin
     // Do any additional setup after loading the view
     //        weak var delegate: UIViewController!
-    
-    
     //PULSATE BUTTONS
     btnAddMeme.pulsate()
 
@@ -67,7 +65,7 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
   }
   
   public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//
+
     let cell = tableView.dequeueReusableCell(withIdentifier: "playercell") as! PlayerReadyCell
     cell.imagePlayer.animationManager?.clear()
     if let currentUser = users[indexPath.row] as? [String : Any] {
@@ -77,7 +75,6 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
         cell.imagePlayer.image = array[indexPath.row % 6]
         cell.contentView.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         //here include arrows for add meme
-
       }
       else {
        
@@ -91,8 +88,7 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
       } else {
         cell.textName.text = currentUser["userName"] as? String
       }
-      
-      //            cell.textLabel?.text = self.get
+      //cell.textLabel?.text = self.get
     }
     
     return(cell)

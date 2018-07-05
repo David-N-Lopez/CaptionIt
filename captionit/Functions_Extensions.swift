@@ -92,29 +92,68 @@ func getUserId () -> String? {
   
   
 }
+extension RoomViewController : UICollectionViewDataSource
+{
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return contentInstance.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell
+    {
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "memeCarousel", for: indexPath) as! MemeCollectionViewCell
+         cell.content = contentInstance[indexPath.item]
+        
+        return cell
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let tappedCell = collectionView.cellForItem(at: indexPath) as! MemeCollectionViewCell
+        self.previewImage = tappedCell.editorsMemes.image
+        self.imageUploaded()
+    }
+}
+
+extension RoomViewController : UIScrollViewDelegate, UICollectionViewDelegate
+{
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>)
+    {
+        let layout = self.collectionView?.collectionViewLayout as! UICollectionViewFlowLayout
+        let cellWidthIncludingSpacing = layout.itemSize.width + layout.minimumLineSpacing
+        
+        var offset = targetContentOffset.pointee
+        let index = (offset.x + scrollView.contentInset.left) / cellWidthIncludingSpacing
+        let roundedIndex = round(index)
+        
+        offset = CGPoint(x: roundedIndex * cellWidthIncludingSpacing - scrollView.contentInset.left, y: -scrollView.contentInset.top)
+        targetContentOffset.pointee = offset
+    }
+}
 
 /*******White BG for the text ...Reposition it on top*******/
-//func textToImage(drawText text: NSString, inImage image: UIImage, atPoint point: CGPoint) -> UIImage {
-//    let textColor = UIColor.black
-//    let textFont = UIFont(name: "Helvetica Neue", size: 30)!
-//    
-//    let scale = UIScreen.main.scale
-//    UIGraphicsBeginImageContextWithOptions(image.size, false, scale)
-//    
-//    let textFontAttributes = [
-//        NSFontAttributeName: textFont,
-//        NSForegroundColorAttributeName: textColor,
-//        NSBackgroundColorAttributeName: UIColor.white,
-//        ] as [String : Any]
-//    image.draw(in: CGRect(origin: CGPoint.zero, size: image.size))
-//    
-//    let rect = CGRect(origin: CGPoint.zero, size: image.size)
-//    text.draw(in: rect, withAttributes: textFontAttributes)
-//
-//    
-//    let newImage = UIGraphicsGetImageFromCurrentImageContext()
-//    UIGraphicsEndImageContext()
-//    
-//    return newImage!
-//}
+func textToImage(drawText text: NSString, inImage image: UIImage, atPoint point: CGPoint) -> UIImage {
+    let textColor = UIColor.black
+    let textFont = UIFont(name: "Helvetica Neue", size: 30)!
+
+    let scale = UIScreen.main.scale
+    UIGraphicsBeginImageContextWithOptions(image.size, false, scale)
+    
+    let textFontAttributes = [
+        NSFontAttributeName: textFont,
+        NSForegroundColorAttributeName: textColor,
+        NSBackgroundColorAttributeName: UIColor.white,
+        ] as [String : Any]
+    image.draw(in: CGRect(origin: CGPoint.zero, size: image.size))
+    
+    let rect = CGRect(origin: CGPoint.zero, size: image.size)
+    text.draw(in: rect, withAttributes: textFontAttributes)
+    
+    let newImage = UIGraphicsGetImageFromCurrentImageContext()
+    UIGraphicsEndImageContext()
+    
+    return newImage!
+}
 
