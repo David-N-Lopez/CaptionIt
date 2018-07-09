@@ -62,8 +62,6 @@ extension UIImage{
         UIGraphicsEndImageContext()
         return newImage!
     }
-    
-    
 }
 func getCurrentPlayer () -> Player? {
     var currentPlayer: Player

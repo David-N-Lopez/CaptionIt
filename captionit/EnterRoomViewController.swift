@@ -24,7 +24,7 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
     gameStartRef = ref.child("rooms").child(curPin).child("isPlaying")
     gameStartRef?.setValue(false)
     print("hellow from enter room controller")
-    roomPin.text = curPin
+    roomPin.text = "ROOM: \(curPin)"
     Group.singleton.curPin = curPin
     // Do any additional setup after loading the view
     //        weak var delegate: UIViewController!
@@ -71,6 +71,9 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
     if let currentUser = users[indexPath.row] as? [String : Any] {
       let isReady = currentUser["Ready"] as? Bool
          let array = [#imageLiteral(resourceName: "bee-pama"),#imageLiteral(resourceName: "cat-pama"),#imageLiteral(resourceName: "NYE-pama"),#imageLiteral(resourceName: "pirate-pama"),#imageLiteral(resourceName: "snow-pama"),#imageLiteral(resourceName: "st-pats-pama(1)")]
+        cell.textName.font = UIFont(name: "SourceCodePro-Bold", size: 16)
+        cell.layer.cornerRadius = 3
+        cell.layer.masksToBounds = true
       if isReady == false {
         cell.imagePlayer.image = array[indexPath.row % 6]
         cell.contentView.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)

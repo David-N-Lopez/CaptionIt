@@ -66,7 +66,7 @@ class VideoViewController: UIViewController {
         cancelButton.addTarget(self, action: #selector(cancel), for: .touchUpInside)
         view.addSubview(cancelButton)
         let useIcon = UIButton(frame: CGRect(x: view.frame.size.width - 90, y: view.frame.size.height - 90 , width: 80.0, height: 80.0))
-        useIcon.setImage(#imageLiteral(resourceName: "contrast-arrow-black"), for: UIControlState())
+        useIcon.setImage(#imageLiteral(resourceName: "selected"), for: UIControlState())
         useIcon.addTarget(self, action: #selector(useVideo), for: .touchUpInside)
         view.addSubview(useIcon)
     }

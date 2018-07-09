@@ -22,6 +22,10 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var previewView: UIView!
     @IBOutlet weak var carouselView: UIView!
+    @IBOutlet weak var carouselButtonView: UIView!
+    @IBOutlet weak var previewButtonView: UIView!
+    @IBOutlet weak var changeMemeButton: UIView!
+    
     var curPin:String?
     var previewImage: UIImage?
     var previewVideo: URL?
@@ -102,34 +106,50 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         
         collectionView?.dataSource = self
         collectionView?.delegate = self
+        showMemeCarousel()
     }
   
   override func viewDidAppear(_ animated: Bool) {
     if mediaType == 1 {
-      if previewImage == nil {
-//        //check this out
-//        //NICOOOO
-//        let gif = UIImage(gifName: "pizza-pama (1)")
-//        myImageView.setGifImage(gif, manager: gifManager, loopCount: -1)
-        previewView.isHidden = true
-        carouselView.isHidden = false
-      } else {
+      if previewImage == nil { //showing carousel view
+        print("no image")
+        showMemeCarousel()
+        myTextView.text = "Pick one of our suggested images, or make your own MEME!"
+        uploadButton.isEnabled = false
+        uploadButton.alpha = 0.5
+        
+      } else { //showing selected image view
+        print("image")
         imageUploaded()
+        myTextView.text = "Upload your selected meme or change it!"
+
       }
     } else {
-      //Show Video
+      //Show Video view
+        print("video")
+      myTextView.text = "Upload your selected meme or change it!"
+      carouselView.isHidden = true
+      carouselButtonView.isHidden = true
       uploadButton.isEnabled = true
       uploadButton.alpha = 1
       playVideo(from: previewVideo!)
+        
     }
-    myTextView.text = "Pick an image below, or make your own with your camera roll or taking a picture!"
   }
     func imageUploaded(){
         previewView.isHidden = false
         carouselView.isHidden = true
         uploadButton.isEnabled = true
+        previewButtonView.isHidden = false
+        carouselButtonView.isHidden = true
         uploadButton.alpha = 1
         myImageView.image = previewImage
+    }
+    func showMemeCarousel(){
+        previewView.isHidden = true
+        carouselView.isHidden = false
+        previewButtonView.isHidden = true
+        carouselButtonView.isHidden = false
     }
   
   private func playVideo(from url:URL) {
@@ -166,6 +186,11 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     }
     @IBAction func selectCameraRoll(_ sender: UIButton) {
                self.selectPicture()
+    }
+    @IBAction func changeMeme(){
+        uploadButton.isEnabled = false
+        uploadButton.alpha = 0.5
+        showMemeCarousel()
     }
     /********************Compresses the Video Maybe include this in the upload section ***********************/
     func compressVideo(inputURL: URL, outputURL: URL, handler:@escaping (_ exportSession: AVAssetExportSession?)-> Void) {
@@ -211,7 +236,6 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
       previewImage = newImage
         dismiss(animated: true)
     }
-
   
 @IBAction func actionBack(_ sender: UIButton) {
   self.navigationController?.popViewController(animated: true)

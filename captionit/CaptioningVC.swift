@@ -45,7 +45,6 @@ class CaptioningVC: UIViewController, UITextViewDelegate{
     myTextField.text = "CaptionIt!"
     self.labelJudgeName.text = nil
     myTextField.textColor = UIColor.lightGray
-    btnRandomCaption.contentHorizontalAlignment = .left
     let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
     view.addGestureRecognizer(tap)
   }

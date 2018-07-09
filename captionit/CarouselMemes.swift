@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import FirebaseDatabase
 class carouselMemes
 {
     // MARK: - Public API
@@ -27,7 +27,7 @@ class carouselMemes
     static func fetchInterests() -> [carouselMemes]
     {
         return [
-            carouselMemes(title: "Pick one of our memes", featuredImage: #imageLiteral(resourceName: "pizza-pama"), color: UIColor(red: 63/255.0, green: 71/255.0, blue: 80/255.0, alpha: 0.8)),
+            carouselMemes(title: "", featuredImage: #imageLiteral(resourceName: "pizza-pama"), color: UIColor(red:0, green: 0, blue:0, alpha: 0)),
             carouselMemes(title: "", featuredImage:#imageLiteral(resourceName: "Roll-Safe-Think-About-It"), color: UIColor(red:0 , green: 0, blue: 0, alpha: 0)),
             carouselMemes(title: "", featuredImage: #imageLiteral(resourceName: "meme Zucc"), color: UIColor(red: 0, green: 0, blue: 0, alpha: 0)),
             carouselMemes(title: "", featuredImage: #imageLiteral(resourceName: "NYE-pama"), color: UIColor(red: 0, green: 0, blue: 0, alpha: 0)),

@@ -12,7 +12,7 @@ class InviteCell: UITableViewCell {
   
   @IBOutlet weak var imageSelected: UIImageView!
   @IBOutlet weak var lblName: UILabel!
-  
+  @IBOutlet weak var playerImage: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
         

@@ -119,8 +119,11 @@ extension ResultVC : UITableViewDelegate,UITableViewDataSource {
     
     let cell = tableView.dequeueReusableCell(withIdentifier: "ResultCell", for: indexPath) as! ResultCell
     if let currentUser = users[indexPath.row] as? [String : Any] {
+        let array = [#imageLiteral(resourceName: "bee-pama"),#imageLiteral(resourceName: "cat-pama"),#imageLiteral(resourceName: "NYE-pama"),#imageLiteral(resourceName: "pirate-pama"),#imageLiteral(resourceName: "snow-pama"),#imageLiteral(resourceName: "st-pats-pama(1)")]
+           cell.playerImage.image = array[indexPath.row % 6]
       getUserName(currentUser["ID"] as! String, "Undefined", { (name) in
         cell.name.text = name
+        cell.name.font = UIFont(name: "SourceCodePro-Bold", size: 16)
       })
       if let score = currentUser["score"] as? Int {
         if indexPath.row == 0 || score == highestScore {
@@ -130,9 +133,11 @@ extension ResultVC : UITableViewDelegate,UITableViewDataSource {
           cell.imageTrophy.isHidden = true
         }
         cell.score.text = "Score \(score) "
+        cell.score.font = UIFont(name: "SourceCodePro-Bold", size: 16)
       } else {
         cell.imageTrophy.isHidden = true
         cell.score.text = "Score 0 "
+        cell.score.font = UIFont(name: "SourceCodePro-Bold", size: 16)
       }
     }
     

@@ -12,7 +12,7 @@ class ResultCell: UITableViewCell {
 @IBOutlet weak var name: UILabel!
 @IBOutlet weak var score: UILabel!
 @IBOutlet weak var imageTrophy: UIImageView!
-  
+@IBOutlet weak var playerImage: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

@@ -11,11 +11,13 @@ import UIKit
 class PlayerReadyCell: UITableViewCell {
   @IBOutlet weak var imagePlayer: UIImageView!
   @IBOutlet weak var textName: UILabel!
-  
+
   override func awakeFromNib() {
         super.awakeFromNib()
+        
         // Initialization code
     }
+    
 
 //    override func setSelected(_ selected: Bool, animated: Bool) {
 //        super.setSelected(selected, animated: animated)
