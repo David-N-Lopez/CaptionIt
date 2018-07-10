@@ -74,6 +74,7 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
         cell.textName.font = UIFont(name: "SourceCodePro-Bold", size: 16)
         cell.layer.cornerRadius = 3
         cell.layer.masksToBounds = true
+        cell.selectionStyle = UITableViewCellSelectionStyle.none
       if isReady == false {
         cell.imagePlayer.image = array[indexPath.row % 6]
         cell.contentView.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
@@ -130,7 +131,6 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
       }
     })
   }
-  
   func countPlayersReady() -> Int { //works maybe put this in functionss and extensions
     var count = 0
     for user in users {

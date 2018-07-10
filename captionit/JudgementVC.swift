@@ -84,7 +84,7 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
       self.strJudgeName = name
       if Auth.auth().currentUser?.uid == self.judgeID {
         self.textRound.text = "ROOM #\(self.groupId)"
-        self.textJudgeName.text = "The Crazy Developers"
+        self.textJudgeName.text = "Pick your favorite MEME!"
       } else {
         self.textJudgeName.text = "\(name) is the judge!"
       }

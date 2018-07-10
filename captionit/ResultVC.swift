@@ -114,7 +114,6 @@ extension ResultVC : UITableViewDelegate,UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return self.users.count
   }
-  
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
     let cell = tableView.dequeueReusableCell(withIdentifier: "ResultCell", for: indexPath) as! ResultCell
@@ -124,6 +123,7 @@ extension ResultVC : UITableViewDelegate,UITableViewDataSource {
       getUserName(currentUser["ID"] as! String, "Undefined", { (name) in
         cell.name.text = name
         cell.name.font = UIFont(name: "SourceCodePro-Bold", size: 16)
+        cell.score.font = UIFont(name: "SourceCodePro-Bold", size:16)
       })
       if let score = currentUser["score"] as? Int {
         if indexPath.row == 0 || score == highestScore {
@@ -133,11 +133,9 @@ extension ResultVC : UITableViewDelegate,UITableViewDataSource {
           cell.imageTrophy.isHidden = true
         }
         cell.score.text = "Score \(score) "
-        cell.score.font = UIFont(name: "SourceCodePro-Bold", size: 16)
       } else {
         cell.imageTrophy.isHidden = true
         cell.score.text = "Score 0 "
-        cell.score.font = UIFont(name: "SourceCodePro-Bold", size: 16)
       }
     }
     
