@@ -155,5 +155,24 @@ extension ResultVC : UITableViewDelegate,UITableViewDataSource {
       }
     })
   }
+    func sendInvites() {
+        let id = "id1277137775"
+        if let name = NSURL(string: "https://itunes.apple.com/us/app/myapp/\(id)?ls=1&mt=8") {
+            let textToShare = "Have you tried the FIRST meme game app? It's like cards against humanity, but for your phone!"
+            let objectsToShare = [name,textToShare] as [Any]
+            let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+            
+            self.present(activityVC, animated: true, completion: nil)
+        }
+        else
+        {
+            // show alert for not available
+            showAlert(message: "Application not available")
+        }
+    }
+    
+    @IBAction func actionInviteFriend(_ sender: UIButton) {
+        sendInvites()
+    }
   
 }
