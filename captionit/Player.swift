@@ -26,16 +26,18 @@ class Player {
     init (_ username: String){
         self.username = username
     }
-    func createGame(curPin: String) {
-        self.pinNumber = curPin //questionable?
-        
-        self.ref.child("rooms").child(curPin) //Michael
-        self.ref.child("rooms").child(curPin).updateChildValues(["roomPin": curPin])
-        joinGame(curPin: curPin)
 
-
-    }
+  func createGame(curPin: String, isStrange: Bool) {
+    self.pinNumber = curPin //questionable?
     
+    self.ref.child("rooms").child(curPin) //Michael
+    self.ref.child("rooms").child(curPin).updateChildValues(["roomPin": curPin,
+                                                             "isStrange" : isStrange])
+    joinGame(curPin: curPin)
+    
+    
+  }
+  
     func joinGame(curPin:String){
         let currentId = Auth.auth().currentUser?.uid
         if let currentPlayer = getCurrentPlayer() {

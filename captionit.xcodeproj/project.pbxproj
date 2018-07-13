@@ -72,7 +72,6 @@
 		AE8C4BE120749621004529C1 /* SourceSansPro-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = AE8C4BDC20745EF1004529C1 /* SourceSansPro-Regular.otf */; };
 		AF713F5320E21DBC00FBABF8 /* MemeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF713F5220E21DBC00FBABF8 /* MemeCollectionViewCell.swift */; };
 		AF713F5820E50C4E00FBABF8 /* CarouselMemes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF713F5720E50C4E00FBABF8 /* CarouselMemes.swift */; };
-		AF7E87A720D9A439004F437D /* fries.gif in Resources */ = {isa = PBXBuildFile; fileRef = AF7E87A620D9A439004F437D /* fries.gif */; };
 		AF7E87A920D9A483004F437D /* captioned-fries.gif in Resources */ = {isa = PBXBuildFile; fileRef = AF7E87A820D9A483004F437D /* captioned-fries.gif */; };
 		B2B1B0CB2026CB3900FD2A51 /* Users.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B1B0CA2026CB3900FD2A51 /* Users.swift */; };
 		B2B1B0CE2026CE4D00FD2A51 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B1B0CD2026CE4D00FD2A51 /* LoginViewController.swift */; };
@@ -197,7 +196,6 @@
 		AE8C4BDD20745EF1004529C1 /* SourceCodePro-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SourceCodePro-Black.ttf"; path = "captionit/SourceCodePro-Black.ttf"; sourceTree = SOURCE_ROOT; };
 		AF713F5220E21DBC00FBABF8 /* MemeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemeCollectionViewCell.swift; sourceTree = "<group>"; };
 		AF713F5720E50C4E00FBABF8 /* CarouselMemes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselMemes.swift; sourceTree = "<group>"; };
-		AF7E87A620D9A439004F437D /* fries.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = fries.gif; path = ../../../../Downloads/fries.gif; sourceTree = "<group>"; };
 		AF7E87A820D9A483004F437D /* captioned-fries.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "captioned-fries.gif"; sourceTree = "<group>"; };
 		B2B1B0CA2026CB3900FD2A51 /* Users.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Users.swift; sourceTree = "<group>"; };
 		B2B1B0CD2026CE4D00FD2A51 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -312,7 +310,6 @@
 				331418011FB16BF40059F494 /* AppDelegate.swift */,
 				379674EF20A6CABA003F4DAD /* confetti-2.gif */,
 				37C91AB1208296F9004B15C1 /* pama-and-friends.gif */,
-				AF7E87A620D9A439004F437D /* fries.gif */,
 				379674FE20A817AA003F4DAD /* blinking-pama-correct.gif */,
 				AF7E87A820D9A483004F437D /* captioned-fries.gif */,
 				371120502075355600295A63 /* pama-waiting-screen (2).gif */,
@@ -595,7 +592,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 331417F91FB16BF30059F494 /* Build configuration list for PBXProject "CaptionIt" */;
+			buildConfigurationList = 331417F91FB16BF30059F494 /* Build configuration list for PBXProject "captionit" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -651,7 +648,6 @@
 				AE25EDED209EDC8B00EB7FB9 /* SourceSansPro-It.otf in Resources */,
 				48B062BC2026BAA90045400A /* Main.storyboard in Resources */,
 				3796750120A81D62003F4DAD /* scuba-pama-final.gif in Resources */,
-				AF7E87A720D9A439004F437D /* fries.gif in Resources */,
 				371120512075355700295A63 /* pama-waiting-screen (2).gif in Resources */,
 				9F09F692209AF59C00281313 /* pama.png in Resources */,
 				AE25EDEE209EDC8F00EB7FB9 /* SourceCodePro-Black.ttf in Resources */,
@@ -1104,7 +1100,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		331417F91FB16BF30059F494 /* Build configuration list for PBXProject "CaptionIt" */ = {
+		331417F91FB16BF30059F494 /* Build configuration list for PBXProject "captionit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				331418241FB16BF40059F494 /* Debug */,

@@ -113,6 +113,7 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
       selector: #selector(self.userTimerExpired),
       name: NSNotification.Name(rawValue: timerExpired),
       object: nil)
+    
     // Do any additional setup after loading the view.
   }
   

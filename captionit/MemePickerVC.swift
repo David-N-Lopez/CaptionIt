@@ -18,6 +18,7 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     @IBOutlet weak var myImageView: UIImageView!
     @IBOutlet weak var myTextView: UILabel!
+    @IBOutlet weak var labelMemeTimer: UILabel!
     @IBOutlet weak var uploadButton: UIButton!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var previewView: UIView!
@@ -40,6 +41,19 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     @IBOutlet weak var pickMeme: UIButton!
 
+  override func viewWillAppear(_ animated: Bool) {
+    Group.singleton.delegate = self
+    NotificationCenter.default.addObserver(
+      self,
+      selector: #selector(self.userMemeTimerExpired),
+      name: NSNotification.Name(rawValue: timerExpired),
+      object: nil)
+  }
+
+  override func viewDidDisappear(_ animated: Bool) {
+    NotificationCenter.default.removeObserver(self)
+  }
+  
     @IBAction func submit(_ sender: UIButton) {
         print("start")
       self.showProgressHUD()
@@ -240,5 +254,20 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
 @IBAction func actionBack(_ sender: UIButton) {
   self.navigationController?.popViewController(animated: true)
   
+  }
+  
+  func userMemeTimerExpired()  {
+    let controller = UIAlertController(title: "Error", message: "Time up for meme upload", preferredStyle: .alert)
+    let leave = UIAlertAction(title: "Okay", style: .default) { (action) in
+      self.navigationController?.popToRootViewController(animated: true)
+    }
+    controller.addAction(leave)
+    self.present(controller, animated: true, completion: nil)
+  }
+}
+
+extension RoomViewController : GroupDelegate {
+  func memeTimerChanged(_ time: Int) {
+    labelMemeTimer.text = Group.singleton.timeFormatted(time)
   }
 }

@@ -14,6 +14,7 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
   var playersReady = 0
   var gameStartRef: DatabaseReference?
   
+  @IBOutlet weak var labelMemeTimer: UILabel!
   @IBOutlet weak var btnStartGame: UIButton!
   @IBOutlet weak var btnAddMeme: UIButton!
   @IBOutlet weak var btnInvite: UIButton!
@@ -26,6 +27,8 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
     print("hellow from enter room controller")
     roomPin.text = "ROOM: \(curPin)"
     Group.singleton.curPin = curPin
+    Group.singleton.memePickerTime = 180
+    Group.singleton.groupStartMemePickTimer()
     // Do any additional setup after loading the view
     //        weak var delegate: UIViewController!
     //PULSATE BUTTONS
@@ -34,12 +37,31 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
   }
   
   override func viewWillAppear(_ animated: Bool) {
+    Group.singleton.delegate = self;
+    NotificationCenter.default.addObserver(
+      self,
+      selector: #selector(self.userMemeTimerExpired),
+      name: NSNotification.Name(rawValue: memeTimerExpired),
+      object: nil)
     observeStartGame()
     fetchUsers()
   }
   
+  override func viewDidDisappear(_ animated: Bool) {
+    NotificationCenter.default.removeObserver(self)
+  }
+  
   override func viewWillDisappear(_ animated: Bool) {
     gameStartRef?.removeAllObservers()
+  }
+  
+  func userMemeTimerExpired()  {
+    let controller = UIAlertController(title: "Error", message: "Time up for meme upload", preferredStyle: .alert)
+    let leave = UIAlertAction(title: "Okay", style: .default) { (action) in
+      self.navigationController?.popToRootViewController(animated: true)
+    }
+    controller.addAction(leave)
+    self.present(controller, animated: true, completion: nil)
   }
   
   func observeStartGame() {
@@ -217,4 +239,10 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
   }
   
   
+}
+
+extension EnterRoomViewController : GroupDelegate {
+  func memeTimerChanged(_ time: Int) {
+    labelMemeTimer.text = Group.singleton.timeFormatted(time)
+  }
 }

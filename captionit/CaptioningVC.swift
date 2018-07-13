@@ -57,7 +57,7 @@ class CaptioningVC: UIViewController, UITextViewDelegate{
     NotificationCenter.default.addObserver(
       self,
       selector: #selector(self.alertErroOccured(_ :)),
-      name: NSNotification.Name(rawValue: errorOccured),
+      name: NSNotification.Name(rawValue: memeTimerExpired),
       object: nil)
     NotificationCenter.default.addObserver(
       self,

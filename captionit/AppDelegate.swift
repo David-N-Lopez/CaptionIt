@@ -61,7 +61,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
       ref.child("Users").child(Auth.auth().currentUser!.uid).child("username").observeSingleEvent(of: .value, with: { (snapshot) in
         
         if (snapshot.value as? String) != nil {
-          self.moveToEnterRoom(index: 0)
+//          self.moveToEnterRoom(index: 0)
         } else {
           let storyboard = UIStoryboard(name: "Main", bundle: nil)
           let viewController = storyboard.instantiateViewController(withIdentifier: "RegisterViewController") as! RegisterViewController

@@ -11,22 +11,30 @@ import Firebase
 
 let errorOccured = "errorOccured"
 let timerExpired = "timerExpired"
+let memeTimerExpired = "memeTimerExpired"
+
+protocol GroupDelegate {
+  func memeTimerChanged(_ time : Int)
+}
 
 class Group: NSObject {
   
   static let singleton = Group()
+  var delegate : GroupDelegate?
   var curPin = "0"
   var totalUser = 0
   var handle: UInt = 0
   var playersRef: DatabaseReference?
   var groupRef: DatabaseReference?
   var gameTimer: Timer!
+  var memePickTimer: Timer!
   var users = [Any]()
   var token = ""
   var url = ""
   var judgeID = ""
   var round = 0
   var userIndex = 0
+  var memePickerTime = 180
   
   func observeAnyoneLeftGame(_ groupPin: String) {
     curPin = groupPin
@@ -72,6 +80,10 @@ class Group: NSObject {
     })
   }
   
+  func groupStartMemePickTimer() {
+    memePickTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(memePickerTimeOut), userInfo: nil, repeats: true)
+  }
+  
   
   func startTime() {
     gameTimer = Timer.scheduledTimer(timeInterval: 8000, target: self, selector: #selector(runTimedCode), userInfo: nil, repeats: false)
@@ -81,11 +93,40 @@ class Group: NSObject {
     gameTimer.invalidate()
   }
   
+//  NotificationCenter.default.post(name: NSNotification.Name(rawValue: memeTimerExpired), object: nil)
+//  removeUserFromGame()
+//  deleteCurrentUserMedia()
+  
   func timeFormatted(_ totalSeconds: Int) -> String {
     let seconds: Int = totalSeconds % 60
     let minutes: Int = (totalSeconds / 60) % 60
     //     let hours: Int = totalSeconds / 3600
     return String(format: "%02d:%02d", minutes, seconds)
+  }
+  
+  func memePickerTimerExpired() {
+    memePickTimer.invalidate()
+  }
+  
+  func memePickerTimeOut() {
+    if memePickerTime > 0 {
+      memePickerTime = memePickerTime - 1
+      if delegate != nil {
+        delegate?.memeTimerChanged(memePickerTime)
+      }
+    } else {
+      if delegate != nil {
+        delegate?.memeTimerChanged(memePickerTime)
+      }
+      memeRunOut()
+    }
+  }
+  
+  func memeRunOut() {
+    memePickTimer.invalidate()
+    memePickerTime = 180
+    removeUserFromGame()
+    NotificationCenter.default.post(name: NSNotification.Name(rawValue: memeTimerExpired), object: nil)
   }
   
   func runTimedCode() {
