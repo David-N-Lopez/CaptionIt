@@ -33,8 +33,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
       
       while let rest = enumerator.nextObject() as? DataSnapshot {
         if let curRoom = rest.childSnapshot(forPath: "roomPin").value as? String {
-          if let isStrange = rest.childSnapshot(forPath: "isStrange").value as? Bool {
-            if (self.pinText.text == curRoom && isStrange == false) {
+//          if let isStrange = rest.childSnapshot(forPath: "isStrange").value as? Bool {
+            if (self.pinText.text == curRoom) {
               let userId = Auth.auth().currentUser?.uid
               ref.child("rooms").child(self.pinText.text!).child("comments").child(userId!).removeValue()
               
@@ -49,7 +49,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 return
               }
             }
-          }
+//          }
         }
       }
       //error message
