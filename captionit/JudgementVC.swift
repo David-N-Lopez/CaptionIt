@@ -114,7 +114,12 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
       name: NSNotification.Name(rawValue: timerExpired),
       object: nil)
     
-    // Do any additional setup after loading the view.
+    let directions: [UISwipeGestureRecognizerDirection] = [.right, .left]
+    for direction in directions {
+      let gesture = UISwipeGestureRecognizer(target: self, action: #selector(respondToSwipeGesture(gesture:)))
+      gesture.direction = direction
+      self.viewSingleImage.addGestureRecognizer(gesture)
+    }
   }
   
   override func didReceiveMemoryWarning() {
@@ -140,6 +145,25 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     hasBeenJudgeRef?.removeAllObservers()
     winnerRef?.removeAllObservers()
     readyNextRoundRef?.removeAllObservers()
+  }
+  
+  func respondToSwipeGesture(gesture: UIGestureRecognizer) {
+    if let swipeGesture = gesture as? UISwipeGestureRecognizer {
+      switch swipeGesture.direction {
+      case UISwipeGestureRecognizerDirection.right:
+        //Move previous Image
+        print("Swiped right")
+        self.previousImage(UIButton())
+      
+      case UISwipeGestureRecognizerDirection.left:
+        //Move next Image
+        print("Swiped left")
+        self.nextImage(UIButton())
+      
+      default:
+        break
+      }
+    }
   }
   
   
@@ -373,7 +397,8 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
       if gameWinnerID.count > 0 {
         self.updateNameWithComment(userCommentDic["id"]!)
       }
-      textSingleComment.text = userCommentDic["comment"]
+      self.animateTableView(subtype: kCATransitionFromLeft)
+      self.textSingleComment.text = userCommentDic["comment"]
       btnNext.isEnabled = true
       btnNext.alpha = 1
       btnWinnerNext.isEnabled = true
@@ -403,7 +428,9 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
       if gameWinnerID.count > 0 {
         self.updateNameWithComment(userCommentDic["id"]!)
       }
-      textSingleComment.text = userCommentDic["comment"]
+      self.animateTableView(subtype: kCATransitionFromRight)
+      self.textSingleComment.text = userCommentDic["comment"]
+
       if currentCommentIndex >= usersComments.count - 1 {
         btnNext.isEnabled = false
         btnNext.alpha = 0.5
@@ -701,6 +728,17 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
       // Fallback on earlier versions
       activityVC.excludedActivityTypes = [ UIActivityType.addToReadingList, UIActivityType.assignToContact, UIActivityType.copyToPasteboard, UIActivityType.postToTencentWeibo, UIActivityType.postToVimeo, UIActivityType.postToWeibo, UIActivityType.print ]
     }
+  }
+  
+  //kCATransitionFromLeft
+  func animateTableView(subtype:String)  {
+    let transition = CATransition()
+    
+    transition.type = kCATransitionPush
+    
+    transition.subtype = subtype
+    self.textSingleComment.layer.add(transition, forKey: kCATransition)
+    CATransaction.commit()
   }
   
 }

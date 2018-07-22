@@ -122,8 +122,7 @@ extension ResultVC : UITableViewDelegate,UITableViewDataSource {
            cell.playerImage.image = array[indexPath.row % 6]
       getUserName(currentUser["ID"] as! String, "Undefined", { (name) in
         cell.name.text = name
-        cell.name.font = UIFont(name: "SourceCodePro-Bold", size: 16)
-        cell.score.font = UIFont(name: "SourceCodePro-Bold", size:16)
+        
       })
       if let score = currentUser["score"] as? Int {
         if indexPath.row == 0 || score == highestScore {
@@ -138,7 +137,7 @@ extension ResultVC : UITableViewDelegate,UITableViewDataSource {
         cell.score.text = "Score 0 "
       }
     }
-    
+   
     return cell
   }
   
@@ -155,6 +154,7 @@ extension ResultVC : UITableViewDelegate,UITableViewDataSource {
       }
     })
   }
+  
     func sendInvites() {
         let id = "id1277137775"
         if let name = NSURL(string: "https://itunes.apple.com/us/app/myapp/\(id)?ls=1&mt=8") {

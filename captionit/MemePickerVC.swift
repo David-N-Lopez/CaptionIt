@@ -26,14 +26,15 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     @IBOutlet weak var carouselButtonView: UIView!
     @IBOutlet weak var previewButtonView: UIView!
     @IBOutlet weak var changeMemeButton: UIView!
-    
+  @IBOutlet weak var btnBack: UIButton!
+  
     var curPin:String?
     var previewImage: UIImage?
     var previewVideo: URL?
     var mediaType  = 1
     var player : AVPlayer?
     var pickerGallery = true
-  let gifManager = SwiftyGifManager(memoryLimit:10)
+    let gifManager = SwiftyGifManager(memoryLimit:10)
     
     //Carousel Variables
     var contentInstance = carouselMemes.fetchInterests()
@@ -56,9 +57,10 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
   
     @IBAction func submit(_ sender: UIButton) {
         print("start")
+      
       self.showProgressHUD()
      if (myImageView.image != nil || previewVideo != nil) { // still need to check that the user is uploading something
-        
+        Group.singleton.memePickerTimerExpired()
             let currentPlayer = getCurrentPlayer()
             let image = myImageView.image
             var data =  NSData()
@@ -126,6 +128,7 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
   override func viewDidAppear(_ animated: Bool) {
     if mediaType == 1 {
       if previewImage == nil { //showing carousel view
+        btnBack.isHidden = false
         print("no image")
         showMemeCarousel()
         myTextView.text = "Pick one of our suggested images, or make your own MEME!"
@@ -133,6 +136,7 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         uploadButton.alpha = 0.5
         
       } else { //showing selected image view
+        btnBack.isHidden = true
         print("image")
         imageUploaded()
         myTextView.text = "Upload your selected meme or change it!"
@@ -140,8 +144,10 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
       }
     } else {
       //Show Video view
+      btnBack.isHidden = true
         print("video")
       myTextView.text = "Upload your selected meme or change it!"
+      Group.singleton.memePickerTimerExpired()
       carouselView.isHidden = true
       carouselButtonView.isHidden = true
       uploadButton.isEnabled = true
@@ -246,6 +252,7 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         myImageView.clear()
         // do something interesting here!
         pickMeme.setTitle("Change Meme?", for:.normal)
+      Group.singleton.memePickerTimerExpired()
         myImageView.image = newImage
       previewImage = newImage
         dismiss(animated: true)
