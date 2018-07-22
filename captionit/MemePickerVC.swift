@@ -37,7 +37,7 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     let gifManager = SwiftyGifManager(memoryLimit:10)
     
     //Carousel Variables
-    var contentInstance = carouselMemes.fetchInterests()
+    var contentInstance = [carouselMemes]()
     let cellScaling: CGFloat = 0.6
     
     @IBOutlet weak var pickMeme: UIButton!
@@ -49,6 +49,11 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
       selector: #selector(self.userMemeTimerExpired),
       name: NSNotification.Name(rawValue: timerExpired),
       object: nil)
+    carouselMemes.fetchInterests { (arrMeme) in
+      self.contentInstance = arrMeme
+      self.collectionView.reloadData()
+    }
+    
   }
 
   override func viewDidDisappear(_ animated: Bool) {
@@ -109,19 +114,6 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         let picker = UIImagePickerController()
         picker.delegate = self // delegate added
         pickMeme.pulsate()
-        let screenSize = UIScreen.main.bounds.size
-        let cellWidth = floor(screenSize.width * cellScaling)
-        let cellHeight = floor(screenSize.height * cellScaling)
-        
-        let insetX = (view.bounds.width - cellWidth) / 2.0
-        let insetY = (view.bounds.height - cellHeight) / 2.0
-        
-        let layout = collectionView!.collectionViewLayout as! UICollectionViewFlowLayout
-        layout.itemSize = CGSize(width: cellWidth, height: cellHeight)
-        collectionView?.contentInset = UIEdgeInsets(top: insetY, left: insetX, bottom: insetY, right: insetX)
-        
-        collectionView?.dataSource = self
-        collectionView?.delegate = self
         showMemeCarousel()
     }
   

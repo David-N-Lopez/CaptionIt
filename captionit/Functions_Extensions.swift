@@ -115,20 +115,15 @@ extension RoomViewController : UICollectionViewDataSource
     }
 }
 
-extension RoomViewController : UIScrollViewDelegate, UICollectionViewDelegate
+extension RoomViewController : UIScrollViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate
 {
-    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>)
-    {
-        let layout = self.collectionView?.collectionViewLayout as! UICollectionViewFlowLayout
-        let cellWidthIncludingSpacing = layout.itemSize.width + layout.minimumLineSpacing
-        
-        var offset = targetContentOffset.pointee
-        let index = (offset.x + scrollView.contentInset.left) / cellWidthIncludingSpacing
-        let roundedIndex = round(index)
-        
-        offset = CGPoint(x: roundedIndex * cellWidthIncludingSpacing - scrollView.contentInset.left, y: -scrollView.contentInset.top)
-        targetContentOffset.pointee = offset
-    }
+  
+  func collectionView(_ collectionView: UICollectionView,
+                      layout collectionViewLayout: UICollectionViewLayout,
+                      sizeForItemAt indexPath: IndexPath) -> CGSize {
+    return CGSize(width: collectionView.frame.size.width, height: collectionView.frame.size.height)
+    
+  }
 }
 
 /*******White BG for the text ...Reposition it on top*******/
@@ -153,5 +148,27 @@ func textToImage(drawText text: NSString, inImage image: UIImage, atPoint point:
     UIGraphicsEndImageContext()
     
     return newImage!
+}
+
+func hexStringToUIColor (hex:String) -> UIColor {
+  var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
+  
+  if (cString.hasPrefix("#")) {
+    cString.remove(at: cString.startIndex)
+  }
+  
+  if ((cString.count) != 6) {
+    return UIColor.gray
+  }
+  
+  var rgbValue:UInt32 = 0
+  Scanner(string: cString).scanHexInt32(&rgbValue)
+  
+  return UIColor(
+    red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
+    green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
+    blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
+    alpha: CGFloat(1.0)
+  )
 }
 
