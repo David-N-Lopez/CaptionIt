@@ -13,7 +13,6 @@ import UIKit
 import AVKit
 import SDWebImage
 import SVProgressHUD
-
 class CaptioningVC: UIViewController, UITextViewDelegate{
   
   @IBOutlet weak var lblTimer: UILabel!
@@ -37,6 +36,7 @@ class CaptioningVC: UIViewController, UITextViewDelegate{
   var playerLayer : AVPlayerLayer?
   var gameTimer: Timer!
   var totalTime = 120
+    var randomArray:[String] = []
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -47,6 +47,11 @@ class CaptioningVC: UIViewController, UITextViewDelegate{
     myTextField.textColor = UIColor.lightGray
     let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
     view.addGestureRecognizer(tap)
+    ref.child("Comments").observeSingleEvent(of: .value, with: { (snapshot) in
+        let newArrayValues = snapshot.value as! [String]
+        self.randomArray = newArrayValues
+    })
+
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -220,12 +225,10 @@ class CaptioningVC: UIViewController, UITextViewDelegate{
     
   }
     @IBAction func addRandomCaption(_ sender : Any){
-        let randomArray = ["Draw me like one of your French girls","I. Declare. Bankruptcy!","When you thirsty AF", "When you are washing dishes, and someone adds a dish in","Liberals","Millenials"]
         var random = Int(arc4random_uniform(UInt32(randomArray.count)))
         myTextField.text = randomArray[random]
         btnUpload.isEnabled = true
         btnUpload.alpha = 1
-        
     }
   override func viewWillDisappear(_ animated: Bool) {
     if gameTimer != nil {

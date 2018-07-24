@@ -128,7 +128,6 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         uploadButton.alpha = 0.5
         
       } else { //showing selected image view
-        btnBack.isHidden = true
         print("image")
         imageUploaded()
         myTextView.text = "Upload your selected meme or change it!"

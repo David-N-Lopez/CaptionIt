@@ -70,6 +70,8 @@
 		AE25EDEE209EDC8F00EB7FB9 /* SourceCodePro-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AE8C4BDD20745EF1004529C1 /* SourceCodePro-Black.ttf */; };
 		AE8C4BDF2074961B004529C1 /* SourceCodePro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AE8C4BDB20745EF1004529C1 /* SourceCodePro-Bold.ttf */; };
 		AE8C4BE120749621004529C1 /* SourceSansPro-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = AE8C4BDC20745EF1004529C1 /* SourceSansPro-Regular.otf */; };
+		AF38D24E210532020095E425 /* fries.gif in Resources */ = {isa = PBXBuildFile; fileRef = AF38D24C210532020095E425 /* fries.gif */; };
+		AF38D252210565EB0095E425 /* fries-pama.gif in Resources */ = {isa = PBXBuildFile; fileRef = AF38D251210565EA0095E425 /* fries-pama.gif */; };
 		AF713F5320E21DBC00FBABF8 /* MemeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF713F5220E21DBC00FBABF8 /* MemeCollectionViewCell.swift */; };
 		AF713F5820E50C4E00FBABF8 /* CarouselMemes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF713F5720E50C4E00FBABF8 /* CarouselMemes.swift */; };
 		AF7E87A920D9A483004F437D /* captioned-fries.gif in Resources */ = {isa = PBXBuildFile; fileRef = AF7E87A820D9A483004F437D /* captioned-fries.gif */; };
@@ -194,6 +196,8 @@
 		AE8C4BDB20745EF1004529C1 /* SourceCodePro-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SourceCodePro-Bold.ttf"; path = "captionit/SourceCodePro-Bold.ttf"; sourceTree = SOURCE_ROOT; };
 		AE8C4BDC20745EF1004529C1 /* SourceSansPro-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SourceSansPro-Regular.otf"; path = "captionit/SourceSansPro-Regular.otf"; sourceTree = SOURCE_ROOT; };
 		AE8C4BDD20745EF1004529C1 /* SourceCodePro-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SourceCodePro-Black.ttf"; path = "captionit/SourceCodePro-Black.ttf"; sourceTree = SOURCE_ROOT; };
+		AF38D24C210532020095E425 /* fries.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = fries.gif; path = captionit/fries.gif; sourceTree = SOURCE_ROOT; };
+		AF38D251210565EA0095E425 /* fries-pama.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "fries-pama.gif"; sourceTree = "<group>"; };
 		AF713F5220E21DBC00FBABF8 /* MemeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemeCollectionViewCell.swift; sourceTree = "<group>"; };
 		AF713F5720E50C4E00FBABF8 /* CarouselMemes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselMemes.swift; sourceTree = "<group>"; };
 		AF7E87A820D9A483004F437D /* captioned-fries.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "captioned-fries.gif"; sourceTree = "<group>"; };
@@ -313,6 +317,7 @@
 				379674FE20A817AA003F4DAD /* blinking-pama-correct.gif */,
 				AF7E87A820D9A483004F437D /* captioned-fries.gif */,
 				371120502075355600295A63 /* pama-waiting-screen (2).gif */,
+				AF38D24C210532020095E425 /* fries.gif */,
 				331418031FB16BF40059F494 /* ViewController.swift */,
 				52B6CC1A2072C43600945942 /* CaptionCell.swift */,
 				52B6CC1B2072C43700945942 /* JudgementVC.swift */,
@@ -334,6 +339,7 @@
 				C8825BB41FD10B9200089E7A /* Room.swift */,
 				C8825BB61FD10BBD00089E7A /* Game.swift */,
 				9F1315DC208344B8005E1571 /* Group.swift */,
+				AF38D251210565EA0095E425 /* fries-pama.gif */,
 				9F0E65EF20878AF000A4365B /* PushNotificationManager.swift */,
 				37707CA8203A077600143D6E /* PhotoViewController.swift */,
 				37707CA7203A077500143D6E /* SwiftyRecordButton.swift */,
@@ -592,7 +598,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 331417F91FB16BF30059F494 /* Build configuration list for PBXProject "captionit" */;
+			buildConfigurationList = 331417F91FB16BF30059F494 /* Build configuration list for PBXProject "CaptionIt" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -640,6 +646,7 @@
 				AF7E87A920D9A483004F437D /* captioned-fries.gif in Resources */,
 				C8D9BC1320B9BC7000F9D281 /* 3ArrowsPointingDown.gif in Resources */,
 				379674FF20A817AB003F4DAD /* blinking-pama-correct.gif in Resources */,
+				AF38D252210565EB0095E425 /* fries-pama.gif in Resources */,
 				3711204F2075353400295A63 /* pama-loading-screen.gif in Resources */,
 				9F09F68E209AF3A000281313 /* pama-tutorial.gif in Resources */,
 				3796750320A8265E003F4DAD /* pama.gif in Resources */,
@@ -647,6 +654,7 @@
 				48B062BE2027844F0045400A /* GoogleService-Info.plist in Resources */,
 				AE25EDED209EDC8B00EB7FB9 /* SourceSansPro-It.otf in Resources */,
 				48B062BC2026BAA90045400A /* Main.storyboard in Resources */,
+				AF38D24E210532020095E425 /* fries.gif in Resources */,
 				3796750120A81D62003F4DAD /* scuba-pama-final.gif in Resources */,
 				371120512075355700295A63 /* pama-waiting-screen (2).gif in Resources */,
 				9F09F692209AF59C00281313 /* pama.png in Resources */,
@@ -1100,7 +1108,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		331417F91FB16BF30059F494 /* Build configuration list for PBXProject "captionit" */ = {
+		331417F91FB16BF30059F494 /* Build configuration list for PBXProject "CaptionIt" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				331418241FB16BF40059F494 /* Debug */,
