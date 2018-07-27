@@ -54,6 +54,7 @@ class carouselMemes
           }
           
           }
+        arrCarouselMeme = arrCarouselMeme.shuffled()
         response(arrCarouselMeme)
         
       }
