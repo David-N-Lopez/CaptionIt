@@ -35,6 +35,7 @@ class Group: NSObject {
   var round = 0
   var userIndex = 0
   var memePickerTime = 180
+  var isStrange = false
   
   func observeAnyoneLeftGame(_ groupPin: String) {
     curPin = groupPin

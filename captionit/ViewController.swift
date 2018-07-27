@@ -37,13 +37,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
       
       while let rest = enumerator.nextObject() as? DataSnapshot {
         if let curRoom = rest.childSnapshot(forPath: "roomPin").value as? String {
-//          if let isStrange = rest.childSnapshot(forPath: "isStrange").value as? Bool {
+          if let isStrange = rest.childSnapshot(forPath: "isStrange").value as? Bool {
             if (self.pinText.text == curRoom) {
               let userId = Auth.auth().currentUser?.uid
               ref.child("rooms").child(self.pinText.text!).child("comments").child(userId!).removeValue()
               
               self.curPin = self.pinText.text!
-              
+              Group.singleton.isStrange = isStrange
               if let currentPlayer = getCurrentPlayer(){
                 currentPlayer.joinGame(curPin: curRoom)
                 //                        self.performSegue(withIdentifier: "toroom1", sender: self)
@@ -53,7 +53,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 return
               }
             }
-//          }
+          }
         }
       }
       //error message
@@ -67,7 +67,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
   @IBAction func CreateGame(_ sender: UIButton) {
     let pin = generatePIN() // where to generate Pin? in Player Class???
     curPin = pin!
-    
+    Group.singleton.isStrange = false
     if let currentPlayer = getCurrentPlayer(){
       currentPlayer.createGame(curPin: curPin, isStrange: false)
       let controller = self.storyboard?.instantiateViewController(withIdentifier: "EnterRoomViewController") as! EnterRoomViewController
@@ -157,6 +157,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
   }
   
   @IBAction func actionStranger(_ sender: Any) {
+    Group.singleton.isStrange = true
     ref.child("rooms").observeSingleEvent(of: .value, with: { snapshot in
       
       let enumerator = snapshot.children

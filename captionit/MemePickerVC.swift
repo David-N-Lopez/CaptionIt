@@ -27,6 +27,8 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     @IBOutlet weak var previewButtonView: UIView!
     @IBOutlet weak var changeMemeButton: UIView!
   @IBOutlet weak var btnBack: UIButton!
+  @IBOutlet weak var btnCameraRoll: UIButton!
+  @IBOutlet weak var btnSnapMene: UIButton!
   
     var curPin:String?
     var previewImage: UIImage?
@@ -115,6 +117,12 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         picker.delegate = self // delegate added
         pickMeme.pulsate()
         showMemeCarousel()
+      if Group.singleton.isStrange {
+        btnCameraRoll.isEnabled = false
+        btnSnapMene.isEnabled = false
+        btnCameraRoll.alpha = 0.5
+        btnSnapMene.alpha = 0.5
+      }
     }
   
   override func viewDidAppear(_ animated: Bool) {
