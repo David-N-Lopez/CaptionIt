@@ -11,6 +11,10 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 import SwiftyGif
+import FacebookCore
+import FacebookLogin
+import FBSDKLoginKit
+import FacebookShare
 
 var ref:DatabaseReference! = Database.database().reference()
 
@@ -90,6 +94,41 @@ class ViewController: UIViewController, UITextFieldDelegate {
     let gif = UIImage(gifName: "scuba-pama-final")
     scubaGif.setGifImage(gif, manager: gifManager, loopCount: -1)
     createGameBtn.pulsate()
+    checkReportAbuse()
+  }
+  
+  func checkReportAbuse() {
+    getReportCount(userId: getUserId()!) { (count) in
+      if let values = count {
+        if let totalCount = values["count"] as? Int {
+          if totalCount >= 10 {
+            self.showReportLimitAlert()
+          }
+        }
+      }
+    }
+    }
+  
+  func showReportLimitAlert() {
+    let controller = UIAlertController(title: "Sorry", message: "Many Users Reported against you", preferredStyle: .alert)
+    let okay = UIAlertAction(title: "Okay", style: .cancel) { (action) in
+      let deletepermission = FBSDKGraphRequest(graphPath: "me/permissions/", parameters: nil, httpMethod: "DELETE")
+      deletepermission?.start(completionHandler: {(connection,result,error)-> Void in
+        let manager = FBSDKLoginManager()
+        manager.logOut()
+        print("the delete permission is (result)")
+      })
+      do {
+        try Auth.auth().signOut()
+        AppDelegate.sharedDelegate.moveToLoginRoom(index: 0)
+      }
+      catch let error {
+        print(error.localizedDescription)
+      }
+    }
+    controller.addAction(okay)
+    self.present(controller, animated: true, completion: nil)
+    
   }
   
   func dismissKeyboard() {

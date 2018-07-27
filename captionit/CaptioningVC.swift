@@ -94,6 +94,38 @@ class CaptioningVC: UIViewController, UITextViewDelegate{
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
     }
+  
+//
+  @IBAction func actionReportAbuse(_ sender : Any) {
+    self.reportAbuse()
+  }
+  
+  func reportAbuse() {
+    let controller = UIAlertController(title: "Report", message: "Is content inappropriate?", preferredStyle: .alert)
+    let cancel = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+    let report = UIAlertAction(title: "Report", style: .cancel) { (alertController) in
+      getReportCount(userId: self.judgeID!) { (count) in
+        var countValue = 0
+        if let values = count {
+        if let totalCount = values["count"] as? Int {
+             countValue = totalCount
+        }
+        if let reportedBy = values["reportedBy"] as? NSDictionary {
+          let allUsers = reportedBy.allKeys as! [String]
+          if allUsers.contains(getUserId()!) {
+            return
+          }
+        }
+        }
+        countValue = countValue + 1;
+//
+        updateReport(userId: self.judgeID!, count: countValue)
+      }
+    }
+    controller.addAction(cancel)
+    controller.addAction(report)
+    self.present(controller, animated: true, completion: nil)
+  }
 
   func setJudge(){
     ref.child("rooms").child(curPin!).child("players").observeSingleEvent(of: .value, with: { snapshot in

@@ -16,3 +16,18 @@ class Utility {
         return emailTest.evaluate(with: email)
     }
 }
+
+func getReportCount(userId : String, respone:@escaping (_ count : [String:Any]?)->()) {
+  ref.child("Users").child(userId).child("report").observeSingleEvent(of: .value, with: { snapshot in
+    if let count = snapshot.value as? [String:Any] {
+      respone(count)
+    } else {
+      respone(nil)
+    }
+  })
+}
+
+func updateReport(userId : String, count: Int) {
+  ref.child("Users").child(userId).child("report").child("count").setValue(count)
+  ref.child("Users").child(userId).child("report").child("reportedBy").child(getUserId()!).setValue(1)
+}

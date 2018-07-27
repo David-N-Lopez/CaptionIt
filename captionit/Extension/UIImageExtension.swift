@@ -17,4 +17,12 @@ extension UIImage {
     UIGraphicsEndImageContext()
     self.init(cgImage: image!.cgImage!)
   }
+  func isPortrait() -> Bool {
+    if (self.imageOrientation == .up) {
+      return true;
+    } else if (self.imageOrientation == .left || self.imageOrientation == .right) {
+      return false
+    }
+    return true
+  }
 }
