@@ -19,6 +19,8 @@ class MemeCollectionViewCell: UICollectionViewCell {
         }
     }
     private func updateUI(){
+      editorsMemes.sd_setShowActivityIndicatorView(true)
+      editorsMemes.sd_setIndicatorStyle(.gray)
         if let content = content{
           if content.featuredImage.count > 1 {
             editorsMemes.sd_setImage(with: URL(string:content.featuredImage), placeholderImage: nil, options: .scaleDownLargeImages, completed: nil)
