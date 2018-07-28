@@ -38,6 +38,7 @@ class Group: NSObject {
   var memePickerTime = 180
   var isStrange = false
   var isInactive = false
+  var isImageUploaded = false
   
   func observeAnyoneLeftGame(_ groupPin: String) {
     curPin = groupPin

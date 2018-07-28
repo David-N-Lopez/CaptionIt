@@ -48,7 +48,8 @@ class camController: SwiftyCamViewController, SwiftyCamViewControllerDelegate {
     
     func swiftyCam(_ swiftyCam: SwiftyCamViewController, didTake photo: UIImage) {
         ifHasPhoto = photo
-      Group.singleton.memePickerTimerExpired()
+      Group.singleton.isImageUploaded = true
+      
       let controller = self.storyboard?.instantiateViewController(withIdentifier: "PhotoViewController") as! PhotoViewController
       controller.curPin = curPin
       controller.backgroundImage = ifHasPhoto
@@ -58,7 +59,7 @@ class camController: SwiftyCamViewController, SwiftyCamViewControllerDelegate {
     }
     
     func swiftyCam(_ swiftyCam: SwiftyCamViewController, didBeginRecordingVideo camera: SwiftyCamViewController.CameraSelection) {
-      Group.singleton.memePickerTimerExpired()
+        Group.singleton.isImageUploaded = true
         print("Did Begin Recording")
         captureButton.growButton()
         UIView.animate(withDuration: 0.25, animations: {

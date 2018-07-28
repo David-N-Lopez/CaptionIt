@@ -69,7 +69,6 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
     gameStartRef?.observe(.value, with: { (snapshot) in
       if let startGame = snapshot.value as? Bool {
         if startGame == true {
-          //          self.performSegue(withIdentifier: "gameIsOn!", sender: Any?.self)
           self.gameStartRef?.removeAllObservers()
           Group.singleton.users = self.users
           let controller = self.storyboard?.instantiateViewController(withIdentifier: "CaptioningVC") as! CaptioningVC
@@ -141,7 +140,7 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
           self.users.append(value)
           //
         }
-        Group.singleton.updatedUsers = self.users.count
+        
         DispatchQueue.main.async {
           if self.countPlayersReady() == self.users.count && self.users.count > 2 {
             self.btnStartGame.isEnabled = true
@@ -150,21 +149,24 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
             self.btnStartGame.isEnabled = false
             self.btnStartGame.alpha = 0.5
           }
-          if Group.singleton.isStrange {
+          if Group.singleton.isStrange && Group.singleton.updatedUsers != self.users.count {
             
             if self.users.count < 3 {
               let usersRequired = 3 - self.users.count
               Group.singleton.isInactive = false
               Group.singleton.memePickerTimerExpired()
+              self.ref.child("rooms").child(self.curPin).child("isFull").setValue(false)
               Group.singleton.memePickerTime = usersRequired * 180
               Group.singleton.groupStartMemePickTimer()
             } else {
+              self.ref.child("rooms").child(self.curPin).child("isFull").setValue(true)
               Group.singleton.memePickerTimerExpired()
               Group.singleton.isInactive = false
               Group.singleton.memePickerTime =  180
               Group.singleton.groupStartMemePickTimer()
             }
           }
+          Group.singleton.updatedUsers = self.users.count
           self.tableView.reloadData()
         }
       }
@@ -266,7 +268,7 @@ extension EnterRoomViewController : GroupDelegate {
     } else {
      labelMemeTimer.text = "Be Ready in \n\(strTime)"
     }
-    if Group.singleton.updatedUsers > 2 && time == 0 {
+    if Group.singleton.updatedUsers > 2 && time == 0 && Group.singleton.isImageUploaded == false {
       Group.singleton.isInactive = true
       Group.singleton.memePickerTimerExpired()
       Group.singleton.memePickerTime =  180

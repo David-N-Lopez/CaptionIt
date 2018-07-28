@@ -67,7 +67,8 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
       
       self.showProgressHUD()
      if (myImageView.image != nil || previewVideo != nil) { // still need to check that the user is uploading something
-        Group.singleton.memePickerTimerExpired()
+//        Group.singleton.memePickerTimerExpired()
+      Group.singleton.isImageUploaded = true
             let currentPlayer = getCurrentPlayer()
             let image = myImageView.image
             var data =  NSData()
@@ -147,7 +148,7 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
       btnBack.isHidden = true
         print("video")
       myTextView.text = "Upload your selected meme or change it!"
-      Group.singleton.memePickerTimerExpired()
+      Group.singleton.isImageUploaded = true
       carouselView.isHidden = true
       carouselButtonView.isHidden = true
       uploadButton.isEnabled = true
@@ -252,7 +253,7 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         myImageView.clear()
         // do something interesting here!
         pickMeme.setTitle("Change Meme?", for:.normal)
-      Group.singleton.memePickerTimerExpired()
+      Group.singleton.isImageUploaded = true
         myImageView.image = newImage
       previewImage = newImage
         dismiss(animated: true)
@@ -276,12 +277,12 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
 extension RoomViewController : GroupDelegate {
   func memeTimerChanged(_ time: Int) {
     let strTime = Group.singleton.timeFormatted(time)
-    if Group.singleton.isInactive {
+    if !Group.singleton.isInactive {
       labelMemeTimer.text = "Starting in \n\(strTime)"
     } else {
       labelMemeTimer.text = "Be Ready in \n\(strTime)"
     }
-    if Group.singleton.updatedUsers > 2 && time == 0 {
+    if Group.singleton.updatedUsers > 2 && time == 0 && Group.singleton.isImageUploaded == false {
       Group.singleton.isInactive = true
       Group.singleton.memePickerTimerExpired()
       Group.singleton.memePickerTime =  180

@@ -38,7 +38,14 @@ class ViewController: UIViewController, UITextFieldDelegate {
       while let rest = enumerator.nextObject() as? DataSnapshot {
         if let curRoom = rest.childSnapshot(forPath: "roomPin").value as? String {
           if let isStrange = rest.childSnapshot(forPath: "isStrange").value as? Bool {
-            if (self.pinText.text == curRoom) {
+            var isFull = false;
+            if isStrange {
+              
+              if let isFullGroup = rest.childSnapshot(forPath: "isFull").value as? Bool {
+                isFull = isFullGroup
+              }
+            }
+            if (self.pinText.text == curRoom && isFull == false) {
               let userId = Auth.auth().currentUser?.uid
               ref.child("rooms").child(self.pinText.text!).child("comments").child(userId!).removeValue()
               
@@ -165,7 +172,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
         if let curRoom = rest.childSnapshot(forPath: "roomPin").value as? String {
           if let isStrange = rest.childSnapshot(forPath: "isStrange").value as? Bool {
             if let isPlaying = rest.childSnapshot(forPath: "isPlaying").value as? Bool {
-              if (isStrange == true && isPlaying == false) {
+              var isFull = false
+              if let isFullGroup = rest.childSnapshot(forPath: "isFull").value as? Bool {
+                isFull = isFullGroup
+              }
+              if (isStrange == true && isPlaying == false && isFull == false) {
                 let userId = Auth.auth().currentUser?.uid
                 ref.child("rooms").child(curRoom).child("comments").child(userId!).removeValue()
                 
