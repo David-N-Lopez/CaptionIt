@@ -24,6 +24,7 @@ class Group: NSObject {
   var curPin = "0"
   var totalUser = 0
   var handle: UInt = 0
+  var updatedUsers = 0
   var playersRef: DatabaseReference?
   var groupRef: DatabaseReference?
   var gameTimer: Timer!
@@ -36,6 +37,7 @@ class Group: NSObject {
   var userIndex = 0
   var memePickerTime = 180
   var isStrange = false
+  var isInactive = false
   
   func observeAnyoneLeftGame(_ groupPin: String) {
     curPin = groupPin
@@ -106,7 +108,9 @@ class Group: NSObject {
   }
   
   func memePickerTimerExpired() {
-    memePickTimer.invalidate()
+    if let time = memePickTimer {
+    time.invalidate()
+    }
   }
   
   func memePickerTimeOut() {
@@ -119,7 +123,9 @@ class Group: NSObject {
       if delegate != nil {
         delegate?.memeTimerChanged(memePickerTime)
       }
-      memeRunOut()
+      if isInactive {
+        memeRunOut()
+      }
     }
   }
   

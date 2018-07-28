@@ -118,6 +118,7 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         pickMeme.pulsate()
         showMemeCarousel()
       if Group.singleton.isStrange {
+        labelMemeTimer.isHidden = false
         btnCameraRoll.isEnabled = false
         btnSnapMene.isEnabled = false
         btnCameraRoll.alpha = 0.5
@@ -274,6 +275,20 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
 
 extension RoomViewController : GroupDelegate {
   func memeTimerChanged(_ time: Int) {
-    labelMemeTimer.text = Group.singleton.timeFormatted(time)
+    let strTime = Group.singleton.timeFormatted(time)
+    if Group.singleton.isInactive {
+      labelMemeTimer.text = "Starting in \n\(strTime)"
+    } else {
+      labelMemeTimer.text = "Be Ready in \n\(strTime)"
+    }
+    if Group.singleton.updatedUsers > 2 && time == 0 {
+      Group.singleton.isInactive = true
+      Group.singleton.memePickerTimerExpired()
+      Group.singleton.memePickerTime =  180
+      Group.singleton.groupStartMemePickTimer()
+    }
+    if Group.singleton.isInactive == false && time == 0 {
+      labelMemeTimer.text = "Starting Soon"
+    }
   }
 }

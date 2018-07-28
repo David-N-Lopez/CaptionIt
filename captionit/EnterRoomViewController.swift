@@ -27,8 +27,9 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
     print("hellow from enter room controller")
     roomPin.text = "ROOM: \(curPin)"
     Group.singleton.curPin = curPin
-    Group.singleton.memePickerTime = 180
-    Group.singleton.groupStartMemePickTimer()
+    if Group.singleton.isStrange {
+      labelMemeTimer.isHidden = false
+    }
     // Do any additional setup after loading the view
     //        weak var delegate: UIViewController!
     //PULSATE BUTTONS
@@ -140,13 +141,29 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
           self.users.append(value)
           //
         }
+        Group.singleton.updatedUsers = self.users.count
         DispatchQueue.main.async {
-          if self.countPlayersReady() == self.users.count && self.users.count > 1 {
+          if self.countPlayersReady() == self.users.count && self.users.count > 2 {
             self.btnStartGame.isEnabled = true
             self.btnStartGame.alpha = 1
           } else {
             self.btnStartGame.isEnabled = false
             self.btnStartGame.alpha = 0.5
+          }
+          if Group.singleton.isStrange {
+            
+            if self.users.count < 3 {
+              let usersRequired = 3 - self.users.count
+              Group.singleton.isInactive = false
+              Group.singleton.memePickerTimerExpired()
+              Group.singleton.memePickerTime = usersRequired * 180
+              Group.singleton.groupStartMemePickTimer()
+            } else {
+              Group.singleton.memePickerTimerExpired()
+              Group.singleton.isInactive = false
+              Group.singleton.memePickerTime =  180
+              Group.singleton.groupStartMemePickTimer()
+            }
           }
           self.tableView.reloadData()
         }
@@ -243,6 +260,21 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
 
 extension EnterRoomViewController : GroupDelegate {
   func memeTimerChanged(_ time: Int) {
-    labelMemeTimer.text = Group.singleton.timeFormatted(time)
+    let strTime = Group.singleton.timeFormatted(time)
+    if !Group.singleton.isInactive {
+     labelMemeTimer.text = "Starting in \n\(strTime)"
+    } else {
+     labelMemeTimer.text = "Be Ready in \n\(strTime)"
+    }
+    if Group.singleton.updatedUsers > 2 && time == 0 {
+      Group.singleton.isInactive = true
+      Group.singleton.memePickerTimerExpired()
+      Group.singleton.memePickerTime =  180
+      Group.singleton.groupStartMemePickTimer()
+    }
+    if Group.singleton.isInactive == false && time == 0 {
+      labelMemeTimer.text = "Starting Soon"
+    }
+    
   }
 }
