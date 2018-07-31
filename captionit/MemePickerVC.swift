@@ -228,6 +228,7 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             handler(exportSession)
         }
     }
+  
     func selectPicture() {
         let picker = UIImagePickerController()
         picker.allowsEditing = false
@@ -280,6 +281,7 @@ extension RoomViewController : GroupDelegate {
     if !Group.singleton.isInactive {
       labelMemeTimer.text = "Starting in \n\(strTime)"
     } else {
+      self.ref.child("rooms").child(self.curPin!).child("isFull").setValue(true)
       labelMemeTimer.text = "Be Ready in \n\(strTime)"
     }
     if Group.singleton.updatedUsers > 2 && time == 0 && Group.singleton.isImageUploaded == false {

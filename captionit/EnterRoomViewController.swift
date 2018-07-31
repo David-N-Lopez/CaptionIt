@@ -152,14 +152,13 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
           if Group.singleton.isStrange && Group.singleton.updatedUsers != self.users.count {
             
             if self.users.count < 3 {
+              self.ref.child("rooms").child(self.curPin).child("isFull").setValue(false)
               let usersRequired = 3 - self.users.count
               Group.singleton.isInactive = false
               Group.singleton.memePickerTimerExpired()
-              self.ref.child("rooms").child(self.curPin).child("isFull").setValue(false)
               Group.singleton.memePickerTime = usersRequired * 180
               Group.singleton.groupStartMemePickTimer()
             } else {
-              self.ref.child("rooms").child(self.curPin).child("isFull").setValue(true)
               Group.singleton.memePickerTimerExpired()
               Group.singleton.isInactive = false
               Group.singleton.memePickerTime =  180
@@ -256,8 +255,6 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
       self.navigationController?.popViewController(animated: true)
     }
   }
-  
-  
 }
 
 extension EnterRoomViewController : GroupDelegate {
@@ -266,6 +263,7 @@ extension EnterRoomViewController : GroupDelegate {
     if !Group.singleton.isInactive {
      labelMemeTimer.text = "Starting in \n\(strTime)"
     } else {
+      self.ref.child("rooms").child(self.curPin).child("isFull").setValue(true)
      labelMemeTimer.text = "Be Ready in \n\(strTime)"
     }
     if Group.singleton.updatedUsers > 2 && time == 0 && Group.singleton.isImageUploaded == false {
@@ -277,6 +275,5 @@ extension EnterRoomViewController : GroupDelegate {
     if Group.singleton.isInactive == false && time == 0 {
       labelMemeTimer.text = "Starting Soon"
     }
-    
   }
 }
