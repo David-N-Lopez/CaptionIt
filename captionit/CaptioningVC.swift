@@ -56,6 +56,8 @@ class CaptioningVC: UIViewController, UITextViewDelegate{
   
   override func viewWillAppear(_ animated: Bool) {
     myTextField.text = nil
+    btnUpload.isEnabled = false
+    btnUpload.alpha = 0.5
     self.labelJudgeName.text = nil
     setJudge()
     Group.singleton.startTime()

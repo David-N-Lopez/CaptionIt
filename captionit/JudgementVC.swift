@@ -418,7 +418,7 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     }
   }
   @IBAction func nextImage(_ sender: Any) {
-    currentCommentIndex += 1
+    currentCommentIndex = currentCommentIndex + 1
     if currentCommentIndex  >= 0 && currentCommentIndex < usersComments.count {
       btnPrevious.isEnabled = true
       btnPrevious.alpha = 1

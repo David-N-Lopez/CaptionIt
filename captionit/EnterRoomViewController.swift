@@ -275,5 +275,20 @@ extension EnterRoomViewController : GroupDelegate {
     if Group.singleton.isInactive == false && time == 0 {
       labelMemeTimer.text = "Starting Soon"
     }
+    if Group.singleton.isInactive == true && time == 0 {
+      let currentUser = Auth.auth().currentUser?.uid
+      ref.child("rooms").child(self.curPin).child("players").child(currentUser!).removeValue { (error, reff) in
+        Group.singleton.deleteCurrentUserMedia()
+        if self.users.count == 0  {
+          self.ref.child("rooms").child(self.curPin).removeValue()
+        } else if self.users.count == 1 {
+          let user = self.users[0] as! [String: Any]
+          if (user["ID"] as! String) == getUserId() {
+            self.ref.child("rooms").child(self.curPin).removeValue()
+          }
+        }
+        self.navigationController?.popViewController(animated: true)
+      }
+    }
   }
 }
