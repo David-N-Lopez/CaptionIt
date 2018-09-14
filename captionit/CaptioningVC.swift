@@ -42,7 +42,7 @@ class CaptioningVC: UIViewController, UITextViewDelegate{
     super.viewDidLoad()
     Group.singleton.observeAnyoneLeftGame(curPin!)
     myTextField.delegate = self
-    myTextField.text = "CaptionIt!"
+    myTextField.text = "Write captions here!"
     self.labelJudgeName.text = nil
     myTextField.textColor = UIColor.lightGray
     let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
@@ -103,7 +103,7 @@ class CaptioningVC: UIViewController, UITextViewDelegate{
   }
   
   func reportAbuse() {
-    let controller = UIAlertController(title: "Report", message: "Is content inappropriate?", preferredStyle: .alert)
+    let controller = UIAlertController(title: "Report", message: "Is this image inappropriate?", preferredStyle: .alert)
     let cancel = UIAlertAction(title: "Cancel", style: .default, handler: nil)
     let report = UIAlertAction(title: "Report", style: .cancel) { (alertController) in
       getReportCount(userId: self.judgeID!) { (count) in
@@ -171,10 +171,11 @@ class CaptioningVC: UIViewController, UITextViewDelegate{
             } else {
               self.startTimer()
               self.getUserName(self.judgeID!, "Default User", { (name) in
-                self.labelJudgeName.text = "CAPTION \(name)'s MEME!"
+                self.labelJudgeName.text = " \(name) is the Judge!"
               })
               if self.mediaType == 1 {
               self.meme.sd_setImage(with: URL(string:meme), placeholderImage: nil, options: .scaleDownLargeImages, completed: nil)
+                self.meme.layer.cornerRadius = 5
               } else {
                 self.playVideo(from: URL(string:meme)!)
               }
@@ -311,7 +312,7 @@ class CaptioningVC: UIViewController, UITextViewDelegate{
           self.gameTimer.invalidate()
           self.gameTimer = nil
         }
-        let controller = UIAlertController(title: "Error: Something went wrong", message: "Judge Left the game", preferredStyle: .alert)
+        let controller = UIAlertController(title: "Error: Something went wrong", message: "Judge left the game", preferredStyle: .alert)
         let action = UIAlertAction(title: "Ok", style: .cancel) { (action) in
           self.meme.image = nil;
           self.setJudge()

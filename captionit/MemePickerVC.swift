@@ -118,7 +118,7 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         picker.delegate = self // delegate added
         pickMeme.pulsate()
         showMemeCarousel()
-      if Group.singleton.isStrange {
+        if Group.singleton.isStrange {
         labelMemeTimer.isHidden = false
         btnCameraRoll.isEnabled = false
         btnSnapMene.isEnabled = false
@@ -133,7 +133,7 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         btnBack.isHidden = false
         print("no image")
         showMemeCarousel()
-        myTextView.text = "Pick one of our suggested images, or make your own MEME!"
+        myTextView.text = "Pick one of our suggested images, or use your own!"
         uploadButton.isEnabled = false
         uploadButton.alpha = 0.5
         
@@ -165,6 +165,7 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         carouselButtonView.isHidden = true
         uploadButton.alpha = 1
         myImageView.image = previewImage
+        myImageView.layer.cornerRadius = 10
     }
     func showMemeCarousel(){
         previewView.isHidden = true

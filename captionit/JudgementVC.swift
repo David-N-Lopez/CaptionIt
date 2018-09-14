@@ -84,7 +84,7 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
       self.strJudgeName = name
       if Auth.auth().currentUser?.uid == self.judgeID {
         self.textRound.text = "ROOM #\(self.groupId)"
-        self.textJudgeName.text = "Pick your favorite MEME!"
+        self.textJudgeName.text = "Pick your favorite CAPTION!"
       } else {
         self.textJudgeName.text = "\(name) is the judge!"
       }
@@ -220,7 +220,7 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
           if id == getUserId() {
             Group.singleton.sendNotificationToJudge(self.judgeID, Constant.selectCaption)
           }
-          self.textReadyUsers.text = "Wait for \(self.strJudgeName) to pick funniest meme!"
+          self.textReadyUsers.text = "Wait for \(self.strJudgeName) to determine the funniest caption!"
         } else {
           self.updateNumberOfUsersCommented()
         }
@@ -378,7 +378,7 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
   }
   
   func updateNumberOfUsersCommented() {
-    let main_string = "\(usersComments.count)/\(Group.singleton.totalUser - 1) memes are ready to go!"
+    let main_string = "\(usersComments.count)/\(Group.singleton.totalUser - 1) captions submitted to the Judge!"
     let string_to_color = "\(usersComments.count)/\(totalUser - 1)"
     
     let range = (main_string as NSString).range(of: string_to_color)
@@ -496,9 +496,9 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         self.viewWinnerName.isHidden = false
         self.viewWinnerButtons.isHidden = false
         self.getUserName(winner, "Winner", { (winnerName) in
-          self.textJudgeName.text = "\(winnerName) is the winner"
+          self.textJudgeName.text = "\(winnerName) won this round!"
           self.textWinnerName.text = winnerName
-          self.viewWinnerName.backgroundColor = #colorLiteral(red: 0.2470588235, green: 1, blue: 0.003921568627, alpha: 1)
+          self.viewWinnerName.backgroundColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
           self.btnPrevious.alpha = 0.5
           self.btnPrevious.isEnabled = false
           self.btnWinnerPrev.alpha = 0.5
@@ -535,9 +535,9 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
       self.textWinnerName.text = name
     })
     if id == self.gameWinnerID {
-      self.viewWinnerName.backgroundColor = #colorLiteral(red: 0.2458627252, green: 1, blue: 0.003417990503, alpha: 1)
+      self.viewWinnerName.backgroundColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
     } else {
-      self.viewWinnerName.backgroundColor = #colorLiteral(red: 0.9803921569, green: 0.07058823529, blue: 0.007843137255, alpha: 1)
+      self.viewWinnerName.backgroundColor = #colorLiteral(red: 0.8314073351, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
     }
   }
   
@@ -563,7 +563,7 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
       }
       if wasJudge {
         
-        let controller = UIAlertController(title: "Error: Something went wrong", message: "Judge Left the game", preferredStyle: .alert)
+        let controller = UIAlertController(title: "Error: Something went wrong", message: "The judge left the game", preferredStyle: .alert)
         let action = UIAlertAction(title: "Ok", style: .cancel) { (action) in
           self.navigationController?.popViewController(animated: true)
         }
@@ -583,7 +583,7 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
             if id == getUserId() {
               Group.singleton.sendNotificationToJudge(self.judgeID, Constant.selectCaption)
             }
-            self.textReadyUsers.text = "Wait for \(self.strJudgeName) to pick funniest meme!"
+            self.textReadyUsers.text = "Wait for \(self.strJudgeName) to pick funniest caption!"
           } else {
             if self.playersReady == self.totalUser {
               self.readyNextRoundRef?.removeValue()

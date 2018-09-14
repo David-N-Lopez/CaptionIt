@@ -15,6 +15,7 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
   var gameStartRef: DatabaseReference?
   
   @IBOutlet weak var labelMemeTimer: UILabel!
+  @IBOutlet weak var labelPlayerCount: UILabel!
   @IBOutlet weak var btnStartGame: UIButton!
   @IBOutlet weak var btnAddMeme: UIButton!
   @IBOutlet weak var btnInvite: UIButton!
@@ -24,8 +25,8 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
     self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false;
     gameStartRef = ref.child("rooms").child(curPin).child("isPlaying")
     gameStartRef?.setValue(false)
-    print("hellow from enter room controller")
-    roomPin.text = "ROOM: \(curPin)"
+    print("hello from enter room controller")
+    roomPin.text = "Game Pin: \(curPin)"
     Group.singleton.curPin = curPin
     if Group.singleton.isStrange {
       labelMemeTimer.isHidden = false
@@ -34,7 +35,14 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
     //        weak var delegate: UIViewController!
     //PULSATE BUTTONS
     btnAddMeme.pulsate()
+    if (self.countPlayersReady() < self.users.count){
+        self.labelPlayerCount.text = "\(self.countPlayersReady())/\(self.users.count) Players Are Ready."
+    }
+    if(self.countPlayersReady() == self.users.count){
+        self.labelPlayerCount.text = "Press Start"
+    }
 
+    
   }
   
   override func viewWillAppear(_ animated: Bool) {
