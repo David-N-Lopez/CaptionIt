@@ -22,6 +22,7 @@ class SettingsController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var usernameField: UITextField!
+    
     var ref:DatabaseReference! = Database.database().reference()
     
     override func viewDidLoad() {
@@ -82,7 +83,50 @@ class SettingsController: UIViewController, UITextFieldDelegate {
         self.present(alert, animated: true)
         }
     }
-     
+    
+    @IBAction func privacyPolicy(sender: AnyObject) {
+        openUrl(urlStr: "http://www.caption-it.net/")
+    }
+    //link to our privacy policy
+    func openUrl(urlStr:String!) {
+        
+        if let url = NSURL(string:urlStr) {
+            UIApplication.shared.open(url as URL, options: [:], completionHandler: nil)
+        }
+        
+    }
+    @IBAction func deleteAccount(sender: Any){
+        let controller = UIAlertController(title: "Wait!", message: "Are you sure you want to Delete your account?", preferredStyle: .alert)
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let delete = UIAlertAction(title: "Delete?", style: .destructive) { (action) in
+            let user = Auth.auth().currentUser
+            user?.delete { error in
+                if let error = error {
+                    // An error happened.
+                } else {
+                    // Account deleted.
+                }
+            }
+            let deletepermission = FBSDKGraphRequest(graphPath: "me/permissions/", parameters: nil, httpMethod: "DELETE")
+            deletepermission?.start(completionHandler: {(connection,result,error)-> Void in
+                let manager = FBSDKLoginManager()
+                manager.logOut()
+                print("the delete permission is (result)")
+            })
+            do {
+                try Auth.auth().signOut()
+                AppDelegate.sharedDelegate.moveToLoginRoom(index: 0)
+            }
+            catch let error {
+                print(error.localizedDescription)
+            }
+        }
+        controller.addAction(delete)
+        controller.addAction(cancel)
+        self.present(controller, animated: true, completion: nil)
+    }
+
+    
     @IBAction func logoutButtonTapped(_ sender: Any) {
       let controller = UIAlertController(title: "Wait!", message: "Are you sure you want to Logout?", preferredStyle: .alert)
       

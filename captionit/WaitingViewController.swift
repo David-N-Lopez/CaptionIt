@@ -24,18 +24,12 @@ class WaitingViewController: UIViewController {
   
   @IBOutlet weak var lblTimer: UILabel!
  
-    @IBOutlet weak var gifView: UIImageView!
     override func viewDidLoad() {
     super.viewDidLoad()
     observeUsersComments()
       Group.singleton.startTime()
       startTimer()
       lblTimer.text = Group.singleton.timeFormatted(totalTime)
-      let gifManager = SwiftyGifManager(memoryLimit:10)
-      let gif = UIImage(gifName: "fries-pama.gif")
-      gifView.setGifImage(gif, manager: gifManager, loopCount: 1)
-      
-   
       
       NotificationCenter.default.addObserver(
         self,

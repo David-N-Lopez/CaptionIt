@@ -35,14 +35,7 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
     //        weak var delegate: UIViewController!
     //PULSATE BUTTONS
     btnAddMeme.pulsate()
-    if (self.countPlayersReady() < self.users.count){
-        self.labelPlayerCount.text = "\(self.countPlayersReady())/\(self.users.count) Players Are Ready."
-    }
-    if(self.countPlayersReady() == self.users.count){
-        self.labelPlayerCount.text = "Press Start"
-    }
-
-    
+    labelPlayerCount.pulsate()
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -85,6 +78,7 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
         }
         else{
             self.btnInvite.pulsate()
+            self.labelPlayerCount.pulsate()
         }
       }
     })
@@ -105,15 +99,23 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
         cell.layer.cornerRadius = 3
         cell.layer.masksToBounds = true
         cell.selectionStyle = UITableViewCellSelectionStyle.none
-      if isReady == false {
+        if isReady == false {
         cell.imagePlayer.image = array[indexPath.row % 6]
         cell.contentView.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         //here include arrows for add meme
       }
       else {
-       
+        playersReady += 1
         cell.imagePlayer.image = array[indexPath.row % 6] //this is applying for all
         cell.contentView.backgroundColor = #colorLiteral(red: 0.9906545281, green: 0.8612887263, blue: 0.02440710366, alpha: 1)
+        if (self.playersReady > 3 && self.playersReady == self.users.count){
+                self.labelPlayerCount.text = "PRESS PLAY GAME" //talk to Matt about this change
+        }
+        if (self.playersReady == 0) {
+                self.labelPlayerCount.text = "PRESS ADD MEME"
+        }
+        self.labelPlayerCount.text =  "\(countPlayersReady())/\(self.users.count) Players Are Ready."
+        
       }
       if let ID = currentUser["ID"] as? String {
         self.getUserName(ID, "Undefined User", { (name) in

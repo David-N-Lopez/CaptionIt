@@ -140,6 +140,7 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
       } else { //showing selected image view
         print("image")
         imageUploaded()
+         myImageView.layer.cornerRadius = 10
         myTextView.text = "Upload your selected meme or change it!"
 
       }
@@ -165,7 +166,6 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         carouselButtonView.isHidden = true
         uploadButton.alpha = 1
         myImageView.image = previewImage
-        myImageView.layer.cornerRadius = 10
     }
     func showMemeCarousel(){
         previewView.isHidden = true

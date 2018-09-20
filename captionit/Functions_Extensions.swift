@@ -23,7 +23,7 @@ func generatePIN()->String?{
     return String(Int(min...max))
 }
 
-extension UIButton {
+extension UIButton{
     
     func pulsate() {
         
@@ -33,6 +33,21 @@ extension UIButton {
         pulse.toValue = 1.0
         pulse.autoreverses = true
         pulse.repeatCount = 0.5
+        pulse.initialVelocity = 1.5
+        pulse.damping = 4
+        layer.add(pulse, forKey: "pulse")
+        
+    }
+}
+extension UILabel {
+    func pulsate() {
+        
+        let pulse = CASpringAnimation(keyPath: "transform.scale")
+        pulse.duration = 2
+        pulse.fromValue = 0.93
+        pulse.toValue = 1.0
+        pulse.autoreverses = true
+        pulse.repeatCount = 0.6
         pulse.initialVelocity = 1.5
         pulse.damping = 4
         layer.add(pulse, forKey: "pulse")
