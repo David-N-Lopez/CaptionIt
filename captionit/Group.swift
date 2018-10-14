@@ -39,6 +39,7 @@ class Group: NSObject {
   var isStrange = false
   var isInactive = false
   var isImageUploaded = false
+  var timerStarted = 0
   
   func observeAnyoneLeftGame(_ groupPin: String) {
     curPin = groupPin
@@ -115,19 +116,20 @@ class Group: NSObject {
   }
   
   func memePickerTimeOut() {
-    if memePickerTime > 0 {
-      memePickerTime = memePickerTime - 1
+    timerStarted = timerStarted + 1
+//    if memePickerTime > 0 {
+//      memePickerTime = memePickerTime - 1
       if delegate != nil {
-        delegate?.memeTimerChanged(memePickerTime)
+        delegate?.memeTimerChanged(timerStarted)
       }
-    } else {
-      if delegate != nil {
-        delegate?.memeTimerChanged(memePickerTime)
-      }
-      if isInactive {
-        memeRunOut()
-      }
-    }
+//    } else {
+//      if delegate != nil {
+//        delegate?.memeTimerChanged(memePickerTime)
+//      }
+//      if isInactive {
+//        memeRunOut()
+//      }
+//    }
   }
   
   func memeRunOut() {
@@ -183,6 +185,27 @@ class Group: NSObject {
     ref.child("Users").child(judgeId).child("token").observeSingleEvent(of: .value, with: { (snapshot) in
       if let token = snapshot.value as? String {
         PushNotificationManager.sendNotificationToDevice(deviceToken: token, gameID: self.curPin, taskMessage: message)
+      }
+    })
+  }
+  
+  func startStrangeTimer() {
+    self.memePickerTimerExpired()
+    ref.child("rooms").child(curPin).observeSingleEvent(of: .value, with: { (snapshot) in
+      guard let value = snapshot.value as? [String: Any] else {return}
+      if let timeSaved = value["time"] as? Double {
+        self.memePickerTimerExpired()
+        let since = Date().timeIntervalSince1970
+        let time = Double(since) - timeSaved
+        self.timerStarted = Int(time)
+        self.groupStartMemePickTimer()
+        
+      } else {
+        let time = Date().timeIntervalSince1970
+        ref.child("rooms").child(self.curPin).child("time").setValue(time)
+        self.timerStarted = 0
+        self.memePickerTimerExpired()
+        self.groupStartMemePickTimer()
       }
     })
   }

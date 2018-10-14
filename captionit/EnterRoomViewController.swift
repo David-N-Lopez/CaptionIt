@@ -31,6 +31,7 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
     if Group.singleton.isStrange {
       labelMemeTimer.isHidden = false
     }
+    
     // Do any additional setup after loading the view
     //        weak var delegate: UIViewController!
     //PULSATE BUTTONS
@@ -160,19 +161,11 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
             self.btnStartGame.alpha = 0.5
           }
           if Group.singleton.isStrange && Group.singleton.updatedUsers != self.users.count {
-            
-            if self.users.count < 3 {
+
+            if self.users.count <= 2 {
               self.ref.child("rooms").child(self.curPin).child("isFull").setValue(false)
-              let usersRequired = 3 - self.users.count
               Group.singleton.isInactive = false
-              Group.singleton.memePickerTimerExpired()
-              Group.singleton.memePickerTime = usersRequired * 180
-              Group.singleton.groupStartMemePickTimer()
-            } else {
-              Group.singleton.memePickerTimerExpired()
-              Group.singleton.isInactive = false
-              Group.singleton.memePickerTime =  180
-              Group.singleton.groupStartMemePickTimer()
+              Group.singleton.startStrangeTimer()
             }
           }
           Group.singleton.updatedUsers = self.users.count
@@ -195,6 +188,9 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
     
     return count
   }
+  
+  
+  
   func displayErrorMsg(){
     let alert = UIAlertController(title: "Can't start game, yet", message: "You need at least 3 players with a meme each to play", preferredStyle: .alert)
     alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
@@ -271,21 +267,22 @@ extension EnterRoomViewController : GroupDelegate {
   func memeTimerChanged(_ time: Int) {
     let strTime = Group.singleton.timeFormatted(time)
     if !Group.singleton.isInactive {
-     labelMemeTimer.text = "Starting in \n\(strTime)"
+     labelMemeTimer.text = "Waiting \n\(strTime)"
     } else {
       self.ref.child("rooms").child(self.curPin).child("isFull").setValue(true)
      labelMemeTimer.text = "Be Ready in \n\(strTime)"
     }
-    if Group.singleton.updatedUsers > 2 && time == 0 && Group.singleton.isImageUploaded == false {
+    if Group.singleton.updatedUsers >= 3 && time >= 3 * 60 && Group.singleton.isImageUploaded == false {
       Group.singleton.isInactive = true
       Group.singleton.memePickerTimerExpired()
-      Group.singleton.memePickerTime =  180
+      Group.singleton.timerStarted = 0
       Group.singleton.groupStartMemePickTimer()
+      return
     }
-    if Group.singleton.isInactive == false && time == 0 {
-      labelMemeTimer.text = "Starting Soon"
-    }
-    if Group.singleton.isInactive == true && time == 0 {
+//    if Group.singleton.isInactive == false && time >= 2 * 60 {
+//      labelMemeTimer.text = "Starting Soon"
+//    }
+    if Group.singleton.isInactive == true && time > 2 * 60 && Group.singleton.isImageUploaded == false {
       let currentUser = Auth.auth().currentUser?.uid
       ref.child("rooms").child(self.curPin).child("players").child(currentUser!).removeValue { (error, reff) in
         Group.singleton.deleteCurrentUserMedia()

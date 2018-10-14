@@ -280,19 +280,17 @@ extension RoomViewController : GroupDelegate {
   func memeTimerChanged(_ time: Int) {
     let strTime = Group.singleton.timeFormatted(time)
     if !Group.singleton.isInactive {
-      labelMemeTimer.text = "Starting in \n\(strTime)"
+      labelMemeTimer.text = "Waiting in \n\(strTime)"
     } else {
       self.ref.child("rooms").child(self.curPin!).child("isFull").setValue(true)
       labelMemeTimer.text = "Be Ready in \n\(strTime)"
     }
-    if Group.singleton.updatedUsers > 2 && time == 0 && Group.singleton.isImageUploaded == false {
+    if Group.singleton.updatedUsers > 2 && time >= 3 * 60 && Group.singleton.isImageUploaded == false {
       Group.singleton.isInactive = true
       Group.singleton.memePickerTimerExpired()
-      Group.singleton.memePickerTime =  180
+      Group.singleton.timerStarted = 0
       Group.singleton.groupStartMemePickTimer()
     }
-    if Group.singleton.isInactive == false && time == 0 {
-      labelMemeTimer.text = "Starting Soon"
-    }
+    
   }
 }
