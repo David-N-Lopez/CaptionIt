@@ -13,6 +13,8 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
   var users = [Any]()
   var playersReady = 0
   var gameStartRef: DatabaseReference?
+  var isFull = false
+  let minUsers = 3
   
   @IBOutlet weak var labelMemeTimer: UILabel!
   @IBOutlet weak var labelPlayerCount: UILabel!
@@ -109,7 +111,7 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
         playersReady += 1
         cell.imagePlayer.image = array[indexPath.row % 6] //this is applying for all
         cell.contentView.backgroundColor = #colorLiteral(red: 0.9906545281, green: 0.8612887263, blue: 0.02440710366, alpha: 1)
-        if (self.playersReady > 3 && self.playersReady == self.users.count){
+        if (self.playersReady >= minUsers && self.playersReady == self.users.count){
                 self.labelPlayerCount.text = "PRESS PLAY GAME" //talk to Matt about this change
         }
         if (self.playersReady == 0) {
@@ -161,8 +163,10 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
             self.btnStartGame.alpha = 0.5
           }
           if Group.singleton.isStrange && Group.singleton.updatedUsers != self.users.count {
-
-            if self.users.count <= 2 {
+            if self.users.count <= self.minUsers {
+              if self.isFull {
+                self.ref.child("rooms").child(self.curPin).child("isReopen").setValue(true)
+              }
               self.ref.child("rooms").child(self.curPin).child("isFull").setValue(false)
               Group.singleton.isInactive = false
               Group.singleton.startStrangeTimer()
@@ -191,7 +195,7 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
   
   
   
-  func displayErrorMsg(){
+  func displayErrorMsg() {
     let alert = UIAlertController(title: "Can't start game, yet", message: "You need at least 3 players with a meme each to play", preferredStyle: .alert)
     alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
     self.present(alert, animated: true)
@@ -270,9 +274,10 @@ extension EnterRoomViewController : GroupDelegate {
      labelMemeTimer.text = "Waiting \n\(strTime)"
     } else {
       self.ref.child("rooms").child(self.curPin).child("isFull").setValue(true)
+      isFull = true
      labelMemeTimer.text = "Be Ready in \n\(strTime)"
     }
-    if Group.singleton.updatedUsers >= 3 && time >= 3 * 60 && Group.singleton.isImageUploaded == false {
+    if Group.singleton.updatedUsers >= minUsers && time >= 3 * 60 && Group.singleton.isImageUploaded == false {
       Group.singleton.isInactive = true
       Group.singleton.memePickerTimerExpired()
       Group.singleton.timerStarted = 0

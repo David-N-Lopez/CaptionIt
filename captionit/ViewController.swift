@@ -166,47 +166,36 @@ class ViewController: UIViewController, UITextFieldDelegate {
   @IBAction func actionStranger(_ sender: Any) {
     Group.singleton.isStrange = true
     ref.child("rooms").observeSingleEvent(of: .value, with: { snapshot in
-      
+      var allGroups = [String]()
       let enumerator = snapshot.children
       while let rest = enumerator.nextObject() as? DataSnapshot {
         if let curRoom = rest.childSnapshot(forPath: "roomPin").value as? String {
           if let isStrange = rest.childSnapshot(forPath: "isStrange").value as? Bool {
             if let isPlaying = rest.childSnapshot(forPath: "isPlaying").value as? Bool {
               var isFull = false
+              var isReopen = false
               if let isFullGroup = rest.childSnapshot(forPath: "isFull").value as? Bool {
                 isFull = isFullGroup
               }
+              if let reOpen = rest.childSnapshot(forPath: "isReopen").value as? Bool {
+                isReopen = reOpen
+              }
               if (isStrange == true && isPlaying == false && isFull == false) {
-                let userId = Auth.auth().currentUser?.uid
-                ref.child("rooms").child(curRoom).child("comments").child(userId!).removeValue()
-                
-                if let currentPlayer = getCurrentPlayer(){
-                  currentPlayer.joinGame(curPin: curRoom)
-                  //                        self.performSegue(withIdentifier: "toroom1", sender: self)
-                  DispatchQueue.main.async {
-                    let controller = self.storyboard?.instantiateViewController(withIdentifier: "EnterRoomViewController") as! EnterRoomViewController
-                    controller.curPin = curRoom
-                    self.navigationController?.pushViewController(controller, animated: true)
-                  }
-                  return
+                if isReopen {
+                  allGroups.insert(curRoom, at: 0)
+                } else {
+                  allGroups.append(curRoom)
                 }
               }
             }
           }
         }
       }
-      
-      let pin = generatePIN() // where to generate Pin? in Player Class???
-      self.curPin = pin!
-      
-      if let currentPlayer = getCurrentPlayer(){
-        
-        currentPlayer.createGame(curPin: self.curPin, isStrange: true)
-        let controller = self.storyboard?.instantiateViewController(withIdentifier: "EnterRoomViewController") as! EnterRoomViewController
-        controller.curPin = self.curPin
-        self.navigationController?.pushViewController(controller, animated: true)
-        //                performSegue(withIdentifier: "toroom1", sender: self)
-        
+      //Create Group
+      if allGroups.count > 0 {
+        self.joinStrangeGroup(allGroups.first!)
+      } else {
+        self.createStrangeGroup()
       }
     })
     
@@ -215,6 +204,36 @@ class ViewController: UIViewController, UITextFieldDelegate {
     //      alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
     //      self.present(alert, animated: true)
     //    })//Good
+  }
+  
+  func joinStrangeGroup(_ curRoom: String) {
+    let userId = Auth.auth().currentUser?.uid
+    ref.child("rooms").child(curRoom).child("comments").child(userId!).removeValue()
+    
+    if let currentPlayer = getCurrentPlayer(){
+      currentPlayer.joinGame(curPin: curRoom)
+      DispatchQueue.main.async {
+        let controller = self.storyboard?.instantiateViewController(withIdentifier: "EnterRoomViewController") as! EnterRoomViewController
+        controller.curPin = curRoom
+        self.navigationController?.pushViewController(controller, animated: true)
+      }
+      return
+    }
+  }
+  
+  func createStrangeGroup() {
+    let pin = generatePIN() // where to generate Pin? in Player Class???
+    self.curPin = pin!
+    
+    if let currentPlayer = getCurrentPlayer(){
+      
+      currentPlayer.createGame(curPin: self.curPin, isStrange: true)
+      let controller = self.storyboard?.instantiateViewController(withIdentifier: "EnterRoomViewController") as! EnterRoomViewController
+      controller.curPin = self.curPin
+      self.navigationController?.pushViewController(controller, animated: true)
+      //                performSegue(withIdentifier: "toroom1", sender: self)
+      
+    }
   }
   
   

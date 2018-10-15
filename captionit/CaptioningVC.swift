@@ -38,6 +38,7 @@ class CaptioningVC: UIViewController, UITextViewDelegate{
   var totalTime = 120
     var randomArray:[String] = []
   
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     Group.singleton.observeAnyoneLeftGame(curPin!)
