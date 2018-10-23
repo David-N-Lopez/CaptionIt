@@ -171,6 +171,13 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
               Group.singleton.isInactive = false
               Group.singleton.startStrangeTimer()
             }
+//            if self.users.count == self.minUsers && Group.singleton.updatedUsers < self.users.count {
+//              Group.singleton.isInactive = true
+//              Group.singleton.memePickerTimerExpired()
+//              Group.singleton.timerStarted = 0
+//              Group.singleton.groupStartMemePickTimer()
+//            }
+            
           }
           Group.singleton.updatedUsers = self.users.count
           self.tableView.reloadData()
@@ -277,30 +284,33 @@ extension EnterRoomViewController : GroupDelegate {
       isFull = true
      labelMemeTimer.text = "Be Ready in \n\(strTime)"
     }
-    if Group.singleton.updatedUsers >= minUsers && time >= 3 * 60 && Group.singleton.isImageUploaded == false {
+    if Group.singleton.updatedUsers >= minUsers && time >= 3 * 60 && Group.singleton.isInactive == false {
       Group.singleton.isInactive = true
       Group.singleton.memePickerTimerExpired()
       Group.singleton.timerStarted = 0
       Group.singleton.groupStartMemePickTimer()
       return
     }
-//    if Group.singleton.isInactive == false && time >= 2 * 60 {
-//      labelMemeTimer.text = "Starting Soon"
-//    }
+
     if Group.singleton.isInactive == true && time > 2 * 60 && Group.singleton.isImageUploaded == false {
-      let currentUser = Auth.auth().currentUser?.uid
-      ref.child("rooms").child(self.curPin).child("players").child(currentUser!).removeValue { (error, reff) in
-        Group.singleton.deleteCurrentUserMedia()
-        if self.users.count == 0  {
+      removeUser()
+    }
+    
+  }
+  
+  func removeUser() {
+    let currentUser = Auth.auth().currentUser?.uid
+    ref.child("rooms").child(self.curPin).child("players").child(currentUser!).removeValue { (error, reff) in
+      Group.singleton.deleteCurrentUserMedia()
+      if self.users.count == 0  {
+        self.ref.child("rooms").child(self.curPin).removeValue()
+      } else if self.users.count == 1 {
+        let user = self.users[0] as! [String: Any]
+        if (user["ID"] as! String) == getUserId() {
           self.ref.child("rooms").child(self.curPin).removeValue()
-        } else if self.users.count == 1 {
-          let user = self.users[0] as! [String: Any]
-          if (user["ID"] as! String) == getUserId() {
-            self.ref.child("rooms").child(self.curPin).removeValue()
-          }
         }
-        self.navigationController?.popViewController(animated: true)
       }
+      self.navigationController?.popViewController(animated: true)
     }
   }
 }

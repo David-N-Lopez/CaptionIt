@@ -285,7 +285,7 @@ extension RoomViewController : GroupDelegate {
       self.ref.child("rooms").child(self.curPin!).child("isFull").setValue(true)
       labelMemeTimer.text = "Be Ready in \n\(strTime)"
     }
-    if Group.singleton.updatedUsers > 2 && time >= 3 * 60 && Group.singleton.isImageUploaded == false {
+    if Group.singleton.updatedUsers >= minUsers && time >= 3 * 60 && Group.singleton.isInactive == false {
       Group.singleton.isInactive = true
       Group.singleton.memePickerTimerExpired()
       Group.singleton.timerStarted = 0
