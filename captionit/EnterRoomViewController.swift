@@ -14,7 +14,6 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
   var playersReady = 0
   var gameStartRef: DatabaseReference?
   var isFull = false
-  let minUsers = 3
   
   @IBOutlet weak var labelMemeTimer: UILabel!
   @IBOutlet weak var labelPlayerCount: UILabel!
@@ -30,6 +29,7 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
     print("hello from enter room controller")
     roomPin.text = "Game Pin: \(curPin)"
     Group.singleton.curPin = curPin
+     Group.singleton.isImageUploaded = false
     if Group.singleton.isStrange {
       labelMemeTimer.isHidden = false
     }
@@ -111,7 +111,7 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
         playersReady += 1
         cell.imagePlayer.image = array[indexPath.row % 6] //this is applying for all
         cell.contentView.backgroundColor = #colorLiteral(red: 0.9906545281, green: 0.8612887263, blue: 0.02440710366, alpha: 1)
-        if (self.playersReady >= minUsers && self.playersReady == self.users.count){
+        if (self.playersReady >= Constant.minUsers && self.playersReady == self.users.count){
                 self.labelPlayerCount.text = "PRESS PLAY GAME" //talk to Matt about this change
         }
         if (self.playersReady == 0) {
@@ -163,13 +163,22 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
             self.btnStartGame.alpha = 0.5
           }
           if Group.singleton.isStrange && Group.singleton.updatedUsers != self.users.count {
-            if self.users.count <= self.minUsers {
+            if self.users.count <= Constant.minUsers {
               if self.isFull {
                 self.ref.child("rooms").child(self.curPin).child("isReopen").setValue(true)
               }
-              self.ref.child("rooms").child(self.curPin).child("isFull").setValue(false)
-              Group.singleton.isInactive = false
-              Group.singleton.startStrangeTimer()
+              if Group.singleton.timerStarted > 0 {
+                self.ref.child("rooms").child(self.curPin).child("isFull").setValue(false)
+                Group.singleton.isInactive = false
+                Group.singleton.startStrangeTimer()
+              } else {
+                 DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                  guard self.users.count > 0  else {return}
+                    self.ref.child("rooms").child(self.curPin).child("isFull").setValue(false)
+                    Group.singleton.isInactive = false
+                    Group.singleton.startStrangeTimer()
+                }
+              }
             }
 //            if self.users.count == self.minUsers && Group.singleton.updatedUsers < self.users.count {
 //              Group.singleton.isInactive = true
@@ -284,7 +293,7 @@ extension EnterRoomViewController : GroupDelegate {
       isFull = true
      labelMemeTimer.text = "Be Ready in \n\(strTime)"
     }
-    if Group.singleton.updatedUsers >= minUsers && time >= 3 * 60 && Group.singleton.isInactive == false {
+    if Group.singleton.updatedUsers >= Constant.minUsers && time >= 3 * 60 && Group.singleton.isInactive == false {
       Group.singleton.isInactive = true
       Group.singleton.memePickerTimerExpired()
       Group.singleton.timerStarted = 0

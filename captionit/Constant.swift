@@ -15,4 +15,5 @@ struct Constant {
  static let nextRound = "The next Round Started"
   
   static let NotifyToJoin = "You have been invited to join a game!"
+  static let minUsers = 3
 }
