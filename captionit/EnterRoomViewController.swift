@@ -14,6 +14,8 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
   var playersReady = 0
   var gameStartRef: DatabaseReference?
   var isFull = false
+  var isSecondTime: Bool?
+  var removeObserverRef : DatabaseReference?
   
   @IBOutlet weak var labelMemeTimer: UILabel!
   @IBOutlet weak var labelPlayerCount: UILabel!
@@ -21,8 +23,10 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
   @IBOutlet weak var btnAddMeme: UIButton!
   @IBOutlet weak var btnInvite: UIButton!
   @IBOutlet weak var tableView: UITableView!
+  
   override func viewDidLoad() {
     super.viewDidLoad()
+    removeObserverRef = ref.child("rooms").child(self.curPin).child("removeUser")
     self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false;
     gameStartRef = ref.child("rooms").child(curPin).child("isPlaying")
     gameStartRef?.setValue(false)
@@ -50,6 +54,8 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
       object: nil)
     observeStartGame()
     fetchUsers()
+    isSecondTime = nil
+    removeUserObserver()
   }
   
   override func viewDidDisappear(_ animated: Bool) {
@@ -58,6 +64,7 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
   
   override func viewWillDisappear(_ animated: Bool) {
     gameStartRef?.removeAllObservers()
+    removeObserverRef?.removeAllObservers()
   }
   
   func userMemeTimerExpired()  {
@@ -115,7 +122,7 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
                 self.labelPlayerCount.text = "PRESS PLAY GAME" //talk to Matt about this change
         }
         if (self.playersReady == 0) {
-                self.labelPlayerCount.text = "PRESS ADD MEME"
+           self.labelPlayerCount.text = "PRESS ADD MEME"
         }
         self.labelPlayerCount.text =  "\(countPlayersReady())/\(self.users.count) Players Are Ready."
         
@@ -172,20 +179,11 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
                 Group.singleton.isInactive = false
                 Group.singleton.startStrangeTimer()
               } else {
-                 DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-                  guard self.users.count > 0  else {return}
-                    self.ref.child("rooms").child(self.curPin).child("isFull").setValue(false)
-                    Group.singleton.isInactive = false
-                    Group.singleton.startStrangeTimer()
-                }
+                self.ref.child("rooms").child(self.curPin).child("isFull").setValue(false)
+                Group.singleton.isInactive = false
+                Group.singleton.startStrangeTimer()
               }
             }
-//            if self.users.count == self.minUsers && Group.singleton.updatedUsers < self.users.count {
-//              Group.singleton.isInactive = true
-//              Group.singleton.memePickerTimerExpired()
-//              Group.singleton.timerStarted = 0
-//              Group.singleton.groupStartMemePickTimer()
-//            }
             
           }
           Group.singleton.updatedUsers = self.users.count
@@ -293,18 +291,38 @@ extension EnterRoomViewController : GroupDelegate {
       isFull = true
      labelMemeTimer.text = "Be Ready in \n\(strTime)"
     }
+    if Group.singleton.isInactive == true && time > 2 * 60 {
+      switchRemoveUserValue()
+    }
     if Group.singleton.updatedUsers >= Constant.minUsers && time >= 3 * 60 && Group.singleton.isInactive == false {
       Group.singleton.isInactive = true
-      Group.singleton.memePickerTimerExpired()
       Group.singleton.timerStarted = 0
+      Group.singleton.memePickerTimerExpired()
       Group.singleton.groupStartMemePickTimer()
       return
     }
-
-    if Group.singleton.isInactive == true && time > 2 * 60 && Group.singleton.isImageUploaded == false {
-      removeUser()
-    }
     
+  }
+  
+  func removeUserObserver() {
+    removeObserverRef?.observe(.value, with: { (snapshot) in
+      guard let _ =  self.isSecondTime else {self.isSecondTime = true; return}
+      if let value = snapshot.value as? Bool {
+        if Group.singleton.isImageUploaded == false {
+          self.removeUser()
+        }
+      }
+    })
+  }
+  
+  func switchRemoveUserValue() {
+    removeObserverRef?.observe(.value, with: { (snapshot) in
+      if let value = snapshot.value as? Bool {
+        self.ref.child("rooms").child(self.curPin).child("removeUser").setValue(!value)
+      } else {
+        self.ref.child("rooms").child(self.curPin).child("removeUser").setValue(true)
+      }
+    })
   }
   
   func removeUser() {
