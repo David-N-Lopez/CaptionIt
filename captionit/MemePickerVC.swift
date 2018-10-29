@@ -12,10 +12,12 @@ import FirebaseStorage
 import FirebaseDatabase
 import SVProgressHUD
 import SwiftyGif
+import FirebaseAuth
+
 
 class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     var ref:DatabaseReference! = Database.database().reference()
-    
+    var removeObserverRef : DatabaseReference?
     @IBOutlet weak var myImageView: UIImageView!
     @IBOutlet weak var myTextView: UILabel!
     @IBOutlet weak var labelMemeTimer: UILabel!
@@ -29,6 +31,7 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
   @IBOutlet weak var btnBack: UIButton!
   @IBOutlet weak var btnCameraRoll: UIButton!
   @IBOutlet weak var btnSnapMene: UIButton!
+  var isSecondTime: Bool?
   
     var curPin:String?
     var previewImage: UIImage?
@@ -55,7 +58,14 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
       self.contentInstance = arrMeme
       self.collectionView.reloadData()
     }
+    isSecondTime = nil
+    self.removeUserObserver()
     
+  }
+  
+  override func viewWillDisappear(_ animated: Bool) {
+    removeObserverRef?.removeAllObservers()
+    NotificationCenter.default.removeObserver(self)
   }
 
   override func viewDidDisappear(_ animated: Bool) {
@@ -114,6 +124,7 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
      
     override func viewDidLoad() {
         super.viewDidLoad()
+      removeObserverRef = ref.child("rooms").child(self.curPin!).child("removeUser")
         let picker = UIImagePickerController()
         picker.delegate = self // delegate added
         pickMeme.pulsate()
@@ -191,10 +202,7 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
       self.player!.play()
     }
   }
-  
-  override func viewWillDisappear(_ animated: Bool) {
-    NotificationCenter.default.removeObserver(self)
-  }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -280,17 +288,57 @@ extension RoomViewController : GroupDelegate {
   func memeTimerChanged(_ time: Int) {
     let strTime = Group.singleton.timeFormatted(time)
     if !Group.singleton.isInactive {
-      labelMemeTimer.text = "Waiting in \n\(strTime)"
+      labelMemeTimer.text = "Waiting \n\(strTime)"
     } else {
-      self.ref.child("rooms").child(self.curPin!).child("isFull").setValue(true)
       labelMemeTimer.text = "Be Ready in \n\(strTime)"
+    }
+    if Group.singleton.isInactive == true && time > 2 * 60 {
+      switchRemoveUserValue()
     }
     if Group.singleton.updatedUsers >= Constant.minUsers && time >= 3 * 60 && Group.singleton.isInactive == false {
       Group.singleton.isInactive = true
-      Group.singleton.memePickerTimerExpired()
       Group.singleton.timerStarted = 0
+      Group.singleton.memePickerTimerExpired()
       Group.singleton.groupStartMemePickTimer()
+      return
     }
     
+  }
+  
+  func removeUserObserver() {
+    removeObserverRef?.observe(.value, with: { (snapshot) in
+      guard let _ =  self.isSecondTime else {self.isSecondTime = true; return}
+      if let value = snapshot.value as? Bool {
+        if Group.singleton.isImageUploaded == false {
+          self.removeUser()
+        }
+      }
+    })
+  }
+  
+  func switchRemoveUserValue() {
+    removeObserverRef?.observe(.value, with: { (snapshot) in
+      if let value = snapshot.value as? Bool {
+        self.ref.child("rooms").child(self.curPin!).child("removeUser").setValue(!value)
+      } else {
+        self.ref.child("rooms").child(self.curPin!).child("removeUser").setValue(true)
+      }
+    })
+  }
+  
+  func removeUser() {
+    let currentUser = Auth.auth().currentUser?.uid
+    ref.child("rooms").child(self.curPin!).child("players").child(currentUser!).removeValue { (error, reff) in
+      Group.singleton.deleteCurrentUserMedia()
+      if Group.singleton.users.count == 0  {
+        self.ref.child("rooms").child(self.curPin!).removeValue()
+      } else if Group.singleton.users.count == 1 {
+        let user = Group.singleton.users[0] as! [String: Any]
+        if (user["ID"] as! String) == getUserId() {
+          self.ref.child("rooms").child(self.curPin!).removeValue()
+        }
+      }
+      self.navigationController?.popToViewController((self.navigationController?.viewControllers[(self.navigationController?.viewControllers.count)! - 3])!, animated: true)
+    }
   }
 }
