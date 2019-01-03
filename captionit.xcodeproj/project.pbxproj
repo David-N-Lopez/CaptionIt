@@ -47,12 +47,13 @@
 		9F09F68E209AF3A000281313 /* pama-tutorial.gif in Resources */ = {isa = PBXBuildFile; fileRef = 9F09F68D209AF3A000281313 /* pama-tutorial.gif */; };
 		9F09F690209AF4FB00281313 /* fries.gif in Resources */ = {isa = PBXBuildFile; fileRef = 9F09F68F209AF4FB00281313 /* fries.gif */; };
 		9F09F692209AF59C00281313 /* pama.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F09F691209AF59C00281313 /* pama.png */; };
-		9F0A833420B7015600A012B7 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9F0A833320B7015600A012B7 /* Info.plist */; };
 		9F0A833720B736BC00A012B7 /* FBInviteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A833620B736BC00A012B7 /* FBInviteViewController.swift */; };
 		9F0A833B20B7394E00A012B7 /* FBInviteVC+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A833A20B7394E00A012B7 /* FBInviteVC+Extension.swift */; };
 		9F0A833D20B739C900A012B7 /* InviteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0A833C20B739C900A012B7 /* InviteCell.swift */; };
 		9F0E65F020878AF000A4365B /* PushNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0E65EF20878AF000A4365B /* PushNotificationManager.swift */; };
 		9F1315DD208344B8005E1571 /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1315DC208344B8005E1571 /* Group.swift */; };
+		9F22C95921D79867001726E1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F22C95821D79863001726E1 /* ViewController.swift */; };
+		9F22C95B21D7986F001726E1 /* DemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F22C95A21D7986F001726E1 /* DemoViewController.swift */; };
 		9F232C21207381BB00C438A5 /* ResultVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F232C20207381BB00C438A5 /* ResultVC.swift */; };
 		9F232C232073837300C438A5 /* ResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F232C222073837300C438A5 /* ResultCell.swift */; };
 		9F28D3C2207F83F3008E69A1 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F28D3C1207F83F1008E69A1 /* UIViewExtension.swift */; };
@@ -70,7 +71,6 @@
 		AE25EDEE209EDC8F00EB7FB9 /* SourceCodePro-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AE8C4BDD20745EF1004529C1 /* SourceCodePro-Black.ttf */; };
 		AE8C4BDF2074961B004529C1 /* SourceCodePro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AE8C4BDB20745EF1004529C1 /* SourceCodePro-Bold.ttf */; };
 		AE8C4BE120749621004529C1 /* SourceSansPro-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = AE8C4BDC20745EF1004529C1 /* SourceSansPro-Regular.otf */; };
-		AF38D24E210532020095E425 /* fries.gif in Resources */ = {isa = PBXBuildFile; fileRef = AF38D24C210532020095E425 /* fries.gif */; };
 		AF38D252210565EB0095E425 /* fries-pama.gif in Resources */ = {isa = PBXBuildFile; fileRef = AF38D251210565EA0095E425 /* fries-pama.gif */; };
 		AF713F5320E21DBC00FBABF8 /* MemeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF713F5220E21DBC00FBABF8 /* MemeCollectionViewCell.swift */; };
 		AF713F5820E50C4E00FBABF8 /* CarouselMemes.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF713F5720E50C4E00FBABF8 /* CarouselMemes.swift */; };
@@ -176,6 +176,8 @@
 		9F0E65EE2087637A00A4365B /* CaptionIt.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CaptionIt.entitlements; sourceTree = "<group>"; };
 		9F0E65EF20878AF000A4365B /* PushNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationManager.swift; sourceTree = "<group>"; };
 		9F1315DC208344B8005E1571 /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Group.swift; path = captionit/Group.swift; sourceTree = SOURCE_ROOT; };
+		9F22C95821D79863001726E1 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		9F22C95A21D7986F001726E1 /* DemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoViewController.swift; sourceTree = "<group>"; };
 		9F232C20207381BB00C438A5 /* ResultVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultVC.swift; sourceTree = "<group>"; };
 		9F232C222073837300C438A5 /* ResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultCell.swift; sourceTree = "<group>"; };
 		9F28D3C1207F83F1008E69A1 /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIViewExtension.swift; path = captionit/Extension/UIViewExtension.swift; sourceTree = SOURCE_ROOT; };
@@ -196,7 +198,6 @@
 		AE8C4BDB20745EF1004529C1 /* SourceCodePro-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SourceCodePro-Bold.ttf"; path = "captionit/SourceCodePro-Bold.ttf"; sourceTree = SOURCE_ROOT; };
 		AE8C4BDC20745EF1004529C1 /* SourceSansPro-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SourceSansPro-Regular.otf"; path = "captionit/SourceSansPro-Regular.otf"; sourceTree = SOURCE_ROOT; };
 		AE8C4BDD20745EF1004529C1 /* SourceCodePro-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SourceCodePro-Black.ttf"; path = "captionit/SourceCodePro-Black.ttf"; sourceTree = SOURCE_ROOT; };
-		AF38D24C210532020095E425 /* fries.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = fries.gif; path = captionit/fries.gif; sourceTree = SOURCE_ROOT; };
 		AF38D251210565EA0095E425 /* fries-pama.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "fries-pama.gif"; sourceTree = "<group>"; };
 		AF713F5220E21DBC00FBABF8 /* MemeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemeCollectionViewCell.swift; sourceTree = "<group>"; };
 		AF713F5720E50C4E00FBABF8 /* CarouselMemes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselMemes.swift; sourceTree = "<group>"; };
@@ -302,7 +303,9 @@
 				48B062B72026BAA90045400A /* LaunchScreen.storyboard */,
 				48B062B92026BAA90045400A /* Main.storyboard */,
 				379674F420A6CAD4003F4DAD /* pizza-pama (1).gif */,
+				9F22C95A21D7986F001726E1 /* DemoViewController.swift */,
 				9F09F691209AF59C00281313 /* pama.png */,
+				9F22C95821D79863001726E1 /* ViewController.swift */,
 				AF713F5720E50C4E00FBABF8 /* CarouselMemes.swift */,
 				379674F220A6CACC003F4DAD /* mummy (1).gif */,
 				C8D9BC1120B9BC6F00F9D281 /* 3ArrowsPointingDown.gif */,
@@ -317,7 +320,6 @@
 				379674FE20A817AA003F4DAD /* blinking-pama-correct.gif */,
 				AF7E87A820D9A483004F437D /* captioned-fries.gif */,
 				371120502075355600295A63 /* pama-waiting-screen (2).gif */,
-				AF38D24C210532020095E425 /* fries.gif */,
 				331418031FB16BF40059F494 /* ViewController.swift */,
 				52B6CC1A2072C43600945942 /* CaptionCell.swift */,
 				52B6CC1B2072C43700945942 /* JudgementVC.swift */,
@@ -598,7 +600,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 331417F91FB16BF30059F494 /* Build configuration list for PBXProject "CaptionIt" */;
+			buildConfigurationList = 331417F91FB16BF30059F494 /* Build configuration list for PBXProject "captionit" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -650,11 +652,9 @@
 				3711204F2075353400295A63 /* pama-loading-screen.gif in Resources */,
 				9F09F68E209AF3A000281313 /* pama-tutorial.gif in Resources */,
 				3796750320A8265E003F4DAD /* pama.gif in Resources */,
-				9F0A833420B7015600A012B7 /* Info.plist in Resources */,
 				48B062BE2027844F0045400A /* GoogleService-Info.plist in Resources */,
 				AE25EDED209EDC8B00EB7FB9 /* SourceSansPro-It.otf in Resources */,
 				48B062BC2026BAA90045400A /* Main.storyboard in Resources */,
-				AF38D24E210532020095E425 /* fries.gif in Resources */,
 				3796750120A81D62003F4DAD /* scuba-pama-final.gif in Resources */,
 				371120512075355700295A63 /* pama-waiting-screen (2).gif in Resources */,
 				9F09F692209AF59C00281313 /* pama.png in Resources */,
@@ -815,6 +815,7 @@
 				B2B1B0D62026D0FF00FD2A51 /* Utility.swift in Sources */,
 				331418041FB16BF40059F494 /* ViewController.swift in Sources */,
 				37707CA4203A069A00143D6E /* SwiftyCamViewController.swift in Sources */,
+				9F22C95B21D7986F001726E1 /* DemoViewController.swift in Sources */,
 				9F0A833D20B739C900A012B7 /* InviteCell.swift in Sources */,
 				9F0E65F020878AF000A4365B /* PushNotificationManager.swift in Sources */,
 				37707CA6203A069A00143D6E /* PreviewView.swift in Sources */,
@@ -842,6 +843,7 @@
 				9F232C21207381BB00C438A5 /* ResultVC.swift in Sources */,
 				9F0A833B20B7394E00A012B7 /* FBInviteVC+Extension.swift in Sources */,
 				338756831FC3E7A800C78256 /* Player.swift in Sources */,
+				9F22C95921D79867001726E1 /* ViewController.swift in Sources */,
 				C8825BC11FD4674F00089E7A /* EnterRoomViewController.swift in Sources */,
 				3740D9AF206C176A000DFC1D /* CaptioningVC.swift in Sources */,
 				C8825BB51FD10B9200089E7A /* Room.swift in Sources */,
@@ -1108,7 +1110,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		331417F91FB16BF30059F494 /* Build configuration list for PBXProject "CaptionIt" */ = {
+		331417F91FB16BF30059F494 /* Build configuration list for PBXProject "captionit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				331418241FB16BF40059F494 /* Debug */,

@@ -195,14 +195,14 @@ class Group: NSObject {
       guard let value = snapshot.value as? [String: Any] else {return}
       if let timeSaved = value["time"] as? Double {
         self.memePickerTimerExpired()
-        let since = Date().timeIntervalSince1970
-        let time = Double(since) - timeSaved
+        let converted = NSDate(timeIntervalSince1970: timeSaved / 1000)
+        let time = Date().timeIntervalSince(converted as Date)
         self.timerStarted = Int(time)
         self.groupStartMemePickTimer()
         
       } else {
         let time = Date().timeIntervalSince1970
-        ref.child("rooms").child(self.curPin).child("time").setValue(time)
+        ref.child("rooms").child(self.curPin).child("time").setValue([".sv": "timestamp"])
         self.timerStarted = 0
         self.memePickerTimerExpired()
         self.groupStartMemePickTimer()
