@@ -1,12 +1,12 @@
-[![Language](https://img.shields.io/badge/swift-4-orange.svg)](http://swift.org)
+[![Language](https://img.shields.io/badge/swift-4.2-blue.svg)](http://swift.org)
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/SwiftyGif.svg)](https://img.shields.io/cocoapods/v/SwiftyGif.svg)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
-[![Pod License](http://img.shields.io/cocoapods/l/SDWebImage.svg?style=flat)](https://www.apache.org/licenses/LICENSE-2.0.html)
 [![Build Status](https://travis-ci.org/kirualex/SwiftyGif.svg?branch=master)](https://travis-ci.org/kirualex/SwiftyGif)
+[![Pod License](http://img.shields.io/cocoapods/l/SDWebImage.svg?style=flat)](https://www.apache.org/licenses/LICENSE-2.0.html)
 
 High performance & easy to use Gif engine
 
-<img src="http://i.imgur.com/p8A6jJh.gif" width="280" /> <img src="http://i.imgur.com/0hJ8MzW.gif" width="280"  />
+<img src="http://i.imgur.com/p8A6jJh.gif" width="280" />
 
 ## Features
 - [x] UIImage and UIImageView extension based
@@ -40,12 +40,15 @@ let imageview = UIImageView(gifImage: gif, loopCount: 3) // Use -1 for infinite 
 imageview.frame = view.bounds
 view.addSubview(imageview)
 ```
-In case your `UIImageView` is already created (via Nib or Storyboards for instance), you can directly set its Gif.
-You can do this multiple times, new parameters overwrite old ones.
+
+In case your `UIImageView` is already created (via Nib or Storyboards for instance), it's even easier.
 
 ```swift
-let gifmanager = SwiftyGifManager(memoryLimit:20)
-self.myImageView.setGifImage(gif, manager: gifManager) 
+self.myImageView.setGifImage(gif) 
+
+// You can also set it with an URL pointing to your gif
+let url = URL(string: "...")
+self.myImageView.setGifFromURL(url) 
 ```
 
 #### Performances

@@ -174,10 +174,10 @@ func textToImage(drawText text: NSString, inImage image: UIImage, atPoint point:
     UIGraphicsBeginImageContextWithOptions(image.size, false, scale)
     
     let textFontAttributes = [
-        NSFontAttributeName: textFont,
-        NSForegroundColorAttributeName: textColor,
-        NSBackgroundColorAttributeName: UIColor.white,
-        ] as [String : Any]
+        NSAttributedString.Key.font.rawValue: textFont,
+        NSAttributedString.Key.foregroundColor: textColor,
+        NSAttributedString.Key.backgroundColor: UIColor.white,
+        ] as! [String : Any]
     image.draw(in: CGRect(origin: CGPoint.zero, size: image.size))
     
     let rect = CGRect(origin: CGPoint.zero, size: image.size)

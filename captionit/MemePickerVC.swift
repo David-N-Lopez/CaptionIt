@@ -83,7 +83,7 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             let image = myImageView.image
             var data =  NSData()
           if mediaType == 1 {
-            data = UIImageJPEGRepresentation(image!, 0.4)! as NSData
+            data = image!.jpegData(compressionQuality: 0.4)! as NSData
           } else {
             do {
               data = try NSData.init(contentsOf: previewVideo!)
@@ -198,7 +198,7 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
   
   @objc fileprivate func playerItemDidReachEnd(_ notification: Notification) {
     if self.player != nil {
-      self.player!.seek(to: kCMTimeZero)
+        self.player!.seek(to: CMTime.zero)
       self.player!.play()
     }
   }
@@ -231,7 +231,7 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         }
         
         exportSession.outputURL = outputURL
-        exportSession.outputFileType = "mov" //changing AVFileType.mov to a string
+        exportSession.outputFileType = AVFileType(rawValue: "mov") //changing AVFileType.mov to a string
         exportSession.shouldOptimizeForNetworkUse = true
         exportSession.exportAsynchronously { () -> Void in
             handler(exportSession)
@@ -274,7 +274,7 @@ class RoomViewController: UIViewController, UIImagePickerControllerDelegate, UIN
   
   }
   
-  func userMemeTimerExpired()  {
+    @objc func userMemeTimerExpired()  {
     let controller = UIAlertController(title: "Error", message: "Time up for meme upload", preferredStyle: .alert)
     let leave = UIAlertAction(title: "Okay", style: .default) { (action) in
       self.navigationController?.popToRootViewController(animated: true)

@@ -56,17 +56,17 @@ class VideoViewController: UIViewController {
       playerController!.player = player!
         playerController!.showsPlaybackControls = false
       
-        self.addChildViewController(playerController!)
+        self.addChild(playerController!)
         self.view.addSubview(playerController!.view)
         playerController!.view.frame = view.frame
       
         
         let cancelButton = UIButton(frame: CGRect(x: 20.0, y: 20.0, width: 30.0, height: 30.0))
-        cancelButton.setImage(#imageLiteral(resourceName: "close-button"), for: UIControlState())
+        cancelButton.setImage(#imageLiteral(resourceName: "close-button"), for: UIControl.State())
         cancelButton.addTarget(self, action: #selector(cancel), for: .touchUpInside)
         view.addSubview(cancelButton)
         let useIcon = UIButton(frame: CGRect(x: view.frame.size.width - 90, y: view.frame.size.height - 90 , width: 80.0, height: 80.0))
-        useIcon.setImage(#imageLiteral(resourceName: "selected"), for: UIControlState())
+        useIcon.setImage(#imageLiteral(resourceName: "selected"), for: UIControl.State())
         useIcon.addTarget(self, action: #selector(useVideo), for: .touchUpInside)
         view.addSubview(useIcon)
     }
@@ -85,14 +85,14 @@ class VideoViewController: UIViewController {
   }
   
     /********************Dismisses the view***********************/
-    func cancel() {
+    @objc func cancel() {
       self.navigationController?.popViewController(animated: true)
     }
 
     /********************Use video will store the url under your name
                             Later to be saved in the storage when you choose to upload
      There is a potential bug here: the pinNumber variable is saved when a player joins the game there is nothing that changes it in the case that the player leaves the game***********************/
-    func useVideo(){
+    @objc func useVideo(){
 //
       performSegue(withIdentifier: "video_upload", sender: self)
 //        if let currentPlayer = getCurrentPlayer() {
@@ -113,7 +113,7 @@ class VideoViewController: UIViewController {
   
     @objc fileprivate func playerItemDidReachEnd(_ notification: Notification) {
         if self.player != nil {
-            self.player!.seek(to: kCMTimeZero)
+            self.player!.seek(to: CMTime.zero)
             self.player!.play()
         }
     }

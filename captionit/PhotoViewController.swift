@@ -29,26 +29,26 @@ class PhotoViewController: UIViewController {
 		super.viewDidLoad()
 		self.view.backgroundColor = UIColor.gray
 		let backgroundImageView = UIImageView(frame: view.frame)
-		backgroundImageView.contentMode = UIViewContentMode.scaleAspectFit
+        backgroundImageView.contentMode = UIView.ContentMode.scaleAspectFit
 		backgroundImageView.image = backgroundImage
 		view.addSubview(backgroundImageView)
         let cancelButton = UIButton(frame: CGRect(x: 20.0, y: 20.0, width: 30.0, height: 30.0))
-        cancelButton.setImage(#imageLiteral(resourceName: "close-button"), for: UIControlState())
+        cancelButton.setImage(#imageLiteral(resourceName: "close-button"), for: UIControl.State())
         cancelButton.addTarget(self, action: #selector(cancel), for: .touchUpInside)
         view.addSubview(cancelButton)
         
         let useIcon = UIButton(frame: CGRect(x: view.frame.size.width - 90, y: view.frame.size.height - 90 , width: 80.0, height: 80.0))
-        useIcon.setImage(#imageLiteral(resourceName: "selected"), for: UIControlState())
+        useIcon.setImage(#imageLiteral(resourceName: "selected"), for: UIControl.State())
         useIcon.addTarget(self, action: #selector(saveImage), for: .touchUpInside)
         view.addSubview(useIcon)
         
 	}
-    func cancel() {        //need to segue now
+    @objc func cancel() {        //need to segue now
 //        performSegue(withIdentifier: "returnToSwifty", sender: self)
       self.navigationController?.popViewController(animated: true)
     }
   
-	func saveImage() {		//need to segue now
+    @objc func saveImage() {		//need to segue now
         performSegue(withIdentifier: "SavedImageSegue", sender: self)
 	}
 //    func useImage(){

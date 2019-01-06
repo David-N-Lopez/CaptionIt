@@ -20,13 +20,13 @@ import FBSDKLoginKit
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, MessagingDelegate {
 
     var window: UIWindow?
-  var backgroundUpdateTask: UIBackgroundTaskIdentifier = 0
+    var backgroundUpdateTask: UIBackgroundTaskIdentifier = UIBackgroundTaskIdentifier(rawValue: 0)
 
   class var sharedDelegate:AppDelegate {
     return UIApplication.shared.delegate as! AppDelegate
   }
   
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override   for customization after application launch.
         FirebaseApp.configure()
         Fabric.with([Crashlytics.self])
@@ -92,7 +92,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
   func endBackgroundUpdateTask() {
     UIApplication.shared.endBackgroundTask(self.backgroundUpdateTask)
-    self.backgroundUpdateTask = UIBackgroundTaskInvalid
+    self.backgroundUpdateTask = UIBackgroundTaskIdentifier.invalid
   }
   
   func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
