@@ -161,7 +161,7 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
           //
         }
         
-        DispatchQueue.main.async {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 4.0, execute: {
           if self.countPlayersReady() == self.users.count && self.users.count > 2 {
             self.btnStartGame.isEnabled = true
             self.btnStartGame.alpha = 1
@@ -188,7 +188,7 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
           }
           Group.singleton.updatedUsers = self.users.count
           self.tableView.reloadData()
-        }
+        })
       }
     })
   }

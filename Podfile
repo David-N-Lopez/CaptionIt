@@ -14,7 +14,7 @@ target 'CaptionIt' do
   pod 'SVProgressHUD'
   pod 'SDWebImage', '~> 4.0'
   pod 'IQKeyboardManagerSwift'
-  pod 'Alamofire', '~> 4.7'
+  pod 'Alamofire'
   pod 'SwiftyGif'
   pod 'Fabric'
   pod 'Crashlytics'
