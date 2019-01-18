@@ -26,12 +26,7 @@ open class SwiftyGifManager {
         totalGifSize = 0
         haveCache = true
         timer = CADisplayLink(target: self, selector: #selector(updateImageView))
-        
-        #if swift(>=4.2)
-        timer?.add(to: .main, forMode: .common)
-        #else
-        timer?.add(to: .main, forMode: RunLoop.Mode.common)
-        #endif
+        timer?.add(to: .main, forMode: RunLoopMode.commonModes)
     }
     
     /**

@@ -67,7 +67,7 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
     removeObserverRef?.removeAllObservers()
   }
   
-    @objc func userMemeTimerExpired()  {
+  func userMemeTimerExpired()  {
     let controller = UIAlertController(title: "Error", message: "Time up for meme upload", preferredStyle: .alert)
     let leave = UIAlertAction(title: "Okay", style: .default) { (action) in
       self.navigationController?.popToRootViewController(animated: true)
@@ -108,7 +108,7 @@ class EnterRoomViewController: UIViewController, UITableViewDelegate, UITableVie
         cell.textName.font = UIFont(name: "SourceCodePro-Bold", size: 16)
         cell.layer.cornerRadius = 3
         cell.layer.masksToBounds = true
-        cell.selectionStyle = UITableViewCell.SelectionStyle.none
+        cell.selectionStyle = UITableViewCellSelectionStyle.none
         if isReady == false {
         cell.imagePlayer.image = array[indexPath.row % 6]
         cell.contentView.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
@@ -292,6 +292,7 @@ extension EnterRoomViewController : GroupDelegate {
      labelMemeTimer.text = "Be Ready in \n\(strTime)"
     }
     if Group.singleton.isInactive == true && time > 2 * 60 {
+      Group.singleton.memePickerTimerExpired()
       switchRemoveUserValue()
     }
     if Group.singleton.updatedUsers >= Constant.minUsers && time >= 3 * 60 && Group.singleton.isInactive == false {

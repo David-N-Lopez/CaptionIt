@@ -115,7 +115,7 @@ class Group: NSObject {
     }
   }
   
-    @objc func memePickerTimeOut() {
+  func memePickerTimeOut() {
     timerStarted = timerStarted + 1
 //    if memePickerTime > 0 {
 //      memePickerTime = memePickerTime - 1
@@ -139,7 +139,7 @@ class Group: NSObject {
     NotificationCenter.default.post(name: NSNotification.Name(rawValue: memeTimerExpired), object: nil)
   }
   
-    @objc func runTimedCode() {
+  func runTimedCode() {
     stopTimer()
     removeErrorObservers()
     NotificationCenter.default.post(name: NSNotification.Name(rawValue: timerExpired), object: nil)

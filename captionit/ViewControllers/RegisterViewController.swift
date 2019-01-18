@@ -32,7 +32,7 @@ class RegisterViewController: UIViewController {
       }
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
         view.addGestureRecognizer(tap)
-        if self.navigationController?.children.count == 1 {
+      if self.navigationController?.childViewControllers.count == 1 {
         btnBack.isHidden = true
       }
         // Do any additional setup after loading the view.

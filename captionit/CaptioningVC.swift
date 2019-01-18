@@ -199,7 +199,7 @@ class CaptioningVC: UIViewController, UITextViewDelegate{
     
   }
   
-    @objc func userTimerExpired()  {
+  func userTimerExpired()  {
     let controller = UIAlertController(title: "Error", message: "Something went wrong", preferredStyle: .alert)
     let leave = UIAlertAction(title: "Okay", style: .default) { (action) in
       self.navigationController?.popToRootViewController(animated: true)
@@ -221,7 +221,7 @@ class CaptioningVC: UIViewController, UITextViewDelegate{
   }
   
   override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-    if player?.currentItem?.status == AVPlayerItem.Status.readyToPlay {
+    if player?.currentItem?.status == AVPlayerItemStatus.readyToPlay {
       SVProgressHUD.dismiss()
       self.player!.play()
     }
@@ -230,7 +230,7 @@ class CaptioningVC: UIViewController, UITextViewDelegate{
   @objc fileprivate func playerItemDidReachEnd(_ notification: Notification) {
     if self.player != nil {
      
-        self.player!.seek(to: CMTime.zero)
+      self.player!.seek(to: kCMTimeZero)
       self.player!.play()
     }
   }
@@ -294,7 +294,7 @@ class CaptioningVC: UIViewController, UITextViewDelegate{
     self.present(controller, animated: true, completion: nil)
   }
   
-    @objc func alertErroOccured(_ notification: NSNotification) {
+  func alertErroOccured(_ notification: NSNotification) {
     if let wasJudge = notification.userInfo?["isJudge"] as? Bool {
       // do something with your image
       if Group.singleton.totalUser <= 1 {
@@ -343,7 +343,7 @@ class CaptioningVC: UIViewController, UITextViewDelegate{
     gameTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(runTimedCode), userInfo: nil, repeats: true)
   }
   
-    @objc func runTimedCode() {
+  func runTimedCode() {
     if totalTime <= 0 {
       lblTimer.text = Group.singleton.timeFormatted(totalTime)
       myTextField.text = "I wasn't feeling creative"

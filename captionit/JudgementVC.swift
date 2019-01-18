@@ -114,7 +114,7 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
       name: NSNotification.Name(rawValue: timerExpired),
       object: nil)
     
-    let directions: [UISwipeGestureRecognizer.Direction] = [.right, .left]
+    let directions: [UISwipeGestureRecognizerDirection] = [.right, .left]
     for direction in directions {
       let gesture = UISwipeGestureRecognizer(target: self, action: #selector(respondToSwipeGesture(gesture:)))
       gesture.direction = direction
@@ -147,15 +147,15 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     readyNextRoundRef?.removeAllObservers()
   }
   
-    @objc func respondToSwipeGesture(gesture: UIGestureRecognizer) {
+  func respondToSwipeGesture(gesture: UIGestureRecognizer) {
     if let swipeGesture = gesture as? UISwipeGestureRecognizer {
       switch swipeGesture.direction {
-      case UISwipeGestureRecognizer.Direction.right:
+      case UISwipeGestureRecognizerDirection.right:
         //Move previous Image
         print("Swiped right")
         self.previousImage(UIButton())
       
-      case UISwipeGestureRecognizer.Direction.left:
+      case UISwipeGestureRecognizerDirection.left:
         //Move next Image
         print("Swiped left")
         self.nextImage(UIButton())
@@ -167,7 +167,7 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
   }
   
   
-    @objc func userTimerExpired()  {
+  func userTimerExpired()  {
     let controller = UIAlertController(title: "Error", message: "Something went wrong", preferredStyle: .alert)
     let leave = UIAlertAction(title: "Okay", style: .default) { (action) in
       self.navigationController?.popToRootViewController(animated: true)
@@ -250,7 +250,7 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
       self.playVideo(url: URL(string:self.memeURL)!)
       player?.play()
       if player != nil {
-        player!.seek(to: CMTime.zero)
+        player!.seek(to: kCMTimeZero)
         player?.play()
       }
       NotificationCenter.default.addObserver(forName: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object:player!.currentItem , queue:nil , using: { (_ notification: Notification) in
@@ -261,7 +261,7 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
 //             self.glimpse.stop()
         }
         if self.player != nil {
-            self.player!.seek(to: CMTime.zero)
+          self.player!.seek(to: kCMTimeZero)
           self.player!.play()
            // ithe likh le madam
         }
@@ -329,7 +329,7 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     
-    return UITableView.automaticDimension
+    return UITableViewAutomaticDimension
   }
   
 //  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -383,8 +383,8 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
     let range = (main_string as NSString).range(of: string_to_color)
     let attribute = NSMutableAttributedString.init(string: main_string)
-    attribute.addAttribute(NSAttributedString.Key.foregroundColor, value: #colorLiteral(red: 0.9630501866, green: 0.443431586, blue: 0.1741285622, alpha: 1) , range: range)
-    attribute.addAttribute(NSAttributedString.Key.font, value: UIFont.boldSystemFont(ofSize: 17), range: range)
+    attribute.addAttribute(NSForegroundColorAttributeName, value: #colorLiteral(red: 0.9630501866, green: 0.443431586, blue: 0.1741285622, alpha: 1) , range: range)
+    attribute.addAttribute(NSFontAttributeName, value: UIFont.boldSystemFont(ofSize: 17), range: range)
     self.textReadyUsers.attributedText = attribute
   }
   
@@ -397,7 +397,7 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
       if gameWinnerID.count > 0 {
         self.updateNameWithComment(userCommentDic["id"]!)
       }
-        self.animateTableView(subtype: CATransitionSubtype.fromLeft.rawValue)
+      self.animateTableView(subtype: kCATransitionFromLeft)
       self.textSingleComment.text = userCommentDic["comment"]
       btnNext.isEnabled = true
       btnNext.alpha = 1
@@ -428,7 +428,7 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
       if gameWinnerID.count > 0 {
         self.updateNameWithComment(userCommentDic["id"]!)
       }
-        self.animateTableView(subtype: CATransitionSubtype.fromRight.rawValue)
+      self.animateTableView(subtype: kCATransitionFromRight)
       self.textSingleComment.text = userCommentDic["comment"]
 
       if currentCommentIndex >= usersComments.count - 1 {
@@ -541,7 +541,7 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     }
   }
   
-    @objc func alertErroOccured(_ notification: NSNotification) {
+  func alertErroOccured(_ notification: NSNotification) {
     
     if let wasJudge = notification.userInfo?["isJudge"] as? Bool {
       // do something with your image
@@ -712,7 +712,7 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     // file saved
     //      let filePath = saveVideoToPath(url)
     if mediaData == nil {
-    mediaData = image.jpegData(compressionQuality: 1)
+    mediaData = UIImageJPEGRepresentation(image, 1)
     }
     let objectsToShare = [mediaData!] as [Any] //comment!, imageData!, myWebsite!]
       let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
@@ -723,10 +723,10 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
   func excludeshareExtensions(_ activityVC: UIActivityViewController) {
     //New Excluded Activities Code
     if #available(iOS 9.0, *) {
-        activityVC.excludedActivityTypes = [ UIActivity.ActivityType.addToReadingList, UIActivity.ActivityType.assignToContact, UIActivity.ActivityType.copyToPasteboard, UIActivity.ActivityType.openInIBooks, UIActivity.ActivityType.postToTencentWeibo, UIActivity.ActivityType.postToVimeo, UIActivity.ActivityType.postToWeibo, UIActivity.ActivityType.print]
+      activityVC.excludedActivityTypes = [ UIActivityType.addToReadingList, UIActivityType.assignToContact, UIActivityType.copyToPasteboard, UIActivityType.openInIBooks, UIActivityType.postToTencentWeibo, UIActivityType.postToVimeo, UIActivityType.postToWeibo, UIActivityType.print]
     } else {
       // Fallback on earlier versions
-        activityVC.excludedActivityTypes = [ UIActivity.ActivityType.addToReadingList, UIActivity.ActivityType.assignToContact, UIActivity.ActivityType.copyToPasteboard, UIActivity.ActivityType.postToTencentWeibo, UIActivity.ActivityType.postToVimeo, UIActivity.ActivityType.postToWeibo, UIActivity.ActivityType.print ]
+      activityVC.excludedActivityTypes = [ UIActivityType.addToReadingList, UIActivityType.assignToContact, UIActivityType.copyToPasteboard, UIActivityType.postToTencentWeibo, UIActivityType.postToVimeo, UIActivityType.postToWeibo, UIActivityType.print ]
     }
   }
   
@@ -734,9 +734,9 @@ class JudgementVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
   func animateTableView(subtype:String)  {
     let transition = CATransition()
     
-    transition.type = CATransitionType.push
+    transition.type = kCATransitionPush
     
-    transition.subtype = CATransitionSubtype(rawValue: subtype)
+    transition.subtype = subtype
     self.textSingleComment.layer.add(transition, forKey: kCATransition)
     CATransaction.commit()
   }

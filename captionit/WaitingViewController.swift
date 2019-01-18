@@ -81,7 +81,7 @@ class WaitingViewController: UIViewController {
     self.navigationController?.pushViewController(destinationVC, animated: true)
   }
   
-    @objc func alertErroOccured(_ notification: NSNotification) {
+  func alertErroOccured(_ notification: NSNotification) {
       // do something with your image
       if Group.singleton.totalUser <= 1 {
         let controller = UIAlertController(title: "Error: Something went wrong", message: "All of your friends unexpectedly left the game.", preferredStyle: .alert)
@@ -101,7 +101,7 @@ class WaitingViewController: UIViewController {
     }
   }
   
-    @objc func userTimerExpired()  {
+  func userTimerExpired()  {
     let controller = UIAlertController(title: "Error", message: "Something went wrong", preferredStyle: .alert)
     let leave = UIAlertAction(title: "Okay", style: .default) { (action) in
       self.navigationController?.popToRootViewController(animated: true)
@@ -130,7 +130,7 @@ class WaitingViewController: UIViewController {
     gameTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(runTimedCode), userInfo: nil, repeats: true)
   }
   
-    @objc func runTimedCode() {
+  func runTimedCode() {
     if totalTime <= 0 {
       lblTimer.text = Group.singleton.timeFormatted(totalTime)
       gameTimer.invalidate()

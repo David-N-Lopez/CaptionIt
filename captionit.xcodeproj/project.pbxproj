@@ -27,7 +27,6 @@
 		37707CAA203A077900143D6E /* SwiftyRecordButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37707CA7203A077500143D6E /* SwiftyRecordButton.swift */; };
 		37707CAB203A077900143D6E /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37707CA8203A077600143D6E /* PhotoViewController.swift */; };
 		37707CAC203A077900143D6E /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37707CA9203A077700143D6E /* VideoViewController.swift */; };
-		379674F120A6CABB003F4DAD /* confetti-2.gif in Resources */ = {isa = PBXBuildFile; fileRef = 379674EF20A6CABA003F4DAD /* confetti-2.gif */; };
 		379674F320A6CACD003F4DAD /* mummy (1).gif in Resources */ = {isa = PBXBuildFile; fileRef = 379674F220A6CACC003F4DAD /* mummy (1).gif */; };
 		379674F520A6CAD5003F4DAD /* pizza-pama (1).gif in Resources */ = {isa = PBXBuildFile; fileRef = 379674F420A6CAD4003F4DAD /* pizza-pama (1).gif */; };
 		379674FF20A817AB003F4DAD /* blinking-pama-correct.gif in Resources */ = {isa = PBXBuildFile; fileRef = 379674FE20A817AA003F4DAD /* blinking-pama-correct.gif */; };
@@ -67,6 +66,7 @@
 		9FF7B6DC208E1DEF00E9E3F4 /* ObjC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FF7B6D9208E1DEE00E9E3F4 /* ObjC.m */; };
 		9FF7B6DE208E1F7300E9E3F4 /* UserdefaultExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FF7B6DD208E1F7300E9E3F4 /* UserdefaultExtension.swift */; };
 		9FFB791E208CCF260095082E /* PlayerReadyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FFB791D208CCF260095082E /* PlayerReadyCell.swift */; };
+		A9191DC421F05475002AE7F2 /* confetti.gif in Resources */ = {isa = PBXBuildFile; fileRef = A9191DC221F05474002AE7F2 /* confetti.gif */; };
 		AE25EDED209EDC8B00EB7FB9 /* SourceSansPro-It.otf in Resources */ = {isa = PBXBuildFile; fileRef = AE8C4BDA20745EF1004529C1 /* SourceSansPro-It.otf */; };
 		AE25EDEE209EDC8F00EB7FB9 /* SourceCodePro-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AE8C4BDD20745EF1004529C1 /* SourceCodePro-Black.ttf */; };
 		AE8C4BDF2074961B004529C1 /* SourceCodePro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AE8C4BDB20745EF1004529C1 /* SourceCodePro-Bold.ttf */; };
@@ -140,7 +140,6 @@
 		37707CA7203A077500143D6E /* SwiftyRecordButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyRecordButton.swift; sourceTree = "<group>"; };
 		37707CA8203A077600143D6E /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		37707CA9203A077700143D6E /* VideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
-		379674EF20A6CABA003F4DAD /* confetti-2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "confetti-2.gif"; sourceTree = "<group>"; };
 		379674F220A6CACC003F4DAD /* mummy (1).gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "mummy (1).gif"; sourceTree = "<group>"; };
 		379674F420A6CAD4003F4DAD /* pizza-pama (1).gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "pizza-pama (1).gif"; sourceTree = "<group>"; };
 		379674FE20A817AA003F4DAD /* blinking-pama-correct.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "blinking-pama-correct.gif"; sourceTree = "<group>"; };
@@ -194,6 +193,7 @@
 		9FF7B6D9208E1DEE00E9E3F4 /* ObjC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjC.m; sourceTree = "<group>"; };
 		9FF7B6DD208E1F7300E9E3F4 /* UserdefaultExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserdefaultExtension.swift; sourceTree = "<group>"; };
 		9FFB791D208CCF260095082E /* PlayerReadyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PlayerReadyCell.swift; path = captionit/PlayerReadyCell.swift; sourceTree = SOURCE_ROOT; };
+		A9191DC221F05474002AE7F2 /* confetti.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = confetti.gif; sourceTree = "<group>"; };
 		AE8C4BDA20745EF1004529C1 /* SourceSansPro-It.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SourceSansPro-It.otf"; path = "captionit/SourceSansPro-It.otf"; sourceTree = SOURCE_ROOT; };
 		AE8C4BDB20745EF1004529C1 /* SourceCodePro-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SourceCodePro-Bold.ttf"; path = "captionit/SourceCodePro-Bold.ttf"; sourceTree = SOURCE_ROOT; };
 		AE8C4BDC20745EF1004529C1 /* SourceSansPro-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SourceSansPro-Regular.otf"; path = "captionit/SourceSansPro-Regular.otf"; sourceTree = SOURCE_ROOT; };
@@ -315,7 +315,7 @@
 				3711204E2075353300295A63 /* pama-loading-screen.gif */,
 				3796750020A81D61003F4DAD /* scuba-pama-final.gif */,
 				331418011FB16BF40059F494 /* AppDelegate.swift */,
-				379674EF20A6CABA003F4DAD /* confetti-2.gif */,
+				A9191DC221F05474002AE7F2 /* confetti.gif */,
 				37C91AB1208296F9004B15C1 /* pama-and-friends.gif */,
 				379674FE20A817AA003F4DAD /* blinking-pama-correct.gif */,
 				AF7E87A820D9A483004F437D /* captioned-fries.gif */,
@@ -600,7 +600,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 331417F91FB16BF30059F494 /* Build configuration list for PBXProject "captionit" */;
+			buildConfigurationList = 331417F91FB16BF30059F494 /* Build configuration list for PBXProject "CaptionIt" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -645,6 +645,7 @@
 				9F09F690209AF4FB00281313 /* fries.gif in Resources */,
 				48B062BB2026BAA90045400A /* LaunchScreen.storyboard in Resources */,
 				379674F320A6CACD003F4DAD /* mummy (1).gif in Resources */,
+				A9191DC421F05475002AE7F2 /* confetti.gif in Resources */,
 				AF7E87A920D9A483004F437D /* captioned-fries.gif in Resources */,
 				C8D9BC1320B9BC7000F9D281 /* 3ArrowsPointingDown.gif in Resources */,
 				379674FF20A817AB003F4DAD /* blinking-pama-correct.gif in Resources */,
@@ -659,7 +660,6 @@
 				371120512075355700295A63 /* pama-waiting-screen (2).gif in Resources */,
 				9F09F692209AF59C00281313 /* pama.png in Resources */,
 				AE25EDEE209EDC8F00EB7FB9 /* SourceCodePro-Black.ttf in Resources */,
-				379674F120A6CABB003F4DAD /* confetti-2.gif in Resources */,
 				37112042207177E300295A63 /* Assets.xcassets in Resources */,
 				379674F520A6CAD5003F4DAD /* pizza-pama (1).gif in Resources */,
 				AE8C4BDF2074961B004529C1 /* SourceCodePro-Bold.ttf in Resources */,
@@ -754,7 +754,7 @@
 				"${BUILT_PRODUCTS_DIR}/FacebookLogin/FacebookLogin.framework",
 				"${BUILT_PRODUCTS_DIR}/FacebookShare/FacebookShare.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
@@ -774,7 +774,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookLogin.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookShare.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
@@ -963,7 +963,6 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1006,7 +1005,6 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1027,7 +1025,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "CaptionIt/CaptionIt-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -1046,7 +1044,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "CaptionIt/CaptionIt-Bridging-Header.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
@@ -1112,7 +1110,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		331417F91FB16BF30059F494 /* Build configuration list for PBXProject "captionit" */ = {
+		331417F91FB16BF30059F494 /* Build configuration list for PBXProject "CaptionIt" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				331418241FB16BF40059F494 /* Debug */,

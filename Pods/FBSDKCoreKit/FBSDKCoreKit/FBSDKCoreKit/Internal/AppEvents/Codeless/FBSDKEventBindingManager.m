@@ -29,9 +29,8 @@
 #import "FBSDKTypeUtility.h"
 #import "FBSDKViewHierarchy.h"
 
-#define ReactNativeEventNameKey       @"eventName"
-#define ReactNativeViewTagKey         @"viewTag"
-#define ReactNativeTouchEndEventName  @"touchEnd"
+#define ReactNativeTargetKey          @"target"
+#define ReactNativeTouchEndEventName  @"topTouchEnd"
 
 #define ReactNativeClassRCTTextView   "RCTTextView"
 #define ReactNativeClassRCTImageView  "RCTImageVIew"
@@ -165,14 +164,16 @@ static void fb_dispatch_on_default_thread(dispatch_block_t block) {
     [FBSDKSwizzler swizzleSelector:@selector(dispatchEvent:) onClass:classRCTEventDispatcher withBlock:^(id dispatcher, SEL command, id event){
       if ([event isKindOfClass:objc_lookUpClass(ReactNativeClassRCTTouchEvent)]) {
         @try {
-          NSString *eventName = [event valueForKeyPath:ReactNativeEventNameKey];
-          NSNumber *viewTag = [event valueForKeyPath:ReactNativeViewTagKey];
-
-          if ([eventName isEqualToString:ReactNativeTouchEndEventName]
-              && nil != viewTag) {
-            FBSDKEventBinding *eventBinding = [self->reactBindings objectForKey:viewTag];
-            if (eventBinding) {
-              [eventBinding trackEvent:nil];
+          NSArray<id> *eventArgs = [event arguments];
+          NSString *eventName = eventArgs[0];
+          NSArray<NSDictionary *> *touches = eventArgs[1];
+          if (eventName && touches && [eventName isEqualToString:ReactNativeTouchEndEventName]) {
+            for (NSDictionary<NSString *, id> *touch in touches) {
+              NSNumber *targetTag = touch[ReactNativeTargetKey];
+              FBSDKEventBinding *eventBinding = self->reactBindings[targetTag];
+              if (eventBinding) {
+                [eventBinding trackEvent:nil];
+              }
             }
           }
         }
@@ -286,12 +287,17 @@ static void fb_dispatch_on_default_thread(dispatch_block_t block) {
         }
       } else if (self->hasReactNative
                  && [view respondsToSelector:@selector(reactTag)]) {
-        NSNumber *reactTag = [view performSelector:@selector(reactTag)];
         for (FBSDKEventBinding *binding in self->eventBindings) {
           if ([FBSDKEventBinding isPath:binding.path matchViewPath:path]) {
             fb_dispatch_on_main_thread(^{
-              if (reactTag && [reactTag isKindOfClass:[NSNumber class]]) {
-                [self->reactBindings setObject:binding forKey:reactTag];
+              // React Native touchable event is targeted at first subview,
+              // so extract the first subview and set the binding for it
+              UIView *reactView = view.subviews.firstObject;
+              if (reactView) {
+                NSNumber *reactTag = [FBSDKViewHierarchy getViewReactTag:reactView];
+                if (reactTag != nil) {
+                  self->reactBindings[reactTag] = binding;
+                }
               }
             });
             break;
@@ -312,7 +318,7 @@ static void fb_dispatch_on_default_thread(dispatch_block_t block) {
           }
 
           if (matchedBindings.count > 0) {
-            NSArray *bindings = [matchedBindings allObjects];
+            NSArray *bindings = matchedBindings.allObjects;
             void (^block)(id, SEL, id, id) = ^(id target, SEL command, UITableView *tableView, NSIndexPath *indexPath) {
               fb_dispatch_on_main_thread(^{
                 for (FBSDKEventBinding *binding in bindings) {
@@ -346,7 +352,7 @@ static void fb_dispatch_on_default_thread(dispatch_block_t block) {
           }
 
           if (matchedBindings.count > 0) {
-            NSArray *bindings = [matchedBindings allObjects];
+            NSArray *bindings = matchedBindings.allObjects;
             void (^block)(id, SEL, id, id) = ^(id target, SEL command, UICollectionView *collectionView, NSIndexPath *indexPath) {
               fb_dispatch_on_main_thread(^{
                 for (FBSDKEventBinding *binding in bindings) {
