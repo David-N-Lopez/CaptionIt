@@ -85,7 +85,7 @@ class SettingsController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func privacyPolicy(sender: AnyObject) {
-        openUrl(urlStr: "http://www.caption-it.net/")
+        openUrl(urlStr: "http://www.captionit.app/policy")
     }
     //link to our privacy policy
     func openUrl(urlStr:String!) {

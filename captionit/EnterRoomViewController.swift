@@ -292,6 +292,7 @@ extension EnterRoomViewController : GroupDelegate {
      labelMemeTimer.text = "Be Ready in \n\(strTime)"
     }
     if Group.singleton.isInactive == true && time > 2 * 60 {
+      Group.singleton.memePickerTimerExpired()
       switchRemoveUserValue()
     }
     if Group.singleton.updatedUsers >= Constant.minUsers && time >= 3 * 60 && Group.singleton.isInactive == false {

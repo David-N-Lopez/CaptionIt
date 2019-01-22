@@ -27,8 +27,8 @@ class DemoViewController: UIViewController {
       
       btnPrevious.alpha = 0.5
       btnPrevious.isEnabled = false
-      arrImages = ["pama-tutorial.gif","pama-and-friends.gif","fries.gif","captioned-fries.gif","confetti-2.gif"]
-        arrNotes = ["Welcome to Caption_it!","JOIN a game with players from all \n over the world or create a game and share your room\n pin with your friends.","SNAP your own picture or choose one from our gallery for the game to start.","CAPTION the images uploaded by your friends with \n funny quips and submit your completed memes.\nJUDGE the captions that your friends created for your \nuploaded picture, and select a winning meme!", "FLEX on your friends if you created the \n greatest number of winning memes."]    
+      arrImages = ["pama-tutorial.gif","pama-and-friends.gif","fries.gif","captioned-fries.gif","confetti.gif"]
+        arrNotes = ["Welcome to Caption_it!","JOIN a game with players from all \n over the world or create a game and share your room\n pin with your friends.","SNAP your own picture or choose one from our gallery for the game to start.","CAPTION the images uploaded by your friends with funny \n quips and submit your completed memes.\nJUDGE the captions that your friends created for your uploaded picture, and select a winning meme!", "FLEX on your friends if you created the greatest number of winning memes."]    
       
       mPager.numberOfPages = arrImages.count
       mPager.currentPage = 0
