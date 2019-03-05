@@ -21,7 +21,9 @@ target 'CaptionIt' do
   pod 'FacebookCore'
   pod 'FacebookLogin'
   pod 'FacebookShare'
-  
+#  pod 'FBSDKCoreKit', '~> 4.38.0'
+#  pod 'FBSDKLoginKit', '~> 4.38.0'
+
   target 'CaptionItTests' do
     inherit! :search_paths
     # Pods for testing
