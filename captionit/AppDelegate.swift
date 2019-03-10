@@ -48,7 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
       }
       Messaging.messaging().isAutoInitEnabled = true
       application.registerForRemoteNotifications()
-      if AppSetting.isUserLogin == false {
+      if AppSetting.isUserLogin == false && Auth.auth().currentUser?.uid == nil  {
         moveToDemoScreen(index: 0)
       } else {
         moveToViewController()
@@ -59,9 +59,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
   
   func moveToViewController() {
     if Auth.auth().currentUser?.uid != nil {
-      ref.child("Users").child(Auth.auth().currentUser!.uid).child("username").observeSingleEvent(of: .value, with: { (snapshot) in
+      ref.child("Users").child(Auth.auth().currentUser!.uid).observeSingleEvent(of: .value, with: { (snapshot) in
         
-        if (snapshot.value as? String) != nil {
+        if snapshot.exists() {
           self.moveToEnterRoom(index: 0)
         } else {
           let storyboard = UIStoryboard(name: "Main", bundle: nil)
