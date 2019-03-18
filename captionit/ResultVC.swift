@@ -156,7 +156,7 @@ extension ResultVC : UITableViewDelegate,UITableViewDataSource {
   }
   
     func sendInvites() {
-        let id = "id1277137775"
+        let id = "id1374103090"
         if let name = NSURL(string: "https://itunes.apple.com/us/app/myapp/\(id)?ls=1&mt=8") {
             let textToShare = "Have you tried the FIRST meme game app? It's like cards against humanity, but for your phone!"
             let objectsToShare = [name,textToShare] as [Any]
